@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Azure OSS Developer Support">
+<meta property="og:url" content="http://azureossd.github.io/page/13/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Azure OSS Developer Support">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body>
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main">
+  
+    <article id="post-installing-php-package-on-azure-website-using-pear-package-manager" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/installing-php-package-on-azure-website-using-pear-package-manager/"> Installing PHP Package on Azure Website Using PEAR Package Manager		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/installing-php-package-on-azure-website-using-pear-package-manager/" class="article-date">
+	  <time datetime="2015-04-03T14:03:00.000Z" itemprop="datePublished">April 3, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1. Download go-pear.phar for Windows from  <a href="https://pear.php.net/manual/en/installation.getting.php" target="_blank" rel="noopener">https://pear.php.net/manual/en/installation.getting.php</a></p>
+<p>2. Copy “go-pear.phar” file to website root (/site/wwwroot)</p>
+<p><a href="/wp-content/uploads/2019/03/1351.pear-01.PNG"><img src="/wp-content/uploads/2019/03/1351.pear-01.PNG" alt></a></p>
+<p>3. Run “<strong>php go-pear.phar</strong>“ at website root.</p>
+<p>Navigate to Kudu console (<a href="https://Your_Website_name.scm.azurewebsites.net/DebugConsole" target="_blank" rel="noopener">https://<your-site-name>.scm.azurewebsites.net/DebugConsole</your-site-name></a> ), select a command interface from “Debug console”:</p>
+<p><a href="/wp-content/uploads/2019/03/4621.kudu.jpg"><img src="/wp-content/uploads/2019/03/4621.kudu.jpg" alt></a></p>
+<p>Select “local” to install a local copy, confirm your selection</p>
+<p><a href="/wp-content/uploads/2019/03/2605.pear-02.PNG"><img src="/wp-content/uploads/2019/03/2605.pear-02.PNG" alt></a></p>
+<p>You may see some warning message, and ask you to alter php.ini file, enter “n” for not altering php.ini</p>
+<p><a href="/wp-content/uploads/2019/03/7418.pear-03.PNG"><img src="/wp-content/uploads/2019/03/7418.pear-03.PNG" alt></a></p>
+<p> You should see “Thanks for using go-pears!” message at the end of installation.</p>
+<p>4. Use “<strong>pear list</strong>“ command to check if the package(s) you need is installed. </p>
+<p>Run “pear install <package name>“ to install more packages.</package></p>
+<p>Installation option “-a” (–alldeps) will install all required and optional dependencies, for example,</p>
+<p>Mail package has dependency with Auth_SASL, Net_SMTP,</p>
+<p>“<strong>pear install -a Mail</strong>“ will help you solve the dependencies, so that you do not need to install them separately.</p>
+<p>Note: To make “pear install” use current pear.ini, add -c option, eg. “<strong>pear -c D:\home\site\wwwroot\pear.ini install -a Mail</strong>“</p>
+<p>You can use installation option “-f” (–force) to overwrite newer installed packages, use it when needed.</p>
+<p>Check your packages with the command “pear list” again after installation to make sure they are installed properly.</p>
+<p>All installed packages are located under “/wwwroot/pear”, you can find them from there.</p>
+<p>5. In the case you use default PHP runtime environment on Azure, you cannot modify php.ini to include pear path,</p>
+<p>you will need to do this in .user.ini, add following line in your .user.ini:</p>
+<p>  include_path=”.;D:\home\site\wwwroot\pear”</p>
+<p>6. When use the package in your php code, you should give the partial path name as well, for example:</p>
+<p>  require_once “<strong>pear</strong>/Mail.php”;</p>
+<p>Note: To use composer, refer to <a href="http://blogs.msdn.com/b/azureossds/archive/2015/04/02/setting-up-email-client-in-wediamiki.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/azureossds/archive/2015/04/02/setting-up-email-client-in-wediamiki.aspx</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>, <a class="article-category-link" href="/categories/PHP/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mail-package/">Mail package</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pear/">pear</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-azure-app-service-web-apps-install-mail-package-using-composer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/azure-app-service-web-apps-install-mail-package-using-composer/"> Azure App Service Web Apps  - Install Mail package using composer		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/azure-app-service-web-apps-install-mail-package-using-composer/" class="article-date">
+	  <time datetime="2015-04-02T18:04:00.000Z" itemprop="datePublished">April 2, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For Information about installing MediaWiki on Azure : <a href="http://blogs.msdn.com/b/benjguin/archive/2012/09/25/installing-mediawiki-to-free-windows-azure-web-sites-installation-de-mediawiki-vers-les-windows-azure-web-sites-gratuits.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/benjguin/archive/2012/09/25/installing-mediawiki-to-free-windows-azure-web-sites-installation-de-mediawiki-vers-les-windows-azure-web-sites-gratuits.aspx</a> </p>
+<p>[This Blog provides an easy way of setting the email client on mediawiki. Below are step by step instructions for doing this:</p>
+<p>1)  We need to edit the compose.json file located in the root folder of your website. You can edit your site using <a href="https://www.youtube.com/watch?v=ioz6KJChXNc" target="_blank" rel="noopener">WebMatrix</a>.</p>
+<pre><code>Please add the following in the composer.json file and save the file
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;repositories&quot;: [</span><br><span class="line"> &#123;</span><br><span class="line"> &quot;type&quot;: &quot;pear&quot;,</span><br><span class="line"> &quot;url&quot;: &quot;http://pear.php.net&quot;</span><br><span class="line"> &#125;</span><br><span class="line"> ],</span><br><span class="line"> &quot;require&quot;: &#123;</span><br><span class="line"> &quot;php&quot;: &quot;&gt;=5.3.2&quot;,</span><br><span class="line"> &quot;psr/log&quot;: &quot;1.0.0&quot;,</span><br><span class="line"> &quot;pear-pear.php.net/PEAR&quot;: &quot;1.9.4&quot;,</span><br><span class="line"> &quot;pear-pear.php.net/Mail&quot;: &quot;1.2.0&quot;,</span><br><span class="line"> &quot;pear-pear.php.net/Mail_Mime&quot;: &quot;1.8.5&quot;,</span><br><span class="line"> &quot;pear-pear.php.net/Net_SMTP&quot;: &quot;1.6.1&quot;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>   The edited file should look like this:</p>
+<p><img src="/wp-content/uploads/2019/03/7317.composer_file.PNG" alt></p>
+<p>2) Download the <strong>composer.phar</strong> file from <a href="http://getcomposer.org/composer.phar" target="_blank" rel="noopener">http://getcomposer.org/composer.phar</a></p>
+<p>Save this file in the wwwroot folder of your site using an FTP client.</p>
+<p>3) Please connect to the “Debug Console” for your site in Kudu by browsing to: </p>
+<p><a href="https://YourSiteName.scm.azurewebsites.net/Debugconsole" target="_blank" rel="noopener">https://YourSiteName.scm.azurewebsites.net/Debugconsole</a></p>
+<p>[4)   Install packages in composer.json using below command</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php composer.phar install</span><br></pre></td></tr></table></figure>
+<p><img src="/wp-content/uploads/2019/03/3527.composer_install.PNG" alt></p>
+<p>5)  If you are using Gmail account, please add the following code at the end of localsettings.php file in the root folder and replace the IDHost, username and password with your credentials:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$wgSMTP = array(</span><br><span class="line"> &apos;host&apos; =&gt; &quot;ssl://smtp.gmail.com&quot;, // could also be an IP address. Where the SMTP server is located</span><br><span class="line"> &apos;IDHost&apos; =&gt; &quot;YourSiteName.azurewebsites.net&quot;, // generally this will be the domain name of your website (aka mywiki.org)</span><br><span class="line"> &apos;port&apos; =&gt; 465, // Port to use when connecting to the SMTP server</span><br><span class="line"> &apos;auth&apos; =&gt; true, // Should we use SMTP authentication (true or false)</span><br><span class="line"> &apos;username&apos; =&gt; &quot;YourID@gmail.com&quot;, // Username to use for SMTP authentication (if being used)</span><br><span class="line"> &apos;password&apos; =&gt; &quot;YourPassword&quot; // Password to use for SMTP authentication (if being used)</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+<p>6) Restart Your website by clicking on Restart in the Azure portal.</p>
+<h3 id="Testing"><a href="#Testing" class="headerlink" title="Testing :"></a>Testing :</h3><p>1)  Browse to your website’s main page. For example: <a href="http://samplemediawiki.azurewebsites.net/index.php?title=Main_Page" target="_blank" rel="noopener">http://samplemediawiki.azurewebsites.net/index.php?title=Main_Page</a></p>
+<p>2) Click “Create account” on top right</p>
+<p>3) Enter details on the account creation page and click Submit.</p>
+<p>4) Check if you received an email.</p>
+<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting:"></a>Troubleshooting:</h3><p>If you haven’t received any email, include the lines of code below in LocalSettings.php to check errors on the webpage. Make sure to remove them before moving to production.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error_reporting( -1 );</span><br><span class="line">ini_set( &apos;display_errors&apos;, 1 );</span><br></pre></td></tr></table></figure>
+<p>Note: Please note that PEAR extensions are not officially supported for Web Apps. It would be great to have a feedback item open for voting so we can evaluate overall priority for customers. You can post on this subject on the feedback forum <a href="http://feedback.azure.com/forums/169385-web-sites" target="_blank" rel="noopener">here</a>. </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-Apps/">Web Apps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure/">azure</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-uploading-files-to-azure-storage-using-sasshared-access-signature" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/uploading-files-to-azure-storage-using-sasshared-access-signature/"> Uploading files to Azure Storage using SAS(shared access signature) - Python		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/uploading-files-to-azure-storage-using-sasshared-access-signature/" class="article-date">
+	  <time datetime="2015-03-30T21:13:00.000Z" itemprop="datePublished">March 30, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For information on Shared Access Signature visit : <a href="http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/</a> </p>
+<p>This Blog would help you upload images into azure storage using Azure SDK(Python). </p>
+<p>1) Download Azure python SDK - <a href="https://github.com/Azure/azure-sdk-for-python" target="_blank" rel="noopener">https://github.com/Azure/azure-sdk-for-python</a> </p>
+<p>2) Create a storage in Azure portal and make note of account name, access key and storage url.   </p>
+<p><a href="/wp-content/uploads/2019/03/6303.access%20key.jpg"><img src="/wp-content/uploads/2019/03/6303.access%20key.jpg" alt></a> </p>
+<p><a href="/wp-content/uploads/2019/03/6433.storage_account_name.PNG"><img src="/wp-content/uploads/2019/03/6433.storage_account_name.PNG" alt></a> </p>
+<p>3) Create a new container inside storage and make a note of container name. </p>
+<p>4) Use below code along with azure sdk downloaded in step 1 to generate SAS  </p>
+<p>5) Use Below code to upload content to blob  </p>
+<pre><code>import urllib2
+def put_blob(storage_url,container_name, blob_name,qry_string,x_ms_blob_type):
+opener = urllib2.build_opener(urllib2.HTTPHandler)
+request = urllib2.Request(storage_url+container_name + &apos;/&apos; + blob_name+&apos;?&apos;+qry_string, data=&apos;Hello World!!&apos;)
+request.add_header(&apos;x-ms-blob-type&apos;, x_ms_blob_type)
+request.get_method = lambda: &apos;PUT&apos;
+opener.open(request)
+</code></pre><h2 id="uploading-a-sample-blob-to-azure-storage-put-blob-STORAGE-URL-CONTAINER-NAME-”sample-txt”-sas-url-”BlockBlob”"><a href="#uploading-a-sample-blob-to-azure-storage-put-blob-STORAGE-URL-CONTAINER-NAME-”sample-txt”-sas-url-”BlockBlob”" class="headerlink" title="uploading a sample blob to azure storage put_blob(STORAGE_URL,CONTAINER_NAME,”sample.txt”,sas_url,”BlockBlob”)"></a>uploading a sample blob to azure storage put_blob(STORAGE_URL,CONTAINER_NAME,”sample.txt”,sas_url,”BlockBlob”)</h2><p><a href="/wp-content/uploads/2019/03/8662.uploaded_file.PNG"><img src="/wp-content/uploads/2019/03/8662.uploaded_file.PNG" alt></a> Special Thanks to @laurent for helping me fix this issue : <a href="https://github.com/Azure/azure-sdk-for-python/issues/651" target="_blank" rel="noopener">https://github.com/Azure/azure-sdk-for-python/issues/651</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAS/">SAS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-performance-tuning-mysql-database-on-azure-linux-vms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/performance-tuning-mysql-database-on-azure-linux-vms/"> Performance Tuning MySQL Database on Azure Linux VM’s		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/performance-tuning-mysql-database-on-azure-linux-vms/" class="article-date">
+	  <time datetime="2015-03-27T14:53:00.000Z" itemprop="datePublished">March 27, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  <strong>Please tune these settings in your Test/Staging environments and simulate load to see if it increases performance. These settings should not be applied directly in Production environment.</strong> In addition to the settings mentioned in below article: <a href="http://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-optimize-mysql-perf/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-optimize-mysql-perf/</a> You can also tune some of these settings to obtain higher performance if you are using Raid 0 (Following the instructions provided in above article) and are using innodb storage engine.</p>
+<ol>
+<li>You can use innodb_flush_method = O_DIRECT to get higher performance when using Raid 0 configuration with Azure Storage disks presented to your linux VM’s. On some flavors of Linux setting innodb_flush_method = O_DSYNC also can give you improved performance.</li>
+<li><p>You can use innodb_io_capacity to match with IOPS settings that Azure offers for Basic/Standard storage. IOPS limits for Basic Storage account is 300 IOPS and for Standard is 500 IOPS. If you are using multiple storage disks to configure your RAID 0, then you can stack your IOPS based on number of storage disks in the RAID group.</p>
+</li>
+<li><p>For ex: if you have a VM which has 4 storage disks presented which are associated with Basic Tier Storage, you can get iops of 1200. (4 x 300 IOPS).</p>
+</li>
+<li>If you have a VM which has 8 storage disks presented which are associated with Standard Tier Storage, you can iops of 4000. (8 x 500 IOPS).</li>
+<li>There is an option for premium storage as well which provides much higher IOPS. Please check this article for information on premium storage: <a href="http://azure.microsoft.com/en-us/documentation/articles/storage-premium-storage-preview-portal/#overview" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/storage-premium-storage-preview-portal/#overview</a></li>
+<li>There is a limit to the number of storage disks that can be attached to a VM. Please refer to this document for disk limits: <a href="https://msdn.microsoft.com/library/azure/dn197896.aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/library/azure/dn197896.aspx</a></li>
+</ol>
+<p>Other settings that can be tuned when using innodb storage engine are below:</p>
+<ol>
+<li><p>You can play with innodb_thread_concurrency settings to get more performance when concurrent user count is high. Please refer to documentation provided here to play with this setting on your VM.</p>
+</li>
+<li><p><a href="http://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_thread_concurrency" target="_blank" rel="noopener">http://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html#sysvar_innodb_thread_concurrency</a></p>
+</li>
+<li><p>You can set innodb_doublewrite = 0 when using a MySQL DB mainly for read heavy operations only. Setting this on a transactional database can lead to data integrity issues.</p>
+</li>
+<li>You can set innodb_flush_log_at_trx_commit = 2, when using MySQL DB mainly for read heavy operations. Setting this on a transactional database can lead to it not being ACID compliant and hence lead to data integrity issues.</li>
+<li>Consider using innodb_file_per_table = 1 setting. This will force each table and its indexes into its own data file.</li>
+</ol>
+<p>On Linux VM’s thread_concurrency setting has no effect. So you can comment out this setting. Also consider having your data files and logs files on different file systems which are not on same storage drive. This will avoid IO contention for log writers and data writers on a database which is under heavy usage.</p>
+<p><strong>Please tune these settings in your Test/Staging environments and simulate load to see if it increases performance. These settings should not be applied directly in Production environment.</strong></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure-mysql-performance-tuning/">azure mysql performance tuning</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-finding-correct-version-of-php-extension-for-azure-web-site" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/finding-correct-version-of-php-extension-for-azure-web-site/"> Finding Correct Version of PHP Extension for Azure Web Site		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/finding-correct-version-of-php-extension-for-azure-web-site/" class="article-date">
+	  <time datetime="2015-03-24T16:21:00.000Z" itemprop="datePublished">March 24, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>While working with websites on Azure, sometimes you may need to install additional extensions. It is important to find the right extension that matches the PHP running on Azure website. PHP function “phpinfo()” collects PHP version and runtime environment information, you can call the function in code (&lt;?php phpinfo();  ?&gt;), (to quickly get the same information, you can run “php -I” from command line), for example,</p>
+<p><a href="/wp-content/uploads/2019/03/6663.Capture.PNG"><img src="/wp-content/uploads/2019/03/6663.Capture.PNG" alt></a></p>
+<p>PHP version is 5.5.18 in this example. Since extension .dll files could be compiled by different C++ compiler, the compiler version should be matching, in this example, it is <strong>MS VC11</strong>. The last one is Architecture information, in this example it is <strong>x86</strong>.</p>
+<p>Further more, you can find PHP (and Zend) extension build is NTS (Non-Thread Safe).</p>
+<p><a href="/wp-content/uploads/2019/03/5822.phpinfo-nts.PNG"><img src="/wp-content/uploads/2019/03/5822.phpinfo-nts.PNG" alt></a></p>
+<p>From <a href="http://windows.php.net/downloads/releases/archives/" target="_blank" rel="noopener">http://windows.php.net/downloads/releases/archives/</a>, find the matching PHP version in <strong>nts</strong> (Non-Thread Safe ), download and decompress the  .zip file, core extensions are listed in /ext, get the one you need from there.</p>
+<p><a href="/wp-content/uploads/2019/03/0728.Capture-2.PNG"><img src="/wp-content/uploads/2019/03/0728.Capture-2.PNG" alt></a></p>
+<p>In the case the functionality you need is not available in core extensions, you will find and download the extension from PECL (PHP Extension Community Library), versions should be matched in the same way.</p>
+<p>For more details about how to add customer PHP extensions on Azure web site, refer to these documents: <a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-php-configure/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/web-sites-php-configure/</a></p>
+<p><a href="http://blogs.msdn.com/b/silverlining/archive/2012/09/17/using-custom-php-extensions-in-windows-azure-web-sites.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/silverlining/archive/2012/09/17/using-custom-php-extensions-in-windows-azure-web-sites.aspx</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>, <a class="article-category-link" href="/categories/PHP/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP-troubleshooting/">PHP troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-extension-Azure-Webapps/">php extension Azure Webapps</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-running-nodejs-and-php-on-same-azure-website" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/running-nodejs-and-php-on-same-azure-website/"> Running Nodejs and php on Same Azure website		</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/running-nodejs-and-php-on-same-azure-website/" class="article-date">
+	  <time datetime="2015-03-23T22:31:00.000Z" itemprop="datePublished">March 23, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In this Blog we would try to create a php+nodejs application using iisnode</p>
+<p>1. Create a new azure website:</p>
+<p><a href="/wp-content/uploads/2019/03/2352.new_azure_website.PNG"><img src="/wp-content/uploads/2019/03/2352.new_azure_website.PNG" alt></a></p>
+<p><strong>2. Integrate source control using azure portal</strong></p>
+<p>- Go to website default page and click on setup deployment from source control</p>
+<p><a href="/wp-content/uploads/2019/03/2480.git_setup.PNG"><img src="/wp-content/uploads/2019/03/2480.git_setup.PNG" alt></a></p>
+<p>Above step would create a Git repository and you can access its url using Deployments tab.</p>
+<p><a href="/wp-content/uploads/2019/03/1374.git_url.PNG"><img src="/wp-content/uploads/2019/03/1374.git_url.PNG" alt></a></p>
+<h2 id="3-Download-the-chat-example"><a href="#3-Download-the-chat-example" class="headerlink" title="3. Download the chat example"></a>3. <a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-chat-app-socketio/#download-the-chat-example" target="_blank" rel="noopener"></a>Download the chat example</h2><p>For this project, we will use the chat example from the <a href="https://github.com/Automattic/socket.io" target="_blank" rel="noopener">Socket.IO GitHub repository</a>. Perform the following steps to download the example and add it to the project you previously created.</p>
+<ol>
+<li><p>Download a <a href="https://github.com/Automattic/socket.io/releases" target="_blank" rel="noopener">ZIP or GZ archived release</a> of the Socket.IO project (version 1.3.5 was used for this document)</p>
+</li>
+<li><p>Extract the archive and copy the <strong>examples\chat</strong> directory to a new location. For example, <strong>\node\chat</strong>.</p>
+</li>
+</ol>
+<p> 4. Include socket.io as dependency in package.json file or replace it with below content</p>
+<pre><code>{
+&quot;name&quot;: &quot;socket.io-chat&quot;,
+&quot;version&quot;: &quot;0.0.0&quot;,
+&quot;description&quot;: &quot;A simple chat client using socket.io&quot;,
+&quot;main&quot;: &quot;index.js&quot;,
+&quot;author&quot;: &quot;Grant Timmerman&quot;,
+&quot;private&quot;: true,
+&quot;license&quot;: &quot;BSD&quot;,
+&quot;dependencies&quot;: {
+&quot;express&quot;: &quot;3.4.8&quot;,
+&quot;socket.io&quot;: &quot;^1.3.4&quot;
+}
+}
+</code></pre><p> 5. open index.js at root folder and change line containing  var io = require(‘../..’)(server); to below</p>
+<pre><code>var io =require(&apos;socket.io&apos;)(server);
+</code></pre><p>6. insert below content in web.config file at root folder of project</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;configuration&gt;
+&lt;system.webServer&gt;
+&lt;!-- Visit http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx for more information on WebSocket support --&gt;
+&lt;webSocket enabled=&quot;false&quot; /&gt;
+&lt;handlers&gt;
+&lt;!-- Indicates that the server.js file is a node.js site to be handled by the iisnode module --&gt;
+&lt;add name=&quot;iisnode&quot; path=&quot;index.js&quot; verb=&quot;*&quot; modules=&quot;iisnode&quot;/&gt;
+&lt;/handlers&gt;
+&lt;rewrite&gt;
+&lt;rules&gt;
+&lt;!-- check if its root url and navigate to default page --&gt;
+&lt;rule name=&quot;Index Request&quot; enabled=&quot;true&quot; stopProcessing=&quot;true&quot;&gt;
+&lt;match url=&quot;^$&quot; /&gt;
+&lt;action type=&quot;Redirect&quot; url=&quot;/index.php&quot; logRewrittenUrl=&quot;true&quot; /&gt;
+&lt;/rule&gt;
+&lt;!-- Do not interfere with requests for node-inspector debugging --&gt;
+&lt;rule name=&quot;NodeInspector&quot; patternSyntax=&quot;ECMAScript&quot; stopProcessing=&quot;true&quot;&gt;
+&lt;match url=&quot;^index.js/debug[/]?&quot; /&gt;
+&lt;/rule&gt;
+&lt;!-- consider whether the incoming URL matches a physical file in the /public folder --&gt;
+&lt;rule name=&quot;StaticContent&quot;&gt;
+&lt;action type=&quot;Rewrite&quot; url=&quot;public{REQUEST_URI}&quot;/&gt;
+&lt;/rule&gt;
+&lt;!-- All other URLs are mapped to the node.js site entry point --&gt;
+&lt;rule name=&quot;DynamicContent&quot;&gt;
+&lt;conditions&gt;
+&lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; negate=&quot;True&quot;/&gt;
+&lt;/conditions&gt;
+&lt;action type=&quot;Rewrite&quot; url=&quot;index.js&quot;/&gt;
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/rewrite&gt;
+
+&lt;!-- &apos;bin&apos; directory has no special meaning in node.js and apps can be placed in it --&gt;
+&lt;security&gt;
+&lt;requestFiltering&gt;
+&lt;hiddenSegments&gt;
+&lt;remove segment=&quot;bin&quot;/&gt;
+&lt;/hiddenSegments&gt;
+&lt;/requestFiltering&gt;
+&lt;/security&gt;
+
+&lt;!-- Make sure error responses are left untouched --&gt;
+&lt;httpErrors existingResponse=&quot;PassThrough&quot; /&gt;
+&lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre><p>7. Insert sample php file in public folder to test if it works</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;?php
+echo &quot;Hello World form php&quot;;
+?&gt;
+&lt;br&gt;&lt;br&gt;
+Chat application using nodejs - &lt;a href=&quot;http://blogs.msdn.com/index.html&quot;&gt;link&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>8. Commit your changes to Azure website using any git client using the git repository url  from deployment tab in Azure portal</p>
+<p>Above commit process would also download all the required modules listed in package.json file into node_modules folder.</p>
+<p>Php Application : <a href="http://nodephpsample.azurewebsites.net" target="_blank" rel="noopener">http://nodephpsample.azurewebsites.net</a></p>
+<p>chat Application using nodejs : <a href="http://nodephpsample.azurewebsites.net/index.html" target="_blank" rel="noopener">http://nodephpsample.azurewebsites.net/index.html</a></p>
+<p> Troubleshooting :</p>
+<p>1. Application crashed as /socket.io/socket.io.js is not found</p>
+<p>check if socket.io is installed and available in node_modules folder.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-nodejs/">php nodejs</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
+  </nav>
+
+</section>
+          <aside id="sidebar">
+  
+    <div class="widget-wrap" style="margin: 20px 0;">
+	<div id="search-form-wrap">
+
+    <form class="search-form">
+        <label style="width: 75%;">
+            <span class="screen-reader-text">Search for:</span>
+            <input type="search" class="search-field" style="height: 42px;" placeholder=" Search…" value name="s" title="Search for:">
+        </label>
+        <input type="submit" class="search-form-submit" value="Search">
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+</div>
+  
+    
+  <div class="widget_athemes_tabs">
+    <ul id="widget-tab" class="clearfix widget-tab-nav">
+      <li class="active"><a>Recent Posts</a></li>
+    </ul>
+    <div class="widget">
+      <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/how-to-send-emails-through-azure-web-apps-using-google-gmail/"> How to send emails through Azure Web Apps using Google / Gmail		</a></h6>
+              <span>February 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/azure-app-service-linux-adding-php-extensions/"> Azure App Service Linux - Adding PHP Extensions		</a></h6>
+              <span>January 29, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/azure-app-service-linux-update-php-settings/"> Azure App Service Linux - Update PHP Settings		</a></h6>
+              <span>January 29, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/building-python-functions-app-that-use-native-modules-custom-docker/"> Building Python Functions App that use Native Modules – Custom Docker		</a></h6>
+              <span>October 31, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/restrict-access-to-login-for-the-wordpress-running-on-azure-web-app-container/"> Restrict access to login for the WordPress running on Azure web app container		</a></h6>
+              <span>October 12, 2018</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/web-config-sample-for-wordpress-nested-in-subdirectory/"> RewriteRule sample for WordPress in subdirectory		</a></h6>
+              <span>October 1, 2018</span>
+            </div>
+
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a><span class="category-list-count">39</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/ClearDB/">ClearDB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/Joomla/">Joomla</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/Joomla/PHP/">PHP</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/Joomla/PHP/WordPress/">WordPress</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/MySQL/">MySQL</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/MySQL/PHP/">PHP</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/MySQL/PHP/WordPress/">WordPress</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/PHP/">PHP</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/PHP/WordPress/">WordPress</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/WordPress/">WordPress</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/nodejs/">nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Azure-App-Service-Web-App/python/">python</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ClearDB/">ClearDB</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ClearDB/MySQL/">MySQL</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ClearDB/MySQL/PHP/">PHP</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ClearDB/MySQL/PHP/WordPress/">WordPress</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/Uncategorized/">Uncategorized</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/WordPress/">WordPress</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Uncategorized/">Uncategorized</a><span class="category-list-count">32</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WordPress/">WordPress</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Uncategorized/">Uncategorized</a><span class="category-list-count">3</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cer/">.cer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/htaccess/">.htaccess</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pfx/">.pfx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/APIAPP/">APIAPP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARR/">ARR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Affinity/">Affinity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Setting/">App Setting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-CDN/">Azure CDN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Linux-Web-App/">Azure Linux Web App</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Linux-Web-App-PHP-Settings/">Azure Linux Web App PHP Settings</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Linux-php-ini/">Azure Linux php ini</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Storage/">Azure Storage</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-VM/">Azure VM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Web-App-email-send/">Azure Web App email send</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Web-Apps-Send-Email-gmail/">Azure Web Apps Send Email gmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Web-Jobs/">Azure Web Jobs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-memory-limit-change/">Azure memory_limit change</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-sdk/">Azure sdk</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-web-app/">Azure web app</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-web-apps-gmail/">Azure web apps gmail</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-webapp/">Azure webapp</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitnami/">Bitnami</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MailKit/">C# MailKit</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMS/">CMS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORS/">CORS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ClearDB-Troubleshooting/">ClearDB Troubleshooting</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ClearDB-upgrade/">ClearDB upgrade</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cloud/">Cloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Container/">Container</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cron-Jobs/">Cron Jobs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drupal/">Drupal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drupal-Redis-Module/">Drupal Redis Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Environment-Variable/">Environment Variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IP-restrict/">IP restrict</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ImageMagick/">ImageMagick</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/">JDBC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-azure-sdk-chef-knife-vm-extension/">Java azure sdk chef knife vm extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Joomla/">Joomla</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LDAP/">LDAP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Log/">Log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LogStream/">LogStream</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Magento/">Magento</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mail-package/">Mail package</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MediaWiki/">MediaWiki</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Microsoft-Azure-Redis-Cache/">Microsoft Azure Redis Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-In-App/">MySQL In-App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-migrate/">MySQL migrate</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-upgrade/">MySQL upgrade</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/New-Relic/">New Relic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP-troubleshooting/">PHP troubleshooting</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPMyAdmin/">PHPMyAdmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Predis/">Predis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Wheel/">Python-Wheel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis-Cache/">Redis Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rewrite-Rules/">Rewrite Rules</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SAS/">SAS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDK/">SDK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL-Server/">SQL Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSL-Offloading/">SSL Offloading</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sticky/">Sticky</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger/">Swagger</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAWS/">WAWS</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Apps/">Web Apps</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Jobs/">Web Jobs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WebJob/">WebJob</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WordPress-Azure-CDN/">WordPress Azure CDN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Xdebug/">Xdebug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yii-framework-application/">Yii framework application</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zend-Framework/">Zend Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Zend-Framework-2/">Zend Framework 2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/app-service/">app service</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-app-service-web-app/">azure app service web app</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-java-webapp/">azure java webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-log-rotation-webapp/">azure log rotation webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-log4j/">azure log4j</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-mysql-performance-tuning/">azure mysql performance tuning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-php-oracle-web-app/">azure php oracle web app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-webapp-java-log4j/">azure webapp java log4j</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-webapp-oracle/">azure webapp oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure-webapps/">azure webapps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/best-practice/">best practice</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blob/">blob</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blob-storage/">blob storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bower/">bower</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cache/">cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cainfo/">cainfo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/certificate/">certificate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleardb/">cleardb</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpu-usage/">cpu-usage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crash/">crash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/credentials/">credentials</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/custom-context/">custom context</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/custom-deploy/">custom deploy</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/custom-domain/">custom domain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database-migration/">database migration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deploy/">deploy</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/">deployment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain-name/">domain name</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/error-logs/">error-logs</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/">express</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/extension/">extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask-restplus/">flask-restplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/functions-app/">functions app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grunt/">grunt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hacked/">hacked</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iis/">iis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iisnode/">iisnode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/indexing/">indexing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-adal-rest-api-arm/">java adal rest api arm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-configuration/">java configuration</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-jar/">java jar</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java-troubleshooting/">java troubleshooting</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpgraph/">jpgraph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/local-cache/">local cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4j-tomcat-webapp/">log4j tomcat webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logging-errors/">logging-errors</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/magento-root-category/">magento root category</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/manager/">manager</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcache-drupal/">memcache drupal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memory-leaks/">memory-leaks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/meteor/">meteor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/multisite/">multisite</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql-linux-migration-data/">mysql linux migration data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql-os-disk-data-disk-azure-linux/">mysql os disk data disk azure linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-exe/">node.exe</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm3/">npm3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/options/">options</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle-webapp/">oracle webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pear/">pear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-curl-ssl-certificate-azure/">php curl ssl certificate azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-error-log/">php error log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-error-log-azure-webapps/">php error log azure webapps</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-extension/">php extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-extension-Azure-Webapps/">php extension Azure Webapps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-ini-change-azure-web-apps-linux/">php ini change azure web apps linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-nodejs/">php nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-oracle-webapp/">php oracle webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-wordpress/">php wordpress</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-wordpress-troubleshooting-wordpress/">php wordpress troubleshooting wordpress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php-ini-wincache-azure/">php.ini wincache azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpinfo/">phpinfo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pip/">pip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/procdump/">procdump</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/process-report/">process report</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/profiler/">profiler</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/properties-PHP-Troubleshooting/">properties PHP Troubleshooting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pycrypto/">pycrypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-functions-app/">python functions app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redirect/">redirect</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redirection/">redirection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/remote-debug/">remote-debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/run-java-jar-webapp/">run java jar webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service-certificate/">service certificate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/site/">site</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smtp/">smtp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test-app/">test-app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/timezone/">timezone</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat-webapp/">tomcat webapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/troubleshoot/">troubleshoot</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/troubleshooting/">troubleshooting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/url/">url</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtual-machine/">virtual machine</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-app-on-Linux/">web app on Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-config/">web.config</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp/">webapp</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webapp-java/">webapp java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordpress/">wordpress</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordpress-troubleshooting/">wordpress troubleshooting</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/cer/" style="font-size: 10px;">.cer</a> <a href="/tags/htaccess/" style="font-size: 13.33px;">.htaccess</a> <a href="/tags/pfx/" style="font-size: 10px;">.pfx</a> <a href="/tags/APIAPP/" style="font-size: 14.17px;">APIAPP</a> <a href="/tags/ARR/" style="font-size: 10px;">ARR</a> <a href="/tags/Affinity/" style="font-size: 10px;">Affinity</a> <a href="/tags/AngularJs/" style="font-size: 11.67px;">AngularJs</a> <a href="/tags/App-Setting/" style="font-size: 10px;">App Setting</a> <a href="/tags/Azure-CDN/" style="font-size: 10px;">Azure CDN</a> <a href="/tags/Azure-Linux-Web-App/" style="font-size: 10.83px;">Azure Linux Web App</a> <a href="/tags/Azure-Linux-Web-App-PHP-Settings/" style="font-size: 10px;">Azure Linux Web App PHP Settings</a> <a href="/tags/Azure-Linux-php-ini/" style="font-size: 10px;">Azure Linux php ini</a> <a href="/tags/Azure-Storage/" style="font-size: 11.67px;">Azure Storage</a> <a href="/tags/Azure-VM/" style="font-size: 10.83px;">Azure VM</a> <a href="/tags/Azure-Web-App-email-send/" style="font-size: 10px;">Azure Web App email send</a> <a href="/tags/Azure-Web-Apps-Send-Email-gmail/" style="font-size: 10px;">Azure Web Apps Send Email gmail</a> <a href="/tags/Azure-Web-Jobs/" style="font-size: 10px;">Azure Web Jobs</a> <a href="/tags/Azure-memory-limit-change/" style="font-size: 10px;">Azure memory_limit change</a> <a href="/tags/Azure-sdk/" style="font-size: 10.83px;">Azure sdk</a> <a href="/tags/Azure-web-app/" style="font-size: 15.83px;">Azure web app</a> <a href="/tags/Azure-web-apps-gmail/" style="font-size: 10px;">Azure web apps gmail</a> <a href="/tags/Azure-webapp/" style="font-size: 13.33px;">Azure webapp</a> <a href="/tags/Bitnami/" style="font-size: 10px;">Bitnami</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/C-MailKit/" style="font-size: 10px;">C# MailKit</a> <a href="/tags/CMS/" style="font-size: 10px;">CMS</a> <a href="/tags/CORS/" style="font-size: 10px;">CORS</a> <a href="/tags/ClearDB-Troubleshooting/" style="font-size: 11.67px;">ClearDB Troubleshooting</a> <a href="/tags/ClearDB-upgrade/" style="font-size: 11.67px;">ClearDB upgrade</a> <a href="/tags/Cloud/" style="font-size: 10px;">Cloud</a> <a href="/tags/Container/" style="font-size: 10px;">Container</a> <a href="/tags/Cron-Jobs/" style="font-size: 10px;">Cron Jobs</a> <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Drupal/" style="font-size: 10px;">Drupal</a> <a href="/tags/Drupal-Redis-Module/" style="font-size: 10px;">Drupal Redis Module</a> <a href="/tags/Environment-Variable/" style="font-size: 10px;">Environment Variable</a> <a href="/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/tags/IP-restrict/" style="font-size: 10px;">IP restrict</a> <a href="/tags/ImageMagick/" style="font-size: 10px;">ImageMagick</a> <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Java/" style="font-size: 19.17px;">Java</a> <a href="/tags/Java-azure-sdk-chef-knife-vm-extension/" style="font-size: 10px;">Java azure sdk chef knife vm extension</a> <a href="/tags/Joomla/" style="font-size: 10px;">Joomla</a> <a href="/tags/LDAP/" style="font-size: 10px;">LDAP</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/LogStream/" style="font-size: 10px;">LogStream</a> <a href="/tags/Magento/" style="font-size: 11.67px;">Magento</a> <a href="/tags/Mail-package/" style="font-size: 10px;">Mail package</a> <a href="/tags/MediaWiki/" style="font-size: 10px;">MediaWiki</a> <a href="/tags/Microsoft-Azure-Redis-Cache/" style="font-size: 10px;">Microsoft Azure Redis Cache</a> <a href="/tags/MySQL-In-App/" style="font-size: 10px;">MySQL In-App</a> <a href="/tags/MySQL-migrate/" style="font-size: 10.83px;">MySQL migrate</a> <a href="/tags/MySQL-upgrade/" style="font-size: 10.83px;">MySQL upgrade</a> <a href="/tags/New-Relic/" style="font-size: 10px;">New Relic</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/PHP-troubleshooting/" style="font-size: 13.33px;">PHP troubleshooting</a> <a href="/tags/PHPMyAdmin/" style="font-size: 10px;">PHPMyAdmin</a> <a href="/tags/Predis/" style="font-size: 10px;">Predis</a> <a href="/tags/Python-Wheel/" style="font-size: 10.83px;">Python-Wheel</a> <a href="/tags/Redis-Cache/" style="font-size: 10px;">Redis Cache</a> <a href="/tags/Rewrite-Rules/" style="font-size: 10.83px;">Rewrite Rules</a> <a href="/tags/SAS/" style="font-size: 11.67px;">SAS</a> <a href="/tags/SDK/" style="font-size: 10px;">SDK</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/SQL-Server/" style="font-size: 10px;">SQL Server</a> <a href="/tags/SSL-Offloading/" style="font-size: 10px;">SSL Offloading</a> <a href="/tags/SSO/" style="font-size: 10px;">SSO</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/Sticky/" style="font-size: 10px;">Sticky</a> <a href="/tags/Swagger/" style="font-size: 10.83px;">Swagger</a> <a href="/tags/WAWS/" style="font-size: 15px;">WAWS</a> <a href="/tags/Web-Apps/" style="font-size: 17.5px;">Web Apps</a> <a href="/tags/Web-Jobs/" style="font-size: 10.83px;">Web Jobs</a> <a href="/tags/WebJob/" style="font-size: 10.83px;">WebJob</a> <a href="/tags/WordPress-Azure-CDN/" style="font-size: 10.83px;">WordPress Azure CDN</a> <a href="/tags/Xdebug/" style="font-size: 10px;">Xdebug</a> <a href="/tags/Yii-framework-application/" style="font-size: 10px;">Yii framework application</a> <a href="/tags/Zend-Framework/" style="font-size: 10px;">Zend Framework</a> <a href="/tags/Zend-Framework-2/" style="font-size: 10px;">Zend Framework 2</a> <a href="/tags/apache/" style="font-size: 10.83px;">apache</a> <a href="/tags/app-service/" style="font-size: 12.5px;">app service</a> <a href="/tags/azure/" style="font-size: 20px;">azure</a> <a href="/tags/azure-app-service-web-app/" style="font-size: 13.33px;">azure app service web app</a> <a href="/tags/azure-java-webapp/" style="font-size: 10px;">azure java webapp</a> <a href="/tags/azure-log-rotation-webapp/" style="font-size: 10px;">azure log rotation webapp</a> <a href="/tags/azure-log4j/" style="font-size: 10px;">azure log4j</a> <a href="/tags/azure-mysql-performance-tuning/" style="font-size: 10px;">azure mysql performance tuning</a> <a href="/tags/azure-php-oracle-web-app/" style="font-size: 10px;">azure php oracle web app</a> <a href="/tags/azure-webapp-java-log4j/" style="font-size: 10px;">azure webapp java log4j</a> <a href="/tags/azure-webapp-oracle/" style="font-size: 10px;">azure webapp oracle</a> <a href="/tags/azure-webapps/" style="font-size: 10px;">azure webapps</a> <a href="/tags/best-practice/" style="font-size: 10px;">best practice</a> <a href="/tags/blob/" style="font-size: 10.83px;">blob</a> <a href="/tags/blob-storage/" style="font-size: 10px;">blob storage</a> <a href="/tags/bower/" style="font-size: 10.83px;">bower</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/cainfo/" style="font-size: 10px;">cainfo</a> <a href="/tags/certificate/" style="font-size: 10px;">certificate</a> <a href="/tags/cleardb/" style="font-size: 12.5px;">cleardb</a> <a href="/tags/composer/" style="font-size: 10px;">composer</a> <a href="/tags/cpu-usage/" style="font-size: 10px;">cpu-usage</a> <a href="/tags/crash/" style="font-size: 10px;">crash</a> <a href="/tags/credentials/" style="font-size: 10px;">credentials</a> <a href="/tags/custom-context/" style="font-size: 10px;">custom context</a> <a href="/tags/custom-deploy/" style="font-size: 10.83px;">custom deploy</a> <a href="/tags/custom-domain/" style="font-size: 10px;">custom domain</a> <a href="/tags/database/" style="font-size: 10px;">database</a> <a href="/tags/database-migration/" style="font-size: 10.83px;">database migration</a> <a href="/tags/deploy/" style="font-size: 10.83px;">deploy</a> <a href="/tags/deployment/" style="font-size: 10px;">deployment</a> <a href="/tags/domain-name/" style="font-size: 10px;">domain name</a> <a href="/tags/error-logs/" style="font-size: 12.5px;">error-logs</a> <a href="/tags/express/" style="font-size: 10px;">express</a> <a href="/tags/extension/" style="font-size: 10px;">extension</a> <a href="/tags/flask-restplus/" style="font-size: 10px;">flask-restplus</a> <a href="/tags/functions-app/" style="font-size: 10px;">functions app</a> <a href="/tags/grunt/" style="font-size: 10px;">grunt</a> <a href="/tags/gulp/" style="font-size: 10.83px;">gulp</a> <a href="/tags/hack/" style="font-size: 10px;">hack</a> <a href="/tags/hacked/" style="font-size: 10px;">hacked</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/iis/" style="font-size: 10.83px;">iis</a> <a href="/tags/iisnode/" style="font-size: 10px;">iisnode</a> <a href="/tags/indexing/" style="font-size: 10px;">indexing</a> <a href="/tags/java-adal-rest-api-arm/" style="font-size: 10px;">java adal rest api arm</a> <a href="/tags/java-configuration/" style="font-size: 15.83px;">java configuration</a> <a href="/tags/java-jar/" style="font-size: 10px;">java jar</a> <a href="/tags/java-troubleshooting/" style="font-size: 10.83px;">java troubleshooting</a> <a href="/tags/jpgraph/" style="font-size: 10px;">jpgraph</a> <a href="/tags/local-cache/" style="font-size: 10px;">local cache</a> <a href="/tags/log4j-tomcat-webapp/" style="font-size: 10px;">log4j tomcat webapp</a> <a href="/tags/logging-errors/" style="font-size: 10px;">logging-errors</a> <a href="/tags/magento-root-category/" style="font-size: 10px;">magento root category</a> <a href="/tags/manager/" style="font-size: 10px;">manager</a> <a href="/tags/memcache-drupal/" style="font-size: 10px;">memcache drupal</a> <a href="/tags/memory-leaks/" style="font-size: 10px;">memory-leaks</a> <a href="/tags/meteor/" style="font-size: 10.83px;">meteor</a> <a href="/tags/multisite/" style="font-size: 10px;">multisite</a> <a href="/tags/mysql/" style="font-size: 14.17px;">mysql</a> <a href="/tags/mysql-linux-migration-data/" style="font-size: 10px;">mysql linux migration data</a> <a href="/tags/mysql-os-disk-data-disk-azure-linux/" style="font-size: 10px;">mysql os disk data disk azure linux</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/node-exe/" style="font-size: 10px;">node.exe</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/nodejs/" style="font-size: 18.33px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10.83px;">npm</a> <a href="/tags/npm3/" style="font-size: 10px;">npm3</a> <a href="/tags/options/" style="font-size: 10px;">options</a> <a href="/tags/oracle-webapp/" style="font-size: 10px;">oracle webapp</a> <a href="/tags/pear/" style="font-size: 10px;">pear</a> <a href="/tags/php-curl-ssl-certificate-azure/" style="font-size: 10px;">php curl ssl certificate azure</a> <a href="/tags/php-error-log/" style="font-size: 10px;">php error log</a> <a href="/tags/php-error-log-azure-webapps/" style="font-size: 10.83px;">php error log azure webapps</a> <a href="/tags/php-extension/" style="font-size: 10px;">php extension</a> <a href="/tags/php-extension-Azure-Webapps/" style="font-size: 10px;">php extension Azure Webapps</a> <a href="/tags/php-ini-change-azure-web-apps-linux/" style="font-size: 10px;">php ini change azure web apps linux</a> <a href="/tags/php-nodejs/" style="font-size: 10px;">php nodejs</a> <a href="/tags/php-oracle-webapp/" style="font-size: 10px;">php oracle webapp</a> <a href="/tags/php-wordpress/" style="font-size: 10.83px;">php wordpress</a> <a href="/tags/php-wordpress-troubleshooting-wordpress/" style="font-size: 10px;">php wordpress troubleshooting wordpress</a> <a href="/tags/php-ini-wincache-azure/" style="font-size: 10px;">php.ini wincache azure</a> <a href="/tags/phpinfo/" style="font-size: 10px;">phpinfo</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/procdump/" style="font-size: 10px;">procdump</a> <a href="/tags/process-report/" style="font-size: 10px;">process report</a> <a href="/tags/profiler/" style="font-size: 10.83px;">profiler</a> <a href="/tags/properties-PHP-Troubleshooting/" style="font-size: 10px;">properties PHP Troubleshooting</a> <a href="/tags/pycrypto/" style="font-size: 10px;">pycrypto</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/python-functions-app/" style="font-size: 10px;">python functions app</a> <a href="/tags/redirect/" style="font-size: 10px;">redirect</a> <a href="/tags/redirection/" style="font-size: 10px;">redirection</a> <a href="/tags/remote-debug/" style="font-size: 10px;">remote-debug</a> <a href="/tags/run-java-jar-webapp/" style="font-size: 10px;">run java jar webapp</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/service-certificate/" style="font-size: 10px;">service certificate</a> <a href="/tags/site/" style="font-size: 10px;">site</a> <a href="/tags/smtp/" style="font-size: 10px;">smtp</a> <a href="/tags/test-app/" style="font-size: 10px;">test-app</a> <a href="/tags/timezone/" style="font-size: 10px;">timezone</a> <a href="/tags/tomcat/" style="font-size: 10.83px;">tomcat</a> <a href="/tags/tomcat-webapp/" style="font-size: 10px;">tomcat webapp</a> <a href="/tags/troubleshoot/" style="font-size: 12.5px;">troubleshoot</a> <a href="/tags/troubleshooting/" style="font-size: 10px;">troubleshooting</a> <a href="/tags/url/" style="font-size: 10px;">url</a> <a href="/tags/virtual-machine/" style="font-size: 10px;">virtual machine</a> <a href="/tags/web-app-on-Linux/" style="font-size: 10px;">web app on Linux</a> <a href="/tags/web-config/" style="font-size: 15px;">web.config</a> <a href="/tags/webapp/" style="font-size: 12.5px;">webapp</a> <a href="/tags/webapp-java/" style="font-size: 10px;">webapp java</a> <a href="/tags/wordpress/" style="font-size: 15.83px;">wordpress</a> <a href="/tags/wordpress-troubleshooting/" style="font-size: 10.83px;">wordpress troubleshooting</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

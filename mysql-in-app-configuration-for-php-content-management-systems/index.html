@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> mysql in-app configuration for php content management systems		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="PHPazureCMScredentialsdatabaseMySQL In-App">
+  
+  
+  
+  
+  <meta name="description" content="Read more about MySQL In-App here. Content Management Systems such as WordPress, Drupal, Joomla contain the database credentials within a configuration file. If you decide to use MySQL In-App for deve">
+<meta name="keywords" content="PHP,azure,CMS,credentials,database,MySQL In-App">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" MySQL In-App Configuration for PHP Content Management Systems		">
+<meta property="og:url" content="http://azureossd.github.io/mysql-in-app-configuration-for-php-content-management-systems/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Read more about MySQL In-App here. Content Management Systems such as WordPress, Drupal, Joomla contain the database credentials within a configuration file. If you decide to use MySQL In-App for deve">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-26T17:25:05.080Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" MySQL In-App Configuration for PHP Content Management Systems		">
+<meta name="twitter:description" content="Read more about MySQL In-App here. Content Management Systems such as WordPress, Drupal, Joomla contain the database credentials within a configuration file. If you decide to use MySQL In-App for deve">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-mysql-in-app-configuration-for-php-content-management-systems" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       MySQL In-App Configuration for PHP Content Management Systems		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/mysql-in-app-configuration-for-php-content-management-systems/" class="article-date">
+	  <time datetime="2016-12-09T22:29:26.000Z" itemprop="datePublished">December 9, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Read more about MySQL In-App <a href="https://blogs.msdn.microsoft.com/appserviceteam/2016/08/18/announcing-mysql-in-app-preview-for-web-apps/" target="_blank" rel="noopener">here</a>. Content Management Systems such as WordPress, Drupal, Joomla contain the database credentials within a configuration file. If you decide to use MySQL In-App for development purposes, you will quickly realize that you need to modify these credentials to work with MySQL In-App. Below is a table containing the default configuration, followed by In-App credentials and configuration. To update your configuration with MySQL In-App, copy-paste both Part 1 and Part 2 for your respective CMS.</p>
+<table style="border-collapse: collapse" border="0"><br><colgroup><br><col><br><br><col><br><br><col><br><br><col><br><br></colgroup><br><tbody valign="top"><br><tr><br><td style="padding-left: 7px;padding-right: 7px;border: solid 0.5pt"><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>WordPress 4+</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Joomla 3+</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Drupal 8+</strong><br><br></td><br></tr><br><tr><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: solid 0.5pt;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Configuration Location</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>wwwroot/wp-config.php<br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>wwwroot/configuration.php<br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>wwwroot/sites/default/settings.php<br><br></td><br></tr><br><tr style="height: 172px"><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: solid 0.5pt;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Default Configuration</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><code>/** The name of the database for WordPress */ define(&#39;DB_NAME&#39;, &#39;databaseName&#39;);/** MySQL database username */ define(&#39;DB_USER&#39;, &#39;databaseUserName&#39;);/** MySQL database password */ define(&#39;DB_PASSWORD&#39;, &#39;databasePassword&#39;);/** MySQL hostname */ define(&#39;DB_HOST&#39;, &#39;databaseHostName&#39;);</code><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>public \$dbtype = ‘mysql’;\<br>public \$host = ‘databaseHostName’;\<br>public \$user = ‘databaseUserName’;\<br>public \$password = ‘databasePassword’;\<br>public \$db = ‘databaseName’;\<br>public \$dbprefix = ‘jos_‘;<br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>\$databases[‘default’][‘default’] = array (\<br>‘database’ => ‘databasename’,\<br>‘username’ => ‘sqlusername’,\<br>‘password’ => ‘sqlpassword’,\<br>‘host’ => ‘localhost’,\<br>‘port’ => ‘3306’,\<br>‘driver’ => ‘mysql’,\<br>‘prefix’ => ‘’,\<br>‘collation’ => ‘utf8mb4_general_ci’,);<br><br></td><br></tr><br><tr><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: solid 0.5pt;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>MySQL In-App\<br>Part 1 - Connection String</strong><br><br></td><br><td colspan="3" style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><code>$connectstr_dbhost = &#39;&#39;; $connectstr_dbname = &#39;&#39;; $connectstr_dbusername = &#39;&#39;; $connectstr_dbpassword = &#39;&#39;;foreach ($_SERVER as $key =&gt; $value) { if (strpos($key, &quot;MYSQLCONNSTR_localdb&quot;) !== 0) { continue; }$connectstr_dbhost = preg_replace(&quot;/^.*Data Source=(.+?);.*$/&quot;, &quot;\\1&quot;, $value); $connectstr_dbname = preg_replace(&quot;/^.*Database=(.+?);.*$/&quot;, &quot;\\1&quot;, $value); $connectstr_dbusername = preg_replace(&quot;/^.*User Id=(.+?);.*$/&quot;, &quot;\\1&quot;, $value); $connectstr_dbpassword = preg_replace(&quot;/^.*Password=(.+?)$/&quot;, &quot;\\1&quot;, $value); }</code><br><br></td><br></tr><br><tr><br><td style="padding-left: 7px;padding-right: 7px;border: solid 0.5pt"><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>WordPress 4+</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Joomla 3+</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: solid 0.5pt;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>Drupal 8+</strong><br><br></td><br></tr><br><tr><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: solid 0.5pt;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><strong>MySQL In-App\<br>Part 2 - Configuration</strong><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><code>// ** MySQL settings - You can get this info from your web host ** // /** The name of the database for WordPress */ define(&#39;DB_NAME&#39;, $connectstr_dbname); /** MySQL database username */ define(&#39;DB_USER&#39;, $connectstr_dbusername); /** MySQL database password */ define(&#39;DB_PASSWORD&#39;, $connectstr_dbpassword); /** MySQL hostname : this contains the port number in this format host:port. /** Port is not 3306 when using this feature*/ define(&#39;DB_HOST&#39;, $connectstr_dbhost);</code><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br><code>public $dbtype = &#39;mysql&#39;; public $host = DB_HOST; public $user = DB_USER; public $password = DB_PASSWORD; public $db = DB_NAME; public $dbprefix = &#39;jos_&#39;;</code><br><br></td><br><td style="padding-left: 7px;padding-right: 7px;border-top: none;border-left: none;border-bottom: solid 0.5pt;border-right: solid 0.5pt"><br><br>\$databases[‘default’][‘default’] = array (\<br>‘database’ => \$connectstr_dbname,\<br>‘username’ => \$connectstr_dbusername,\<br>‘password’ => \$connectstr_dbpassword,\<br>‘prefix’ => ‘’,\<br>‘host’ => \$connectstr_dbhost,\<br>‘port’ => \$_SERVER[‘WEBSITE_MYSQL_PORT’],\<br>‘driver’ => ‘mysql’,\<br>‘namespace’ => ‘Drupal\\Core\\Database\\Driver\\mysql’,\<br>‘collation’ => ‘utf8mb4_general_ci’,\<br>);<br><br></td><br></tr><br></tbody><br></table>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CMS/">CMS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL-In-App/">MySQL In-App</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure/">azure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/credentials/">credentials</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/running-python-webjob-on-azure-app-services-using-non-default-python-version/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Running Python Webjob on Azure App Services using non-default python version		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/how-to-identifyreview-errors-on-php-applications-in-azure-web-apps-using-log-stream-service/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> How to identify/review PHP errors on Azure Web Apps using Log Stream service		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> first steps with bitnami wordpress in azure vm		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Azure VMBitnami">
+  
+  
+  
+  
+  <meta name="description" content="If you choose Bitnami WordPress VM from Azure Market, you need to take the following considerations: 1.- Review the username &amp;amp; password for WordPress Application in the installation step. For exam">
+<meta name="keywords" content="Azure VM,Bitnami">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" First steps with Bitnami WordPress in Azure VM		">
+<meta property="og:url" content="http://azureossd.github.io/first-steps-with-bitnami-wordpress-in-azure-vm/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="If you choose Bitnami WordPress VM from Azure Market, you need to take the following considerations: 1.- Review the username &amp;amp; password for WordPress Application in the installation step. For exam">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami01.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/BitnamiWordpress02.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/BitnamiWordpress03.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami04.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami05.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami06.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami07.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/BitnamiWordpress08.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami09.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami10.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami11.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami12.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/BitnamiWordpress13.png">
+<meta property="og:updated_time" content="2019-03-26T06:51:02.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" First steps with Bitnami WordPress in Azure VM		">
+<meta name="twitter:description" content="If you choose Bitnami WordPress VM from Azure Market, you need to take the following considerations: 1.- Review the username &amp;amp; password for WordPress Application in the installation step. For exam">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2017/05/Bitnami01.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-first-steps-with-bitnami-wordpress-in-azure-vm" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       First steps with Bitnami WordPress in Azure VM		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/first-steps-with-bitnami-wordpress-in-azure-vm/" class="article-date">
+	  <time datetime="2017-05-26T20:08:57.000Z" itemprop="datePublished">May 26, 2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you choose Bitnami WordPress VM from Azure Market, you need to take the following considerations:</p>
+<p>1.- <strong>Review the username &amp; password for WordPress Application</strong> in the installation step. For example, the username is “<strong>user</strong>“</p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami01.jpg" alt></p>
+<p>The password will be shown in the Boot Diagnostics the first time after creating the VM, <strong>you need to save this password</strong>. You will use this password for logging into WordPress administration portal.</p>
+<p><img src="/wp-content/uploads/2017/05/BitnamiWordpress02.png" alt></p>
+<p>2.- <strong>Know how to connect to Bitnami VM and check structure folder</strong>:</p>
+<p>You can use SSH terminal to connect to Bitnami VM.</p>
+<p>For Windows you can use PuTTY or terminal for Linux or Mac, you will find all the information here: <a href="https://docs.bitnami.com/azure/faq/#how-to-access-a-server-using-an-ssh-tunnel" target="_blank" rel="noopener">https://docs.bitnami.com/azure/faq/#how-to-access-a-server-using-an-ssh-tunnel</a></p>
+<p>I will use PuTTY for this blog.</p>
+<p><img src="/wp-content/uploads/2017/05/BitnamiWordpress03.png" alt></p>
+<p>You can find the application installed by Bitnami using the following path: <strong>/opt/bitnami/apps</strong></p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami04.jpg" alt></p>
+<p>For services you need to use the following path: <strong>/opt/bitnami  </strong></p>
+<p>In this case you can find  <em>apache2/</em>, <em>mysql/, php/ </em></p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami05.jpg" alt></p>
+<p>You can find more information about this directory structure here: <a href="https://docs.bitnami.com/azure/faq/#how-to-access-a-server-using-an-ssh-tunnel" target="_blank" rel="noopener">https://docs.bitnami.com/azure/faq/#what-is-the-directory-structure</a></p>
+<p>3.- How to modify <strong>php.ini</strong> in Bitnami:</p>
+<p>You will find php.ini in this directory: <strong>/opt/bitnami/php/etc/php.ini </strong></p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami06.jpg" alt></p>
+<p>4.- To start or stop services in Bitnami, you need to use the following commands:</p>
+<p>a) To review the status of the services:  <strong>sudo /opt/bitnami/ctlscript.sh status</strong></p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami07.jpg" alt></p>
+<p>b) To start/stop/restart these services you can use: <strong>sudo /opt/bitnami/ctlscript.sh restart apache </strong></p>
+<p>You can find more information in the following reference: <a href="https://docs.bitnami.com/azure/faq/#how-to-start-or-stop-the-services" target="_blank" rel="noopener">https://docs.bitnami.com/azure/faq/#how-to-start-or-stop-the-services</a></p>
+<p>5.- <strong>How to enter to phpmyadmin</strong>. By default phpmyadmin is for just 127.0.0.1, if you try to browse you will get this message:<br><img src="/wp-content/uploads/2017/05/BitnamiWordpress08.png" alt></p>
+<p>In this situation you need to create a SSH tunnel.</p>
+<p>You will find all the steps described here: <a href="https://docs.bitnami.com/azure/components/phpmyadmin/" target="_blank" rel="noopener">https://docs.bitnami.com/azure/components/phpmyadmin/</a></p>
+<p>If you are using PuTTY, you need to create a tunnel that will redirect from 80 to 8888</p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami09.jpg" alt></p>
+<p>After creating this tunnel, you can browse phpmyadmin using <a href="http://127.0.0.1:8888/phpmyadmin" target="_blank" rel="noopener">http://127.0.0.1:8888/phpmyadmin</a> and you need to set “root” user and password is the same of the application password that you saved in the boot diagnostics.</p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami10.jpg" alt></p>
+<p>6.-  <strong>Logging into WordPress admin and how to find WordPress files in director</strong>y:</p>
+<p>To can use 127.0.0.1 with port 8888  <a href="http://127.0.0.1:8888/wp-admin" target="_blank" rel="noopener">http://127.0.0.1:8888/wp-admin</a> or use the public ip address that azure assigned or custom domain you have already configured. The first time you need to use “user” and password “generated from boot diagnostics”</p>
+<p>Then you can add or change this password in WordPress Administration or phpMyAdmin, but remember that you need to change the same in root for MySQL as well.</p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami11.jpg" alt></p>
+<p>You will find WordPress files in the following location: <strong>/opt/bitnami/apps/wordpress/htdocs</strong></p>
+<p><img src="/wp-content/uploads/2017/05/Bitnami12.jpg" alt></p>
+<p>You can find user/password for database in wp-config.php file.</p>
+<p>7.- <strong>How to connect by sftp to Bitnami</strong></p>
+<p>You can use SSH to connect to Bitnami with port 22 and ssh username and password defined in azure portal and the same that you use for ssh.</p>
+<p><img src="/wp-content/uploads/2017/05/BitnamiWordpress13.png" alt></p>
+<p>Or using VsFTPd with the following reference: <a href="https://docs.bitnami.com/azure/components/vsftpd/" target="_blank" rel="noopener">https://docs.bitnami.com/azure/components/vsftpd/ </a></p>
+<p>If you want more information about azure and Bitnami you can find it in the following reference:<a href="https://docs.bitnami.com/azure/faq/" target="_blank" rel="noopener"> https://docs.bitnami.com/azure/faq/</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/WordPress/">WordPress</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Azure-VM/">Azure VM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bitnami/">Bitnami</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/http-to-https-redirect-for-azure-web-app-on-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Redirect HTTP to HTTPS from .htaccess for Azure Web App on Linux on Apache		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/azure-app-service-java-cicd-with-maven/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Azure App Service Java CICD with Maven		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> creating an angularjs single page application with routes on azure webapps		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="AngularJsWAWS">
+  
+  
+  
+  
+  <meta name="description" content="This Blog would provide a step-by-step procedure on creating sample AngularJS app with routes supporting SEO.  Source code is available on github @ https://github.com/prashanthmadi/angularjs-azure 1)">
+<meta name="keywords" content="AngularJs,WAWS">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Creating an AngularJS Single Page Application with routes on Azure WebApps		">
+<meta property="og:url" content="http://azureossd.github.io/creating-an-angularjs-single-page-application-with-routes-on-azure-webapps/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="This Blog would provide a step-by-step procedure on creating sample AngularJS app with routes supporting SEO.  Source code is available on github @ https://github.com/prashanthmadi/angularjs-azure 1)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7041.Screen%20Shot%202015-11-30%20at%2010.28.25%20AM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/4743.Screen%20Shot%202015-11-30%20at%2011.53.07%20AM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7455.Screen%20Shot%202015-11-30%20at%2010.36.23%20AM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2843.Screen%20Shot%202015-11-30%20at%2010.58.36%20AM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7077.Screen%20Shot%202015-11-30%20at%2010.58.24%20AM.png">
+<meta property="og:updated_time" content="2019-03-26T06:26:04.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Creating an AngularJS Single Page Application with routes on Azure WebApps		">
+<meta name="twitter:description" content="This Blog would provide a step-by-step procedure on creating sample AngularJS app with routes supporting SEO.  Source code is available on github @ https://github.com/prashanthmadi/angularjs-azure 1)">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7041.Screen%20Shot%202015-11-30%20at%2010.28.25%20AM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-creating-an-angularjs-single-page-application-with-routes-on-azure-webapps" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Creating an AngularJS Single Page Application with routes on Azure WebApps		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/creating-an-angularjs-single-page-application-with-routes-on-azure-webapps/" class="article-date">
+	  <time datetime="2015-11-29T05:57:00.000Z" itemprop="datePublished">November 28, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This Blog would provide a step-by-step procedure on creating sample AngularJS app with routes supporting SEO. </p>
+<p>Source code is available on github @ <a href="https://github.com/prashanthmadi/angularjs-azure" target="_blank" rel="noopener">https://github.com/prashanthmadi/angularjs-azure</a></p>
+<p>1) Create a new Azure web app from portal.</p>
+<p>2) Setup continuous deployment process.</p>
+<p>3) Create a HTML file(index.html) with below content which would act as entry point to AngularJS app. A div tag with ng-view is an important part of this file.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"> &lt;head&gt;</span><br><span class="line"> &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;assets/bootstrap/css/bootstrap.min.css&quot;&gt;</span><br><span class="line"> &lt;script type=&quot;text/javascript&quot; src=&quot;assets/angularmodules/angular.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"> &lt;script type=&quot;text/javascript&quot; src=&quot;assets/angularmodules/angular-route.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"> &lt;script type=&quot;text/javascript&quot; src=&quot;assets/app.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"> &lt;base href=&quot;http://blogs.msdn.com/&quot;&gt;</span><br><span class="line"> &lt;/head&gt;</span><br><span class="line"> &lt;body ng-app=&quot;giveCampaign&quot;&gt;</span><br><span class="line"> &lt;div class=&quot;col-md-3&quot;&gt;</span><br><span class="line"> &lt;ul class=&quot;nav&quot;&gt;</span><br><span class="line"> &lt;li&gt;&lt;a href=&quot;donarlist&quot;&gt; Donar List &lt;/a&gt;&lt;/li&gt;</span><br><span class="line"> &lt;li&gt;&lt;a href=&quot;receivertrans&quot;&gt; Receive&lt;/a&gt;&lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div ng-view&gt;&lt;/div&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>4) Create a new directory(assets) to store all other files.</p>
+<p> <img src="/wp-content/uploads/2019/03/7041.Screen%20Shot%202015-11-30%20at%2010.28.25%20AM.png" alt></p>
+<p>5) Create an app.js file inside assets folder which would have our app specific angularJS code. Below is for our sample app which has two controllers and route config.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">var app = angular.module(&quot;giveCampaign&quot;,[&apos;ngRoute&apos;]);</span><br><span class="line"></span><br><span class="line">app.config([&apos;$routeProvider&apos;,&apos;$locationProvider&apos;,function($routeProvider, $locationProvider) &#123;</span><br><span class="line"></span><br><span class="line">$routeProvider.when(&apos;/donarlist&apos;, &#123;templateUrl:&quot;assets/templates/donarlist.html&quot;,controller:&apos;DonarController&apos;&#125;).when(&apos;/receivertrans&apos;,&#123;templateUrl:&quot;assets/templates/receiver.html&quot;,controller:&apos;ReceiverController&apos;&#125;).otherwise(&#123;redirectTo: &apos;/abc&apos;&#125;);</span><br><span class="line">$locationProvider.hashPrefix(&apos;!&apos;).html5Mode(true);</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.controller(&apos;DonarController&apos;, function()&#123;</span><br><span class="line">this.recentTrans = recentTransactions;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var recentTransactions =[</span><br><span class="line">&#123;donatedTo:&quot;justin Tim&quot;,</span><br><span class="line">item:&quot;bicycle&quot;,</span><br><span class="line">cost:&quot;300&quot;,</span><br><span class="line">donatedBy:&quot;Cristhian Uribe&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;donatedTo:&quot;bryan lynch&quot;,</span><br><span class="line">item:&quot;baseball bat&quot;,</span><br><span class="line">cost:&quot;200&quot;,</span><br><span class="line">donatedBy:&quot;richard marr&quot;</span><br><span class="line">&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">app.controller(&apos;ReceiverController&apos;,function()&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>6) Our AngularJS project would require few angular libraries. Either you can download them and insert in assets/angularmodules folder (or) use existing CDN in index.html file.</p>
+<p><img src="/wp-content/uploads/2019/03/4743.Screen%20Shot%202015-11-30%20at%2011.53.07%20AM.png" alt></p>
+<p>[7) I have created two different templates inside assets/templates older to show a view based on incoming url</p>
+<p>ex: - url ending with /donarlist should show all the donars of charity foundation (donarlist.html)</p>
+<pre><code>- url ending with /receiver should show a form to fill required details. (receiver.html)
+</code></pre><p>donarlist.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller=&quot;DonarController as donarCtrl&quot;&gt;</span><br><span class="line"> &lt;div ng-repeat=&quot;transaction in donarCtrl.recentTrans&quot;&gt;</span><br><span class="line"> &lt;div&gt;&#123;&#123;transaction.donatedBy&#125;&#125; has donated a &#123;&#123;transaction.item&#125;&#125; worth of &#123;&#123;transaction.cost | currency&#125;&#125; to &#123;&#123;transaction.donatedTo&#125;&#125;&lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>receriver.html </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller=&quot;ReceiverController as recCtrl&quot;&gt;</span><br><span class="line"> &lt;form name=&quot;needForm&quot;&gt;</span><br><span class="line"> &lt;label&gt;Name: &lt;/label&gt;</span><br><span class="line"> &lt;input ng-model=&quot;item.name&quot; type=&quot;text&quot; /&gt;</span><br><span class="line"> &lt;label&gt;Email: &lt;/label&gt;</span><br><span class="line"> &lt;input ng-model=&quot;item.email&quot; type=&quot;email&quot; /&gt;</span><br><span class="line"> &lt;label&gt;Need: &lt;/label&gt;</span><br><span class="line"> &lt;input ng-model=&quot;item.name&quot; type=&quot;text&quot; /&gt;</span><br><span class="line"> &lt;/form&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/wp-content/uploads/2019/03/7455.Screen%20Shot%202015-11-30%20at%2010.36.23%20AM.png" alt></p>
+<p>8) Create a web.config file which would establish incoming url routes from IIS to index.html page. Below is a working sample </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"> &lt;configuration&gt;</span><br><span class="line"> &lt;system.webServer&gt;</span><br><span class="line"> &lt;rewrite&gt;</span><br><span class="line"> &lt;rules&gt;</span><br><span class="line"> &lt;clear /&gt;</span><br><span class="line"> &lt;!-- ignore static files --&gt;</span><br><span class="line"> &lt;rule name=&quot;AngularJS Conditions&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line"> &lt;match url=&quot;(app/.*|assets/.*|config/.*)&quot; /&gt;</span><br><span class="line"> &lt;conditions logicalGrouping=&quot;MatchAll&quot; trackAllCaptures=&quot;false&quot; /&gt;</span><br><span class="line"> &lt;action type=&quot;None&quot; /&gt;</span><br><span class="line"> &lt;/rule&gt;</span><br><span class="line"> &lt;!-- check if its root url and navigate to default page --&gt;</span><br><span class="line"> &lt;rule name=&quot;Index Request&quot; enabled=&quot;true&quot; stopProcessing=&quot;true&quot;&gt;</span><br><span class="line"> &lt;match url=&quot;^$&quot; /&gt;</span><br><span class="line"> &lt;action type=&quot;Redirect&quot; url=&quot;/receivertrans&quot; logRewrittenUrl=&quot;true&quot; /&gt;</span><br><span class="line"> &lt;/rule&gt;</span><br><span class="line"> &lt;!--remaining all other url&apos;s point to index.html file --&gt;</span><br><span class="line"> &lt;rule name=&quot;AngularJS Wildcard&quot; enabled=&quot;true&quot;&gt;</span><br><span class="line"> &lt;match url=&quot;(.*)&quot; /&gt;</span><br><span class="line"> &lt;conditions logicalGrouping=&quot;MatchAll&quot; trackAllCaptures=&quot;false&quot; /&gt;</span><br><span class="line"> &lt;action type=&quot;Rewrite&quot; url=&quot;index.html&quot; /&gt;</span><br><span class="line"> &lt;/rule&gt;</span><br><span class="line"> &lt;/rules&gt;</span><br><span class="line"> &lt;/rewrite&gt;</span><br><span class="line"> &lt;/system.webServer&gt;</span><br><span class="line"> &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>[9) Code is available on github @  <a href="https://github.com/prashanthmadi/angularjs-azure" target="_blank" rel="noopener">https://github.com/prashanthmadi/angularjs-azure</a></p>
+<p>10) Below are screen shots of a sample app with above code on azure</p>
+<p>/donarlist url</p>
+<p><img src="/wp-content/uploads/2019/03/2843.Screen%20Shot%202015-11-30%20at%2010.58.36%20AM.png" alt></p>
+<p>/receiverlist url</p>
+<p><img src="/wp-content/uploads/2019/03/7077.Screen%20Shot%202015-11-30%20at%2010.58.24%20AM.png" alt><br>.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJs/">AngularJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAWS/">WAWS</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/azure-web-app-with-angularjs-and-nodejs-apps-on-same-instance/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Azure Web App with AngularJs and NodeJs Apps on Same Instance		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/using-gulp-in-node-js-azure-webapps/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Using Gulp in Node.js Azure WebApps		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

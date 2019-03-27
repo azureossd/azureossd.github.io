@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> django app with httpplatformhandler in azure app services (windows)		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="python">
+  
+  
+  
+  
+  <meta name="description" content="In my previous blog Deploying Django App to Azure App Services using Git, I have provided detailed steps on how to run Django app in Azure App services using wfastcgi wfastcgi.py provides a bridge bet">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Django app with HttpPlatformHandler in Azure App Services (Windows)		">
+<meta property="og:url" content="http://azureossd.github.io/django-app-with-httpplatformhandler-in-azure-app-services-windows/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="In my previous blog Deploying Django App to Azure App Services using Git, I have provided detailed steps on how to run Django app in Azure App services using wfastcgi wfastcgi.py provides a bridge bet">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://prmadi.com/content/images/2016/08/djangosample.PNG">
+<meta property="og:image" content="https://prmadi.com/content/images/2016/11/siteextensions.png">
+<meta property="og:image" content="https://prmadi.com/content/images/2016/08/djangopublish.PNG">
+<meta property="og:image" content="https://prmadi.com/content/images/2017/03/staticfolder.PNG">
+<meta property="og:image" content="https://prmadi.com/content/images/2017/03/virtualdirectoyr.PNG">
+<meta property="og:image" content="https://prmadi.com/content/images/2017/03/staticwebconfig.PNG">
+<meta property="og:image" content="https://prmadi.com/content/images/2017/03/djangosuccess.PNG">
+<meta property="og:updated_time" content="2019-03-26T06:44:53.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Django app with HttpPlatformHandler in Azure App Services (Windows)		">
+<meta name="twitter:description" content="In my previous blog Deploying Django App to Azure App Services using Git, I have provided detailed steps on how to run Django app in Azure App services using wfastcgi wfastcgi.py provides a bridge bet">
+<meta name="twitter:image" content="https://prmadi.com/content/images/2016/08/djangosample.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-django-app-with-httpplatformhandler-in-azure-app-services-windows" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Django app with HttpPlatformHandler in Azure App Services (Windows)		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/django-app-with-httpplatformhandler-in-azure-app-services-windows/" class="article-date">
+	  <time datetime="2017-09-01T18:11:46.000Z" itemprop="datePublished">September 1, 2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In my previous blog <a href="https://prmadi.com/deploying-django-app-to-azure-app-services-using-git-and-new-version-of-python/" target="_blank" rel="noopener">Deploying Django App to Azure App Services using Git</a>, I have provided detailed steps on how to run Django app in Azure App services using <a href="https://pypi.python.org/pypi/wfastcgi" target="_blank" rel="noopener">wfastcgi</a></p>
+<article class="post tag-python tag-azure tag-webapps tag-httpplatformhandler tag-django"><br><br><br><strong>wfastcgi.py</strong> provides a bridge between IIS and Python using WSGI and FastCGI, similar to what mod_python provides for Apache HTTP Server.<br><p></p><br><br>Even though using wfastcgi was preferred way to run Python apps in IIS. I would like to provide an alternate solution using <a href="https://azure.microsoft.com/en-us/blog/announcing-the-release-of-the-httpplatformhandler-module-for-iis-8/" target="_blank" rel="noopener">HTTP Platform Handler</a> in this blog.<br><br>Below are list of steps we would follow<br><br>-   Create Sample Project<br>-   Create Azure WebApp and Use Site Extension to Upgrade Python<br>-   Create and Change Deployment script<br>-   Adding web.config (for production app use second option with waitress)<br>-   Publish App<br><br>You can find a Sample Python Django project with above operations @ <a href="https://github.com/prashanthmadi/azure-django-httphandler" target="_blank" rel="noopener">GitHub Link</a><br><br>#### Create Sample Project<br><br>Follow <a href="https://www.djangoproject.com/start/" target="_blank" rel="noopener">https://www.djangoproject.com/start/</a> to get started with Django<br><br>-   Install Django and<br>-   Write your first Django app<br><br>(or)<br><br>If you have <a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">PyCharm</a>, Follow details at below link to create a sample app\<br><a href="https://www.jetbrains.com/help/pycharm/2016.1/creating-django-project.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/pycharm/2016.1/creating-django-project.html</a><br><br><img src="https://prmadi.com/content/images/2016/08/djangosample.PNG" alt="Sample Django Project"><br><br>#### Create Azure WebApp and Use Site Extension to Upgrade Python<br><br>Navigate to <a href="https://portal.azure.com/" target="_blank" rel="noopener">Azure portal</a><br><br>-   Create a new web app<br>-   <a href="https://docs.microsoft.com/en-us/azure/app-service-web/app-service-continuous-deployment" target="_blank" rel="noopener">Setup Continuous Deployment</a><br>-   Navigate to your App Service blade, select Extensions and then Add.<br>-   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need <img src="https://prmadi.com/content/images/2016/11/siteextensions.png" alt="Site Extension">{.full-img}<br><br>For this blog I’m choosing <code>Python 2.7.12 x64</code>, It would install new version of python @ D:\home\Python27<br><br>#### Create and Change Deployment script<br><br>I have explained more on how to utilize deployment script and what it does @ <a href="https://prmadi.com/azure-custom-deployment" target="_blank" rel="noopener">link</a>. you can use this script to run commands on Azure App after moving code to it.<br><br>Install Azure Cli using below command<br><br>    npm install azure-cli -g<br><br>Use Below command to create deployment script.<br><br>    azure site deploymentscript –python<br><br>Above step would create below two files<br><br>-   .deployment<br>-   deploy.cmd<br><br><strong>Note: If you haven’t used nodejs/npm earlier, Create above files manually and copy content for these files from <a href="https://github.com/prashanthmadi/azure-django-httphandler" target="_blank" rel="noopener">https://github.com/prashanthmadi/azure-django-httphandler</a></strong><br><br>Replace content of deploy.cmd file with content at <a href="https://github.com/prashanthmadi/azure-django-httphandler/blob/master/deploy.cmd" target="_blank" rel="noopener">Link</a><br><br>We are changing default deployment script(removing virtual environment creation and others) and adding below content to install packages listed in requirements.txt<br><br>    :: 2. Install packages<br>    echo Pip install requirements.<br>    D:\home\Python27\python.exe -m pip install –upgrade -r requirements.txt<br>    IF !ERRORLEVEL! NEQ 0 goto error<br><br>#### Adding web.config(Development Mode)<br><br>Note: Ignore this section for production app<br><br>Azure web apps would use IIS which can be configured using web.config file. In our web.config file we would ask the requests to use httpplatformhandler and forward them to python.exe<br><br>Create below file at root folder and copy content from <a href="https://github.com/prashanthmadi/azure-django-httphandler/blob/master/web.config" target="_blank" rel="noopener">link</a><br><br><strong>web.config</strong><br><br>    &lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>    <configuration><br>     &lt;system.webServer&gt;<br><br>      <handlers><br>        <add name="httpPlatformHandler" path="*" verb="*" modules="httpPlatformHandler" resourcetype="Unspecified"><br>      </add></handlers><br><br>      <httpplatform processpath="D:\home\Python27\python.exe" arguments="manage.py runserver %HTTP_PLATFORM_PORT%" requesttimeout="00:04:00" startuptimelimit="120" startupretrycount="3" stdoutlogenabled="true"><br>        <environmentvariables><br>         <environmentvariable name="PYTHONPATH" value="D:\home\site\wwwroot"><br>        </environmentvariable></environmentvariables><br>      </httpplatform><br><br>     &lt;/system.webServer&gt;<br>    </configuration><br><br>#### Adding web.config(Production Mode - Using Waitress)<br><br><a href="http://docs.pylonsproject.org/projects/waitress/en/latest/" target="_blank" rel="noopener">Waitress</a> is meant to be a production-quality pure-Python WSGI server with very acceptable performance<br><br>Django app by default uses a development server which would be started when we execute manage.py file. I would provide steps to use Waitress instead below<br><br>Create <code>web.config</code> file with below content<br><br>    &lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br>    <configuration><br>     &lt;system.webServer&gt;<br>      <handlers><br>       <add name="httpPlatformHandler" path="*" verb="*" modules="httpPlatformHandler" resourcetype="Unspecified"><br>      </add></handlers><br><br>      <httpplatform processpath="D:\home\Python27\python.exe" arguments="run_waitress_server.py" requesttimeout="00:04:00" startuptimelimit="120" startupretrycount="3" stdoutlogenabled="true"><br>       <environmentvariables><br>        <environmentvariable name="PYTHONPATH" value="D:\home\site\wwwroot"><br>        <environmentvariable name="PORT" value="%HTTP_PLATFORM_PORT%"><br>       </environmentvariable></environmentvariable></environmentvariables><br>      </httpplatform><br>     &lt;/system.webServer&gt;<br>    </configuration><br><br>If you observe carefully, we have changed<br><br>-   httpplatform arguments section to <code>run_waitress_server.py</code> instead of <code>manage.py runserver %HTTP_PLATFORM_PORT%</code><br>-   Added new evnironmentVariable <code>PORT</code> to pass the internal port number we use in waitress<br><br>Add below line at the end in <code>requirements.txt</code> file. This would install waitress module during deployment<br><br>    waitress==1.0.1<br><br>Create a new file <code>run_waitress_server.py</code> with below content<br><br>    import os<br>    from waitress import serve<br>    from django.core.wsgi import get_wsgi_application<br>    os.environ.setdefault(“DJANGO_SETTINGS_MODULE”, “djangosql.settings”)<br>    application = get_wsgi_application()<br>    serve(application,host=”0.0.0.0”,port=os.environ[“PORT”])<br><br>I have seen some Azure users facing issue with ssl. set <code>url_scheme</code> to resolve the issue as below<br><br>    serve(application,host=”0.0.0.0”,port=os.environ[“PORT”],url_scheme=’https’)<br><br>#### Publish App<br><br>Navigate to your root folder and commit your changes to <code>WEB_APP_GIT_URL</code><br><br>    git init<br>    git add .<br>    git commit -m “initial commit”<br>    git remote add sampledjangoapp WEB_APP_GIT_URL<br>    git push sampledjangoapp master<br><br>Here is my App on Azure After publish<br><br><img src="https://prmadi.com/content/images/2016/08/djangopublish.PNG" alt="Django Sample App Azure"><br><br>You can find a Sample Python Django project with above operations @ <a href="https://github.com/prashanthmadi/azure-django-httphandler" target="_blank" rel="noopener">GitHub Link</a><br><br>#### Serving Static Files<br><br>I have seen couple of users complaining about static files. Here is the fix for it<br><br>Use below line of code(at <code>D:\home\site\wwwroot</code> using kudu console) to generate static file folder in Django app, we can also stitch this inside deploy.cmd to automate it. <code>Version number</code> in url may change based on your python installation.<br><br>    D:\home\python27\python.exe manage.py collectstatic –noinput<br><br><img src="https://prmadi.com/content/images/2017/03/staticfolder.PNG" alt="Django Sample App with static folder"><br><br>Once you have static folder in <code>D:\home\site\wwwroot</code> folder as above screenshot<br><br>-   Navigate to Azure Portal and add a new section in <code>Virtual application and directories</code> under <code>Application Settings</code> with below values<br><br><!-- --><br><br>    key : /static<br>    value : site\wwwroot\static<br>    mark the application checkbox<br><br><img src="https://prmadi.com/content/images/2017/03/virtualdirectoyr.PNG" alt="static folder virtual directory"><br><br>-   Navigate to <code>D:\home\site\wwwroot\static</code> folder and add web.config file with below content <img src="https://prmadi.com/content/images/2017/03/staticwebconfig.PNG" alt="static folder virtual directory"><br><br><strong>D:\home\site\wwwroot\static\web.config content</strong><br><br>    &lt;?xml version=”1.0”?&gt;<br>    <configuration><br>        &lt;system.webServer&gt;<br>            <handlers><br>               <clear><br>                <add name="StaticFile" path="*" verb="*" modules="StaticFileModule,DefaultDocumentModule,DirectoryListingModule" resourcetype="Either" requireaccess="Read"><br>            </add></clear></handlers><br>        &lt;/system.webServer&gt;<br>    </configuration><br><br>#### Final Output (with static files working)<br><br><img src="https://prmadi.com/content/images/2017/03/djangosuccess.PNG" alt="Final Output"><br>:::<br><br></article>
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/python/">python</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/running-flask-app-with-httpplatformhandler-in-azure-app-serviceswindows/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Running Flask App with HttpPlatformHandler in Azure App Services(Windows)		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/nodejs-app-performance-tweaks-azure-app-services-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Nodejs App Performance Tweaks - Azure App Services (Windows)		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

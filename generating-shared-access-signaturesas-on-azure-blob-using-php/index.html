@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> generating shared access signature(sas) on azure blob using php		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="PHPAzure StorageSAS">
+  
+  
+  
+  
+  <meta name="description" content="As of 05/2015, Azure sdk for php doesn’t support shared access signature(SAS) and this Blog would provide a workaround for it.  Note : For information on Shared Access Signature visit : http://azure.m">
+<meta name="keywords" content="PHP,Azure Storage,SAS">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Generating Shared access signature(SAS) on Azure Blob using PHP		">
+<meta property="og:url" content="http://azureossd.github.io/generating-shared-access-signaturesas-on-azure-blob-using-php/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="As of 05/2015, Azure sdk for php doesn’t support shared access signature(SAS) and this Blog would provide a workaround for it.  Note : For information on Shared Access Signature visit : http://azure.m">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-26T06:51:53.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Generating Shared access signature(SAS) on Azure Blob using PHP		">
+<meta name="twitter:description" content="As of 05/2015, Azure sdk for php doesn’t support shared access signature(SAS) and this Blog would provide a workaround for it.  Note : For information on Shared Access Signature visit : http://azure.m">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-generating-shared-access-signaturesas-on-azure-blob-using-php" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Generating Shared access signature(SAS) on Azure Blob using PHP		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/generating-shared-access-signaturesas-on-azure-blob-using-php/" class="article-date">
+	  <time datetime="2015-05-12T21:33:00.000Z" itemprop="datePublished">May 12, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As of 05/2015, Azure sdk for php doesn’t support shared access signature(SAS) and this Blog would provide a workaround for it. </p>
+<p>Note : For information on Shared Access Signature visit : <a href="http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-shared-access-signature-part-1/</a></p>
+<p>Below details would be required to create a Shared Access Signature(SAS) for blob with read access</p>
+<p>- ACCOUNT_NAME</p>
+<p>- CONTAINER_NAME</p>
+<p>- BLOB_NAME</p>
+<p>- END_DATE</p>
+<p>- YOUR_ACCESS_KEY</p>
+<p>You can find more information about above params in my another blog   <a href="http://blogs.msdn.com/b/azureossds/archive/2015/03/30/uploading-files-to-azure-storage-using-sas-shared-access-signature.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/azureossds/archive/2015/03/30/uploading-files-to-azure-storage-using-sas-shared-access-signature.aspx</a></p>
+<p>1) Use Below function to create a shared access signature for blob in storage.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function getSASForBlob($accountName,$container, $blob, $resourceType, $permissions, $expiry,$key)</span><br><span class="line"> &#123;</span><br><span class="line"> </span><br><span class="line"> /* Create the signature */</span><br><span class="line"> $_arraysign = array();</span><br><span class="line"> $_arraysign[] = $permissions;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = $expiry;</span><br><span class="line"> $_arraysign[] = &apos;/&apos; . $accountName . &apos;/&apos; . $container . &apos;/&apos; . $blob;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = &quot;2014-02-14&quot;; //the API version is now required</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> $_arraysign[] = &apos;&apos;;</span><br><span class="line"> </span><br><span class="line"> $_str2sign = implode(&quot;\n&quot;, $_arraysign);</span><br><span class="line"> </span><br><span class="line"> return base64_encode(</span><br><span class="line"> hash_hmac(&apos;sha256&apos;, urldecode(utf8_encode($_str2sign)), base64_decode($key), true)</span><br><span class="line"> );</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>2) Use Below function to create a signed blob url using shared access signature which was generated from above function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function getBlobUrl($accountName,$container,$blob,$resourceType,$permissions,$expiry,$_signature)</span><br><span class="line"> &#123;</span><br><span class="line"> /* Create the signed query part */</span><br><span class="line"> $_parts = array();</span><br><span class="line"> $_parts[] = (!empty($expiry))?&apos;se=&apos; . urlencode($expiry):&apos;&apos;;</span><br><span class="line"> $_parts[] = &apos;sr=&apos; . $resourceType;</span><br><span class="line"> $_parts[] = (!empty($permissions))?&apos;sp=&apos; . $permissions:&apos;&apos;;</span><br><span class="line"> $_parts[] = &apos;sig=&apos; . urlencode($_signature);</span><br><span class="line"> $_parts[] = &apos;sv=2014-02-14&apos;;</span><br><span class="line"> </span><br><span class="line"> /* Create the signed blob URL */</span><br><span class="line"> $_url = &apos;https://&apos;</span><br><span class="line"> .$accountName.&apos;.blob.core.windows.net/&apos;</span><br><span class="line"> . $container . &apos;/&apos;</span><br><span class="line"> . $blob . &apos;?&apos;</span><br><span class="line"> . implode(&apos;&amp;&apos;, $_parts);</span><br><span class="line"> </span><br><span class="line"> return $_url;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> Simple test scenario using above two functions</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$_signature = getSASForBlob(ACCOUNT_NAME,CONTAINER_NAME,BLOB_NAME,&apos;b&apos;,&apos;r&apos;,END_DATE,YOUR_KEY);</span><br><span class="line">$_blobUrl = getBlobUrl(ACCOUNT_NAME,CONTAINER_NAME,BLOB_NAME,&apos;b&apos;,&apos;r&apos;,END_DATE,$_signature);</span><br></pre></td></tr></table></figure>
+<p>Sample Blob url which I generated using above : <a href="https://samplemadi.blob.core.windows.net/samplecontainer/sample.txt?se=2016-10-12&amp;sr=b&amp;sp=r&amp;sig=it0j%2BJIfJK%2FZCn65AoGOHaIxMYamFidkPQroPAQMxwY%3D&amp;sv=2014-02-1.php" target="_blank" rel="noopener">https://samplemadi.blob.core.windows.net/samplecontainer/sample.txt?se=2016-10-12&amp;sr=b&amp;sp=r&amp;sig=it0j%2BJIfJK%2FZCn65AoGOHaIxMYamFidkPQroPAQMxwY%3D&amp;sv=2014-02-1.php</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>, <a class="article-category-link" href="/categories/PHP/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Azure-Storage/">Azure Storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SAS/">SAS</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/connect-to-microsoft-azure-redis-cache-from-wordpress-site/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Connect to Microsoft Azure Redis Cache from WordPress site		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/setting-up-session-affinitysticky-sessions-using-azure-java-sdk-for-cloud-service/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Setting up Session Affinity/Sticky Sessions using Azure Java SDK for cloud service		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

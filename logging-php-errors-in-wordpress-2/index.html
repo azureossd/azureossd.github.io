@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> enable wordpress error logs		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="azure app service web appwordpresserror-logsPHP troubleshootinglocal cachephpinfotimezone">
+  
+  
+  
+  
+  <meta name="description" content="Logs can help identify slowness, HTTP 500 Fatal Errors,  WordPress “white screen of death” and other issues your Azure App Service Web App may be experiencing. To enable error logging in WordPress, yo">
+<meta name="keywords" content="azure app service web app,wordpress,error-logs,PHP troubleshooting,local cache,phpinfo,timezone">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Enable WordPress Error Logs		">
+<meta property="og:url" content="http://azureossd.github.io/logging-php-errors-in-wordpress-2/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Logs can help identify slowness, HTTP 500 Fatal Errors,  WordPress “white screen of death” and other issues your Azure App Service Web App may be experiencing. To enable error logging in WordPress, yo">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step1.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step2.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step3.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step4.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step4a.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step5.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step6.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step7.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step8.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step9.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step6a9a.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/load_php.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/wordpress_timezone.png">
+<meta property="og:updated_time" content="2019-03-26T16:47:55.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Enable WordPress Error Logs		">
+<meta name="twitter:description" content="Logs can help identify slowness, HTTP 500 Fatal Errors,  WordPress “white screen of death” and other issues your Azure App Service Web App may be experiencing. To enable error logging in WordPress, yo">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2015/10/step1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-logging-php-errors-in-wordpress-2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Enable WordPress Error Logs		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/logging-php-errors-in-wordpress-2/" class="article-date">
+	  <time datetime="2015-10-10T04:43:30.000Z" itemprop="datePublished">October 9, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Logs can help identify slowness, HTTP 500 Fatal Errors,  <strong>WordPress “white screen of death”</strong> and other issues your Azure App Service Web App may be experiencing. To enable error logging in WordPress, you will have to make <strong>both</strong> of the following changes.</p>
+<hr>
+<h4 id="Quick-Instructions"><a href="#Quick-Instructions" class="headerlink" title=" Quick Instructions"></a><strong> Quick Instructions</strong></h4><p><strong>.user.ini</strong></p>
+<p>Within wwwroot directory, create a file named .user.ini Add the following setting within your file:</p>
+<p><code>log_errors=on</code></p>
+<p><strong>wp-config.php</strong></p>
+<p>Within wwwroot directory, open wp-config.php Add the following settings BEFORE the line /<em> That’s all, stop editing! … . </em>/ :</p>
+<p><code>//Enable WP_DEBUG mode define(&#39;WP_DEBUG&#39;, true);</code></p>
+<p><code>//Enable Debug Logging to /wp-content/debug.log define(&#39;WP_DEBUG_LOG&#39;, true);</code></p>
+<p><code>//Supress errors and warnings to screen define(&#39;WP_DEBUG_DISPLAY&#39;, false);</code></p>
+<p><code>//Supress PHP errors to screen ini_set(&#39;display_errors&#39;, 0);</code></p>
+<hr>
+<h3 id="Step-by-Step-instructions"><a href="#Step-by-Step-instructions" class="headerlink" title="Step-by-Step instructions"></a><strong>Step-by-Step instructions</strong></h3><p>The .user.ini and wp-config.php files can be updated using either Kudu console or FTP Client (such as FileZilla).</p>
+<p>Instructions for Kudu are below:</p>
+<h4 id="Step-1-Browse-to-Kudu"><a href="#Step-1-Browse-to-Kudu" class="headerlink" title="Step 1. Browse to Kudu"></a><strong>Step 1. Browse to Kudu</strong></h4><p>In your favorite Microsoft browser, surf to http://“sitename”.scm.azurewebsites.net.</p>
+<p>Ex: if your Azure App Service Web App name is “example”, then surf to <a href="http://example.scm.azurewebsite.net" target="_blank" rel="noopener">http://example.scm.azurewebsite.net</a></p>
+<p>Once there, you will see the interface below:</p>
+<p><a href="/wp-content/uploads/2015/10/step1.png"><img src="/wp-content/uploads/2015/10/step1.png" alt="step1"></a></p>
+<h4 id="Click-‘Debug-Console’-and-select-‘CMD’"><a href="#Click-‘Debug-Console’-and-select-‘CMD’" class="headerlink" title="Click ‘Debug Console’ and select ‘CMD’"></a><strong>Click ‘Debug Console’ and select ‘CMD’</strong></h4><p><a href="/wp-content/uploads/2015/10/step2.png"><img src="/wp-content/uploads/2015/10/step2.png" alt="step2"></a></p>
+<h4 id="Step-2-Traverse-to-wwwroot-folder"><a href="#Step-2-Traverse-to-wwwroot-folder" class="headerlink" title="Step 2. Traverse to wwwroot folder"></a><strong>Step 2. Traverse to wwwroot folder</strong></h4><p><a href="/wp-content/uploads/2015/10/step3.png"><img src="/wp-content/uploads/2015/10/step3.png" alt="step3"></a></p>
+<p><a href="/wp-content/uploads/2015/10/step4.png"><img src="/wp-content/uploads/2015/10/step4.png" alt="step4"></a></p>
+<h4 id="Step-3-Create-user-ini-file"><a href="#Step-3-Create-user-ini-file" class="headerlink" title="Step 3. Create .user.ini file"></a><strong>Step 3. Create .user.ini file</strong></h4><p>If .user.ini already exists, skip to step 4, otherwise create the .user.ini file</p>
+<p><a href="/wp-content/uploads/2015/10/step4a.png"><img src="/wp-content/uploads/2015/10/step4a.png" alt="step4a"></a></p>
+<p><code>touch .user.ini</code></p>
+<h4 id="Step-4-Update-the-user-ini-file"><a href="#Step-4-Update-the-user-ini-file" class="headerlink" title="Step 4. Update the .user.ini file"></a><strong>Step 4. Update the .user.ini file</strong></h4><p><a href="/wp-content/uploads/2015/10/step5.png"><img src="/wp-content/uploads/2015/10/step5.png" alt="step5"></a></p>
+<p><a href="/wp-content/uploads/2015/10/step6.png"><img src="/wp-content/uploads/2015/10/step6.png" alt="step6"></a></p>
+<p><code>log_errors=on</code></p>
+<h4 id="Step-5-For-WordPress-update-wp-config-php"><a href="#Step-5-For-WordPress-update-wp-config-php" class="headerlink" title=" Step 5. For WordPress, update wp-config.php"></a><strong> Step 5. For WordPress, update wp-config.php</strong></h4><p><a href="/wp-content/uploads/2015/10/step7.png"><img src="/wp-content/uploads/2015/10/step7.png" alt="step7"></a></p>
+<p><a href="/wp-content/uploads/2015/10/step8.png"><img src="/wp-content/uploads/2015/10/step8.png" alt="step8"></a></p>
+<p><a href="/wp-content/uploads/2015/10/step9.png"><img src="/wp-content/uploads/2015/10/step9.png" alt="step9"></a></p>
+<p>Save the file:</p>
+<p> <a href="/wp-content/uploads/2015/10/step6a9a.png"><img src="/wp-content/uploads/2015/10/step6a9a.png" alt="step6a9a"></a></p>
+<hr>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a><strong>Q &amp; A</strong></h3><p><strong>1. There are errors in my application, where do I find the error logs?</strong></p>
+<p>First, ensure that logging is enabled for PHP in .user.ini as mentioned above in (1). Second, if you are searching for WordPress logs, verify step (2) is complete.</p>
+<p>By default, PHP Errors are located at d:\home\LogFiles\php_errors.log and WordPress Debug Log is located at d:\home\site\wwwroot\wp-content\debug.log</p>
+<p><strong>2. I have local cache enabled - what happened to my logs?</strong></p>
+<p>If you have local cache enabled, check the d:\home\LogFiles\xxxxx_timestamp folders.</p>
+<p><strong>3. I want to capture all logs in one file, not two - what should I do?</strong></p>
+<p>WordPress stores errors logs within the wp-content folder.</p>
+<p>To integrate these messages into d:\home\LogFiles\php_errors.log, edit <strong>d:\home\site\wwwroot\wp-includes\load.php</strong> and comment the following line:</p>
+<p><code>ini_set (&#39;error_log&#39;, WP_CONTENT_DIR . &#39;/debug.Log&#39; );</code></p>
+<p>The updated code should look like this:</p>
+<p><a href="/wp-content/uploads/2015/10/load_php.png"><img src="/wp-content/uploads/2015/10/load_php.png" alt="load_php"></a></p>
+<p>Once this change has been made, all subsequent WordPress logs will be saved at the default error_log location.</p>
+<p><strong>4. How do I verify my error log location?</strong></p>
+<p>Create a .php file (example: myinfo.php) within the wwwroot directory and place the following code:</p>
+<pre><code>&lt;?php phpinfo();
+</code></pre><p>After you’ve saved the file, browse to</p>
+<p><a href="http://sitename.azurewebsites.net/myinfo.php" target="_blank" rel="noopener">http://sitename.azurewebsites.net/myinfo.php</a></p>
+<p>To find the location, search the page for “error_log”.</p>
+<p>Once the path has been located, remember to delete the myinfo.php file so others won’t have access to your environment configuration.</p>
+<p><strong>5. I want my local timezone in the logs - how do I update this?</strong></p>
+<p><a href="http://php.net/manual/en/timezones.php" title="PHP Time Zones" target="_blank" rel="noopener">Click here for a list of Time Zones.</a></p>
+<p>Within .user.ini file, add the time zone relevant to your app:</p>
+<p>date.timezone = “US/Central”</p>
+<p>For WordPress logs, update the Time Zone through the WordPress admin interface. Click “settings” and then “general”. Select the proper Time Zone within the drop down:</p>
+<p><a href="/wp-content/uploads/2015/10/wordpress_timezone.png"><img src="/wp-content/uploads/2015/10/wordpress_timezone.png" alt="wordpress_timezone"></a></p>
+<p>Save your changes.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>, <a class="article-category-link" href="/categories/PHP/WordPress/">WordPress</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP-troubleshooting/">PHP troubleshooting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure-app-service-web-app/">azure app service web app</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error-logs/">error-logs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/local-cache/">local cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpinfo/">phpinfo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/timezone/">timezone</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wordpress/">wordpress</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/wordpress-error-establishing-a-database-connection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           WordPress: Error establishing a database connection		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/setting-environment-variable-and-accessing-it-in-java-program-on-azure-webapp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Setting environment variable and accessing it in Java program on Azure webapp		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Instructions"><span class="nav-number">1.</span> <span class="nav-text"> Quick Instructions</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-by-Step-instructions"><span class="nav-number"></span> <span class="nav-text">Step-by-Step instructions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-1-Browse-to-Kudu"><span class="nav-number">1.</span> <span class="nav-text">Step 1. Browse to Kudu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Click-‘Debug-Console’-and-select-‘CMD’"><span class="nav-number">2.</span> <span class="nav-text">Click ‘Debug Console’ and select ‘CMD’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-2-Traverse-to-wwwroot-folder"><span class="nav-number">3.</span> <span class="nav-text">Step 2. Traverse to wwwroot folder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-3-Create-user-ini-file"><span class="nav-number">4.</span> <span class="nav-text">Step 3. Create .user.ini file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-4-Update-the-user-ini-file"><span class="nav-number">5.</span> <span class="nav-text">Step 4. Update the .user.ini file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step-5-For-WordPress-update-wp-config-php"><span class="nav-number">6.</span> <span class="nav-text"> Step 5. For WordPress, update wp-config.php</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q-amp-A"><span class="nav-number"></span> <span class="nav-text">Q &amp; A</span></a>
+    
+    </li></div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

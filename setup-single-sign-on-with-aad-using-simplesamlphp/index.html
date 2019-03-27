@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> setup single sign on with aad using simplesamlphp		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="PHPMediaWikiSSO">
+  
+  
+  
+  
+  <meta name="description" content="This blog provides step-by-step instruction on how to setup Single Sign On with Azure AD using SimpleSMPLphp API (apply to MediaWiki site as an example).  Install and configure SimpleSAMLphp   To down">
+<meta name="keywords" content="PHP,MediaWiki,SSO">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Setup Single Sign On with AAD using SimpleSAMLphp		">
+<meta property="og:url" content="http://azureossd.github.io/setup-single-sign-on-with-aad-using-simplesamlphp/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="This blog provides step-by-step instruction on how to setup Single Sign On with Azure AD using SimpleSMPLphp API (apply to MediaWiki site as an example).  Install and configure SimpleSAMLphp   To down">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/07/016-500x147.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/07/027-500x301.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/08/aad-add-app-500x278.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/08/aad-perm-500x202.png">
+<meta property="og:updated_time" content="2019-03-26T19:52:05.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Setup Single Sign On with AAD using SimpleSAMLphp		">
+<meta name="twitter:description" content="This blog provides step-by-step instruction on how to setup Single Sign On with Azure AD using SimpleSMPLphp API (apply to MediaWiki site as an example).  Install and configure SimpleSAMLphp   To down">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2016/07/016-500x147.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-setup-single-sign-on-with-aad-using-simplesamlphp" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Setup Single Sign On with AAD using SimpleSAMLphp		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/setup-single-sign-on-with-aad-using-simplesamlphp/" class="article-date">
+	  <time datetime="2016-08-15T21:00:16.000Z" itemprop="datePublished">August 15, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This blog provides step-by-step instruction on how to setup Single Sign On with Azure AD using SimpleSMPLphp API (apply to MediaWiki site as an example).</p>
+<ul>
+<li><strong>Install and configure SimpleSAMLphp</strong></li>
+</ul>
+<ol>
+<li><p>To download SimpleSAMLphp, <a href="https://simplesamlphp.org/download" target="_blank" rel="noopener">https://simplesamlphp.org/download</a> , extract the download to wwwroot/simplesamlphp</p>
+</li>
+<li><p>Configure admin: Edit wwwroot/simplesamlphp/config/config.php,</p>
+<blockquote>
+<ul>
+<li>Modify baseurlpath:       ‘baseurlpath’  =&gt; ‘simplesamlphp/www/‘</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Set admin login passwoed:      ‘auth.adminpassword’  =&gt; ‘&lt;your-admin-password&gt;’</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Browse to simplasamlphp admin page, &lt;your-site-url&gt;/simplesamlphp/www/, login with ‘admin’ and the password you set in config.php</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p><img src="/wp-content/uploads/2016/07/016-500x147.png" alt="01"></p>
+<ol start="3">
+<li>Generate metadata in XML: Click Federation tab, choose “XML to simpleSAMLphp metadata converter,</li>
+</ol>
+<p><a href="/wp-content/uploads/2016/07/027.png"><img src="/wp-content/uploads/2016/07/027-500x301.png" alt="02"></a></p>
+<pre><code>\- Copy raw XML from  [https://login.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/FederationMetadata/2007-06/FederationMetadata.xml ](https://login.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/FederationMetadata/2007-06/FederationMetadata.xml)
+
+paste to &quot;XML metadata&quot; area, and click &quot;Parse&quot;, you will see the PHP code populated in &quot;Converted metadata&quot; area.
+
+\- Copy the PHP code into wwwroot/simplesamlphp/metadata/saml20-idp-remote.php
+</code></pre><ol start="4">
+<li><p>Configure authsources: Add following PHP code in wwwroot/simplesamlphp/config/authsources.php:</p>
+<pre><code>Find $config = array( &apos;default-sp&apos; =&gt; array(...), );
+
+Add the code:
+
+&apos;idp&apos; =&gt; &apos;https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db47/&apos;,
+</code></pre></li>
+</ol>
+<p>5. Check the default settings for php sessions, if session.phpsession.cookiename is ‘null’, set it to ‘PHPSESSID’.</p>
+<ul>
+<li><strong>Integrate with MediaWiki site:</strong></li>
+</ul>
+<ol>
+<li>Download SimpleSamlAuth extension from <a href="https://github.com/jornane/mwSimpleSamlAuth/releases" target="_blank" rel="noopener">https://github.com/jornane/mwSimpleSamlAuth/releases</a> , extract to wwwroot/extensions/SimpleSamlAuth</li>
+<li><p>Modify LocalSettings.php to require authentication:</p>
+<pre><code>require_once &quot;$IP/extensions/mwSimpleSamlAuth/SimpleSamlAuth.php&quot;;
+
+$wgSamlRequirement = SAML_REQUIRED;
+
+$wgSamlCreateUser = true;
+
+$wgSamlUsernameAttr = &apos;[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&apos;](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&apos;);
+
+$wgSamlRealnameAttr = &apos;[http://schemas.microsoft.com/identity/claims/displayname&apos;](http://schemas.microsoft.com/identity/claims/displayname&apos;);
+
+$wgSamlMailAttr = &apos;[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&apos;](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&apos;);
+
+$wgSamlSspRoot = &apos;/libraries/simplesamlphp&apos;;
+
+$wgSamlAuthSource = &apos;default-sp&apos;;
+
+$wgSamlPostLogoutRedirect = NULL;
+</code></pre></li>
+</ol>
+<ul>
+<li><strong>Configure authentication in Azure AD:</strong></li>
+</ul>
+<ol>
+<li>In Azure management portal (classic), select Active Directory from menu, choose Microsoft tenant</li>
+<li>Select Application tab, Add your application <a href="/wp-content/uploads/2016/08/aad-add-app.png"><img src="/wp-content/uploads/2016/08/aad-add-app-500x278.png" alt></a></li>
+<li>Select a name for your application, keep “Web application and/or web API”, click next</li>
+<li>In “Sign on URL”, use home url of your site, for “App ID URL”, use the URL to default-sp, e.g. http://&lt;your-site-url&gt;/libraries/simplesamlphp/www/module.php/saml/sp/metadata.php/default-sp</li>
+<li>From Configure tab of your application, find “permission to other applications” section, check Enable “sign in and read users’ profiles” and “read directory data” under Delegated Permission,save the change.  <a href="/wp-content/uploads/2016/08/aad-perm.png"><img src="/wp-content/uploads/2016/08/aad-perm-500x202.png" alt></a></li>
+</ol>
+<p><strong>References:</strong></p>
+<p><a href="https://simplesamlphp.org/" target="_blank" rel="noopener">https://simplesamlphp.org/</a></p>
+<p><a href="https://www.mediawiki.org/wiki/Extension:SimpleSamlAuth" target="_blank" rel="noopener">https://www.mediawiki.org/wiki/Extension:SimpleSamlAuth</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MediaWiki/">MediaWiki</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSO/">SSO</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/accessing-storage-blob-using-sas-with-java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Accessing storage blob using SAS with Java		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/run-npm-bower-composer-gulp-grunt-in-azure-app-services-during-deployment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Run NPM, Bower, Composer, Gulp &amp; Grunt In Azure App Services During Deployment		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

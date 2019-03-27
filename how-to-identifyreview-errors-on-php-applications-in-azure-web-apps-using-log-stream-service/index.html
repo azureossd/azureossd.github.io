@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> how to identify/review php errors on azure web apps using log stream service		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="PHPerror-logsLogStream">
+  
+  
+  
+  
+  <meta name="description" content="If you are getting internal server errors (HTTP error 500) trying to request your PHP application inside Azure Web Apps,  You can do the following: 1.- Create .user.ini file and set log_errors = on to">
+<meta name="keywords" content="PHP,error-logs,LogStream">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" How to identify&#x2F;review PHP errors on Azure Web Apps using Log Stream service		">
+<meta property="og:url" content="http://azureossd.github.io/how-to-identifyreview-errors-on-php-applications-in-azure-web-apps-using-log-stream-service/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="If you are getting internal server errors (HTTP error 500) trying to request your PHP application inside Azure Web Apps,  You can do the following: 1.- Create .user.ini file and set log_errors = on to">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/140.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/233.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/325.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/422.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/517.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/616.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/710.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/86.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/105.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/97.png">
+<meta property="og:updated_time" content="2019-03-26T07:01:58.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" How to identify&#x2F;review PHP errors on Azure Web Apps using Log Stream service		">
+<meta name="twitter:description" content="If you are getting internal server errors (HTTP error 500) trying to request your PHP application inside Azure Web Apps,  You can do the following: 1.- Create .user.ini file and set log_errors = on to">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2016/09/140.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-0123456789ABCDEFFFFFF",
+          enable_page_level_ads: true
+      });
+  </script>
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-how-to-identifyreview-errors-on-php-applications-in-azure-web-apps-using-log-stream-service" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       How to identify/review PHP errors on Azure Web Apps using Log Stream service		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/how-to-identifyreview-errors-on-php-applications-in-azure-web-apps-using-log-stream-service/" class="article-date">
+	  <time datetime="2016-09-28T20:22:59.000Z" itemprop="datePublished">September 28, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If you are getting <strong>internal server errors (HTTP error 500)</strong> trying to request your PHP application inside Azure Web Apps,</p>
+<p><img src="/wp-content/uploads/2016/09/140.png" alt="http 500 internal server error"></p>
+<p>You can do the following:</p>
+<p>1.- Create <strong>.user.ini</strong> file and set l<strong>og_errors = on</strong> to check if there a php error related, following this reference from step 1 to 4: <a href="https://blogs.msdn.microsoft.com/azureossds/2015/10/09/logging-php-errors-in-wordpress-2/" target="_blank" rel="noopener">Login PHP errors</a></p>
+<p>2.- But sometimes there are not php errors related, could be related to configuration, auth permissions, cache, file issues, etc. In this situation you can use <strong>Log stream</strong> feature inside your web app.  To use this feature you need to activate Diagnostics Logs on azure portal for your web app. You can follow this reference for more information: <a href="https://azure.microsoft.com/en-us/documentation/articles/web-sites-enable-diagnostic-log" target="_blank" rel="noopener">Enable Diagnostics Logs in Azure Web Apps</a></p>
+<p><img src="/wp-content/uploads/2016/09/233.png" alt="Diagnostics Logs"></p>
+<p>Then go to <strong>Log stream</strong> and <strong>Start</strong> this service. Just remember that this service will be logging all requests to the current web app.</p>
+<p><img src="/wp-content/uploads/2016/09/325.png" alt="Activate LogStream"></p>
+<p>Try to request again the web app that is throwing the HTTP 500 error and you will get a better detail of what is failing in your site.</p>
+<p><img src="/wp-content/uploads/2016/09/422.png" alt="Get error in Log Stream"></p>
+<p>In this example. My web app is having some access issues with web.config, probably the web app doesn’t have any web.config or the correct permissions to access this file.</p>
+<p>You can clear the log stream service and check the error. In this case my web app didn’t have any correct configuration in web.config file.<br><img src="/wp-content/uploads/2016/09/517.png" alt="Clear Log stream"></p>
+<p>I fixed the problem and I was able to request successfully the php application.</p>
+<p><img src="/wp-content/uploads/2016/09/616.png" alt="web app is working now"></p>
+<p>You can request again web app after you fix the problem and you will start getting 200 successful requests.</p>
+<p><img src="/wp-content/uploads/2016/09/710.png" alt="Requesting again Log stream"></p>
+<p>You can run this service from Kudu Console or your command prompt using cURL using the following command:</p>
+<pre><code>curl -u {username} https://{YOURWEBAPPNAME}.scm.azurewebsites.net/logstream
+</code></pre><p>Or using Powershell or CLI following these references:</p>
+<ul>
+<li><a href="https://github.com/projectkudu/kudu/wiki/Diagnostic-Log-Stream#using-logstream" target="_blank" rel="noopener">Diagnostics Log Stream in Kudu Console</a></li>
+<li><a href="https://azure.microsoft.com/en-us/documentation/articles/web-sites-enable-diagnostic-log/#streamlogs" target="_blank" rel="noopener">Streaming with Azure PowerShell or Command-Line Interface</a></li>
+</ul>
+<p>For example if you are using CLI:</p>
+<pre><code>azure site log tail {yourwebapp}
+</code></pre><p><img src="/wp-content/uploads/2016/09/86.png" alt="azure cli and log stream"></p>
+<p>If you get another internal server error:</p>
+<p><img src="/wp-content/uploads/2016/09/105.png" alt="internal server error"></p>
+<p>You can activate the error filter in CLI using this command:</p>
+<pre><code>azure site log tail {yourwebapp} --filter Error
+</code></pre><p>In this case my web.config was not well-formed XML and I was able to detect and fix the issue.<br><img src="/wp-content/uploads/2016/09/97.png" alt="CLI Filter error"></p>
+<p>Usually PHP fatal errors could map to internal server error,s but not all HTTP 500 error map to PHP error, take a look on php error log for more details on this.</p>
+<p>I hope this can help you to identify php errors. This service is useful for all applications inside Azure Web App.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/PHP/">PHP</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LogStream/">LogStream</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error-logs/">error-logs</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/mysql-in-app-configuration-for-php-content-management-systems/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           MySQL In-App Configuration for PHP Content Management Systems		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/deploying-django-app-to-azure-app-services-using-git-and-new-version-of-python/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Deploying Django App to Azure App Services using Git and new version of Python		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
