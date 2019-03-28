@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> meteor 1.4 app on azure app services		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="nodejsmeteor">
+  
+  
+  
+  
+  <meta name="description" content="Meteor is a full-stack JavaScript platform for developing modern web and mobile applications. Meteor includes a key set of technologies for building connected-client reactive applications, a build too">
+<meta name="keywords" content="nodejs,meteor">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Meteor 1.4 App on Azure App Services		">
+<meta property="og:url" content="http://azureossd.github.io/2016/08/24/meteor-1-4-on-azure-app-services/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Meteor is a full-stack JavaScript platform for developing modern web and mobile applications. Meteor includes a key set of technologies for building connected-client reactive applications, a build too">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-08-29-PM.png">
+<meta property="og:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-15-01-PM.png">
+<meta property="og:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/local_meteor.png">
+<meta property="og:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-24-13-PM.png">
+<meta property="og:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/final_meteor.png">
+<meta property="og:updated_time" content="2019-03-26T17:05:22.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Meteor 1.4 App on Azure App Services		">
+<meta name="twitter:description" content="Meteor is a full-stack JavaScript platform for developing modern web and mobile applications. Meteor includes a key set of technologies for building connected-client reactive applications, a build too">
+<meta name="twitter:image" content="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-08-29-PM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-meteor-1-4-on-azure-app-services" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Meteor 1.4 App on Azure App Services		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2016/08/24/meteor-1-4-on-azure-app-services/" class="article-date">
+	  <time datetime="2016-08-24T17:13:17.000Z" itemprop="datePublished">August 24, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Meteor</strong> is a full-stack JavaScript platform for developing modern web and mobile applications. Meteor includes a key set of technologies for building connected-client reactive applications, a build tool, and a curated set of packages from the Nodejs and general JavaScript community. This Blog would help you create a sample meteor app in local environment and later we would help you move sample app to Azure Web Apps</p>
+<h5 id="Creating-Sample-Meteor-App"><a href="#Creating-Sample-Meteor-App" class="headerlink" title="Creating Sample Meteor App:"></a>Creating Sample Meteor App:</h5><p>Use Below command to install meteor on local environment</p>
+<pre><code>curl https://install.meteor.com/ | sh
+</code></pre><p>Check for your meteor version. we highly recommend using &gt; 1.4</p>
+<pre><code>meteor --version
+</code></pre><p>Use Below command to create a sample meteor app</p>
+<pre><code>meteor create simple-todos
+</code></pre><p>Above command would create a new folder with few files for our sample app as in below screenshot <img src="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-08-29-PM.png" alt="Meteor App"></p>
+<h5 id="Using-Demeteorizer-to-convert-app-into-node-js-format"><a href="#Using-Demeteorizer-to-convert-app-into-node-js-format" class="headerlink" title="Using Demeteorizer to convert app into node.js format"></a>Using Demeteorizer to convert app into node.js format</h5><p>Use below cmd to install Demeteorizer</p>
+<pre><code>npm install -g demeteorizer
+</code></pre><p>Navigate to your meteor app root folder and enter below cmd</p>
+<pre><code>&gt;demeteorizer
+</code></pre><p>It would create a new .demeteorized folder <img src="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-15-01-PM.png" alt="Demeteorized App"> Navigate to .demeteorized/bundle/programs/server using below cmd</p>
+<pre><code>cd .demeteorized/bundle/programs/server
+</code></pre><blockquote>
+<p><strong>Please Use npm &gt; 3 if you are getting any  long path issues.. Use NVM(<a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="noopener">https://github.com/coreybutler/nvm-windows</a>) to easily change node/npm version in local environment. </strong></p>
+</blockquote>
+<p>Enter below cmd to install all the required node.js modules</p>
+<pre><code>npm install
+</code></pre><h5 id="Running-App-on-Local-Env"><a href="#Running-App-on-Local-Env" class="headerlink" title="Running App on Local Env"></a>Running App on Local Env</h5><p>Use below cmd to execute demeteorized/converted nodejs app in local environment</p>
+<pre><code>PORT=8080 ROOT_URL=http://localhost:8080 npm start
+</code></pre><p><img src="http://techiecouple.azurewebsites.net/content/images/2016/08/local_meteor.png" alt="Local Meteor"></p>
+<h5 id="Moving-App-to-Azure"><a href="#Moving-App-to-Azure" class="headerlink" title="Moving App to Azure"></a>Moving App to Azure</h5><p>Create a new web app on azure and Setup continuous deployment and get the git url. Below link has details on it <a href="https://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-develop-deploy-mac/" target="_blank" rel="noopener">https://azure.microsoft.com/en-us/documentation/articles/web-sites-nodejs-develop-deploy-mac/</a> Add below app setting to your web app inside Azure portal App Settings Key : <code>ROOT_URL</code> Value : web app url(ex: <code>http://Your_APP_Name.azurewebsites.net/</code>) Create a web.config file @ .demeteorized/bundle/ and insert below link content <a href="https://raw.githubusercontent.com/christopheranderson/azure-demeteorizer/master/resources/web.config" target="_blank" rel="noopener">https://raw.githubusercontent.com/christopheranderson/azure-demeteorizer/master/resources/web.config</a> <img src="http://techiecouple.azurewebsites.net/content/images/2016/08/Screen-Shot-2016-08-23-at-11-24-13-PM.png" alt="web config file"> Navigate to .demeteorized/bundle/ folder and Commit your changes to <code>WEB_APP_GIT_URL</code></p>
+<pre><code>git init  
+git add .  
+git commit -m &quot;initial commit&quot;  
+git remote add samplemeteorapp WEB_APP_GIT_URL  
+git push samplemeteorapp master  
+</code></pre><p><img src="http://techiecouple.azurewebsites.net/content/images/2016/08/final_meteor.png" alt="web config file"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/nodejs/">nodejs</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meteor/">meteor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/25/deploying-django-app-to-azure-app-services-using-git-and-new-version-of-python/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Deploying Django App to Azure App Services using Git and new version of Python		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/15/accessing-storage-blob-using-sas-with-java/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Accessing storage blob using SAS with Java		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Creating-Sample-Meteor-App"><span class="nav-number">1.</span> <span class="nav-text">Creating Sample Meteor App:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Using-Demeteorizer-to-convert-app-into-node-js-format"><span class="nav-number">2.</span> <span class="nav-text">Using Demeteorizer to convert app into node.js format</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Running-App-on-Local-Env"><span class="nav-number">3.</span> <span class="nav-text">Running App on Local Env</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Moving-App-to-Azure"><span class="nav-number">4.</span> <span class="nav-text">Moving App to Azure</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

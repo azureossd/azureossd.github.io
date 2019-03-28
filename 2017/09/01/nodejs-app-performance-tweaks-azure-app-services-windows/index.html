@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> nodejs app performance tweaks - azure app services (windows)		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="nodejs">
+  
+  
+  
+  
+  <meta name="description" content="Node.js is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. At some point of your application">
+<meta name="keywords" content="nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Nodejs App Performance Tweaks - Azure App Services (Windows)		">
+<meta property="og:url" content="http://azureossd.github.io/2017/09/01/nodejs-app-performance-tweaks-azure-app-services-windows/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Node.js is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. At some point of your application">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2017/09/node_arch-1.png">
+<meta property="og:updated_time" content="2019-03-26T17:27:49.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Nodejs App Performance Tweaks - Azure App Services (Windows)		">
+<meta name="twitter:description" content="Node.js is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. At some point of your application">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2017/09/node_arch-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-nodejs-app-performance-tweaks-azure-app-services-windows" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Nodejs App Performance Tweaks - Azure App Services (Windows)		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2017/09/01/nodejs-app-performance-tweaks-azure-app-services-windows/" class="article-date">
+	  <time datetime="2017-09-01T18:08:23.000Z" itemprop="datePublished">September 1, 2017</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Node.js</strong> is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.</p>
+<p>At some point of your application lifecycle you might end-up with performance issue in any web application. This blog would help you fix such issue on nodejs app hosted in Azure App Services.As i have explained in <a href="https://prmadi.com/nodejs-app-architecture-azure-app-services-windows/" target="_blank" rel="noopener">Nodejs Architecture Blog</a>, Azure App services has IIS which makes named pipe connection with node.exe using iisnode to server requests.</p>
+<p><a href="/wp-content/uploads/2017/09/node_arch-1.png"><img src="/wp-content/uploads/2017/09/node_arch-1.png" alt></a></p>
+<p>These are the <strong>three main places where your app can experience bottleneck</strong></p>
+<ol>
+<li>While transferring request to app instance(Front-end to worker Instance/ Before reaching IIS in worker role - <strong>happens very rare</strong>).</li>
+<li>Delay in IISnode making named-pipe connection with node.exe(<strong>most common in production apps</strong>).</li>
+<li>CPU intensive work in Nodejs Code.</li>
+</ol>
+<p>First Scenario is very rare.</p>
+<h4 id="Useful-Tools-logs"><a href="#Useful-Tools-logs" class="headerlink" title="Useful Tools/logs"></a>Useful Tools/logs</h4><ul>
+<li>Use New Relic to monitor application real time. More info @ <a href="https://newrelic.com/nodejs" target="_blank" rel="noopener">https://newrelic.com/nodejs</a><ol>
+<li>Gives full picture of nodejs applicaiton</li>
+<li>Response time for your applications</li>
+<li>Time taken by database and others.</li>
+</ol>
+</li>
+<li>Finding Memory Leaks and CPU Usage - <a href="https://blogs.msdn.microsoft.com/azureossds/2015/08/23/finding-memory-leaks-and-cpu-usage-in-azure-node-js-web-app/" target="_blank" rel="noopener">Link</a></li>
+<li>Check Failed Request Tracing/ FREB logs</li>
+</ul>
+<h4 id="Performance-Tweaks"><a href="#Performance-Tweaks" class="headerlink" title="Performance Tweaks"></a>Performance Tweaks</h4><h5 id="Increase-number-of-node-exe’s-per-instance"><a href="#Increase-number-of-node-exe’s-per-instance" class="headerlink" title="Increase number of node.exe’s per instance:"></a>Increase number of node.exe’s per instance:</h5><p>By Default, every app instance would use only one node.exe process in Azure App Service. Let’s say if you are on a medium/Large instance of app service plan(with &gt;1 core processor) than you might not be fully utilizing machine. To increase number of node.exe’s per instance,</p>
+<ul>
+<li><p>Create a iisnode.yml file in app root folder and add below line of code</p>
+<p>nodeProcessCountPerApplication:0  </p>
+</li>
+</ul>
+<p><strong>nodeProcessCountPerApplication</strong> This setting controls the number of node processes that are launched per IIS application. Default value is 1. You can launch as many node.exeâ€™s as your VM core count by setting this to 0. Recommended value is 0 for most application so you can utilize all of the cores on your machine. Node.exe is single threaded so one node.exe will consume a maximum of 1 core and to get maximum performance out of your node application you would want to utilize all cores.</p>
+<h5 id="Disable-Session-Affinity-Sharing-load-with-all-serves-equally"><a href="#Disable-Session-Affinity-Sharing-load-with-all-serves-equally" class="headerlink" title="Disable Session Affinity (Sharing load with all serves equally)"></a>Disable Session Affinity (Sharing load with all serves equally)</h5><p>If you have scaled-out your app to more than one instance. You can turn-off session affinity which might help overload issues . More details on this can be found at <a href="https://blogs.msdn.microsoft.com/appserviceteam/2016/05/16/disable-session-affinity-cookie-arr-cookie-for-azure-web-apps/" target="_blank" rel="noopener">Disable Session affinity cookie (ARR cookie) for Azure web apps</a></p>
+<h5 id="Check-if-issue-is-due-to-third-party-services-database-transactions"><a href="#Check-if-issue-is-due-to-third-party-services-database-transactions" class="headerlink" title="Check if issue is due to third-party services/database transactions."></a>Check if issue is due to third-party services/database transactions.</h5><p>If you use newrelic, it would provide time spent on each query to database which might help in this case.</p>
+<h5 id="Use-Browser-Cache"><a href="#Use-Browser-Cache" class="headerlink" title="Use Browser Cache"></a>Use Browser Cache</h5><p>Refer <a href="https://prmadi.com/enable-browser-cache-in-azure-web-apps-windows/" target="_blank" rel="noopener">Enable Browser Cache</a></p>
+<h5 id="Serve-Static-files-at-IIS-level-Use-CDN"><a href="#Serve-Static-files-at-IIS-level-Use-CDN" class="headerlink" title="Serve Static files at IIS level/ Use CDN"></a>Serve Static files at IIS level/ Use CDN</h5><p>Check if your web.config file has a Static Content rule and make sure to serve all static files at IIS level.</p>
+<pre><code>&lt;!-- First we consider whether the incoming URL matches a physical file in the /public folder --&gt;  
+ &lt;rule name=&quot;StaticContent&quot;&gt;
+   &lt;action type=&quot;Rewrite&quot; url=&quot;public{REQUEST_URI}&quot;/&gt;
+ &lt;/rule&gt;
+</code></pre><p>In General Scenario, <strong>url hits IIS -&gt; url navigates to IISNODE -&gt; response is fetched for that url from node.exe</strong> By Adding Static Content rule, <strong>url hits IIS -&gt; IIS responds with data (aka static urlâ€™s are served by IIS and not nodejs)</strong></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/nodejs/">nodejs</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/01/django-app-with-httpplatformhandler-in-azure-app-services-windows/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Django app with HttpPlatformHandler in Azure App Services (Windows)		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/21/enable-php-extensions-on-azure-web-app-on-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Enable PHP extensions on Azure Web App on Windows		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Useful-Tools-logs"><span class="nav-number">1.</span> <span class="nav-text">Useful Tools/logs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Performance-Tweaks"><span class="nav-number">2.</span> <span class="nav-text">Performance Tweaks</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Increase-number-of-node-exe’s-per-instance"><span class="nav-number">2.1.</span> <span class="nav-text">Increase number of node.exe’s per instance:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Disable-Session-Affinity-Sharing-load-with-all-serves-equally"><span class="nav-number">2.2.</span> <span class="nav-text">Disable Session Affinity (Sharing load with all serves equally)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Check-if-issue-is-due-to-third-party-services-database-transactions"><span class="nav-number">2.3.</span> <span class="nav-text">Check if issue is due to third-party services/database transactions.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Use-Browser-Cache"><span class="nav-number">2.4.</span> <span class="nav-text">Use Browser Cache</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Serve-Static-files-at-IIS-level-Use-CDN"><span class="nav-number">2.5.</span> <span class="nav-text">Serve Static files at IIS level/ Use CDN</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

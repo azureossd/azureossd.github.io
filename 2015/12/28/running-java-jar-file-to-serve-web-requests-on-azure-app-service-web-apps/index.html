@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> running java jar file to serve web requests on azure app service web apps		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Javajava configurationazure java webappjava jarrun java jar webappwebapp java">
+  
+  
+  
+  
+  <meta name="description" content="There are several Java web servers that are supported on Azure App Service Web Apps. But if you have custom code built into a jar which allows it to act as web server, you can accomplish that as well.">
+<meta name="keywords" content="Java,java configuration,azure java webapp,java jar,run java jar webapp,webapp java">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Running java jar file to serve web requests on Azure App Service Web Apps		">
+<meta property="og:url" content="http://azureossd.github.io/2015/12/28/running-java-jar-file-to-serve-web-requests-on-azure-app-service-web-apps/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="There are several Java web servers that are supported on Azure App Service Web Apps. But if you have custom code built into a jar which allows it to act as web server, you can accomplish that as well.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/12/clip_image0014.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/12/clip_image0021.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2015/12/clip_image0032.png">
+<meta property="og:updated_time" content="2019-03-26T17:55:14.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Running java jar file to serve web requests on Azure App Service Web Apps		">
+<meta name="twitter:description" content="There are several Java web servers that are supported on Azure App Service Web Apps. But if you have custom code built into a jar which allows it to act as web server, you can accomplish that as well.">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2015/12/clip_image0014.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-running-java-jar-file-to-serve-web-requests-on-azure-app-service-web-apps" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Running java jar file to serve web requests on Azure App Service Web Apps		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/12/28/running-java-jar-file-to-serve-web-requests-on-azure-app-service-web-apps/" class="article-date">
+	  <time datetime="2015-12-28T23:09:20.000Z" itemprop="datePublished">December 28, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There are several Java web servers that are supported on Azure App Service Web Apps. But if you have custom code built into a jar which allows it to act as web server, you can accomplish that as well. This blog talks about how we can achieve that. You can accomplish this with any web app from gallery/market place, but in this blog I will start with a blank web app. Below is an screenshot on how to create a blank web app </p>
+<p><a href="http://blogs.msdn.com/cfs-file.ashx/__key/communityserver-blogs-components-weblogfiles/00-00-01-70-08-metablogapi/0066.image_5F00_0F550E7D.png" target="_blank" rel="noopener"><img src="/wp-content/uploads/2015/12/clip_image0014.png" alt="clip_image001" title="clip_image001"></a> </p>
+<p>Once you have finished creating an empty web app, browse to its kudu console command prompt by accessing <a href="http://yoursitename.scm.azurewebsites.net/DebugConsole" target="_blank" rel="noopener">http://yoursitename.scm.azurewebsites.net/DebugConsole</a> (remember to change yoursitename with the actual site name) and create a directory under d:\home\site\wwwroot. We will name it bin for now.<br><img src="/wp-content/uploads/2015/12/clip_image0021.png" alt="clip_image002" title="clip_image002"></p>
+<p>Now we will copy our jar file into the bin folder created above. You can drag drop the jar file into d:\home\site\wwwroot\bin folder or ftp and copy the jar to d:\home\site\wwwroot\bin folder. </p>
+<p><img src="/wp-content/uploads/2015/12/clip_image0032.png" alt="clip_image003" title="clip_image003"></p>
+<p>Now we need to setup web.config file to run this jar file. Create a web.config file in d:\home\site\wwwroot folder and add these contents:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;configuration&gt;
+
+&lt;system.webServer&gt;
+
+&lt;handlers&gt;
+
+&lt;add name=&quot;httpPlatformHandler&quot; path=&quot;*&quot; verb=&quot;*&quot;
+
+modules=&quot;httpPlatformHandler&quot; resourceType=&quot;Unspecified&quot; /&gt;
+
+&lt;/handlers&gt;
+
+&lt;httpPlatform processPath=&quot;%ProgramW6432%\Java\jdk1.8.0_60\bin\java.exe&quot;
+
+arguments=&quot;-Djava.net.preferIPv4Stack=true -Dport.http=%HTTP_PLATFORM_PORT% -jar &amp;quot;%HOME%\site\wwwroot\bin\demojar.jar&amp;quot;&quot;
+
+stdoutLogEnabled=&quot;true&quot;
+
+startupRetryCount=&apos;10&apos;&gt;
+
+&lt;/httpPlatform&gt;
+
+&lt;/system.webServer&gt;
+
+&lt;/configuration&gt;
+</code></pre><p>Make note of these parameters in above code:</p>
+<ol>
+<li>processPath: This is where you specify the java executable path. You can use java 7 or 8 which are under %ProgramW6432%\Java folder.</li>
+<li>arguments<ul>
+<li>port.http which is set to HTTP_PLATFORM_PORT. This is where your Java Process will listen on. So you need to change your code to listen on this port.</li>
+<li>path for the jar file. This will be the path to where you place the jar file. In our case, we placed it in d:\home\site\wwwroot\bin.</li>
+</ul>
+</li>
+</ol>
+<p>Also you need to include a MANIFEST.MF file in META-INF folder in your jar file. It should include which class you want to execute. This has to be set to Main-Class parameter. Below is sample code I have for running a simple web server:</p>
+<pre><code>package com.msft.demo;
+
+import java.io.*;
+
+import java.net.*;
+
+import com.sun.net.httpserver.*;
+
+public class Demo {
+
+public static void main(String[] args) throws Exception {
+
+// TODO Auto-generated method stub
+
+// port.http is where WebApp will listen for your Java Process
+
+String listenPort = System.getProperty(&quot;port.http&quot;);
+
+System.out.println(&quot;listenPort is &quot; + listenPort);
+
+int port = Integer.parseInt(listenPort);
+
+HttpServer azServer = HttpServer.create(new InetSocketAddress(port), 0);
+
+azServer.createContext(&quot;/&quot;, new AzHandler());
+
+azServer.setExecutor(null);
+
+azServer.start();
+
+}
+
+static class AzHandler implements HttpHandler {
+
+public void handle(HttpExchange httpExchange) throws IOException {
+
+String response = &quot;Demoing Azure Web Apps Jar Execution&quot;;
+
+httpExchange.sendResponseHeaders(200, response.length());
+
+OutputStream os = httpExchange.getResponseBody();
+
+os.write(response.getBytes());
+
+os.close();
+
+}
+
+}
+
+}
+</code></pre><p>Also here is the sample MANIFEST.MF file for my sample application:</p>
+<pre><code>Manifest-Version: 1.0
+
+Main-Class: com.msft.demo.Demo
+</code></pre><p>You can also run without a manifest file, but you will need to include the jar in classpath and call out the exact class name with package path to be executed. Once you have configured your web.config and deployed your jar file, you can browse to your site and you should see this message: “Demoing Azure Web Apps Jar Execution” . You can also look into the httpplatform-stdout_*.log file and it should list the port that your Java process is listening on. If you do not want to run a jar file, there are numerous options available on Web Apps to run your java applications. For more information you can go through this article: <a href="https://azure.microsoft.com/en-us/documentation/articles/web-sites-java-get-started/" target="_blank" rel="noopener">https://azure.microsoft.com/en-us/documentation/articles/web-sites-java-get-started/</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure-java-webapp/">azure java webapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-configuration/">java configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-jar/">java jar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/run-java-jar-webapp/">run java jar webapp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapp-java/">webapp java</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/25/using-bower-in-node-js-azure-webapps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Using Bower in Node.js Azure WebApps		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/17/triggering-the-php-process-report-on-azure-web-apps-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Triggering the PHP Process Report on Azure Web Apps		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

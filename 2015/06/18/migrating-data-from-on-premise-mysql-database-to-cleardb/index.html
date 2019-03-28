@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> migrating data from on-premise mysql database to cleardb		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="ClearDB upgradeMySQL upgradedatabase migrationMySQL migrate">
+  
+  
+  
+  
+  <meta name="description" content="Note: Please keep multiple copies of your database when migrating data, so you can fallback if any issues occur. This blog is to help customers migrate their data from On-Premise MySQL database to Cle">
+<meta name="keywords" content="ClearDB upgrade,MySQL upgrade,database migration,MySQL migrate">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Migrating data from On-Premise MySQL Database to ClearDB		">
+<meta property="og:url" content="http://azureossd.github.io/2015/06/18/migrating-data-from-on-premise-mysql-database-to-cleardb/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Note: Please keep multiple copies of your database when migrating data, so you can fallback if any issues occur. This blog is to help customers migrate their data from On-Premise MySQL database to Cle">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/1777.image_thumb_3255B81B.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/5415.image_thumb_48AB5D60.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0181.image_thumb_7F1C0F62.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/5633.image_thumb_282648D6.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0882.image_thumb_6C6940D3.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/8345.image_thumb_30AC38D1.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/3021.image_thumb_54D42411.png">
+<meta property="og:updated_time" content="2019-03-26T17:20:11.354Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Migrating data from On-Premise MySQL Database to ClearDB		">
+<meta name="twitter:description" content="Note: Please keep multiple copies of your database when migrating data, so you can fallback if any issues occur. This blog is to help customers migrate their data from On-Premise MySQL database to Cle">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/1777.image_thumb_3255B81B.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-migrating-data-from-on-premise-mysql-database-to-cleardb" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Migrating data from On-Premise MySQL Database to ClearDB		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/06/18/migrating-data-from-on-premise-mysql-database-to-cleardb/" class="article-date">
+	  <time datetime="2015-06-18T22:25:00.000Z" itemprop="datePublished">June 18, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Note: Please keep multiple copies of your database when migrating data, so you can fallback if any issues occur.</strong></p>
+<p>This blog is to help customers migrate their data from On-Premise MySQL database to ClearDB.</p>
+<p>We will use a single self-contained file export to migrate your On-Premise database. You can only use Self-Contained File export for MySQL databases running InnoDB Storage engine. There are multiple ways to export data from your On-Premise Database:</p>
+<ul>
+<li>Using mysqldump command line utility.</li>
+<li>Using MySQL Workbench Data Export menu option.</li>
+<li>Using phpmyadmin, if your application is php based.</li>
+</ul>
+<p><strong>Exporting data using mysqldump:</strong></p>
+<p>You can run below command to export data from MySQL.</p>
+<p>mysqldump –set-gtid-purged=OFF –user=username –host=<strong>hostname</strong> –protocol=tcp –port=<strong>3306</strong> –default-character-set=utf8 –single-transaction=TRUE –routines –events  –password -r “<strong>\path\to\dump\file</strong>“ -n “<strong>dbschemaname</strong>“</p>
+<p>All items that are in bold will need to be replaced by the actual values.</p>
+<p><strong>Exporting data using MySQL Workbench Data Export menu option:</strong></p>
+<p>You will need to download and install MySQL Workbench to export data using this option. Once MySQL Workbench is installed, you can open it and connect to your On-Premise Database and use Server –&gt; Data Export menu option.</p>
+<p><a href="/wp-content/uploads/2019/03/3731.image_3E57A84F.png"><img src="/wp-content/uploads/2019/03/1777.image_thumb_3255B81B.png" alt="image" title="image"></a></p>
+<p>This should open up a window to select the schemas or tables that you want to export. Choose all the data you need to export and also select the options selected under “Export Options” and “Objects to Export” sections appropriately.</p>
+<p><a href="/wp-content/uploads/2019/03/6472.image_426486D2.png"><img src="/wp-content/uploads/2019/03/5415.image_thumb_48AB5D60.png" alt="image" title="image"></a></p>
+<p>Once you click on “Start Export”, this should generate a file specified in the “Export to Self-Contained File” section.</p>
+<p><strong>Exporting data using phpmyadmin option:</strong></p>
+<p>You can export data from phpmyadmin application using the Export tab. After selecting the database you want to export, select “Export Method” as “Custom – display all possible options”. Other than the default checked items, you will need to check only “Add Drop Table/View/Procedure/Function/Event/Trigger Statement” checkbox in “Object creation options”.</p>
+<p><a href="/wp-content/uploads/2019/03/7485.image_63E3B661.png"><img src="/wp-content/uploads/2019/03/0181.image_thumb_7F1C0F62.png" alt="image" title="image"></a></p>
+<p>Once you click on Go, it will export data and download a file to your PC. This is your database export file.</p>
+<p>Once you have exported your data, there are multiple ways to get your data into ClearDB. We will go over these three options:</p>
+<ul>
+<li>Using MySQL command line utility</li>
+<li>Using MySQL Workbench</li>
+<li>Using phpmyadmin, if your application is php based.</li>
+</ul>
+<p>Before importing data, you will need to create a ClearDB database from azure portal. Information about ClearDB connection can be found on management portal or the new preview portal.</p>
+<p>On Management Portal:</p>
+<p><a href="/wp-content/uploads/2019/03/4718.image_063AE652.png"><img src="/wp-content/uploads/2019/03/5633.image_thumb_282648D6.png" alt="image" title="image"></a></p>
+<p>On Preview Portal:</p>
+<p><a href="/wp-content/uploads/2019/03/4744.image_5850244A.png"><img src="/wp-content/uploads/2019/03/0882.image_thumb_6C6940D3.png" alt="image" title="image"></a></p>
+<p>All options will need you to modify the file that was created as part of the export. Open the .sql file created and add this line to the start of the file.</p>
+<p>use ‘databaseschemaname’;</p>
+<p>databaseschemaname should be the database name that will be created when you create a ClearDB database. You should be able to look it up on management portal under your website dashboard through “view connection strings” link.</p>
+<p><strong>Importing data using MySQL command line utility:</strong></p>
+<p>MySQL command line utility “mysql” is normally located in your MySQL installation or under MySQL workbench installation. Run below command with proper username, hostname and the path of the sql file created. Also modify the sql file to add use statement at the start.</p>
+<p>mysql –u username –p –h hostname &lt; /path/to/sql/file</p>
+<p>This should prompt you for the password. Your data should be populated in ClearDB on successful login.</p>
+<p><strong>Importing data using MySQL Workbench:</strong></p>
+<p>Connect to your ClearDB database using the information provided in Azure management portal. After successful login, open the sql file created during export and execute the file ( after adding use databaseschemaname line). Make sure you select all on the file and then click on execute or place the cursor at the start of the file before clicking on execute. This should import all your data into ClearDB.</p>
+<p><a href="/wp-content/uploads/2019/03/0728.image_358EEC8D.png"><img src="/wp-content/uploads/2019/03/8345.image_thumb_30AC38D1.png" alt="image" title="image"></a></p>
+<p><strong>Importing data using phpmyadmin:</strong></p>
+<p>Login into your phpmyadmin site and browse to Import tab. Browse to the file created during export and run the import. This should import all your data into ClearDB.</p>
+<p><a href="/wp-content/uploads/2019/03/1325.image_399BCB10.png"><img src="/wp-content/uploads/2019/03/3021.image_thumb_54D42411.png" alt="image" title="image"></a></p>
+<p>This should migrate your data into ClearDB from On-Premise MySQL database.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ClearDB/">ClearDB</a>, <a class="article-category-link" href="/categories/ClearDB/MySQL/">MySQL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ClearDB-upgrade/">ClearDB upgrade</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL-migrate/">MySQL migrate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL-upgrade/">MySQL upgrade</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database-migration/">database migration</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/06/23/web-config-for-zend-framework-project-on-azure-apps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           web.config for Zend Framework Project on Azure Apps		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/12/verify-peer-certificate-from-php-curl-for-azure-apps/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Verify Peer Certificate from PHP cURL for Azure Apps		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> nodejs and npm versions on azure app services		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="nodejsiisnodenpm">
+  
+  
+  
+  
+  <meta name="description" content="NodeJs is a JavaScript runtime built on Chrome’s V8 JavaScript engine. NodeJs uses an event-driven, non-blocking I/O model that makes it lightweight and efficient NPM is the package manager for JavaSc">
+<meta name="keywords" content="nodejs,iisnode,npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" NodeJs and NPM versions on Azure App Services		">
+<meta property="og:url" content="http://azureossd.github.io/2016/04/20/nodejs-and-npm-versions-on-azure-app-services/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="NodeJs is a JavaScript runtime built on Chrome’s V8 JavaScript engine. NodeJs uses an event-driven, non-blocking I/O model that makes it lightweight and efficient NPM is the package manager for JavaSc">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.32.35-AM-1024x600.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.33.56-AM-300x82.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.37.16-AM-300x100.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/04/iisnode-300x258.png">
+<meta property="og:image" content="http://prmadi.com/content/images/2016/09/Screen-Shot-2016-09-09-at-3-28-33-PM.png">
+<meta property="og:image" content="http://prmadi.com/content/images/2016/09/Screen-Shot-2016-09-09-at-3-32-49-PM.png">
+<meta property="og:updated_time" content="2019-03-26T17:26:23.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" NodeJs and NPM versions on Azure App Services		">
+<meta name="twitter:description" content="NodeJs is a JavaScript runtime built on Chrome’s V8 JavaScript engine. NodeJs uses an event-driven, non-blocking I/O model that makes it lightweight and efficient NPM is the package manager for JavaSc">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.32.35-AM-1024x600.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-nodejs-and-npm-versions-on-azure-app-services" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       NodeJs and NPM versions on Azure App Services		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2016/04/20/nodejs-and-npm-versions-on-azure-app-services/" class="article-date">
+	  <time datetime="2016-04-20T20:43:57.000Z" itemprop="datePublished">April 20, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>NodeJs</strong> is a JavaScript runtime built on Chrome’s V8 JavaScript engine. NodeJs uses an event-driven, non-blocking I/O model that makes it lightweight and efficient <strong>NPM</strong> is the package manager for JavaScript. How to find the NodeJs version’s that azure web app supports</p>
+<ul>
+<li>Navigate to kudu console (http://<sitename>.scm.azurewebsites.net) and click cmd in Debug Console</sitename></li>
+<li>Click on disk image and navigate to D:\Program Files (x86)\nodejs</li>
+<li>You would see all the available versions</li>
+</ul>
+<p><strong>NodeJs Version on Azure Apps</strong> There are two ways of setting NodeJs version in azure web Apps</p>
+<ul>
+<li>Using iisnode.yml (this wont change node version on kudu cli or during deployment)</li>
+<li>Using App Setting in Azure portal</li>
+</ul>
+<p>Note : iisnode.yml would overwrite App Setting if it exists. <strong>NPM Version</strong> NPM version corresponds to the NodeJs version you have set in web app as above.  You do not need to worry about setting the npm version as the version of node you selected (see below) will use the correct npm version.</p>
+<ul>
+<li>Node 0.12.2  would use npm 2.7.4</li>
+<li>Node 0.10.32 would use npm 1.4.28</li>
+</ul>
+<p><strong>Changing NodeJs Version :</strong> 1. Using App Setting</p>
+<ul>
+<li>Navigate to your web app in azure portal</li>
+<li>Click on Application settings in Settings blade.</li>
+<li>You can include WEBSITE_NODE_DEFAULT_VERSION as key and  version of nodejs you want as value in app settings.</li>
+</ul>
+<p><a href="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.32.35-AM.png"><img src="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.32.35-AM-1024x600.png" alt="Screen Shot 2016-04-20 at 10.32.35 AM"></a></p>
+<ul>
+<li>Navigate to kudu console (http://<sitename>.scm.azurewebsites.net) and you can check the nodejs version using below command<ul>
+<li>node -v</li>
+</ul>
+</sitename></li>
+</ul>
+<p><a href="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.33.56-AM.png"><img src="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.33.56-AM-300x82.png" alt="Screen Shot 2016-04-20 at 10.33.56 AM"></a> <a href="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.37.16-AM.png"><img src="/wp-content/uploads/2016/04/Screen-Shot-2016-04-20-at-10.37.16-AM-300x100.png" alt="Screen Shot 2016-04-20 at 10.37.16 AM"></a> 2. Using iisnode.yml file As i have mentioned earlier, changing nodejs version in iisnode.yml file would only set the run-time environment which iisnode uses. your kudu cmd and others would still use nodejs version set at app settings. - Setting iisnode.yml file manually</p>
+<ul>
+<li>Create a iisnode.yml file in your app root folder and include below line</li>
+</ul>
+<p><a href="/wp-content/uploads/2016/04/iisnode.png"><img src="/wp-content/uploads/2016/04/iisnode-300x258.png" alt="iisnode"></a></p>
+<p>nodeProcessCommandLine: “D:\Program Files (x86)\nodejs\5.9.1\node.exe”</p>
+<p>- Setting iisnode.yml file using package.json during source control deployment Azure Source Control deployment process would involve below steps</p>
+<ol>
+<li>Moves content to azure web app</li>
+<li>Creates default deployment script, if there isn’t one(deploy.cmd, .deployment files) in web app root folder</li>
+<li>Run’s deployment script where it creates iisnode.yml file if we mention nodejs version in package.json file &gt; engine</li>
+</ol>
+<p>“engines”: {<br>“node”: “5.9.1”,<br>“npm”: “3.7.3”<br>}</p>
+<p>iisnode.yml would have below line of code</p>
+<p>nodeProcessCommandLine: “D:\Program Files (x86)\nodejs\5.9.1\node.exe”</p>
+<p><strong>Changing NPM Version</strong></p>
+<ul>
+<li>Changing NodeJs version would automatically change NPM version</li>
+<li>If you include npm version in package.json file, that would be used during deployment with source control</li>
+</ul>
+<p>“engines”: {<br>“node”: “5.9.1”,<br>“npm”: “3.7.3”<br>}</p>
+<p><em><strong>Update - 01/28/2018</strong></em> To use the newer npm, you can set WEBSITE_NPM_DEFAULT_VERSION=5.6.0 in your Azure App Settings Source : <a href="https://social.msdn.microsoft.com/Forums/en-US/6f0875bb-2cb1-44ce-a50d-effbd4eb34f4/please-install-the-latest-node-with-npm-560-to-solve-a-killer-npm-install-issue?forum=windowsazurewebsitespreview" target="_blank" rel="noopener">https://social.msdn.microsoft.com/Forums/en-US/6f0875bb-2cb1-44ce-a50d-effbd4eb34f4/please-install-the-latest-node-with-npm-560-to-solve-a-killer-npm-install-issue?forum=windowsazurewebsitespreview</a></p>
+<p><strong>Using Custom Nodejs Version</strong></p>
+<p>Azure App services already has most of the NodeJs versions available and the list is constantly updated. If you want to use custom NodeJs version follow below steps</p>
+<ul>
+<li>Download your choice of NodeJs version from<a href="https://nodejs.org/en/download/releases/" target="_blank" rel="noopener">https://nodejs.org/en/download/releases/</a></li>
+<li>While writing this blog, App service doesn’t has NodeJs v4.5</li>
+<li>I have clicked download option at above mentioned link and downloaded “node-v4.5.0-win-x86.zip” from <a href="https://nodejs.org/download/release/v4.5.0/" target="_blank" rel="noopener">https://nodejs.org/download/release/v4.5.0/</a></li>
+<li>Move unzipped content to Azure App service<img src="http://prmadi.com/content/images/2016/09/Screen-Shot-2016-09-09-at-3-28-33-PM.png" alt="Custom NodeJs Version to App service"></li>
+<li><p>Create iisnode.yml file and add below line</p>
+<p>nodeProcessCommandLine: “D:\home\site\wwwroot\node-v4.5.0-win-x86\node.exe”  </p>
+</li>
+</ul>
+<p>Above folder name may change depending on your custom NodeJs version Output: <img src="http://prmadi.com/content/images/2016/09/Screen-Shot-2016-09-09-at-3-32-49-PM.png" alt="App service using custom NodeJs version"></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iisnode/">iisnode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/25/migrating-mysql-database-from-os-disk-to-data-disk-on-azure-linux-vm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Migrating MySQL database from OS disk to Data disk on Azure Linux VM		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/18/sample-nodejs-app-on-azure-app-services/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Sample Nodejs App on Azure App services		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> azure app service linux - update php settings		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Azure App Service Linux provides PHP images with preconfigured settings and extensions.  If you need to adjust your PHP settings, follow the steps provided below.    Updating PHP Settings-     Setting">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Azure App Service Linux - Update PHP Settings		">
+<meta property="og:url" content="http://azureossd.github.io/2019/01/29/azure-app-service-linux-update-php-settings/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Azure App Service Linux provides PHP images with preconfigured settings and extensions.  If you need to adjust your PHP settings, follow the steps provided below.    Updating PHP Settings-     Setting">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-27T01:00:51.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Azure App Service Linux - Update PHP Settings		">
+<meta name="twitter:description" content="Azure App Service Linux provides PHP images with preconfigured settings and extensions.  If you need to adjust your PHP settings, follow the steps provided below.    Updating PHP Settings-     Setting">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-azure-app-service-linux-update-php-settings" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Azure App Service Linux - Update PHP Settings		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2019/01/29/azure-app-service-linux-update-php-settings/" class="article-date">
+	  <time datetime="2019-01-29T19:50:06.000Z" itemprop="datePublished">January 29, 2019</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Azure App Service Linux provides PHP images with preconfigured settings and extensions.  If you need to adjust your PHP settings, follow the steps provided below.  </p>
+<p> <strong>Updating PHP Settings-</strong>   </p>
+<p> Settings such as upload_max_filesize, expose_php, and others can be modified using a custom “ini” file. You can use either SSH or Bash to accomplish this.<br> <a id="more"></a></p>
+<ol>
+<li>Go to your KUDU site <a href="https://%3csitename%3e.scm.azurewebsites.net/" target="_blank" rel="noopener">https://<sitename>.scm.azurewebsites.net</sitename></a>.</li>
+<li>Select Bash or SSH from the top menu.</li>
+<li>In Bash/SSH, go to your “/home/site” directory.</li>
+<li>Create a directory called “ini” (i.e. mkdir ini)</li>
+<li>Change directories to “ini”.</li>
+<li><p>We’ll need to create an “ini” file to add our settings to. In this example, I’m using “extensions.ini”. There are no file editors such as Vi, Vim, or Nano so we’ll simply use echo to add the settings to the file. I’m changing the “upload_max_filesize” from 2M to 50M. Below is the command that I used to add the setting and create an “extensions.ini” file if one doesn’t already exist.</p>
+<p>NOTE: If you already have an extensions.ini file, you can use the same command which will add the new setting to the file.</p>
+<p>/home/site/ini&gt;echo “upload_max_filesize=50M” &gt;&gt; extensions.ini</p>
+<p>/home/site/ini&gt;cat extensions.ini</p>
+<p>upload_max_filesize=50M</p>
+<p>/home/site/ini&gt;</p>
+</li>
+</ol>
+<p>If using SSH, you can use vi to create/edit the extensions file using the following commands. a) vi extensions.ini b) Press “i” on your keyboard to start editing and add the following.</p>
+<pre><code>upload_max_filesize=50M
+</code></pre><p>c) Press “Esc”, then “:wq!” and enter to save.   <strong>Add an Application Setting-</strong>   We’ll now need to go to the Azure Portal and add an Application Setting to scan the “ini” directory that we just created to apply the change for upload_max_filesize.  </p>
+<ol>
+<li>Go to the Azure Portal (<a href="https://portal.azure.com/" target="_blank" rel="noopener">https://portal.azure.com</a>) and select your App Service Linux PHP application.</li>
+<li>Select Application Settings for the app.</li>
+<li>Under the Application settings section, press the “+ Add new setting”.</li>
+<li>For the App Setting Name, enter “PHP_INI_SCAN_DIR”.</li>
+<li><p>For the value, enter “/usr/local/etc/php/conf.d:/home/site/ini”</p>
+<p><strong>NOTE</strong>: If you’re you’ve recompiled a PHP extension such as GD, perform the steps at “Recompiling PHP Extensions” at <a href="https://blogs.msdn.microsoft.com/azureossds/2019/01/29/azure-app-service-linux-adding-php-extensions/" target="_blank" rel="noopener">Azure App Service - Adding PHP Extensions</a> and enter a value of “/home/site/ini” and omit the “/usr/local/etc/php/conf.d:” portion.  </p>
+</li>
+<li><p>The first portion of the value is the location of other ini files that come with the Docker container and the second part (after the “:”) is the directory that contains our new ini file.</p>
+</li>
+<li><p>Press the save button.</p>
+<p><strong>Testing-</strong></p>
+</li>
+</ol>
+<p>1. You should now see the upload_max_filesize increase from 2M to 50M if you have a PHP info page. If not, create one by going to your /home/site/wwwroot directory and perform the following.</p>
+<pre><code>echo &quot;&lt;?php phpinfo();&quot; &gt;&gt; info.php
+</code></pre><p>2. You should now see the values by going to <a href="https://%3csitename%3e.azurewebsites.net/info.php" target="_blank" rel="noopener">https://<sitename>.azurewebsites.net/info.php</sitename></a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/29/azure-app-service-linux-adding-php-extensions/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Azure App Service Linux - Adding PHP Extensions		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/31/building-python-functions-app-that-use-native-modules-custom-docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Building Python Functions App that use Native Modules – Custom Docker		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

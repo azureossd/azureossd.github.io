@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> lamp migration to web apps (previously known as websites)		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="NOTE: Please take a full backup of your code and database before performing any changes to your site. This document talks about steps involved in migrating LAMP/WAMP stack from on premise to Azure usi">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" LAMP Migration to Web Apps (Previously known as Websites)		">
+<meta property="og:url" content="http://azureossd.github.io/2015/04/07/lamp-migration-to-web-apps-previously-known-as-websites/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="NOTE: Please take a full backup of your code and database before performing any changes to your site. This document talks about steps involved in migrating LAMP/WAMP stack from on premise to Azure usi">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2671.image_thumb_691236ED.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0677.clip_image004_thumb_4D3DEBE9.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/3264.clip_image006_thumb_2EF334F3.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/8585.clip_image008_thumb_17C7BA75.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7455.clip_image010_thumb_1C40CBED.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/4743.clip_image012_thumb_7DF614F6.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/6758.clip_image013_thumb_69072334.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/4213.clip_image014_thumb_38DFD871.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0743.clip_image016_thumb_2F86A3EE.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0285.clip_image018_thumb_185B2970.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/1616.clip_image020_thumb_33274F7C.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0825.clip_image022_thumb_7BE0C840.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/3817.clip_image024_thumb_728793BD.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2275.clip_image026_thumb_543CDCC7.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2210.clip_image028_thumb_3D116249.jpg">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/6763.clip_image029_thumb_33B82DC6.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/5126.clip_image031_thumb_2A5EF943.jpg">
+<meta property="og:updated_time" content="2019-03-26T16:45:09.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" LAMP Migration to Web Apps (Previously known as Websites)		">
+<meta name="twitter:description" content="NOTE: Please take a full backup of your code and database before performing any changes to your site. This document talks about steps involved in migrating LAMP/WAMP stack from on premise to Azure usi">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2671.image_thumb_691236ED.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-lamp-migration-to-web-apps-previously-known-as-websites" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       LAMP Migration to Web Apps (Previously known as Websites)		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/04/07/lamp-migration-to-web-apps-previously-known-as-websites/" class="article-date">
+	  <time datetime="2015-04-07T21:29:00.000Z" itemprop="datePublished">April 7, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>NOTE: Please take a full backup of your code and database before performing any changes to your site.</strong></p>
+<p>This document talks about steps involved in migrating LAMP/WAMP stack from on premise to Azure using Web Apps and a MySQL Database hosted by ClearDB or on an IaaS VM.</p>
+<p>There are different steps involved in moving an on premise LAMP/WAMP stack to the Azure platform. Those can be divided into the following:</p>
+<p>1) Data Migration</p>
+<p>2) Content Migration</p>
+<p>3) Change Settings</p>
+<p><strong>Data Migration:</strong></p>
+<p>There are two options for MySQL databases on Azure platforms. You can use either a MySQL instance provided by ClearDB (SaaS) or host your own MySQL database (IaaS VM).</p>
+<p>The first step in data migration involves exporting your current database. This can be done using the mysqldump (available in your mysql server installation bin folder) executable or through the MySQL Workbench tool. Here is a sample of the mysqldump command through the command line.</p>
+<pre><code>mysqldump --user=username --password --host=hostname --protocol=tcp --port=3306 --add-drop-table –create-options --default-character=utf8 --single-transaction=TRUE --routines --events &quot;SCHEMANAME&quot; &gt; /path/to/myschemadump.sql
+</code></pre><p>The above command will dump a Single Self-Contained sql file called “myschemadump.sql” in the path you specified.</p>
+<p>Based on which offering (SaaS or IaaS) you are using, you have to do the following:</p>
+<p>1) <strong>SaaS (Software as a Service)</strong> is provided through ClearDB. They have different offerings which can be seen here: <a href="https://www.cleardb.com/store/azure" target="_blank" rel="noopener">https://www.cleardb.com/store/azure</a>. Steps for creating a ClearDB MySQL database are listed here: <a href="http://azure.microsoft.com/en-us/documentation/articles/store-php-create-mysql-database/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/store-php-create-mysql-database/</a></p>
+<blockquote>
+<p>a. Once a ClearDB MySQL database is created, you can view the connection info which will have this information:</p>
+</blockquote>
+<ul>
+<li>Database ( Schema Name)</li>
+<li>Data Source (Server Host Name)</li>
+<li>User Id ( User Id to use for connecting to MySQL)</li>
+<li>Password (Password to use for connecting to MySQL)</li>
+</ul>
+<blockquote>
+<p>b. You can connect to the database using MySQL Workbench and import data into your database. You can use the Single Self-Contained sql file created above to import the data into this new database.</p>
+</blockquote>
+<blockquote>
+<p>c. Before importing, you will need to change the schema name to the appropriate database name created with ClearDB.</p>
+</blockquote>
+<ul>
+<li>i. For example: if the export included the create database option, then the first two lines of the sql file will be like this:</li>
+</ul>
+<blockquote>
+<p><a href="/wp-content/uploads/2019/03/2766.image_49CF901A.png"><img src="/wp-content/uploads/2019/03/2671.image_thumb_691236ED.png" alt="image" title="image"></a></p>
+</blockquote>
+<ul>
+<li>Comment out the first line and keep the second line. In the second line, ‘schemaname’ should be replaced with the ClearDB schema name.</li>
+</ul>
+<blockquote>
+<p>d. Run all the sql statements at one go. This will create all tables/views etc from your on premise database.</p>
+</blockquote>
+<blockquote>
+<p>e. When using a ClearDB MySQL database, there is only one database user id that is permitted to connect, so you will need to change your application to use this userid.</p>
+<p>f. Code references for database connections should be updated to point to this ClearDB instance.</p>
+</blockquote>
+<p>2) <strong>IaaS (Infrastructure as a Service):</strong> You can create your own VM (Linux) and install a MySQL database server on it. Please follow this article to create your own VM and open connectivity to the database from a remote host: <a href="http://azure.microsoft.com/blog/2014/09/02/create-your-own-dedicated-mysql-server-for-your-azure-websites/" target="_blank" rel="noopener">http://azure.microsoft.com/blog/2014/09/02/create-your-own-dedicated-mysql-server-for-your-azure-websites/</a>. The article describes how to create a MySQL server on an Ubuntu server. You can use your own flavor or Linux and install MySQL.</p>
+<blockquote>
+<p>a. Once your VM is created and a MySQL server is installed/configured and opened for remote access, you can connect to it through MySQL Workbench.</p>
+</blockquote>
+<blockquote>
+<p>b. After connecting, you can directly import data using the data import tool. This will create the schema along with the data that was exported from your on premise database.</p>
+</blockquote>
+<blockquote>
+<p>c. You will need to create users that were present on your on premise database separately. The data import tool will not create them.</p>
+<p>d. Code references for database connections should be updated to point to this VM.</p>
+</blockquote>
+<p><strong>Content Migration:</strong></p>
+<p>Before you migrate your content, you will need to find out the version of PHP you will be using with the Web Apps. You can quick create a website using the Azure Portal and after creation set the PHP version which matches your code. After creating the website, you can deploy your code from source control tools like GitHub, Dropbox, Bitbucket, Codeplex or Visual Studio Online. If you don’t use these, you can also FTP your code. Different deployment choices are listed here: <a href="http://azure.microsoft.com/en-us/documentation/articles/web-sites-deploy/" target="_blank" rel="noopener">http://azure.microsoft.com/en-us/documentation/articles/web-sites-deploy/</a></p>
+<p>If you are FTPing your code to a website, you can use this article: <a href="http://blogs.msdn.com/b/waws/archive/2014/02/20/how-to-ftp-into-a-waws-site.aspx" title="http://blogs.msdn.com/b/waws/archive/2014/02/20/how-to-ftp-into-a-waws-site.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/waws/archive/2014/02/20/how-to-ftp-into-a-waws-site.aspx</a> and upload your website code under site/wwwroot. This is the root directory for Web Apps.</p>
+<p>You can change any references to the old on premise website/database and point to the new website address and database address.</p>
+<p><strong>Settings Migration:</strong></p>
+<p>Any settings pertaining to SSL certificates, database connections, file system references etc. will need to be changed accordingly. These can be on file system or database or a combination of both.</p>
+<p><strong>Example</strong>: We will look into migrating an on premise wordpress install to Azure using Web Apps and a ClearDB database.</p>
+<p><strong>WordPress Migration</strong></p>
+<p>Export data from on premise database:</p>
+<p><a href="/wp-content/uploads/2019/03/5140.clip_image004_5FF2E5A0.jpg"><img src="/wp-content/uploads/2019/03/0677.clip_image004_thumb_4D3DEBE9.jpg" alt="clip_image004" title="clip_image004"></a></p>
+<p>Check all the options selected above and click Start Export. This will create a Single Self-Contained sql file in C:\Dumps\wordpress.sql.</p>
+<p>Now create a Web App using the Azure Management Portal:</p>
+<p><a href="/wp-content/uploads/2019/03/5482.clip_image006_3A88F232.jpg"><img src="/wp-content/uploads/2019/03/3264.clip_image006_thumb_2EF334F3.jpg" alt="clip_image006" title="clip_image006"></a></p>
+<p>Once you click on Create Web App, a Web App is created and it should enter into running status. The list should show up like this:</p>
+<p><a href="/wp-content/uploads/2019/03/1122.clip_image008_1833ED6A.jpg"><img src="/wp-content/uploads/2019/03/8585.clip_image008_thumb_17C7BA75.jpg" alt="clip_image008" title="clip_image008"></a></p>
+<p>Click on the Web App we just created with name “onpremlampmigrate”. It should have several menu options. You can click on Dashboard which will take you to below page which has all FTP and connection strings information.</p>
+<p><a href="/wp-content/uploads/2019/03/8004.clip_image010_680CA2A6.jpg"><img src="/wp-content/uploads/2019/03/7455.clip_image010_thumb_1C40CBED.jpg" alt="clip_image010" title="clip_image010"></a></p>
+<p>At this point, you can click on Linked Resources to check if there are any databases associated with the Web App. There should be none at this time.</p>
+<p><a href="/wp-content/uploads/2019/03/5633.clip_image012_5074F533.jpg"><img src="/wp-content/uploads/2019/03/4743.clip_image012_thumb_7DF614F6.jpg" alt="clip_image012" title="clip_image012"></a></p>
+<p>Click on Link a Resource and it will ask you to create or link an existing resource.</p>
+<p><a href="/wp-content/uploads/2019/03/8306.clip_image013_0D98B0B9.png"><img src="/wp-content/uploads/2019/03/6758.clip_image013_thumb_69072334.png" alt="clip_image013" title="clip_image013"></a></p>
+<p>Click on create a new resource and select MySQL Database resource. It will give you the following screen to create a new database with ClearDB.</p>
+<p><a href="/wp-content/uploads/2019/03/5684.clip_image014_0B5EB8AE.png"><img src="/wp-content/uploads/2019/03/4213.clip_image014_thumb_38DFD871.png" alt="clip_image014" title="clip_image014"></a></p>
+<p>Once you agree to ClearDB’s legal terms, you can complete this linkage. Once the database is created, you will see a ClearDB database link from Linked Resource page.</p>
+<p><a href="/wp-content/uploads/2019/03/3051.clip_image016_3B1C612D.jpg"><img src="/wp-content/uploads/2019/03/0743.clip_image016_thumb_2F86A3EE.jpg" alt="clip_image016" title="clip_image016"></a></p>
+<p>If you click on the database name ‘onpremlAS4vrR020’, it will take you to ClearDB dashboard where you can view the database information:</p>
+<p><a href="/wp-content/uploads/2019/03/6710.clip_image018_012D1E41.jpg"><img src="/wp-content/uploads/2019/03/0285.clip_image018_thumb_185B2970.jpg" alt="clip_image018" title="clip_image018"></a></p>
+<p>You can schedule backups or jobs from this site. If you go back to the Azure portal and browse to the dashboard page of the Web App , you can view the connection strings:</p>
+<p><a href="/wp-content/uploads/2019/03/8306.clip_image020_3EBD0CBB.jpg"><img src="/wp-content/uploads/2019/03/1616.clip_image020_thumb_33274F7C.jpg" alt="clip_image020" title="clip_image020"></a></p>
+<p>With these settings you can connect to the database using MySQL Workbench and execute the wordpress.sql that was created earlier. You will need to comment out the first line and change the schema name to match the ClearDB database name like below:</p>
+<p><a href="/wp-content/uploads/2019/03/5516.clip_image022_6E7AB53A.jpg"><img src="/wp-content/uploads/2019/03/0825.clip_image022_thumb_7BE0C840.jpg" alt="clip_image022" title="clip_image022"></a></p>
+<p>You will need to find and replace references to your old site URL with the new site URL. You can use either the <em>.azurewebsites.net URL or the custom domain name URL. We will use </em>.azurewebsites.net URL for this example.</p>
+<p><a href="/wp-content/uploads/2019/03/0160.clip_image024_7E1D50FC.jpg"><img src="/wp-content/uploads/2019/03/3817.clip_image024_thumb_728793BD.jpg" alt="clip_image024" title="clip_image024"></a></p>
+<p>You can now select all the statements and execute the statements at one go. This should create the tables and import all the data which was exported from on premise database. You should see tables like below:</p>
+<p><a href="/wp-content/uploads/2019/03/7446.clip_image026_2DDAF97C.jpg"><img src="/wp-content/uploads/2019/03/2275.clip_image026_thumb_543CDCC7.jpg" alt="clip_image026" title="clip_image026"></a></p>
+<p>At this point, you have all the data exported from on premise to the ClearDB database. You will now need to migrate your code from on premise to the Web App. If your on premise code is running on LAMP (Ubuntu/Redhat/Centos etc), you can find the code under /var/www/html. You can directly FTP the code to Azure like below:</p>
+<p><a href="/wp-content/uploads/2019/03/1205.clip_image028_5D98A1FB.jpg"><img src="/wp-content/uploads/2019/03/2210.clip_image028_thumb_3D116249.jpg" alt="clip_image028" title="clip_image028"></a></p>
+<p>Once you have copied all your code (wordpress code) from on premise to Azure, you can open the files using WebMatrix (on windows) or download the code to local machine using FTP and modify and upload the file back. In our Wordpress migration, we will need to modify one file which is under site/wwwroot. The file name is wp-config.php. You will need to modify all four of these values to match what we got in connection string.</p>
+<p><a href="/wp-content/uploads/2019/03/8562.clip_image029_3F4DEB05.png"><img src="/wp-content/uploads/2019/03/6763.clip_image029_thumb_33B82DC6.png" alt="clip_image029" title="clip_image029"></a></p>
+<p>DB_NAME is the Database, DB_USER is the User Id, DB_PASSWORD is the Password and DB_HOST is the Data Source from ClearDB Connection String. This would differ if you have an IaaS VM hosting a MySQL database.</p>
+<p>There is another setting for multi-site WordPress, which we are not covering here that also needs to be changed to look at the right URL.</p>
+<p>Once you make these changes, you will need to go into Configure portion of your website and change the PHP version accordingly. In this case, I used PHP 5.5 version, so I choose 5.5. If you are changing versions, you will need to save your settings to the portal.</p>
+<p><a href="/wp-content/uploads/2019/03/2158.clip_image031_35F4B682.jpg"><img src="/wp-content/uploads/2019/03/5126.clip_image031_thumb_2A5EF943.jpg" alt="clip_image031" title="clip_image031"></a></p>
+<p>Once these changes are done, you can restart the Web App Website from management portal and browse to the URL and you should be able to login. The below is an example:</p>
+<p><a href="http://onpremlampmigrate.azurewebsites.net/wp-login.php" target="_blank" rel="noopener">http://onpremlampmigrate.azurewebsites.net/wp-login.php</a></p>
+<p><strong>NOTE: Any customizations like header, footer, background, permalink settings etc. will need to be changed to match the on premise settings. These will not be migrated.</strong></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/ClearDB/">ClearDB</a>, <a class="article-category-link" href="/categories/ClearDB/MySQL/">MySQL</a>, <a class="article-category-link" href="/categories/ClearDB/MySQL/PHP/">PHP</a>, <a class="article-category-link" href="/categories/ClearDB/MySQL/PHP/WordPress/">WordPress</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/13/magento-cron-jobs-on-azure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Magento Cron Jobs to Azure Web Jobs		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/06/giving-your-existing-wordpress-multisite-a-new-domain-name-on-microsoft-azure/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Giving your existing WordPress MultiSite a new domain name on Microsoft Azure		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

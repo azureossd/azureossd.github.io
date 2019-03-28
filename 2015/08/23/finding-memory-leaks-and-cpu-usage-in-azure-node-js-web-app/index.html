@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> finding memory leaks and cpu usage in azure node.js web app		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="troubleshootazurenodejsWAWScpu-usagememory-leaksprofiler">
+  
+  
+  
+  
+  <meta name="description" content="Slow application performance issues tend to be challenging to troubleshoot regardless of the platform in which your application is running. This is due in great part to the sometimes random nature of">
+<meta name="keywords" content="troubleshoot,azure,nodejs,WAWS,cpu-usage,memory-leaks,profiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Finding Memory Leaks and CPU Usage in Azure Node.js Web App		">
+<meta property="og:url" content="http://azureossd.github.io/2015/08/23/finding-memory-leaks-and-cpu-usage-in-azure-node-js-web-app/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Slow application performance issues tend to be challenging to troubleshoot regardless of the platform in which your application is running. This is due in great part to the sometimes random nature of">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/8561.heapdump.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2045.leak_class.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2260.cpu_chart.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/1234.cpu_heavy.JPG">
+<meta property="og:updated_time" content="2019-03-26T06:48:31.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Finding Memory Leaks and CPU Usage in Azure Node.js Web App		">
+<meta name="twitter:description" content="Slow application performance issues tend to be challenging to troubleshoot regardless of the platform in which your application is running. This is due in great part to the sometimes random nature of">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/8561.heapdump.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-finding-memory-leaks-and-cpu-usage-in-azure-node-js-web-app" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Finding Memory Leaks and CPU Usage in Azure Node.js Web App		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/08/23/finding-memory-leaks-and-cpu-usage-in-azure-node-js-web-app/" class="article-date">
+	  <time datetime="2015-08-23T19:15:00.000Z" itemprop="datePublished">August 23, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Slow application performance issues tend to be challenging to troubleshoot regardless of the platform in which your application is running. This is due in great part to the sometimes random nature of these issues. These types of issues also often do not result in a specific error being logged.</p>
+<p>If you think your node.js application is running slow and takes more than few seconds to receive response. Below info may help you analyze where it’s taking longer time and also checks for memory leaks. There are many node.js modules to accomplish this(notably)</p>
+<ol>
+<li>v8-profiler</li>
+<li>nodetime(app dynamics)</li>
+<li>look</li>
+</ol>
+<p>If you analyze below sample code, I have included memory leak highlighted in Red and CPU intensive work in Amber colors.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Created by prmadi on 8/20/2015.</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line"> var http = require(&apos;http&apos;);</span><br><span class="line"> var port = process.env.PORT || &apos;3000&apos;;</span><br><span class="line"> </span><br><span class="line"> // Memory Leak</span><br><span class="line"> function LeakingClass() &#123;</span><br><span class="line"> &#125;</span><br><span class="line"> var leaks = [];</span><br><span class="line"> setInterval(function() &#123;</span><br><span class="line"> for (var i = 0; i &lt; 100; i++) &#123;</span><br><span class="line"> leaks.push(new LeakingClass);</span><br><span class="line"> &#125;</span><br><span class="line"> console.error(&apos;Leaks: %d&apos;, leaks.length);</span><br><span class="line"> &#125;, 1000);</span><br><span class="line"> </span><br><span class="line"> http.createServer(function (req, res) &#123;</span><br><span class="line"> </span><br><span class="line"> // CPU intensive work</span><br><span class="line"> var fibonacci = function(n)&#123;</span><br><span class="line"> if(n &lt; 1)&#123;return 0;&#125;</span><br><span class="line"> else if(n == 1 || n == 2)&#123;return 1;&#125;</span><br><span class="line"> else if(n &gt; 2)&#123;return fibonacci(n - 1) + fibonacci(n-2);&#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> fibonacci(40);</span><br><span class="line"> </span><br><span class="line"> res.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/plain&apos;&#125;);</span><br><span class="line"> res.end(&apos;Hello World\n&apos;+ fibonaccif(40));</span><br><span class="line"> &#125;).listen(port, &apos;127.0.0.1&apos;);</span><br></pre></td></tr></table></figure>
+<p>I would show you how to use v8-profiler on above sample code to find memory leaks and CPU Usage. More info on v8-profiler can be found @ <a href="https://github.com/node-inspector/v8-profiler" target="_blank" rel="noopener">https://github.com/node-inspector/v8-profiler</a></p>
+<ul>
+<li>Install v8-profiler module using below command in kudu console at webapp root(D:\home\site\wwwroot) or enter it in package.json file before deploying to azure web apps.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install v8-profiler</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Create a folder “debugdump” in your webapp root(D:\home\site\wwwroot).</li>
+<li>Add below lines of code to get heap snapshot</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(&apos;fs&apos;),</span><br><span class="line">ws = fs.createWriteStream(&apos;debugdump/&apos;+Date.now() + &apos;.heapsnapshot&apos;),</span><br><span class="line">profiler = require(&apos;v8-profiler&apos;),</span><br><span class="line">snapshot = profiler.takeSnapshot(),</span><br><span class="line">callback = ws.end.bind(ws);</span><br><span class="line"></span><br><span class="line">snapshot.serialize(function(data) &#123;</span><br><span class="line">ws.write(&apos;&apos; + data);</span><br><span class="line">&#125;, callback);//begin cpu profiling</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Add below lines of code to get CPU profile</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">profiler.startProfiling();</span><br><span class="line"></span><br><span class="line">// code to be profiled here</span><br><span class="line"></span><br><span class="line">var cpuProfile = profiler.stopProfiling();</span><br><span class="line">var serialized = JSON.stringify(cpuProfile, null, 2);</span><br><span class="line">fs.writeFileSync(&apos;debugdump/&apos;+Date.now() +&apos;.cpuprofile&apos;, serialized, &apos;utf8&apos;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>After accessing your application, you would start seeing few files with cpuprofile and heapsnapshot extensoins in D:\home\site\wwwroot\debugdump folder.</li>
+<li>Download files in debugdump folder and analyze them using tools like chrome developer tools.</li>
+</ul>
+<p>Here is my sample code after adding profiler instructions listed above</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Created by prmadi on 8/20/2015.</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line"> var http = require(&apos;http&apos;);</span><br><span class="line"> var port = process.env.PORT || &apos;3000&apos;;</span><br><span class="line"> </span><br><span class="line"> function LeakingClass() &#123;</span><br><span class="line"> &#125;</span><br><span class="line"> var leaks = [];</span><br><span class="line"> setInterval(function() &#123;</span><br><span class="line"> for (var i = 0; i &lt; 100; i++) &#123;</span><br><span class="line"> leaks.push(new LeakingClass);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;, 1000);</span><br><span class="line"> </span><br><span class="line"> http.createServer(function (req, res) &#123;</span><br><span class="line"> </span><br><span class="line"> var fs = require(&apos;fs&apos;),</span><br><span class="line"> ws = fs.createWriteStream(&apos;debugdump/&apos;+Date.now() + &apos;.heapsnapshot&apos;),</span><br><span class="line"> profiler = require(&apos;v8-profiler&apos;),</span><br><span class="line"> snapshot = profiler.takeSnapshot(),</span><br><span class="line"> callback = ws.end.bind(ws);</span><br><span class="line"> </span><br><span class="line"> snapshot.serialize(function(data) &#123;</span><br><span class="line"> ws.write(&apos;&apos; + data);</span><br><span class="line"> &#125;, callback);//begin cpu profiling</span><br><span class="line"> </span><br><span class="line"> var fibonacci = function(n)&#123;</span><br><span class="line"> if(n &lt; 1)&#123;return 0;&#125;</span><br><span class="line"> else if(n == 1 || n == 2)&#123;return 1;&#125;</span><br><span class="line"> else if(n &gt; 2)&#123;return fibonacci(n - 1) + fibonacci(n-2);&#125;</span><br><span class="line"> &#125;;</span><br><span class="line"> </span><br><span class="line"> profiler.startProfiling();</span><br><span class="line"> </span><br><span class="line"> fibonacci(40);</span><br><span class="line"> </span><br><span class="line"> var cpuProfile = profiler.stopProfiling();</span><br><span class="line"> var serialized = JSON.stringify(cpuProfile, null, 2);</span><br><span class="line"> fs.writeFileSync(&apos;debugdump/&apos;+Date.now() +&apos;.cpuprofile&apos;, serialized, &apos;utf8&apos;);</span><br><span class="line"> </span><br><span class="line"> res.writeHead(200, &#123;&apos;Content-Type&apos;: &apos;text/plain&apos;&#125;);</span><br><span class="line"> res.end(&apos;Hello World\n&apos;+ fibonacci(40));</span><br><span class="line"> &#125;).listen(port, &apos;127.0.0.1&apos;);</span><br></pre></td></tr></table></figure>
+<p>– Above code has created few CPU profiles and heap snapshots  in my debugdump folder as in below screenshot.</p>
+<p><img src="/wp-content/uploads/2019/03/8561.heapdump.JPG" alt></p>
+<p>– Load these files into chrome developer tools by selecting chrome developer tools &gt; profiles &gt; load</p>
+<p>– Below is a sample heap snapshot analysis screenshots. As you can see, Leakclass was the culprit in my above sample code which is visible in heap snapshot.</p>
+<p> <img src="/wp-content/uploads/2019/03/2045.leak_class.JPG" alt></p>
+<p>– Below is a sample CPU Usage analysis. As you can see, calculating fibonanci number was CPU intensive operation in my request which is visible in CPU profile.</p>
+<p>Chart View :</p>
+<p><img src="/wp-content/uploads/2019/03/2260.cpu_chart.JPG" alt></p>
+<p>Heavy (Bottom Up) View :</p>
+<p><img src="/wp-content/uploads/2019/03/1234.cpu_heavy.JPG" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAWS/">WAWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/azure/">azure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpu-usage/">cpu-usage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memory-leaks/">memory-leaks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/profiler/">profiler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/troubleshoot/">troubleshoot</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/08/accessing-vm-extensions-like-chef-using-azure-sdk-for-java-programmatically/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Accessing VM extensions like Chef using Azure sdk for Java programmatically		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/19/debug-node-js-web-apps-on-azure/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Debug Node.js Web Apps on Azure		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

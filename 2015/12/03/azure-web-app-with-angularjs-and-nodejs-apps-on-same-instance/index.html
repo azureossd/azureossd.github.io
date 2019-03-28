@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> azure web app with angularjs and nodejs apps on same instance		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Web AppsAngularJsnodejsWAWSweb.config">
+  
+  
+  
+  
+  <meta name="description" content="In my previous Blog, I have wrote on hosting AngularJs app in Azure Web App. This post would provide details on how to host AngularJs App on a web app instance aside of NodeJs App.  Code available on">
+<meta name="keywords" content="Web Apps,AngularJs,nodejs,WAWS,web.config">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Azure Web App with AngularJs and NodeJs Apps on Same Instance		">
+<meta property="og:url" content="http://azureossd.github.io/2015/12/03/azure-web-app-with-angularjs-and-nodejs-apps-on-same-instance/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="In my previous Blog, I have wrote on hosting AngularJs app in Azure Web App. This post would provide details on how to host AngularJs App on a web app instance aside of NodeJs App.  Code available on">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0028.1.PNG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/6710.2.PNG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2480.3.PNG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/1256.Screen%20Shot%202015-12-06%20at%208.10.42%20PM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/6201.Screen%20Shot%202015-12-06%20at%208.10.16%20PM.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/4130.Screen%20Shot%202015-12-06%20at%208.10.06%20PM.png">
+<meta property="og:updated_time" content="2019-03-26T06:29:28.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Azure Web App with AngularJs and NodeJs Apps on Same Instance		">
+<meta name="twitter:description" content="In my previous Blog, I have wrote on hosting AngularJs app in Azure Web App. This post would provide details on how to host AngularJs App on a web app instance aside of NodeJs App.  Code available on">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/0028.1.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-azure-web-app-with-angularjs-and-nodejs-apps-on-same-instance" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Azure Web App with AngularJs and NodeJs Apps on Same Instance		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/12/03/azure-web-app-with-angularjs-and-nodejs-apps-on-same-instance/" class="article-date">
+	  <time datetime="2015-12-03T20:41:00.000Z" itemprop="datePublished">December 3, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In my previous <a href="http://blogs.msdn.com/b/azureossds/archive/2015/11/29/creating-an-angular-js-spa-single-page-applicaiton-with-routes-on-azure-webapps.aspx" title="Blog" target="_blank" rel="noopener">Blog</a>, I have wrote on hosting AngularJs app in Azure Web App. This post would provide details on how to host AngularJs App on a web app instance aside of NodeJs App.</p>
+<p> Code available on github @ <a href="https://github.com/prashanthmadi/azure-nodejs-angular" title="https://github.com/prashanthmadi/azure-nodejs-angular" target="_blank" rel="noopener">https://github.com/prashanthmadi/azure-nodejs-angular</a></p>
+<p>1) Install express-generator at global level, we would use this to create express(nodeJs web framework) templates.</p>
+<pre><code>npm install -g express-generator
+</code></pre><p><img src="/wp-content/uploads/2019/03/0028.1.PNG" alt></p>
+<p>2) Use express cli to create a express template app</p>
+<pre><code>express .
+</code></pre><p><img src="/wp-content/uploads/2019/03/6710.2.PNG" alt></p>
+<p>3) Install required modules using below command</p>
+<pre><code>npm install
+</code></pre><p> <img src="/wp-content/uploads/2019/03/2480.3.PNG" alt></p>
+<p>4) Use below command to start the app on local server and check if template app is working on local environment.</p>
+<pre><code>npm start
+</code></pre><p>5) Move your code to azure web app after adding below web.config file at root folder</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!--
+This configuration file is required if iisnode is used to run node processes behind
+IIS or IIS Express. For more information, visit:
+
+https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/web.config
+--&gt;
+
+&lt;configuration&gt;
+&lt;system.webServer&gt;
+&lt;!-- Visit http://blogs.msdn.com/b/windowsazure/archive/2013/11/14/introduction-to-websockets-on-windows-azure-web-sites.aspx for more information on WebSocket support --&gt;
+&lt;webSocket enabled=&quot;false&quot; /&gt;
+&lt;handlers&gt;
+&lt;!-- Indicates that the server.js file is a node.js site to be handled by the iisnode module --&gt;
+&lt;add name=&quot;iisnode&quot; path=&quot;bin/www&quot; verb=&quot;*&quot; modules=&quot;iisnode&quot;/&gt;
+&lt;/handlers&gt;
+&lt;rewrite&gt;
+&lt;rules&gt;
+&lt;!-- First we consider whether the incoming URL matches a physical file in the /public folder --&gt;
+&lt;rule name=&quot;StaticContent&quot;&gt;
+&lt;action type=&quot;Rewrite&quot; url=&quot;public{REQUEST_URI}&quot;/&gt;
+&lt;/rule&gt;
+
+&lt;!-- All other URLs are mapped to the node.js site entry point --&gt;
+&lt;rule name=&quot;DynamicContent&quot;&gt;
+&lt;conditions&gt;
+&lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; negate=&quot;True&quot;/&gt;
+&lt;/conditions&gt;
+&lt;action type=&quot;Rewrite&quot; url=&quot;bin/www&quot;/&gt;
+&lt;/rule&gt;
+&lt;/rules&gt;
+&lt;/rewrite&gt;
+
+&lt;!-- &apos;bin&apos; directory has no special meaning in node.js and apps can be placed in it --&gt;
+&lt;security&gt;
+&lt;requestFiltering&gt;
+&lt;hiddenSegments&gt;
+&lt;remove segment=&quot;bin&quot;/&gt;
+&lt;/hiddenSegments&gt;
+&lt;/requestFiltering&gt;
+&lt;/security&gt;
+
+&lt;!-- Make sure error responses are left untouched --&gt;
+&lt;httpErrors existingResponse=&quot;PassThrough&quot; /&gt;
+
+&lt;!--
+You can control how Node is hosted within IIS using the following options:
+* watchedFiles: semi-colon separated list of files that will be watched for changes to restart the server
+* node_env: will be propagated to node as NODE_ENV environment variable
+* debuggingEnabled - controls whether the built-in debugger is enabled
+
+See https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/web.config for a full list of options
+--&gt;
+&lt;!--&lt;iisnode watchedFiles=&quot;web.config;*.js&quot;/&gt;--&gt;
+&lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre><p>6) Check if your app is still working on azure.</p>
+<p>7) Change app.js file at root folder to set appropriate routes as below. Order of below routes is important (all the url’s except for /users are getting routed to index.js/jade file which would load AngularJS Code)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(&apos;/users&apos;, users);</span><br><span class="line">app.use(&apos;/*&apos;, routes);</span><br></pre></td></tr></table></figure>
+<p>8)  Change views/index.jade file to below content. [Red] part is to add ng-app div, [Blue] part is to add required AngularJs files, [Green] part would be used to insert templates based on incoming url.</p>
+<pre><code>extends layout
+
+block content
+     div(ng-app=&apos;giveCampaign&apos;)
+     h1= title
+     ul
+     li
+     a(href=&apos;/donarlist&apos;) Donar lists
+     li
+     a(href=&apos;/receivertrans&apos;) Receivers
+     div(ng-view)
+     script(src=&apos;js/angularmodules/angular.min.js&apos;)
+     script(src=&apos;js/app.js&apos;)
+     script(src=&apos;js/angularmodules/angular-route.min.js&apos;)
+</code></pre><p>9) Add required Templates and AngularJs files in public folder @ <a href="https://github.com/prashanthmadi/azure-nodejs-angular/tree/master/public" target="_blank" rel="noopener">https://github.com/prashanthmadi/azure-nodejs-angular/tree/master/public</a></p>
+<p>10) For more details on individual templates/JS files, please refer <a href="http://blogs.msdn.com/b/azureossds/archive/2015/11/29/creating-an-angular-js-spa-single-page-applicaiton-with-routes-on-azure-webapps.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/azureossds/archive/2015/11/29/creating-an-angular-js-spa-single-page-applicaiton-with-routes-on-azure-webapps.aspx</a></p>
+<p>11) Below are final output screenshots</p>
+<p>- Web App serving Node.js content at ‘/users’ url</p>
+<p><img src="/wp-content/uploads/2019/03/1256.Screen%20Shot%202015-12-06%20at%208.10.42%20PM.png" alt></p>
+<p>- Web App serving AngularJs content in all other url’s</p>
+<p>/receivertrans</p>
+<p><img src="/wp-content/uploads/2019/03/6201.Screen%20Shot%202015-12-06%20at%208.10.16%20PM.png" alt></p>
+<p>/donarlist</p>
+<p><img src="/wp-content/uploads/2019/03/4130.Screen%20Shot%202015-12-06%20at%208.10.06%20PM.png" alt></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJs/">AngularJs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAWS/">WAWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web-Apps/">Web Apps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web-config/">web.config</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/07/php-imagemagick-on-azure-web-apps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           PHP ImageMagick on Azure Web Apps		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/28/creating-an-angularjs-single-page-application-with-routes-on-azure-webapps/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Creating an AngularJS Single Page Application with routes on Azure WebApps		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

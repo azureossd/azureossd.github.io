@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> create nodejs api app using swaggerize-express and yo tool		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="nodejsAPIAPPexpressSwagger">
+  
+  
+  
+  
+  <meta name="description" content="An API app is an App Service web app with additional features that enhance the experience of developing, deploying, publishing, consuming, managing, and monetizing RESTful web APIs. For More informati">
+<meta name="keywords" content="nodejs,APIAPP,express,Swagger">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Create Nodejs API APP using Swaggerize-express and YO tool		">
+<meta property="og:url" content="http://azureossd.github.io/2015/06/01/create-nodejs-api-app-using-swaggerize-express-and-yo-tool/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="An API app is an App Service web app with additional features that enhance the experience of developing, deploying, publishing, consuming, managing, and monetizing RESTful web APIs. For More informati">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7416.2.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/8032.3.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/5327.4.JPG">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/2625.portal_output.JPG">
+<meta property="og:updated_time" content="2019-03-26T06:20:33.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Create Nodejs API APP using Swaggerize-express and YO tool		">
+<meta name="twitter:description" content="An API app is an App Service web app with additional features that enhance the experience of developing, deploying, publishing, consuming, managing, and monetizing RESTful web APIs. For More informati">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2019/03/7416.2.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-create-nodejs-api-app-using-swaggerize-express-and-yo-tool" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Create Nodejs API APP using Swaggerize-express and YO tool		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2015/06/01/create-nodejs-api-app-using-swaggerize-express-and-yo-tool/" class="article-date">
+	  <time datetime="2015-06-01T17:15:00.000Z" itemprop="datePublished">June 1, 2015</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>An API app is an <a href="https://azure.microsoft.com/en-us/documentation/articles/app-service-web-overview/" target="_blank" rel="noopener">App Service web app</a> with additional features that enhance the experience of developing, deploying, publishing, consuming, managing, and monetizing RESTful web APIs.</p>
+<p>For More information Please refer : <a href="https://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/" target="_blank" rel="noopener">https://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/</a></p>
+<p>This Blog would provide steps to create a sample Azure API APP in NodeJS using Swaggerize-express</p>
+<ul>
+<li><p>Install  generator-swaggeize(and yo if you haven’t already) - <a href="https://www.npmjs.com/package/swaggerize-express" target="_blank" rel="noopener">https://www.npmjs.com/package/swaggerize-express</a></p>
+<p>$ npm install -g yo$ npm install -g generator-swaggerize</p>
+</li>
+<li><p>Now run the generator</p>
+<p>$ yo swaggerize</p>
+</li>
+<li><p>It would ask you set of questions as in below screenshot</p>
+</li>
+</ul>
+<p><img src="/wp-content/uploads/2019/03/7416.2.JPG" alt></p>
+<p>you can find sample swagger document @ <a href="https://raw.githubusercontent.com/prashanthmadi/Azure-nodejs-API-APP/master/config/BumblebeeNodejsAPI.json" target="_blank" rel="noopener">https://raw.githubusercontent.com/prashanthmadi/Azure-nodejs-API-APP/master/config/BumblebeeNodejsAPI.json</a></p>
+<ul>
+<li>At the end it would create a api app with required handlers and node_modules as in below screenshot</li>
+</ul>
+<p><img src="/wp-content/uploads/2019/03/8032.3.JPG" alt></p>
+<ul>
+<li>After importing project into phpstorm, you can see that each path defined in swagger definition would get its own file</li>
+</ul>
+<p><img src="/wp-content/uploads/2019/03/5327.4.JPG" alt></p>
+<ul>
+<li><p>Now Replace content in server.js at Root folder with below</p>
+<p>‘use strict’;  var port = process.env.PORT || 1337; var baseHost = process.env.WEBSITE_HOSTNAME || ‘localhost’;  var http = require(‘http’); var express = require(‘express’); var bodyParser = require(‘body-parser’); var swaggerize = require(‘swaggerize-express’); var path = require(‘path’);  var app = express();  var server = http.createServer(app);  app.use(bodyParser.json());  app.get(‘/‘, function (req, res) { res.send(‘Hello World!’); });  app.use(swaggerize({ api: path.resolve(‘./config/BumblebeeNodejsAPI.json’), docspath: ‘/swagger’, handlers: path.resolve(‘./handlers’) }));  server.listen(port, ‘localhost’, function () { if (baseHost === ‘localhost’) { app.setHost(baseHost + ‘:’ + port); } else { app.setHost(baseHost); } console.log(“Server started ..”); });</p>
+<p>I have highlighted changes made in server.js file as red.</p>
+</li>
+<li><p>Create a new file apiapp.json at root folder</p>
+<p>{ “$schema”: “<a href="http://json-schema.org/schemas/2014-11-01/apiapp.json#&quot;" target="_blank" rel="noopener">http://json-schema.org/schemas/2014-11-01/apiapp.json#&quot;</a>, “id”: “Bumblebee”, “namespace”: “microsoft.com”, “gateway”: “2015-01-14”, “version”: “1.9.0”, “title”: “Bumblebee”, “summary”: “”, “author”: “”, “endpoints”: { “apiDefinition”: “/swagger”, “status”: null } }</p>
+</li>
+<li><p>Start your nodejs api app in local env by using below command at root folder</p>
+<p>node server.js</p>
+</li>
+</ul>
+<p>check if your api app is up : <a href="http://localhost:1337/" target="_blank" rel="noopener">http://localhost:1337/</a> -> this url would return a hello world</p>
+<p>Api Defination file  : <a href="http://localhost:1337/swagger" target="_blank" rel="noopener">http://localhost:1337/swagger</a>  -> this url would return json file with swagger spec of app.</p>
+<p>Please find more details on creating and deploying Azure API app at below link</p>
+<p><a href="https://azure.microsoft.com/en-us/documentation/articles/app-service-api-nodejs-api-app/" target="_blank" rel="noopener">https://azure.microsoft.com/en-us/documentation/articles/app-service-api-nodejs-api-app/</a></p>
+<p>After deploying your app, you should be able to see app definition in portal as below</p>
+<p><img src="/wp-content/uploads/2019/03/2625.portal_output.JPG" alt></p>
+<p>Troubleshoot Azure API APP - <a href="http://blogs.msdn.com/b/azureossds/archive/2015/06/01/troubleshoot-azure-api-app.aspx" target="_blank" rel="noopener">http://blogs.msdn.com/b/azureossds/archive/2015/06/01/troubleshoot-azure-api-app.aspx</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Uncategorized/">Uncategorized</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/APIAPP/">APIAPP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swagger/">Swagger</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/06/01/use-redis-cache-memcache-option-on-azure-with-drupal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Use Redis Cache Memcache Option on Azure with Drupal 7		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/01/troubleshoot-azure-api-app/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Troubleshoot - Azure Api App		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

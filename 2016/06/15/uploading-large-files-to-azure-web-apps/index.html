@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    <script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+    <link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title> uploading large files to azure web apps		 | Azure OSS Developer Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a HTTP 404.13 for WordPress developers or a HTTP 502 for Tomcat Manager. This can be due to the default Request Limits va">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Uploading Large Files to Azure Web Apps		">
+<meta property="og:url" content="http://azureossd.github.io/2016/06/15/uploading-large-files-to-azure-web-apps/index.html">
+<meta property="og:site_name" content="Azure OSS Developer Support">
+<meta property="og:description" content="Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a HTTP 404.13 for WordPress developers or a HTTP 502 for Tomcat Manager. This can be due to the default Request Limits va">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/06/console-300x182.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/06/userini-300x21.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/06/multisite-300x159.png">
+<meta property="og:image" content="http://azureossd.github.io/wp-content/uploads/2016/06/multisiteupload-300x248.png">
+<meta property="og:updated_time" content="2019-03-26T20:29:40.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Uploading Large Files to Azure Web Apps		">
+<meta name="twitter:description" content="Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a HTTP 404.13 for WordPress developers or a HTTP 502 for Tomcat Manager. This can be due to the default Request Limits va">
+<meta name="twitter:image" content="http://azureossd.github.io/wp-content/uploads/2016/06/console-300x182.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Azure OSS Developer Support" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/hiero.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+  
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css">
+  <!-- Google Adsense -->
+  
+</head>
+</html>
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Azure OSS Developer Support" rel="home"> Azure OSS Developer Support </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt src>
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "css/images/pose.jpg,https://source.unsplash.com/collection/954550/1920x1080".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-uploading-large-files-to-azure-web-apps" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+       Uploading Large Files to Azure Web Apps		
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2016/06/15/uploading-large-files-to-azure-web-apps/" class="article-date">
+	  <time datetime="2016-06-16T00:25:24.000Z" itemprop="datePublished">June 15, 2016</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a HTTP 404.13 for WordPress developers or a HTTP 502 for Tomcat Manager. This can be due to the default Request Limits value for the maxAllowedContentLength on IIS which is 30000000 (roughly 28.6MB). To modify this value, add the following to your web.config file.  </p>
+<pre><code>&lt;configuration&gt;
+   &lt;system.webServer&gt;
+      &lt;security&gt;
+         &lt;requestFiltering&gt;
+            &lt;requestLimits maxAllowedContentLength=&quot;&lt;valueInBytes&gt;&quot;/&gt;
+         &lt;/requestFiltering&gt;
+      &lt;/security&gt;
+   &lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre><p>  You may also need to make changes to your Web App to increase the maximum file upload size as well. Below is some additional information for how to increase the limits for popular Content Management Systems that run on PHP such as WordPress, Drupal, and Joomla!. Information for Tomcat Manager can be found <a href="https://blogs.msdn.microsoft.com/azureossds/2015/09/18/accessing-the-tomcat-manager-console-on-azure-java-webapp/" target="_blank" rel="noopener">here</a>.  </p>
+<h2 id="PHP-Content-Management-Systems-WordPress-Joomla-etc"><a href="#PHP-Content-Management-Systems-WordPress-Joomla-etc" class="headerlink" title="PHP Content Management Systems (WordPress, Joomla!, etc.)"></a>PHP Content Management Systems (WordPress, Joomla!, etc.)</h2><p>  WordPress and other CMS site have its own maximum file upload size which are based on the default PHP values. These can be modified by creating a “.user.ini” file. Azure Web Apps developers can create/modify this file by performing the following. </p>
+<p>1. Go to your KUDU console (<a href="https://%3csitename%3e.scm.azurewebsites.net/debugconsole" target="_blank" rel="noopener">https://<sitename>.scm.azurewebsites.net/debugconsole</sitename></a>) </p>
+<p>2. Go to the “site” directory then the “wwwroot” directory. </p>
+<p>3. To create a “.user.ini” file, go to the console window below and type “touch .user.ini”. <a href="/wp-content/uploads/2016/06/console.png"><img src="/wp-content/uploads/2016/06/console-300x182.png" alt="console"></a> </p>
+<p>4. Once the file is created, press the edit button next to the file. <a href="/wp-content/uploads/2016/06/userini.png"><img src="/wp-content/uploads/2016/06/userini-300x21.png" alt="userini"></a> </p>
+<p>5. Add the following values to the file and press Save.</p>
+<pre><code>upload_max_filesize = 64M
+post_max_size = 64M
+</code></pre><p>6. Restart your site.   </p>
+<p>NOTE: For WordPress Multisite users, you will also need to modify the Network Admin Settings to increase the value. </p>
+<ol>
+<li>Select Network Admin -&gt; Settings </li>
+</ol>
+<p><a href="/wp-content/uploads/2016/06/multisite.png"><img src="/wp-content/uploads/2016/06/multisite-300x159.png" alt="multisite"></a> </p>
+<ol start="2">
+<li>Scroll down to the “Upload Setting” section and modify the “Max upload file size” then press “Save Changes”. </li>
+</ol>
+<p><a href="/wp-content/uploads/2016/06/multisiteupload.png"><img src="/wp-content/uploads/2016/06/multisiteupload-300x248.png" alt="multisiteupload"></a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/">Azure App Service Web App</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/Joomla/">Joomla</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/Joomla/PHP/">PHP</a>, <a class="article-category-link" href="/categories/Azure-App-Service-Web-App/Joomla/PHP/WordPress/">WordPress</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/15/media-files-http-404-azure-web-apps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+           Media Files - HTTP 404 - Azure Web Apps		
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/06/use-mysql-server-on-an-azure-vm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"> Use MySQL server on an Azure VM		</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-Content-Management-Systems-WordPress-Joomla-etc"><span class="nav-number">1.</span> <span class="nav-text">PHP Content Management Systems (WordPress, Joomla!, etc.)</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Azure OSS Developer Support All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+<script src="/js/my.js"></script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
