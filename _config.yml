@@ -181,7 +181,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
-  - _posts/YYYY-MM-DD-Your Article Title.md
+  - _posts/YYYY-MM-DD-Your-Article-Title.md
   - wp-content-old
 keep_files:
   - .git
