@@ -1,5 +1,5 @@
 ---
-title: " Azure App Service Linux - Python - XGBoost Library (libxgboost.so) could not be loaded"
+title: " Azure App Service Linux - Python - XGBoost Library (libxgboost.so) Could Not Be Loaded"
 author_name: Toan Nguyen
 categories:
   - Python
