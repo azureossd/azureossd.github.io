@@ -34,10 +34,10 @@ In this example I am using GoDaddy since I have one already there.
 ![GoDaddyCSR](/media/2020/02/edisga-godaddy-csr.png)
 
 4. After get the ssl certificate, you can download and select the type of servers, try to select other types, we will not use nginx or apache here.
-[GoDaddyCSR](/media/2020/02/edisga-godaddy-downloadssl.png)
+[GoDaddyDownloadSSL](/media/2020/02/edisga-godaddy-downloadssl.png)
 
 5. Most SSL providers will provide the following structure, where you can have the certificate (.crt) and (pem) and the bundle where is the intermediate certificate used as proxy for root CA.
-[GoDaddyCSR](/media/2020/02/edisga-godaddy-sslstructure.png)
+[GoDaddySSLStructure](/media/2020/02/edisga-godaddy-sslstructure.png)
 
 6. Copy these files to your app location and you can use the following code, this is just an example , basically you will use the generated key from step 1, the crt and gd(bundle) as a ca:
 
