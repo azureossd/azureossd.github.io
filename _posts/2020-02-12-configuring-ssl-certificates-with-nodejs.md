@@ -19,7 +19,7 @@ In specific scenarios you are looking for creating a https server within nodejs 
 You will need at least a self signed certificate for dev/test into localhost or one signed by a 'Certificate Authority'.
 In this example we are going to use one is signed by CA bought from GoDaddy and setup everything inside a Linux VM.
 
-## First Step
+## Steps
 
 1. In your Linux VM ssh session, you can use openssl to create the csr (Certificate signing request) with the following command:
 
