@@ -62,7 +62,7 @@ server.get('/', function (req, res) {
 https.createServer(sslOptions, server).listen(port);
 ```
 
-**This should work at this point. Note: There are some conditions where nodejs requires to separate the gd bundle into different files as following:
+*This should work at this point. Note: There are some conditions where nodejs requires to separate the gd bundle into different files as following:
 
 ```bash
 var sslOptions = {
@@ -77,3 +77,5 @@ var sslOptions = {
 ```
 
 Additional Reference can be found [Here](https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTPS-server/)
+
+
