@@ -44,6 +44,7 @@ Now, in order to use a different version of IIS Node, the following steps can be
 
 1.	Download the specific Node version that is required from the URL given above and upload it to a custom folder under D:\home.
 2.	Create an “applicationHost.xdt” file under “D:/home/site” that can be used to add a module to the default Application Host Configuration for the App Service and add the path to the “iisnode.dll” for the custom IIS Node version that you want to use.
+```cli
 <?xml version="1.0"?>
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <system.webServer>
@@ -60,12 +61,15 @@ Now, in order to use a different version of IIS Node, the following steps can be
     </system.webServer>
   </location>
 </configuration>
+```
 
-3.	Now, we have registered another module – “iisnode2” which is pointing to the specific “iisnode.dll” which we want to use for serving the requests of our Node Application. Though, we also need to tell the Application to use this module which we would do by modifying the “handlers” section in the web.config
+3.	Now, we have registered another module – “iisnode2” which is pointing to the specific “iisnode.dll” which we want to use for serving the requests of our Node Application. Though, we also need to tell the Application to use this module which we would do by modifying the “handlers” section in the web.config.
+```cli
 <handlers>
 <!-- Indicates that the server.js file is a node.js site to be handled by the iisnode module -->
 <add name="iisnode" path="index.js" verb="*" modules="iisnode2"/>
 </handlers>
+```
 
 4.	Restart the Application and now, if you check the “modules” for the w3wp.exe process you would see the added iisnode.dll as well.
 
