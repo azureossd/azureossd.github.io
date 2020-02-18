@@ -13,8 +13,8 @@ categories:
     - IISNode
     - Configuration
 header:
-    teaser: "/assets/images/nodejslogo.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
-# If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
+    teaser: /assets/images/nodejslogo.png
+    
 date: 2020-02-18 23:05:00
 ---
 
