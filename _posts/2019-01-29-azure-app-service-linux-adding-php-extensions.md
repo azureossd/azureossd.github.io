@@ -99,7 +99,7 @@ Once the steps performed at [App Service Linux - Updating PHP settings](/2019/
 1.  Change directories to /home/site/ini.
 2.  Type the following.
 
-      echo "extensions=/home/site/ext/redis.so" >> extensions.ini
+      echo "extension=/home/site/ext/redis.so" >> extensions.ini
 
 ### Option #2 - Vi
 
