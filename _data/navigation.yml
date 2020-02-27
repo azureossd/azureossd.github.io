@@ -40,7 +40,7 @@ links:
       - title: "Java LTS for Azure"
         url: https://docs.microsoft.com/en-us/java/azure/jdk/?view=azure-java-stable
       - title: "Azure Spring Cloud"
-        url: https://docs.microsoft.com/en-us/java/azure/jdk/?view=azure-java-stable
+        url: https://docs.microsoft.com/en-us/azure/spring-cloud/
       - title: "Nodejs"
         url: https://nodejs.org/
       - title: "PHP"
