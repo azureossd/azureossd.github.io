@@ -21,10 +21,10 @@ XDebug is commonly used to help with debugging PHP applications.  To enable the 
 
 1. In the Azure Portal, add an App Setting with the following Key and Value.
 
-```text
-key = PHP_ZENDEXTENSIONS
-value = xdebug
-```
+    ```text
+    key = PHP_ZENDEXTENSIONS
+    value = xdebug
+    ```
 2. Save settings.
 
 ## Verify XDebug is Enabled
@@ -37,14 +37,14 @@ To verify that the extension is enabled, create a phpinfo page and check if XDeb
 2. Using SSH, go to "/home/site/wwwroot" directory.
 3. Enter the following.
 
-```bash
-echo "<?php phpinfo();" >> info.php
-```
+    ```bash
+    echo "<?php phpinfo();" >> info.php
+    ```
 4. You should now see that XDebug is enabled by going to https://\<sitename\>.azurewebsites.net/info.php
 
-![XDebug](/media/2020/01/xdebugext.png)
+    ![XDebug](/media/2020/01/xdebugext.png)
 
-3. **Remove the info.php page** once you're done using the page.
+5. **Remove the info.php page** once you're done using the page.
 
 ## Configure XDebug
 
@@ -65,9 +65,9 @@ By default, only "xdebug.remote_enable=on" is configured which isn't too helpful
     ``` 
 4. Add the following at the end of the file.
 
-```ini 
-xdebug.profiler_enable_trigger=on
- ```
+    ```ini 
+    xdebug.profiler_enable_trigger=on
+    ```
 
 ## Reload Apache
 
