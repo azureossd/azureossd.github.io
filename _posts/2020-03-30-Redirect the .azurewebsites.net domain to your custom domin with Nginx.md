@@ -1,5 +1,5 @@
 ---
-title: "Nginx: Redirect azurewebsites.net to your custom domain"
+title: "Redirect azurewebsites.net to your custom domain"
 author_name: "Kendrick Dubuisson"
 tags:
     - Linux
@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2020-03-30 12:00:00
 ---
 
-## How to update Nginx to redirect to your custom domain
+## How to update Nginx to redirect to your custom domain.
 
 App Services on Linux supports a number of built-in images to help fast track your development & If the runtime your application requires is not supported in the built-in images we also support building your own docker images & deploying this to App Services on Linux.
 
@@ -33,8 +33,8 @@ Depending on the path taken, Nginx may be the webserver used within the image & 
         | VIM Command | Description |
         |----|----|
         |i|Enter Insert Mode|
-        |<Esc> key |Enter command mode|
-        |<Esc> + :wq|Save and quit Vim|
+        |Esc key |Enter command mode|
+        |Esc + :wq|Save and quit Vim|
         |Esc + :q!|Force quit Vim discarding all changes|
         |[[ or gg|Move to the beginning of a file|
         |]] or G|Move to the end of a file|
@@ -60,7 +60,8 @@ Depending on the path taken, Nginx may be the webserver used within the image & 
    - ![Nginx location block with redirect logic](\media\2020\03\nginxdomain2.png)
 
 ## Saving Changes
-    5. After the changes have been made & the files are saved, use command below to restart the Nginx Service & load the new configuration so that your redirects should be working as expected. 
+   5. After the changes have been made & the files are saved, use command below to restart the Nginx Service & load the new configuration so that your redirects should be working as expected. 
+
     ```
     nginx -s reload
     ```
