@@ -1,5 +1,5 @@
 ---
-title: "Nginx: Redirect azurewebsites.net to your custom domain"
+title: "Redirect azurewebsites.net to your custom domain"
 author_name: "Kendrick Dubuisson"
 tags:
     - Linux
@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2020-03-30 12:00:00
 ---
 
-## How to update Nginx to redirect to your custom domain
+## How to update Nginx to redirect to your custom domain.
 
 App Services on Linux supports a number of built-in images to help fast track your development & If the runtime your application requires is not supported in the built-in images we also support building your own docker images & deploying this to App Services on Linux.
 
