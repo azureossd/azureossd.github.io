@@ -173,6 +173,6 @@ In this function we can further go down into the **goIntoSlowFunction** function
 Look at all those database insert calls. The majority of the time being used up here is on database executions.
 In this example, optimizing the database calls might help with performance in the application.
 
-## Conclustion
+## Conclusion
 
 Although all applications are different, viewing the XDEBUG profiles are typically the same. When it comes to slow requests, we want to see where most of the time in the request is being taken place. This will better help us understand what to look for and how to go about looking at these traces.
