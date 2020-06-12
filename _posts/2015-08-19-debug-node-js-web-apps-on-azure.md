@@ -35,12 +35,12 @@ If you are receiving a 500 error on your node.js webapp, Here are few things whi
 *   Select your web app in Azure portal([https://ms.portal.azure.com/](https://ms.portal.azure.com/)).
 *   Click on Diagnostic logs in webapp settings and Turn On Failed Request Tracing in Diagnostic Logs Tab.
 
- [![](/wp-content/uploads/2019/03/1362.failed_request.JPG)](/wp-content/uploads/2019/03/1362.failed_request.JPG)
+ [![](/media/2019/03/1362.failed_request.JPG)](/media/2019/03/1362.failed_request.JPG)
 
 *   After turning on Failed Request Tracing, Access your error page in browser. This would create new folders(W3SV****) containing failed request logs @ D:\\home\\LogFiles\ in kudu console([https://Your\_Website\_name.scm.azurewebsites.net/DebugConsole).](https://Your_Website_name.scm.azurewebsites.net/DebugConsole)
 *   Failed request logs would provide you more meaningful info about application error. Below is a sample screenshot
 
-[![](/wp-content/uploads/2019/03/5415.freb_logs.JPG)](/wp-content/uploads/2019/03/5415.freb_logs.JPG)
+[![](/media/2019/03/5415.freb_logs.JPG)](/media/2019/03/5415.freb_logs.JPG)
 
 **Useful Logs :**
 
@@ -48,7 +48,7 @@ To Troubleshoot above issue, below logs may help you
 
 \- Uncaught Exception: All uncaught exceptions are by default written to logging-errors.txt file in D:\\home\\LogFiles\\Application folder. You can view them using kudu console([https://Your\_Webapp\_name.scm.azurewebsites.net/DebugConsole).](https://Your_Website_name.scm.azurewebsites.net/DebugConsole)
 
- [![](/wp-content/uploads/2019/03/4721.unhandled_exception.JPG)](/wp-content/uploads/2019/03/4721.unhandled_exception.JPG)
+ [![](/media/2019/03/4721.unhandled_exception.JPG)](/media/2019/03/4721.unhandled_exception.JPG)
 
 \- stdout and stderror:
 
@@ -56,7 +56,7 @@ stdout : console.log("log content")  -  log content would be visible in  XXX-
 
 stderror: console.error("error content") - error content would be visible in XXX-stderr-xxx.txt file @ D:\\home\\LogFiles\\Application folder
 
-[![](/wp-content/uploads/2019/03/8304.stdout_stderror.JPG)](/wp-content/uploads/2019/03/8304.stdout_stderror.JPG)
+[![](/media/2019/03/8304.stdout_stderror.JPG)](/media/2019/03/8304.stdout_stderror.JPG)
 
 You can turn-on these stdout and stderr using below two ways
 
@@ -69,7 +69,7 @@ You can turn-on these stdout and stderr using below two ways
 *   Select your web app in Azure portal([https://ms.portal.azure.com/](https://ms.portal.azure.com/)).
 *   Click on Diagnostic logs in settings option and Turn On Application logging in Diagnostic Logs Tab.
 
-[![](/wp-content/uploads/2019/03/8233.application_log.JPG)](/wp-content/uploads/2019/03/8233.application_log.JPG)
+[![](/media/2019/03/8233.application_log.JPG)](/media/2019/03/8233.application_log.JPG)
 
 **Remote debug :**
 
@@ -85,7 +85,7 @@ You can turn-on these stdout and stderr using below two ways
 
 **3) Navigate to [http://yourapp.azurewebsites.net/server.js/debug](http://yourapp.azurewebsites.net/server.js/debug)_._****_This should bring up the familiar node-inspector interface for your application, which allows you to set breakpoints, inspect code, etc_**
 
-**[![](/wp-content/uploads/2019/03/5826.node_inspector.png)](/wp-content/uploads/2019/03/5826.node_inspector.png)**
+**[![](/media/2019/03/5826.node_inspector.png)](/media/2019/03/5826.node_inspector.png)**
 
 **For Advanced configuration on using custom debug url, please refer [http://tomasz.janczuk.org/2013/07/debug-/media-applications-in-windows.html](http://tomasz.janczuk.org/2013/07/debug-/media-applications-in-windows.html)**
 
@@ -97,7 +97,7 @@ You can turn-on these stdout and stderr using below two ways
 
 After making above change you would see a url in each response header as in below screen shot. It would provide us insights into state of node.js application.
 
-[![](/wp-content/uploads/2019/03/2548.debug_header.JPG)](/wp-content/uploads/2019/03/2548.debug_header.JPG)
+[![](/media/2019/03/2548.debug_header.JPG)](/media/2019/03/2548.debug_header.JPG)
 
 Sample Url : [http://bit.ly/NsU2nd#iisnode\_ver=0.2.19&node=node.exe&dns=RD000D3A7037D6&worker\_pid=6056&node\_pid=2556&worker\_mem\_ws=9676&worker\_mem\_pagefile=31928&node\_mem\_ws=29872&node\_mem\_pagefile=29372&app\_processes=1&process\_active\_req=1&app\_active\_req=1&worker\_total\_req=21&np\_retry=0&req\_time=221&hresult=0](http://bit.ly/NsU2nd#iisnode_ver=0.2.19&node=node.exe&dns=RD000D3A7037D6&worker_pid=6056&node_pid=2556&worker_mem_ws=9676&worker_mem_pagefile=31928&node_mem_ws=29872&node_mem_pagefile=29372&app_processes=1&process_active_req=1&app_active_req=1&worker_total_req=21&np_retry=0&req_time=221&hresult=0)
 
