@@ -37,7 +37,7 @@ Scenario:
 3. The most important thing to take into consideration once the WordPress application has been setup inside the sub folder, is to check WP_HOME and WP_SITEURL configurations.
 4. In case the above two configurations are in the database, it can be viewed in the wp_options table (please refer screenshot). The other way we can configure these settings is in the wp-config.php file.
 
-   ![wp_options Table](/media/2020/07/anfranci-wp_options.png)
+   ![wp_options Table](/media/2020/07/anfranci-wp_options.PNG)
 
     ```wp-config.php
     define('WP_HOME','http://anandwpcheck.azurewebsites.net/subfolder');
@@ -97,7 +97,7 @@ define('WP_SITEURL','http://subfolder.yourcustomdomain.com/');
 1. In addition to the above method of running two WordPress applications in nested folders, we can also configure a WordPress application outside wwwroot i.e., under D:/home/site/.
 2. Create a folder in the D:/home/site directory and add your WordPress application to this folder.
 3. In the Azure Portal, under the *Configuration* blade, there is a tab - 'Path Mappings', here we can add the folder created in step 1 as a virtual Directory. (refer image)
-   ![virtual directory](/media/2020/07/anfranci-virtdir.png)
+   ![virtual directory](/media/2020/07/anfranci-virtdir.PNG)
 
 4. On adding the virtual directory in the Configuration blade, we can access the WordPress app using the default domain in a similar way we did for the app in the sub folder - 'appservicename.azurewebsites.net/wpinvirtaldir'.
 5. For configuring a subdomain for the Application in the Virtual Directory, we just need to add another rule in our web.config in wwwroot.
