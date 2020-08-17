@@ -11,7 +11,7 @@ categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - How-To # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
-    teaser: "/assets/images/wordpress.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
+    teaser: "/assets/images/WordPress.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 toc: true
 toc_sticky: true
 date: 2020-08-07 16:00:00
