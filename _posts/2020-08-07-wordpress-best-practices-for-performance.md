@@ -28,11 +28,10 @@ When it comes to Performance, there are a few Best Practices recommended when us
 3. Compress Images
     - Store media and static files in Azure Blob Storage.
     - Compress Images using a plugin
-4. Reduce HTTP calls
-5. Use Azure CDN
-6. Turn off Pingback and Trackbacks
-7. Cache pages.
-8. Diagnose Theme and Plugin issues.
+4. Use Azure CDN
+5. Turn off Pingback and Trackbacks
+6. Cache pages.
+7. Diagnose Theme and Plugin issues.
 
 ### Optimizing Database
 
@@ -47,9 +46,11 @@ When it comes to DB optimization, there are many different plugins out there tha
 
 Once installed and activated, you will have a new entry in the panel menu. Navigate to **WP-Optimize > Database**.
 
+***NOTE***: It is always recommended to backup your database before optimizing or making changes to your database.
+
 Here you will have many different options to help optimize your database.
 
-For basic optimization, you can leave the default selectec options checked and hit **Run all selected optimizations**. Otherwise, you can pick and choose for the list available.
+For basic optimization, you can leave the default selected options checked and hit **Run all selected optimizations**. Otherwise, you can pick and choose for the list available.
 
 ![WP Optimize Options](/media/2020/08/wp-optimize-options.png)
 
@@ -149,6 +150,8 @@ Navigate to **Settings > WP Super Cache**. Click on the **CDN** section of the s
 
 Here we will populate our CDN settings from Azure CDN. If you do not have an Azure CDN, you can follow these steps to create one: [https://docs.microsoft.com/en-us/azure/cdn/cdn-create-new-endpoint](https://docs.microsoft.com/en-us/azure/cdn/cdn-create-new-endpoint).
 
+***NOTE***: Keep in mind that it may take some minutes to refresh your CDN content depending on your region.
+
 You will need your Azure CDN endpoint.
 
 ![WP Total Cache CDN Options](/media/2020/08/wp-super-cache-cdn.png)
@@ -180,14 +183,50 @@ If you do not have an Azure Cache for Redis, follow these steps to set one up: [
 
 Via SSH or FTP, open your wp-config.php and add the following defines:
 
-- define('WP_REDIS_HOST', 'yourRedisEndpoint.redis.cache.windows.net');
-- define('WP_REDIS_PASSWORD', 'yourAccessKey');
+- define('WP_REDIS_HOST', getenv('REDIS_HOST'));
+- define('WP_REDIS_PASSWORD', getenv('REDIS_PASSWORD'));
 
-Once these defines are added into your wp-config.php file, navigate to **Settings > Redis**. Then click on **Enable Object Cache**. You should get something like the following:
+Once these defines are added into your wp-config.php file, let's navigate to the App Service in the Azure Portal. We will be setting App Settings for your values:
+
+- **NAME | VALUE**
+- REDIS_HOST | yourRedisEndpoint.redis.cache.windows.net
+- REDIS_PASSWORD | yourAccessKey
+
+Using App Settings will better secure your Redis information as it will not be hardcoded inside your wp-config.php file.
+
+Once we have the defines in wp-config.php and the App Settings, navigate to **Settings > Redis**. Then click on **Enable Object Cache**. You should get something like the following:
 
 ![Redis Object Cache Connection](/media/2020/08/redis-object-cache-connection.png)
 
 If you run into any issues, take a look at the **Diagnostics** tab for more logging info.
+
+### Turn off Pingback and Trackbacks
+
+Pingbacks and trackbacks is used to notify other blogs that they have been linked to eachother. Today, this is mostly used by spammers to link to spam sites.
+
+To start turning these features off, navigate to your WordPress Admin Dashboard.
+
+Navigate to **Settings > Discussion**.
+
+![WP Pingbacks and Trackbacks](/media/2020/08/wp-ping-track.png)
+
+You are going to want to uncheck the following: *Allow link notifications from other blogs (pingbacks and trackbacks) on new posts*, then click **Save Changes**.
+
+This however will only turn these off on new posts. You will need to go back and do a bulk change for all your exisiting pages.
+
+Navigate to **Posts > All Posts**.
+
+If your blog has many posts you may need to update your pagination settings. To do this select **Screen Options**, enter a high number like *999* in **Number of items per page**, then click **Apply**.
+
+Once you have all your posts on one page, select all your posts and apply the **Edit** bulk action.
+
+![WP Pingbacks and Trackbacks Edit](/media/2020/08/wp-ping-track-edit.png)
+
+Here we are going to want to update the **Pings** setting to **Do not allow**. This will disable pingbacks and trackbacks from all your selected blog posts.
+
+![WP Pingbacks and Trackbacks Edit All](/media/2020/08/wp-ping-track-edit-all.png)
+
+Once that is complete, all pingbacks and trackbacks should now be disabled.
 
 ## Conclusion
 
