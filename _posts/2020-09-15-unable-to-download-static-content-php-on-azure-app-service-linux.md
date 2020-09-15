@@ -38,81 +38,83 @@ We are currently investigating why this is happening. But you can fix this with 
 
    1. Create a startup.sh in your local machine with below content. **Make sure you have Linux-style (LF) line endings in startup.sh file.**
 
-        ### startup.sh contents:
-        ```bash    
-        #!/bin/sh
-        echo "Executing custom startup script."
-        cp /home/site/wwwroot/apache2.conf /etc/apache2/apache2.conf
-        cd /home/site/wwwroot
-        export APACHE_PORT=8080
+       **startup.sh contents:**
+       ```bash    
+       #!/bin/sh
+       echo "Executing custom startup script."
+       cp /home/site/wwwroot/apache2.conf /etc/apache2/apache2.conf
+       cd /home/site/wwwroot
+       export APACHE_PORT=8080
 
-        if [  -n "$PHP_ORIGIN" ] && [ "$PHP_ORIGIN" = "php-fpm" ]; then
-        export NGINX_DOCUMENT_ROOT='/home/site/wwwroot'
-        service nginx start
-        else
-        export APACHE_DOCUMENT_ROOT='/home/site/wwwroot'
-        fi
+       if [  -n "$PHP_ORIGIN" ] && [ "$PHP_ORIGIN" = "php-fpm" ]; then
+       export NGINX_DOCUMENT_ROOT='/home/site/wwwroot'
+       service nginx start
+       else
+       export APACHE_DOCUMENT_ROOT='/home/site/wwwroot'
+       fi
 
-        apache2-foreground    
-        ```
+       apache2-foreground    
+       ```
 
-        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh).
+       Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh).
 
 
     2. Download apache2.conf file for your site. Modify it to disable mmap and sendfile. A snippet is below: 
-        ### apache configuration snippet:
-        ```
-        <Directory "${APACHE_DOCUMENT_ROOT}">
-    	    Options Indexes FollowSymLinks
-	        EnableMMAP Off
-    	    EnableSendfile Off
-	        AllowOverride None
-	        Require all granted
-        </Directory>
-        ```
-        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf).
+       
+       **apache configuration snippet:**
+       ```
+       <Directory "${APACHE_DOCUMENT_ROOT}">
+    	   Options Indexes FollowSymLinks
+	       EnableMMAP Off
+    	   EnableSendfile Off
+	       AllowOverride None
+	       Require all granted
+       </Directory>
+       ```
+       Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf).
 
     
     3. Upload startup.sh and apache2.conf. You can use your publishing credentials and curl to acheive this. 
 
-        ### Sample below for a site mysamplesite 
-        
-        #### If uploading from a Linux Machine:
-        ```
-        curl -X PUT --data-binary @startup.sh 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/starup.sh' -v
-        curl -X PUT --data-binary @apache2.conf 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/apache2.conf' -v
-        ```        
+       **Sample below for a site mysamplesite**
 
-        #### If uploading from a Windows Machine:
-        ````
-        curl -X PUT --data-binary @startup.sh https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/startup.sh -v
-        curl -X PUT --data-binary @apache2.conf https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/apache2.conf -v
-        ````
+       *If uploading from a Linux Machine:*
+       ```
+       curl -X PUT --data-binary @startup.sh 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/starup.sh' -v
+       curl -X PUT --data-binary @apache2.conf 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/apache2.conf' -v
+       ```        
 
-        ### If your site is in an ASE (App Service Environment), then use below samples. Assuming your site name is mysamplesite and ase domain name is contoso.com.
+       *If uploading from a Windows Machine:*
+       ```
+       curl -X PUT --data-binary @startup.sh https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/startup.sh -v
+       curl -X PUT --data-binary @apache2.conf https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/apache2.conf -v
+       ```
 
-        #### If uploading from a Linux Machine:
-        ```
-        curl -X PUT --data-binary @startup.sh 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/starup.sh' -v
-        curl -X PUT --data-binary @apache2.conf 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/apache2.conf' -v
-        ```
-        #### If uploading from a Windows Machine:
-        ```
-        curl -X PUT --data-binary @startup.sh https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/startup.sh -v
-        curl -X PUT --data-binary @apache2.conf https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/apache2.conf -v
-        ```
+       **If your site is in an ASE (App Service Environment), then use below samples. Assuming your site name is mysamplesite and ase domain name is contoso.com.**
+
+       *If uploading from a Linux Machine:*
+       ```
+       curl -X PUT --data-binary @startup.sh 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/starup.sh' -v
+       curl -X PUT --data-binary @apache2.conf 'https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/apache2.conf' -v
+       ```
+       *If uploading from a Windows Machine:*
+       ```
+       curl -X PUT --data-binary @startup.sh https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/startup.sh -v
+       curl -X PUT --data-binary @apache2.conf https://$mysamplesite:<publishing-password>@mysamplesite.scm.contoso.com/api/vfs/site/wwwroot/apache2.conf -v
+       ```
 
     4. Set up startup script using Azure Portal or az cli.
     
-        #### From Portal, Browse to the Site -> Configuration (under Settings) -> General Settings Tab -> Startup Command (under Stack settings)
+       **From Portal, Browse to the Site -> Configuration (under Settings) -> General Settings Tab -> Startup Command (under Stack settings)**
 
-        Set it to /home/site/wwwroot/startup.sh. 
-        ![Screenshot here:](/assets/images/capture.png)
+       Set it to /home/site/wwwroot/startup.sh. 
 
-        #### From az cli: 
-        ```cli
-        az webapp config set -g MyResourceGroup -n mysamplesite --startup-file /home/site/wwwroot/startup.sh
-        ```
+       ![Screenshot here:](/assets/images/capture.png)
+
+       **From az cli:**
+       ```cli
+       az webapp config set -g MyResourceGroup -n mysamplesite --startup-file /home/site/wwwroot/startup.sh
+       ```
     5. This will restart the site and change apache configuration that will enable file downloads > 2MB.
 
 
@@ -121,7 +123,7 @@ We are currently investigating why this is happening. But you can fix this with 
 
 - The fix will require changing your code that reads files. It involves moving away from reading files using fpassthru. 
 
-    #### A sample php code snippet is below: 
+    **A sample php code snippet is below:**
 
     ```php
     <?php
