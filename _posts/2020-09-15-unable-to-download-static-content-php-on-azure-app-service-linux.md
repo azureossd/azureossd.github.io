@@ -37,7 +37,6 @@ We are currently investigating why this is happening. But you can fix this with 
 2. Steps to update apache configuration using startup script:
 
    1. Create a startup.sh in your local machine with below content. **Make sure you have Linux-style (LF) line endings in startup.sh file.**
-        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh)
 
         ### startup.sh contents
         ```bash    
@@ -57,8 +56,10 @@ We are currently investigating why this is happening. But you can fix this with 
         apache2-foreground    
         ```
 
+        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh)
+
+
     2. Download apache2.conf file for your site. Modify it to disable mmap and sendfile. A snippet is below: 
-        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf)
         ### apache configuration snippet
         ```
         <Directory "${APACHE_DOCUMENT_ROOT}">
@@ -69,6 +70,8 @@ We are currently investigating why this is happening. But you can fix this with 
 	        Require all granted
         </Directory>
         ```
+        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf)
+
     
     3. Upload startup.sh and apache2.conf. You can use your publishing credentials and curl to acheive this. 
 
