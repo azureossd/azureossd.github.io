@@ -38,7 +38,7 @@ We are currently investigating why this is happening. But you can fix this with 
 
    1. Create a startup.sh in your local machine with below content. **Make sure you have Linux-style (LF) line endings in startup.sh file.**
 
-        ### startup.sh contents
+        ### startup.sh contents:
         ```bash    
         #!/bin/sh
         echo "Executing custom startup script."
@@ -56,11 +56,11 @@ We are currently investigating why this is happening. But you can fix this with 
         apache2-foreground    
         ```
 
-        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh)
+        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh).
 
 
     2. Download apache2.conf file for your site. Modify it to disable mmap and sendfile. A snippet is below: 
-        ### apache configuration snippet
+        ### apache configuration snippet:
         ```
         <Directory "${APACHE_DOCUMENT_ROOT}">
     	    Options Indexes FollowSymLinks
@@ -70,7 +70,7 @@ We are currently investigating why this is happening. But you can fix this with 
 	        Require all granted
         </Directory>
         ```
-        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf)
+        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf).
 
     
     3. Upload startup.sh and apache2.conf. You can use your publishing credentials and curl to acheive this. 
@@ -89,7 +89,7 @@ We are currently investigating why this is happening. But you can fix this with 
         curl -X PUT --data-binary @apache2.conf https://$mysamplesite:<publishing-password>@mysamplesite.scm.azurewebsites.net/api/vfs/site/wwwroot/apache2.conf -v
         ````
 
-        ### If your site is in an ASE (App Service Environment), then use below samples: Assuming your site name is mysamplesite and ase domain name is contoso.com
+        ### If your site is in an ASE (App Service Environment), then use below samples. Assuming your site name is mysamplesite and ase domain name is contoso.com.
 
         #### If uploading from a Linux Machine:
         ```
@@ -106,7 +106,8 @@ We are currently investigating why this is happening. But you can fix this with 
     
         #### From Portal, Browse to the Site -> Configuration (under Settings) -> General Settings Tab -> Startup Command (under Stack settings)
 
-        Set it to /home/site/wwwroot/startup.sh
+        Set it to /home/site/wwwroot/startup.sh. 
+        ![Screenshot here:](/assets/images/capture.png)
 
         #### From az cli: 
         ```cli
