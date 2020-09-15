@@ -24,7 +24,7 @@ With a recent update that was pushed out to App Service Linux, sites using our p
 
 This is happening at 2 levels. 
 1. If you are downloading the file directly using a link. 
-2. If you are downloading the file through php script.
+2. If you are downloading the file through php script using specific PHP APIs (e.g. fpassthru()).
 
 We are currently investigating why this is happening. But you can fix this with a bit of customization.
 
