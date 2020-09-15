@@ -18,9 +18,9 @@ toc_sticky: true
 date: 2020-09-15 13:00:00
 ---
 
-## Unable to download static content (>2MB) when using PHP 7.2/7.3/7.4 images on Azure App Service Linux
+## Unable to download static content (>2MB) when using PHP 7.2 or 7.3 or 7.4 images on Azure App Service Linux
 
-With a recent update that was pushed out to App Service Linux, sites using our php images have started seeing with downloading static files (jpg,png,zip,pdf etc) > 2MB.
+With a recent update that was pushed out to App Service Linux, sites using our php images have started seeing issues downloading static files (jpg,png,zip,pdf etc) > 2MB.
 
 This is happening at 2 levels. 
 1. If you are downloading the file directly using a link. 
@@ -37,6 +37,7 @@ We are currently investigating why this is happening. But you can fix this with 
 2. Steps to update apache configuration using startup script:
 
    1. Create a startup.sh in your local machine with below content. **Make sure you have Linux-style (LF) line endings in startup.sh file.**
+        ### Sample startup script is [here](https://appsvcphp.blob.core.windows.net/public/startup.sh)
 
         ### startup.sh contents
         ```bash    
@@ -57,7 +58,7 @@ We are currently investigating why this is happening. But you can fix this with 
         ```
 
     2. Download apache2.conf file for your site. Modify it to disable mmap and sendfile. A snippet is below: 
-
+        ### Sample apache2.conf file is [here](https://appsvcphp.blob.core.windows.net/public/apache2.conf)
         ### apache configuration snippet
         ```
         <Directory "${APACHE_DOCUMENT_ROOT}">
