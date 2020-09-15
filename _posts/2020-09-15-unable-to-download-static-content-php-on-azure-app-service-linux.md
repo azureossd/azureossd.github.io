@@ -3,12 +3,12 @@ title: "Unable to download static content when using php images on Azure App Ser
 author_name: "Srikanth Sureddy"
 tags:
     - Azure App Service Linux
-    - PHP 7.2/7.3
+    - PHP 7.2/7.3/7.4
     - Static Content
 categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - PHP # Python, Java, PHP, Nodejs, Ruby, .NET Core
-    - Any Framework based on PHP 7.2 or 7.3 Images # Django, Spring Boot, CodeIgnitor, ExpressJS
+    - Any Framework based on PHP 7.2 or 7.3 or 7.4 Images # Django, Spring Boot, CodeIgnitor, ExpressJS
     - How-To, Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: #"/assets/images/imagename.png"  There are multiple logos that can be used in "/assets/images" if you choose to add one.
@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2020-09-15 13:00:00
 ---
 
-## Unable to download static content (>2MB) when using PHP 7.2 or 7.3 images on Azure App Service Linux
+## Unable to download static content (>2MB) when using PHP 7.2/7.3/7.4 images on Azure App Service Linux
 
 With a recent update that was pushed out to App Service Linux, sites using our php images have started seeing with downloading static files (jpg,png,zip,pdf etc) > 2MB.
 
@@ -36,7 +36,7 @@ We are currently investigating why this is happening. But you can fix this with 
 
 2. Steps to update apache configuration using startup script:
 
-   1. Create a startup.sh in your local machine with below content. Make sure you have Linux-style (LF) line endings in startup.sh file.
+   1. Create a startup.sh in your local machine with below content. **Make sure you have Linux-style (LF) line endings in startup.sh file.**
 
         ### startup.sh contents
         ```bash    
@@ -108,14 +108,15 @@ We are currently investigating why this is happening. But you can fix this with 
         ```cli
         az webapp config set -g MyResourceGroup -n mysamplesite --startup-file /home/site/wwwroot/startup.sh
         ```
-    5. This will restart the site and change apache configuration that will enable file downloads > 2mb.
+    5. This will restart the site and change apache configuration that will enable file downloads > 2MB.
 
 
 
-## If you are downloading files using a php script
+## If you are downloading files through php script using specific PHP APIs (e.g. fpassthru())
 
-The fix will require changing your code that reads files. It involves moving away from reading files using fpassthru. 
-A sample php code snippet is below: 
+- The fix will require changing your code that reads files. It involves moving away from reading files using fpassthru. 
+
+    #### A sample php code snippet is below: 
 
     ```php
     <?php
@@ -159,3 +160,4 @@ A sample php code snippet is below:
     }
     ?>
     ```
+
