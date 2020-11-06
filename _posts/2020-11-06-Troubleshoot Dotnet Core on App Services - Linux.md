@@ -1,5 +1,5 @@
 ---
-title: "Troubleshoot Dotnet Core on App Services - Linux"
+title: "Troubleshoot .NET Core Applications on App Services - Linux"
 author_name: "Anand Anthony Francis"
 tags:
     - Dotnet Core
@@ -146,8 +146,9 @@ In App Services on Linux platform the Application Insights blade is greyed out i
 
 3. Enable Applicaiton Insights telemetry for the Applicaiton by adding the Service in ConfigureServices method of the Startup class (Startup.cs).
 
-Deploy the Application to App Services and monitor the Application Insights resource for telemetry. Features like Application Map, Failures, Performance can be leveraged to investigate performance and availability issues for the respective .NET Core App.
+Deploy the Application to App Services and monitor the Application Insights resource for telemetry. Features like Application Map, Failures, Performance can be leveraged to investigate performance and availability issues for the respective .NET Core App. Also refer the following link which have information around .NET Core with Application Insights.
 
+- [Application Insights with .NET Core Apps](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core)
 
 
 
