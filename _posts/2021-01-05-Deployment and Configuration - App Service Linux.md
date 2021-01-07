@@ -69,7 +69,7 @@ In this article we will discuss on how to configure and deploy application on Ap
 
 1. Prebuild and Post build.
 
-   We can use Appliation Setting <b>PRE_BUILD_COMMAND</b>/<b>POST_BUILD_COMMAND</b> or <b>PRE_BUILD_SCRIPT_PATH</b>/<b>POST_BUILD_SCRIPT_PATH</b> to perform certain opertions before and after the build happens.
+   We can use Appliation Setting <b>PRE_BUILD_COMMAND</b>/<b>POST_BUILD_COMMAND</b> or <b>PRE_BUILD_SCRIPT_PATH</b>/<b>POST_BUILD_SCRIPT_PATH</b> to perform certain opertions before and after the build happens. Below is an example where I am deleting all the contents of wwwroot folder before the deployment happens.
 
    ![PRE_BUILD_COMMAND](/media/2021/01/PRE_BUILD_COMMAND.png)
 
