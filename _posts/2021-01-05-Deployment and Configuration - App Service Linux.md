@@ -98,5 +98,3 @@ Deployment logs are available in <b>/home/site/deployments</b> folder. For every
 These can be downloaded using FTP or using the URL http://<<appName>>.scm.azurewebsites.net/api/zip/site/deployments
 
 <b>Note:</b> If the deployment is successful and application is failing to come up, enable <b>Application Logging</b> from App Service Logs blade from Azure Portal. Application Logs can be found in /home/LogFiles folder.
-
-
