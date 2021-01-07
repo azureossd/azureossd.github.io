@@ -16,6 +16,8 @@ toc_sticky: true
 date: 2021-01-05 00:00:00
 ---
 
+Configure and Deploy App Service on Linux.
+
 ## About
 
 In this article we will discuss on how to configure and deploy application on App Service Linux.
@@ -58,7 +60,7 @@ In this article we will discuss on how to configure and deploy application on Ap
     SCM_DO_BUILD_DURING_DEPLOYMENT=true
      ```
 
-    ![SCM_DO_BUILD_DURING_DEPLOYMENT](/media/2021/01/SCM_DO_BUILD_DURING_DEPLOYMENT.png)
+    ![SCM_DO_BUILD_DURING_DEPLOYMENT](/media/2021/01/SCM_DO_BUILD_DURING_DEPLOYMENT.PNG)
 
 2. Build is carried out by default with these methods of deployment.
 
@@ -71,7 +73,7 @@ In this article we will discuss on how to configure and deploy application on Ap
 
    We can use Appliation Setting <b>PRE_BUILD_COMMAND</b>/<b>POST_BUILD_COMMAND</b> or <b>PRE_BUILD_SCRIPT_PATH</b>/<b>POST_BUILD_SCRIPT_PATH</b> to perform certain opertions before and after the build happens. Below is an example where I am deleting all the contents of wwwroot folder before the deployment happens.
 
-   ![PRE_BUILD_COMMAND](/media/2021/01/PRE_BUILD_COMMAND.png)
+   ![PRE_BUILD_COMMAND](/media/2021/01/PRE_BUILD_COMMAND.PNG)
 
    If there are multiple commands, create a prebuild.sh file with those commands and upload it to <b>/home</b>. Sample content for prebuild.sh is shown below, then set <b>PRE_BUILD_SCRIPT_PATH</b> to <b>/home/prebuild.sh</b>
 
@@ -80,7 +82,7 @@ In this article we will discuss on how to configure and deploy application on Ap
     rm -rf /home/site/wwwroot/* 
     ```
 
-    ![PRE_BUILD_SCRIPT_PATH](/media/2021/01/PRE_BUILD_SCRIPT_PATH.png)
+    ![PRE_BUILD_SCRIPT_PATH](/media/2021/01/PRE_BUILD_SCRIPT_PATH.PNG)
 
     <b>Note:</b> App Service Deployment is handled by KUDU, hence pre- and post-build command are run on kudu container and not application container.
 
