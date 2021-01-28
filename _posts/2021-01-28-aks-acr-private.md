@@ -299,7 +299,11 @@ kubectl get service <deployment-or-app-name> --watch
 This exercise can be used for a proof of concept for whatever fits your need. For more references on some of the topics discussed, feel free to browse the following.
 
 [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
+
 [Introduction to Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes)
+
 [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro)
+
 [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 [Setting up Private Link to Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-private-link)
