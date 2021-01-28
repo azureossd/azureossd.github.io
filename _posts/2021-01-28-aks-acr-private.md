@@ -43,7 +43,7 @@ ACR Name        = ACRegistry
 
 Run the `login` command.
 
-```cmd
+```bash
 az login
 ```
 
@@ -53,13 +53,13 @@ If you have multiple Azure subscriptions you may will need to ensure the subscri
 
 To list your subscriptions use the `az account list` command:
 
-```cmd
+```batch
 az account list --output table
 ```
 
 Set your subscription with the `az account set` command:
 
-```cmd
+```batch
 az account set --subscription "Name or SubscriptionID"
 ```
 
@@ -68,7 +68,7 @@ az account set --subscription "Name or SubscriptionID"
 This will be the default resource group we will be using through this exercise.
 Be sure to rename anything within `< >` as these are just placeholders.
 
-```cmd
+```batch
 az group create --name <AKSACRResourceGroup> --location <eastus>
 ```
 
@@ -76,7 +76,7 @@ az group create --name <AKSACRResourceGroup> --location <eastus>
 
 Create an Azure Container Registry. If you already have an ACR created, be sure it is on the Premium tier as this will allow for Firewall settings.
 
-```cmd
+```batch
 az acr create --resource-group <AKSACRResourceGroup> --name <ACRegistry> --sku Premium
 ```
 
@@ -86,7 +86,7 @@ az acr create --resource-group <AKSACRResourceGroup> --name <ACRegistry> --sku P
 
 Once we have our ACR deployed, we will need to enable the admin user. This is required as it allows you to the Docker CLI to push your image to your registry.
 
-```cmd
+```batch
 az acr update --resource-group <AKSACRResourceGroup> --name <ACRegistry> --admin-enabled
 ```
 
@@ -94,25 +94,25 @@ az acr update --resource-group <AKSACRResourceGroup> --name <ACRegistry> --admin
 
 Login to your Azure Container Registry with the Docker CLI.
 
-```cmd
+```batch
 docker login <acregistry>.azurecr.io
 ```
 
 If you are building your application again be sure to tag your image with the appropriete registry and image name.
 
-```cmd
+```batch
 docker build -t <acregistry>.azurecr.io/<image-name>:<tag> <dockerfile location>
 ```
 
 If you already have a built image and just want to retag the image use the following command.
 
-```cmd
+```batch
 docker tag <old-image> <acregistry>.azurecr.io/<image-name>:<tag>
 ```
 
 Once you have your image, push the image to your container registry.
 
-```cmd
+```batch
 docker push <acregistry>.azurecr.io/<image-name>:<tag>
 ```
 
@@ -120,7 +120,7 @@ docker push <acregistry>.azurecr.io/<image-name>:<tag>
 
 Once you have pushed all your required images to your registry, we can now disable public access to your container registry.
 
-```cmd
+```batch
 az acr update --resource-group <AKSACRResourceGroup> --name <ACRegistry> --public-network-enabled false
 ```
 
@@ -128,25 +128,25 @@ az acr update --resource-group <AKSACRResourceGroup> --name <ACRegistry> --publi
 
 Since we are going to be using a Private Link with out AKS cluster, we will need to setup a virtual network for the services to communicate over. The following command will create a virtual network with the address prefix of `10.0.0.0/16` with a subnet named `default` that has a prefix of `10.0.0.0/22`.
 
-```cmd
+```batch
 az network vnet create --name <AKSACRVNet> --resource-group <AKSACRResourceGroup> --address-prefix 10.0.0.0/16 --subnet-name default --subnet-prefix 10.0.0.0/22
 ```
 
 Once the virtual network and subnet have been completed, we will need to query the resource id that we will use in our AKS deployment command.
 
-```cmd
+```batch
 az network vnet subnet show --name default --resource-group <AKSACRResourceGroup> --vnet-name <AKSACRVNet> --query id --output tsv
 ```
 
 We are now ready to create our Azure Kubernetes Service cluster. We will be using a preview extension as this allows us to change the name of the default node resource group.
 
-```cmd
+```batch
 az extension add --name aks-preview
 ```
 
 We will now create the Azure Kubernetes Service. The following command is using virtual machine size of `Standard_B2s`. You could find more sizes that fit your need [here](https://docs.microsoft.com/en-us/azure/virtual-machines/sizes). We are also using a cluster size of `4` nodes, service-cidr of `10.2.0.0/16` and DNS service IP of `10.2.0.10`. For more info on networking, [read here](https://docs.microsoft.com/en-us/azure/aks/concepts-network).
 
-```cmd
+```batch
 az aks create --resource-group <AKSACRResourceGroup> --name <AKSCluster> --node-resource-group <AKSClusterResources> --node-vm-size Standard_B2s --node-count 4 --network-plugin azure --vnet-subnet-id <AKSACRVNet-Subnet-ID> --dns-name-prefix <AKSACRCluster-dns> --attach-acr <ACRegistry> --service-cidr 10.2.0.0/16 --dns-service-ip 10.2.0.10 --docker-bridge-address 172.17.0.1/16
 ```
 
@@ -156,31 +156,31 @@ Now that the cluster has deployed successfully, we will start working on the Pri
 
 Update the subnet configuration to disable network polices such as security groups for the private endpoint.
 
-```cmd
+```batch
 az network vnet subnet update --name default --resource-group <AKSACRResourceGroup> --vnet-name <AKSACRVNet> --disable-private-endpoint-network-policies
 ```
 
 Create a private DNS zone for the private Azure Container Registry domain. In later steps we will populate the zone with records. The zone MUST be named `privatelink.azurecr.io`.
 
-```cmd
+```batch
 az network private-dns zone create --resource-group <AKSACRResourceGroup> --name "privatelink.azurecr.io"
 ```
 
 Associate the private zone to your virtual network.
 
-```cmd
+```batch
 az network private-dns link vnet create --resource-group <AKSACRResourceGroup> --zone-name "privatelink.azurecr.io" --name <ACRDNSLink> --virtual-network <AKSACRVNet> --registration-enabled false
 ```
 
 The following command with output the Azure Container Registry's ID which will be used in the following command.
 
-```cmd
+```batch
 az acr show --name <ACRegistry> --query id --output tsv
 ```
 
 We will now create the endpoint and service connection for the container registry resource.
 
-```cmd
+```batch
 az network private-endpoint create --name <ACRPrivateEndpoint> --resource-group <AKSACRResourceGroup> --vnet-name <AKSACRVNet> --subnet default --private-connection-resource-id <ACRegistry-ID> --group-id registry --connection-name <PEConnection>
 ```
 
@@ -188,39 +188,39 @@ We will need to query a few values in the next commands to used to create our DN
 
 NetworkInterfaceID
 
-```cmd
+```batch
 az network private-endpoint show --name <ACRPrivateEndpoint> --resource-group <AKSACRResourceGroup> --query networkInterfaces[0].id --output tsv
 ```
 
 Private_IP
 
-```cmd
+```batch
 az resource show --ids <NetworkInterfaceID> --api-version 2019-04-01 --query properties.ipConfigurations[1].properties.privateIPAddress --output tsv
 ```
 
 DataEndPoint_Private_IP
 
-```cmd
+```batch
 az resource show --ids <NetworkInterfaceID> --api-version 2019-04-01 --query properties.ipConfigurations[0].properties.privateIPAddress --output tsv
 ```
 
 Create the DNS A record sets for the registry endpoint and data endpoint.
 
-```cmd
+```batch
 az network private-dns record-set a create --name <ACRegistry> --zone-name privatelink.azurecr.io --resource-group <AKSACRResourceGroup>
 ```
 
-```cmd
+```batch
 az network private-dns record-set a create --name <<ACRegistry>.<Location>.data> --zone-name privatelink.azurecr.io --resource-group <AKSACRResourceGroup>
 ```
 
 Create the DNS A records for the registry endpoint and data endpoint.
 
-```cmd
+```batch
 az network private-dns record-set a add-record --record-set-name <ACRegistry> --zone-name privatelink.azurecr.io --resource-group <AKSACRResourceGroup> --ipv4-address <Private_IP>
 ```
 
-```cmd
+```batch
 az network private-dns record-set a add-record --record-set-name <<ACRegistry>.<Location>.data> --zone-name privatelink.azurecr.io --resource-group <AKSACRResourceGroup> --ipv4-address <DataEndPoint_Private_IP>
 ```
 
@@ -230,7 +230,7 @@ You now have a private Azure Container Registry that is accessible via your virt
 
 In order to deploy and run commands against the AKS cluster, we will need to gather the credentials to do so.
 
-```cmd
+```batch
 az aks get-credentials --resource-group <AKSACRResourceGroup> --name <AKSCluster>
 ```
 
@@ -284,13 +284,13 @@ spec:
 
 Once you have your yaml file ready, you can now apply it to your AKS Cluster.
 
-```cmd
+```batch
 kubectl apply -f <deployment.yaml>
 ```
 
 Once this has been applied, you can `watch` the service as it starts up. This will also give you the Public IP so you could access this deployment.
 
-```cmd
+```batch
 kubectl get service <deployment-or-app-name> --watch
 ```
 
