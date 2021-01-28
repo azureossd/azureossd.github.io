@@ -43,7 +43,7 @@ ACR Name        = ACRegistry
 
 Run the `login` command.
 
-```bash
+```batch
 az login
 ```
 
