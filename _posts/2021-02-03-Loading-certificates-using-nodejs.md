@@ -18,7 +18,7 @@ date: 2021-02-03 12:00:00
 
 ## About
 
-This how-to guide shows how to access private certificates/Public certificates in your node.js application running on Azure App Services.
+This how-to guide shows accessing private certificates/Public certificates in your node.js application running on Azure App Services.
 
 ## Loading certificates 
 
