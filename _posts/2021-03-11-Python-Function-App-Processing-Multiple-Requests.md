@@ -75,5 +75,5 @@ Although, a very important point to note here is that there can be some part of 
 
 The above points should help you in getting started with concurrent request execution for a Python Function App specifically. Ofcourse, as a developer you would need to play around with all these settings to understand what is best suited for your app.
 
-- [Improve throughput performance of Python apps in Azure Functions](https://docs.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-trace)
-- [App settings reference for Azure Functions](https://docs.microsoft.com/en-us/visualstudio/profiling/cpu-usage?view=vs-2019)
+- [Improve throughput performance of Python apps in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/python-scale-performance-reference)
+- [App settings reference for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings)
