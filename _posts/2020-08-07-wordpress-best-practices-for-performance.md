@@ -32,6 +32,7 @@ When it comes to Performance, there are a few Best Practices recommended when us
 5. Turn off Pingback and Trackbacks
 6. Cache pages.
 7. Diagnose Theme and Plugin issues.
+8. Disable wp-cron.php
 
 ### Optimizing Database
 
@@ -227,6 +228,20 @@ Here we are going to want to update the **Pings** setting to **Do not allow**. T
 ![WP Pingbacks and Trackbacks Edit All](/media/2020/08/wp-ping-track-edit-all.png)
 
 Once that is complete, all pingbacks and trackbacks should now be disabled.
+
+### Disable WP-Cron
+
+By default, `wp-cron.php` is executed on every page load, which on high traffic sites this can cause performance issues.
+
+You can however, disable this and run it on a schedule. Although this method requires for system cron to be configured, there are other tools that can be used to schedule an execution of `wp-cron.php`.
+
+[Use Azure Functions to run WordPress Cron](https://azure.github.io/AppService/2016/11/29/Use-Azure-Functions-to-run-WordPress-Cron.html)
+
+To disable `wp-cron.php` you will need to add the following in `wp-config.php` file.
+
+```php
+define('DISABLE_WP_CRON', true);
+```
 
 ## Conclusion
 
