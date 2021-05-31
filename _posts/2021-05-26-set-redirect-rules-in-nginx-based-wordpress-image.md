@@ -16,8 +16,8 @@ toc: true
 toc_sticky: true
 date: 2021-01-28 16:00:00
 ---
-In the Nginx based WordPress image, if you'd like to configure the redirect rules please follow the steps below -
 
+Our Wordpress on Linux image is Nginx based and if you'd like to configure the redirect rules, please follow the steps below
 
 1. Start and access your site in a browser and open a direct SSH session with your container.<br>
 Paste the following URL into your browser and replace &lt;app-name&gt; with your app name: <br>
