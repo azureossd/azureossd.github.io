@@ -23,7 +23,7 @@ Our Wordpress on Linux image is Nginx based and if you'd like to configure the r
 Paste the following URL into your browser and replace &lt;app-name&gt; with your app name: <br>
 https://&lt;app-name&gt;.scm.azurewebsites.net/webssh/host
 2. Run the following commands to update the Nginx configurations -<br>
-cd /etc/nginx/conf.d<br>
+cd /home/etc/nginx/conf.d<br>
 vi default.conf <br>
 Press I and switch to Insert mode 
 3. Based on your requirement update the redirect rule below in the “location” section<br> 
