@@ -32,7 +32,7 @@ location /global/ {<br>
             try_files $uri $uri/ /global/index.php?$args;}<br>
 The below syntax can be used in case if you'd like to redirect the URLs to the different domain.<br/>
 /global/about.php {<br/> 
-rewrite ^(.*)$ https://www.slkgroup.com/global/about redirect; <br>
+rewrite ^(.*)$ https://www.yourdomain.com/foo/bar redirect; <br>
 }<br/>
 ![nginx rules](/media/2021/05/nginx-redirect-rules.png)
 4. Save the new settings by pressing ESC and :wq!
