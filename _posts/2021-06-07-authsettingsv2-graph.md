@@ -35,7 +35,7 @@ az login
 Capture your existing v2 settings using the following command. Ensure you are updating **SUBSCRIPTION_ID**, **RESOURCE_GROUP**, and **WEBAPP_NAME** with your own site info.
 
 ```bash
-az rest --method GET --url "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Web/sites/{WEBAPP_NAME}/config/authsettingsv2/list?api-version=2020-06-01" > authsettings.json
+az rest --method GET --url '/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Web/sites/{WEBAPP_NAME}/config/authsettingsv2/list?api-version=2020-06-01' > authsettings.json
 ```
 
 ### Update the authsettings file
@@ -56,7 +56,7 @@ Add the following **loginParameters** into this section.
           "disableWWWAuthenticate": false,
           "loginParameters":[
             "response_type=code id_token",
-            "resource=00000003-0000-0000-c000-000000000000" //App ID for Microsoft Graph
+            "resource=00000003-0000-0000-c000-000000000000"
           ]
         }
       }
@@ -73,10 +73,18 @@ Add the following **loginParameters** into this section.
 Once the require changes have been made, you can now update them to the application.
 
 ```bash
-az rest --method PUT --url "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Web/sites/{WEBAPP_NAME}/config/authsettingsv2?api-version=2020-06-01" --body @./authsettings.json
+az rest --method PUT --url '/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP}/providers/Microsoft.Web/sites/{WEBAPP_NAME}/config/authsettingsv2?api-version=2020-06-01' --body @./authsettings.json
 ```
 
 Once changes have been updated, you should be able to now login to your App Service as well as Microsoft Graph with the same access token.
+
+### Check Issuer URL
+
+In the **Azure Portal**, navigate to your **App Service > Authentication** blade.
+
+Click the **Edit** link next to the **Microsoft** identity provider.
+
+If the **Issuer URL** contains `/v2.0` at the end of it, remove this and click **Save**.
 
 ## Testing via Curl
 
