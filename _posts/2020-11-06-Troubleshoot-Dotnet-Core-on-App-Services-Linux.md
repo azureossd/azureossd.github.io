@@ -7,9 +7,11 @@ tags:
     - Linux
     - Troubleshooting Dotnet Core on Linux
 categories:
-    - Azure App Service on Linux, Dotnet Core on Linux #Azure App Service on Windows, Function App, Azure VM, Azure SDK
+    - Azure App Service on Linux
+    - Dotnet Core on Linux #Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - .NET Core # Python, Java, PHP, Nodejs, Ruby, .NET Core
-    - How-To, Troubleshooting #How-To, Diagnostics, Configuration, Troubleshooting, Performance
+    - How-To
+    - Troubleshooting #How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/NETCoreIcon.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.

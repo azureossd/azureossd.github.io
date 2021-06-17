@@ -9,7 +9,9 @@ tags:
 categories:
     - Azure Function App #Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Python # Python, Java, PHP, Nodejs, Ruby, .NET Core
-    - How-To, Performance, Configuration #How-To, Diagnostics, Configuration, Troubleshooting, Performance
+    - How-To
+    - Performance
+    - Configuration #How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/pyfunction.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.

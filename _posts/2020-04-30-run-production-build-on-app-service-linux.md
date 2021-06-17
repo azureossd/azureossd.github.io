@@ -7,8 +7,11 @@ tags:
 categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Nodejs # Python, Java, PHP, Nodejs, Ruby, .NET Core
-    - ReactJS, Angular, ExpressJS # Django, Spring Boot, CodeIgnitor, ExpressJS
-    - How-To, Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
+    - ReactJS
+    - Angular
+    - ExpressJS # Django, Spring Boot, CodeIgnitor, ExpressJS
+    - How-To
+    - Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/nodelinux.png" 
 toc: true
