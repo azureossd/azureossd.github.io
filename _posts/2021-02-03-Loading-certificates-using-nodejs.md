@@ -5,7 +5,8 @@ tags:
     - node.js
     - certificate
 categories:
-    - Azure App Service, Azure function app # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
+    - Azure App Service
+    - Azure function app # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Node.js # Python, Java, PHP, Nodejs, Ruby, .NET Core
     - How-To # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:

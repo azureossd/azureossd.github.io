@@ -5,7 +5,9 @@ tags:
     - Java # Python, Java, PHP, Nodejs, Ruby, .NET Core
     - How-To # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 categories:
-    - Azure App Service on Linux, Azure App Service on Windows, Azure SDK
+    - Azure App Service on Linux
+    - Azure App Service on Windows
+    - Azure SDK
     - Java
     - Spring Boot
     - How-to

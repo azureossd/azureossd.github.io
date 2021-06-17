@@ -9,7 +9,8 @@ categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - PHP # Python, Java, PHP, Nodejs, Ruby, .NET Core
     - Any Framework based on PHP 7.2 or 7.3 or 7.4 Images # Django, Spring Boot, CodeIgnitor, ExpressJS
-    - How-To, Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
+    - How-To
+    - Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: #"/assets/images/imagename.png"  There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
