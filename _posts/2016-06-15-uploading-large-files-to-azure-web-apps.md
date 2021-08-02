@@ -29,7 +29,7 @@ Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a
 
 ## PHP Content Management Systems (WordPress, Joomla!, etc.)
 
-
+### App Service Windows
   WordPress and other CMS site have its own maximum file upload size which are based on the default PHP values. These can be modified by creating a “.user.ini” file. Azure Web Apps developers can create/modify this file by performing the following. 
 
 1. Go to your KUDU console ([https://\<sitename>.scm.azurewebsites.net/debugconsole](https://%3csitename%3e.scm.azurewebsites.net/debugconsole)) 
@@ -49,6 +49,10 @@ Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a
         post_max_size = 64M
 
 6. Restart your site.   
+
+### App Service Linux
+
+For App Service Linux, please see steps at [Updating PHP Settings](https://azureossd.github.io/2019/01/29/azure-app-service-linux-update-php-settings/)
 
 **NOTE:** For WordPress Multisite users, you will also need to modify the Network Admin Settings to increase the value. 
 
