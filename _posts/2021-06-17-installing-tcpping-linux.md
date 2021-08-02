@@ -4,6 +4,7 @@ author_name: "Toan Nguyen"
 tags:
     - Tcpping
     - Troubleshooting
+    - trace
 categories:
     - Azure App Service on Linux
     - Python
