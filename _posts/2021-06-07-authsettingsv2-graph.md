@@ -1,6 +1,6 @@
 ---
 title: "Accessing Microsoft Graph with App Service Auth V2"
-author_name: "Your Name"
+author_name: "Christopher Maldonado"
 tags:
     - easyauth
     - msgraph
