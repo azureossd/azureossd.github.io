@@ -16,7 +16,7 @@ toc_sticky: true
 date: 2021-09-21 12:00:00
 ---
 
-Steps to publishing your React Single Page Application into Azure App Service using Azure DevOps
+Steps to publish your React Single Page Application into Azure App Service using Azure DevOps
 
 ## Intro
 
@@ -26,13 +26,13 @@ This blog would help setting up your Azure DevOps project creation, repository m
 
 Let’s get started by creating a new React project using the CLI (command line interface), you can navigate to a directory of your choice and run the following command:
 
-npx create-react-app az-demo
+`npx create-react-app az-demo`
 
 ![create command](/media/2021/09/react_devops_demo1.png)
 
 Once the project gets created, let’s navigate to the project (cd az-demo) from the command line and open it with Visual Studio Code
 
-code .
+`code .`
 
 ![vscode command](/media/2021/09/react_devops_demo2.png)
 
@@ -42,7 +42,7 @@ The structure of your project should look something like this:
 
 There is a starter script inside our package.json which will build and run our application. From the command line run the following command:
 
-npm start
+`npm start`
 
 ![npm command](/media/2021/09/react_devops_demo4.png)
 
@@ -50,15 +50,15 @@ Open your browser and access the application via localhost:3000
 
 ![localhost](/media/2021/09/react_devops_demo5.png)
 
-Let’s open App.js file then modify Devops Demo like below and finally save to reload.
+Let’s open the App.js file and then modify Devops Demo like below and finally save to reload
 
 ![edit app.js](/media/2021/09/react_devops_demo6.png)
 
-Run npm start you would see that the application is running
+Run npm start and then you should see that the application is running
 
 ![app run](/media/2021/09/react_devops_demo7.png)
 
-re-load the browser and access the application again to view the modified content via localhost:3000
+Reload the browser and access the application again to view the modified content via localhost:3000
 
 ![localhost:3000](/media/2021/09/react_devops_demo8.png)
 
@@ -90,14 +90,15 @@ Click on the Agent job 1 and let’s add two npm tasks and one publish artifacts
 
 ## Create all the required tasks and then Save each task added to the pipeline
 
-a. npm install: this will install all the react library (dependencies) 
+a. npm install: This will install all the react library (dependencies) 
 
 We can leave the npm install task as it is
 
 ![npm install](/media/2021/09/react_devops_demo15.png)
 
-b.	npm run build: this will create a build folder that we will then use to publish our application.
-Let’s rename the second task to “npm build”. Under command choose “custom” from the dropdown and enter “run build” under “Command and argument”.
+b. npm run build: This will create a build folder that we will then use to publish our application.
+
+Let’s rename the second task to “npm build”. Under command choose “custom” from the dropdown and enter “run build” under “Command and arguments”.
 
 ![npm run build](/media/2021/09/react_devops_demo16.png)
 
@@ -105,7 +106,7 @@ c.	Publish Artifact: Click on the publish task
 
 ![publish artifact](/media/2021/09/react_devops_demo17.png)
 
-set the “Path to publish” to build, so that our release pipeline will have access to the generated build.
+Set the “Path to publish” to build, so that our release pipeline will have access to the generated build.
 
 ![path to publish](/media/2021/09/react_devops_demo18.png)
 
@@ -149,7 +150,7 @@ You can then give your stage a name. I’ve named mine as “Dev”.
 
 ![stage Dev](/media/2021/09/react_devops_demo28.png)
 
-Let’s click on “Add an artifact”. Then choose your pipeline and the artifact that was generated when you ran the pipeline. Once you select the artifact, click the “Add” button
+Let’s click on “Add an artifacts”. Then choose your pipeline and the artifact that was generated when you ran the pipeline. Once you select the artifact, click the “Add” button
 
 ![Add an artifact](/media/2021/09/react_devops_demo29.png)
 
@@ -161,9 +162,9 @@ Now, click on the “1 job, 1 task” option under your stage and select the “
 
 ![release](/media/2021/09/react_devops_demo31.png)
 
-Select the appropriate Azure Subscription, Resource Group, App Service Name, required startup commands.
+Select the appropriate Azure Subscription, Resource Group, App Service Name and required startup commands.
 
-![deploy task](/media/2021/09/react_devops_demo32.png)
+![deploy task](/media/2021/09/react_devops_demo32.jpg)
 
 You could also add any App Settings as required
 
@@ -185,21 +186,21 @@ Verify the results on your local browser
 
 To commit the changes to the repository, please run the below commands 
 
-git add .
+`git add .`
 
-git status
+`git status`
 
-git commit -m “second commit”
+`git commit -m “second commit”`
 
 ![git commit](/media/2021/09/react_devops_demo37.png)
 
-git push -u origin –all 
+ `git push -u origin –all` 
 
-the last command will push the source code to the repository 
+The last command will push the source code to the repository 
 
 ![git push](/media/2021/09/react_devops_demo38.png)
 
-Upon the push to the repository, we should see the CI/CD triggered
+Upon the push to the repository, we should see the CI/CD has triggered
 
 ![trigger CI/CD](/media/2021/09/react_devops_demo39.png)
 
