@@ -150,7 +150,7 @@ You can then give your stage a name. I’ve named mine as “Dev”.
 
 ![stage Dev](/media/2021/09/react_devops_demo28.png)
 
-Let’s click on “Add an artifacts”. Then choose your pipeline and the artifact that was generated when you ran the pipeline. Once you select the artifact, click the “Add” button
+Let’s click on “Add an artifact”. Then choose your pipeline and the artifact that was generated when you ran the pipeline. Once you select the artifact, click the “Add” button
 
 ![Add an artifact](/media/2021/09/react_devops_demo29.png)
 
