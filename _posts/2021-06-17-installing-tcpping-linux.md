@@ -143,3 +143,8 @@ See also: man tcptraceroute
 
 79eaacc1cd21:/usr/bin#
 ```
+
+### TIP
+
+In certain scenarios where the WebApp/container is unable to start or SSH is not configured in the Custom Docker Image, you could use tcpping tool from the Kudu Container. The Kudu container is used for build purpose and has tcpping pre-installed. You can SSH into the Kudu Container via: https://[webappname].scm.azurewebsites.net/newui/kududebug
+    
