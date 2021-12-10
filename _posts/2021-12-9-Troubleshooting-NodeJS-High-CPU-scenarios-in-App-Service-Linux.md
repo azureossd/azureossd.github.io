@@ -17,8 +17,6 @@ toc_sticky: true
 date: 2021-12-09 00:00:00
 ---
 
-# Troubleshooting Node.js High CPU scenarios in App Service Linux
-
 When dealing with High CPU scenarios in App Service Linux, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**.
 
 ## Built-in profilers
