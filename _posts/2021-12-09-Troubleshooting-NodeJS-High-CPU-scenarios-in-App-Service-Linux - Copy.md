@@ -21,7 +21,7 @@ When dealing with High CPU scenarios in App Service Linux, the best recommendati
 
 # Built-in profilers
 
-These profilers are part of the Node.js installation. Some of them are installed for specific node.js version. The advantage of these profilers is that you don't need to install any library or configure in your package.json, these profilers options uses the V8 Profiler (sample-based). A disadvantage is that you can't profile specific function or code, it will profile the entire application for that you might need to use [Third-Party](https://azureossd.github.io/2021/12/09/Troubleshooting-NodeJS-High-CPU-scenarios-in-App-Service-Linux/index.html#third-party-profilers) profilers.
+These profilers are part of the Node.js installation. Some of them are installed for specific node.js version. The advantage of these profilers is that you don't need to install any library or configure in your package.json, these profilers options uses the V8 Profiler (sample-based). A disadvantage is that you can't profile specific function or code, it will profile the entire application for that you might need to use [Third-Party profilers](https://azureossd.github.io/2021/12/09/Troubleshooting-NodeJS-High-CPU-scenarios-in-App-Service-Linux/index.html#third-party-profilers).
 
 In this category you will find the following profilers:
 
@@ -29,6 +29,7 @@ In this category you will find the following profilers:
 
 > [Node.js V8 Built-in Profiler](https://nodejs.org/api/cli.html#--cpu-prof). 
 > You can run a V8 CPU profiler on startup and writes the CPU profile to disk before exit.
+>
 > **Important**: This flag was incorporated in Node.js >=12 versions.
 
 To configure this profiler on App Service Linux you need the following steps:
