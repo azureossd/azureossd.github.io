@@ -150,8 +150,7 @@ To configure this profiler, you need the following steps:
 > **Important**: These modules are not considered as profilers but you can take heap snapshots and review for current heap size/spaces values.
 
 ### v8.getHeapSnapshot()
-> [Node.js API Documentation](https://nodejs.org/api/v8.html#v8getheapsnapshot)
-> Generates a snapshot of the current V8 heap and returns a Readable Stream that may be used to read the JSON serialized representation. 
+[Node.js API Documentation](https://nodejs.org/api/v8.html#v8getheapsnapshot). Generates a snapshot of the current V8 heap and returns a Readable Stream that may be used to read the JSON serialized representation. 
 
   - Print heap snapshot to the console:
     ```javascript
