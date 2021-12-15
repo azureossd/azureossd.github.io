@@ -11,13 +11,15 @@ categories:
     - Performance 
     - Troubleshooting
 header:
-    teaser: /assets/images/nodejslogo.png
+    teaser: /assets/images/nodelinux.png
 toc: true
 toc_sticky: true
-date: 2021-12-09 00:00:00
+date: 2021-12-09 12:00:00
 ---
 
-When dealing with High CPU scenarios in App Service Linux, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**.
+When dealing with High CPU scenarios in App Service Linux, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a Node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**.
+
+> You can find information for High Memory in this [reference](https://azureossd.github.io/2021/12/10/Troubleshooting-NodeJS-High-Memory-scenarios-in-App-Service-Linux/index.html).
 
 # Built-in profilers
 
@@ -235,7 +237,7 @@ To configure this profiler, you need the following steps:
           ```bash
             node --prof-process --preprocess -j isolate*.log > profile.v8log.json
           ```
-        b) Then you can use online version through [https://www.speedscope.app/](https://www.speedscope.app/)  or use offline method. For using Offline method, you need to install this library:
+        b) Then you can use [online version](https://www.speedscope.app/)  or use offline method installing:
 
           ```bash
             npm install -g speedscope
@@ -259,7 +261,7 @@ To configure this profiler, you need the following steps:
 
       - **[Flamebearer](https://github.com/mapbox/flamebearer)**
 
-        a) You can use the online version or offline method. To use the Offline method you need to install the library with:
+        a) You can use the [online version](https://mapbox.github.io/flamebearer/) or offline method install the library:
 
           ```bash
             npm install -g flamebearer
@@ -324,3 +326,12 @@ The advantage of using third-party profilers is for you to take control and just
       ![Nodejs cpuprof 2](/media/2021/12/nodejs-cpu-linux-profiler-1.2.png)
 
     You can find another example of this *v8-profiler-node8* library in our [Microsoft Tech Community's Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/investigate-node-js-high-cpu-issue-in-linux-app-service/ba-p/2719333).
+
+
+--- 
+
+- For troubleshooting *High Memory* scenarios in **Azure App Service Linux** follow the next [reference](https://azureossd.github.io/2021/12/10/Troubleshooting-NodeJS-High-Memory-scenarios-in-App-Service-Linux/index.html).
+
+- For troubleshooting *High Memory/CPU* in **Azure App Service Windows** follow the next references:
+  - [High CPU - Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html#high-cpu)
+  - [High Memory - Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html#high-memory)
