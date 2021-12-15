@@ -20,7 +20,7 @@ date: 2021-12-14 16:00:00
 ---
 
 When dealing with High CPU/Memory scenarios in Azure Functions, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a Node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**. You can find information for CPU and Memory in the sections below. 
-> These links are for Azure App Service Linux but applies for Azure Functions.
+> These links applies for Azure App Service Linux/Windows but you can implement those in Azure Functions adding App Settings or using adding third-party libraries in code.
 
 # Windows
 - [High CPU](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html#high-cpu)
@@ -51,9 +51,9 @@ When dealing with High CPU/Memory scenarios in Azure Functions, the best recomme
         }
     ```
 
-- If you are profiling in **Azure App Service Windows**, add this app setting `languageWorkers:node:arguments` with value `--cpu-prof`.
+- If you are profiling in **Azure App Service Windows**, add this app setting `languageWorkers:node:arguments` with any argument described in the references above as `--cpu-prof`.
 
-- If you are profiling in **Azure App Service Linux**, add this app setting `languageWorkers__node__arguments` with value `--cpu-prof-dir "/home/LogFiles/" --cpu-prof`.
+- If you are profiling in **Azure App Service Linux**, add this app setting `languageWorkers__node__arguments` with any argument described in the references above as `--cpu-prof-dir "/home/LogFiles/" --cpu-prof`.
 
 
 
