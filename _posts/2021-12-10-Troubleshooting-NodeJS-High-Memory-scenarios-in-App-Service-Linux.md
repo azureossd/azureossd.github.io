@@ -11,13 +11,15 @@ categories:
     - Performance 
     - Troubleshooting
 header:
-    teaser: /assets/images/nodejslogo.png
+    teaser: /assets/images/nodelinux.png
 toc: true
 toc_sticky: true
-date: 2021-12-09 00:00:00
+date: 2021-12-10 12:00:00
 ---
 
-When dealing with High Memory scenarios in App Service Linux, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**.
+When dealing with High Memory scenarios in App Service Linux, the best recommendation is to profile your app in your local environment, but sometimes it is hard to reproduce the issue specially not having the same request load or environment. For those scenarios you can configure a Node.js profiler for your application. These profilers can be divided in two main categories: **Built-in profilers** and **Third-Party Profilers**.
+
+> You can find information for High CPU in this [reference](https://azureossd.github.io/2021/12/09/Troubleshooting-NodeJS-High-CPU-scenarios-in-App-Service-Linux/index.html).
 
 # Built-in profilers
 
@@ -331,3 +333,12 @@ The advantage of using third-party profilers is for you to take control and just
           console.log("Heap dump written to", filename);
         });
     ```
+
+
+--- 
+
+- For troubleshooting *High CPU* scenarios in **Azure App Service Linux** follow the next [reference](https://azureossd.github.io/2021/12/09/Troubleshooting-NodeJS-High-CPU-scenarios-in-App-Service-Linux/index.html).
+
+- For troubleshooting *High Memory/CPU* in **Azure App Service Windows** follow the next references:
+  - [High CPU - Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html#high-cpu)
+  - [High Memory - Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html#high-memory)
