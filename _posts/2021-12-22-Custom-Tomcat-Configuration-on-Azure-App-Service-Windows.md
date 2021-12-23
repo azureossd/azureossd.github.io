@@ -11,7 +11,7 @@ categories:
     - How-To
     - Troubleshooting
 header:
-    teaser: "/assets/images/azurelinux.png" 
+    teaser: "/assets/images/Javalogo.png" 
 toc: true
 toc_sticky: true
 date: 2021-06-17 00:00:00
