@@ -5,19 +5,19 @@ tags:
     - Node.js
     - Nuxtjs
     - Deploy
+    - Azure DevOps
 categories:
     - Azure App Service on Linux
     - Nodejs
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/nodejslogo.png
+    teaser: /assets/images/nodelinux.png
 toc: true
 toc_sticky: true
 date: 2022-01-28 12:00:00
 ---
 
-# Nuxtjs Deployment with Azure DevOps Pipelines
 
 This section provides information for creating, configuring, and deploying a NuxtJS using Azure DevOps pipelines.  These steps can also be modified to be used with "Nextjs" as well.
 
