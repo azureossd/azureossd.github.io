@@ -13,7 +13,7 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/nodelinux.png
+    teaser: /assets/images/angular.png
 toc: true
 toc_sticky: true
 date: 2022-01-29 12:00:00
