@@ -245,7 +245,7 @@ Here is an example with recommendations:
             package: .
 ````
 
-After the deployment, then add a startup command startup command: `pm2 serve /home/site/wwwroot --spa --no-daemon`.
+After the deployment, then add a startup command startup command: **`pm2 serve /home/site/wwwroot --spa --no-daemon`**.
 
 ![AngularApp](/media/2022/01/angular-deployment-linux-10.png)
 
@@ -273,7 +273,7 @@ Here is an example in how to implement Azure Pipelines with App Service Linux.
             displayName: 'npm install, build'
         ```
 
-    - Just include the production folder in ` ArchiveFiles@2` task:
+    - Just include the production folder in `ArchiveFiles@2` task:
 
         ```yaml
             - task: ArchiveFiles@2
@@ -378,16 +378,16 @@ stages:
               startUpCommand: 'pm2 serve /home/site/wwwroot --spa --no-daemon'
 ```
 
-![Angular App](/media/2022/01/angular-deployment-linux-11.png)
+![AngularApp](/media/2022/01/angular-deployment-linux-11.png)
 
 
 # Troubleshooting
 
-### Container Doesn't Start
+## Container Doesn't Start
 
 - **Starting Development environment and Nodejs version is not matching the Angular CLI requirements**: (As this moment) The Angular CLI requires a minimum Node.js version of either v12.20, v14.15, or v16.10. In scenarios where you pick any Node.js version different from angular cli requirements  will fail since by default `npm start` will call `ng serve`.
 
-    ```bash
+    ```
     2022-02-04T22:44:25.862767811Z > projectname@0.0.0 start /home/site/wwwroot
     2022-02-04T22:44:25.862773611Z > ng serve
     2022-02-04T22:44:25.862778012Z 
@@ -424,7 +424,7 @@ followed:
     ```
     Oryx will pick this script and run `npm start`. This will trigger [ng serve](https://angular.io/cli/serve) starting the development mode and just binding it to localhost. 
 
-    ```bash
+    ```
     2022-02-04T23:15:23.757040404Z > projectname@0.0.0 start /home/site/wwwroot
     2022-02-04T23:15:23.757046905Z > ng serve
     2022-02-04T23:15:23.757052705Z 
@@ -450,13 +450,13 @@ followed:
     - **Resolution**:  Use PM2 to serve the production build `dist` folder already built in Oryx deployment process using this startup command **`pm2 serve /home/site/wwwroot/dist/projectname --no-daemon --spa`** to avoid running Angular development mode. You can find more details in this [reference](https://azureossd.github.io/2020/04/30/run-production-build-on-app-service-linux/index.html).
 
 
-### 404 Not Found
+## 404 Not Found
 
 Since Angular is a SPA (Single Page Application) you will probably get a 404 trying to browse the site in certain routes. You need to redirect all queries to the index.html.
 
-**Resolution**: Use a startup command passing `--spa` argument to PM2 as followed: `pm2 serve /home/site/wwwroot/dist/angularfrontend --no-daemon --spa` or using a [process file](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#serving-spa-redirect-all-to-indexhtml).
+**Resolution**: Use a startup command passing `--spa` argument to PM2 as followed: **`pm2 serve /home/site/wwwroot/dist/angularfrontend --no-daemon --spa`** or using a [process file](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#serving-spa-redirect-all-to-indexhtml).
 
-### GitHub Actions Timeout and slow deployments
+## GitHub Actions Timeout and slow deployments
 
 A normal deployment doesn't need to take more than 5-15 mins. If the workflow is taking more than that then you might need to review current implementation. Here is a list of things to check:
 
@@ -481,9 +481,6 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
             name: node-app
             path: dist/projectname/
         ```
-
-        Result: 
-
         ![Angular App](/media/2022/01/angular-deployment-linux-07.png)
 
     2. Or Zip/unzip your application files between jobs.
