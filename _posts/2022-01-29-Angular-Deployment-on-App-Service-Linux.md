@@ -25,27 +25,21 @@ This section provides information for creating, configuring, and deploying an An
 
 ## Create an Angular app
 
-1. Setup a local environment starting with Angular CLI.
+1. Setup a local environment starting with Angular CLI:
 
-    ```bash
-    npm i @angular/cli -g
-    ```
+    `npm i @angular/cli -g`
 
-2. Create a workspace and initial application.
-
-    ```bash
-    ng new <projectname>
-    ```
+2. Create a workspace and initial application with:
+    
+    `ng new projectname`
 
     It will prompt for selecting Angular Routing and stylesheet format.
 
 3. Once the installation is done, cd into projectname folder and then start the server using:
     
-    ```bash
-    ng serve
-    ```
+    `ng serve`
 
-    This will compile and build the site.
+    This will compile and build the site:
 
     ```
     ✔ Browser application bundle generation complete.
@@ -67,17 +61,16 @@ This section provides information for creating, configuring, and deploying an An
     √ Compiled successfully.
     ```
 
-4. Browse the site with `http://localhost:4200` to get the default page. You can define specific port using ng serve --host 0.0.0.0 --port 8080.
+4. Browse the site with `http://localhost:4200` to get the default page. You can define specific port using `ng serve --host 0.0.0.0 --port 8080`.
 
     ![Angular App](/media/2022/01/angular-deployment-linux-01.png)
 
 5. To create a production build you can run:
 
-    ```bash
-    ng build
-    ```
+    `ng build`
 
     This will create a `dist` folder with your project name and static files.
+
 
 # Deployment Options
 There are multiple deployment options in App Service Linux as Continuos Deployment(GitHub/GitHub Actions, Bitbucket, Azure Repos, External Git, Local Git), ZipDeploy, Run from Package, FTP, etc. 
@@ -198,63 +191,63 @@ For **Angular deployments** is recommended to modify the default template with t
 Here is an example with recommendations:
 
 ```yaml
-name: Build and deploy Node.js app to Azure Web App - sitename
+    name: Build and deploy Node.js app to Azure Web App - sitename
 
-on:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
+    on:
+    push:
+        branches:
+        - master
+    workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    jobs:
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+        steps:
+        - uses: actions/checkout@v2
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
+        - name: Set up Node.js version
+            uses: actions/setup-node@v1
+            with:
+            node-version: '14.x'
 
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
+        - name: npm install, build, and test
+            run: |
+            npm install
+            npm run build --if-present
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
-          name: node-app
-          path: dist/projectname/
+        - name: Upload artifact for deployment job
+            uses: actions/upload-artifact@v2
+            with:
+            name: node-app
+            path: dist/projectname/
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        environment:
+        name: 'Production'
+        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: node-app
+        steps:
+        - name: Download artifact from build job
+            uses: actions/download-artifact@v2
+            with:
+            name: node-app
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'sitename'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000 }}
-          package: .
+        - name: 'Deploy to Azure Web App'
+            id: deploy-to-webapp
+            uses: azure/webapps-deploy@v2
+            with:
+            app-name: 'sitename'
+            slot-name: 'Production'
+            publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000 }}
+            package: .
 ````
 
-After the deployment, then add a startup command startup command: `pm2 serve /home/site/wwwroot --spa --no-daemon`
+After the deployment, then add a startup command startup command: `pm2 serve /home/site/wwwroot --spa --no-daemon`.
 
-![Angular App](/media/2022/01/angular-deployment-linux-10.png)
+![AngularApp](/media/2022/01/angular-deployment-linux-10.png)
 
 
 ## Azure DevOps
@@ -271,25 +264,29 @@ Here is an example in how to implement Azure Pipelines with App Service Linux.
     - Node.js version should match the same of your web app.
     - Validate if you need `npm run test`, if not remove it.
     - Use `ng build` or `npm run build`. It has the same result. If you decide to use `ng build`, you need to install angular cli.
+
         ```yaml
-        - script: |
-            npm install -g @angular/cli
-            npm install
-            ng build --prod
-          displayName: 'npm install, build'
+            - script: |
+                npm install -g @angular/cli
+                npm install
+                ng build --prod
+            displayName: 'npm install, build'
         ```
+
     - Just include the production folder in ` ArchiveFiles@2` task:
+
         ```yaml
-        - task: ArchiveFiles@2
-        displayName: 'Archive files'
-        inputs:
-            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/projectname/'
-            includeRootFolder: false
-            archiveType: zip
-            archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-            replaceExistingArchive: true
+            - task: ArchiveFiles@2
+            displayName: 'Archive files'
+            inputs:
+                rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/projectname/'
+                includeRootFolder: false
+                archiveType: zip
+                archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+                replaceExistingArchive: true
         ```
     - Add a startup command in the `AzureWebApp@1` task and validate current nodejs version:
+
         ```yaml
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: sitename'
@@ -300,6 +297,7 @@ Here is an example in how to implement Azure Pipelines with App Service Linux.
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'pm2 serve /home/site/wwwroot --spa --no-daemon'
         ```
+
 7. Save and `run` the pipeline.
 
 Here is an example with recommendations:
@@ -382,10 +380,9 @@ stages:
 
 ![Angular App](/media/2022/01/angular-deployment-linux-11.png)
 
-----
-
 
 # Troubleshooting
+
 ### Container Doesn't Start
 
 - **Starting Development environment and Nodejs version is not matching the Angular CLI requirements**: (As this moment) The Angular CLI requires a minimum Node.js version of either v12.20, v14.15, or v16.10. In scenarios where you pick any Node.js version different from angular cli requirements  will fail since by default `npm start` will call `ng serve`.
@@ -454,11 +451,13 @@ followed:
 
 
 ### 404 Not Found
+
 Since Angular is a SPA (Single Page Application) you will probably get a 404 trying to browse the site in certain routes. You need to redirect all queries to the index.html.
 
 **Resolution**: Use a startup command passing `--spa` argument to PM2 as followed: `pm2 serve /home/site/wwwroot/dist/angularfrontend --no-daemon --spa` or using a [process file](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/#serving-spa-redirect-all-to-indexhtml).
 
 ### GitHub Actions Timeout and slow deployments
+
 A normal deployment doesn't need to take more than 5-15 mins. If the workflow is taking more than that then you might need to review current implementation. Here is a list of things to check:
 
 - **Running tests**. There are scenarios where GitHub Actions Agent takes more than 360 minutes (6 hrs) to give you a status and fails with: **`The job running on runner Hosted Agent has exceeded the maximum execution time of 360 minutes.`**. If you have `npm run test` defined in your `package.json`, this will be triggered by the workflow created from Azure App Service. The best option is to evaluate if this is required to be executed in the workflow since the majority of these tests will run Chrome browser, if this is not needed then it is better to remove it.
@@ -534,4 +533,5 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
         ```
 
         ![Angular App](/media/2022/01/angular-deployment-linux-071.png)
-------
+
+
