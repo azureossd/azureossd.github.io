@@ -19,7 +19,7 @@ toc_sticky: true
 date: 2022-01-29 12:00:00
 ---
 
-This section provides information for creating, configuring, and deploying an Angular on App Service Linux. 
+This section provides information for creating, configuring, and deploying an Angular app on App Service Linux. 
 
 # Local Development 
 
