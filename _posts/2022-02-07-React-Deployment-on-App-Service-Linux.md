@@ -19,7 +19,7 @@ toc_sticky: true
 date: 2022-02-07 12:00:00
 ---
 
-This section provides information for creating, configuring, and deploying an React on App Service Linux. 
+This section provides information for creating, configuring, and deploying a React app on App Service Linux. 
 
 # Local Development 
 
