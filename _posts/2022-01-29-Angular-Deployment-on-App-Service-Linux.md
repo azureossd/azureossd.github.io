@@ -19,7 +19,7 @@ toc_sticky: true
 date: 2022-01-29 12:00:00
 ---
 
-This section provides information for creating, configuring, and deploying an Angular on App Service Linux. 
+This section provides information for creating, configuring, and deploying an Angular app on App Service Linux. 
 
 # Local Development 
 
@@ -470,7 +470,7 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
     For those scenarios, you can implement the following alternatives:
 
-    1. Upload just production dist folder in `actions/upload-artifact@v2` action:
+    1. (*Recommended*) Upload just production dist folder in `actions/upload-artifact@v2` action:
 
         ```yaml
         # Depending on JavaScript framework you can use dist or build.
