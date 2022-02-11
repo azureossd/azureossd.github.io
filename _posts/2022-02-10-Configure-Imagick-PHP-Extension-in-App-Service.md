@@ -7,6 +7,7 @@ tags:
     - ImageMagick
 categories:
     - Azure App Service on Windows
+    - Azure App Service on Linux
     - Configuration
     - PHP Extensions 
 header:
@@ -27,13 +28,15 @@ Based on your **PHP version** and **Platform (32/64 bits)**, get the latest `php
 
 Since App Service Windows is running IIS as the webserver, you can select **NTS (Non-Thread Safe)**. This is used when PHP runs on Fast CGI binary.
 
- ![PHP extension](/media/2022/01/php-imagick-01.png)
+
 
 ## PHP 7.4
 
 For this scenario `php_imagick-3.7.0-7.4-nts-vc15-x64.zip` was selected. 
 
-1. Go to Kudu site browsing to https://yoursitnema.scm.azurewebsites.net/DebugConsole 
+ ![PHP extension](/media/2022/01/php-imagick-01.png)
+
+1. Go to Kudu site browsing to https://yoursitename.scm.azurewebsites.net/DebugConsole 
 2. Create a folder named `imagick` inside `c:\home\site` or `D:\home\site` (in any applicable scenario).
 3. Unzip the folder and copy all `CORE_RL_*` files to `c:\home\site\imagick\` or `d:\home\site\imagick\`
 
