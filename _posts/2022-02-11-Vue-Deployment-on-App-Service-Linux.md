@@ -321,7 +321,7 @@ Here is an example in how to implement Azure Pipelines with App Service Linux.
 6. Modify your current YAML and add the following points:
     - Node.js version should match the same of your web app.
     - Validate if you need `npm run test`, if not remove it.
-    - Use `ng build` or `npm run build`. It has the same result. If you decide to use `ng build`, you need to install angular cli.
+    - Use npm or yarn commands to install needed packages and build for production
 
         ```yaml
             - script: |
@@ -483,7 +483,7 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
 - **Running tests**. There are scenarios where GitHub Actions Agent takes more than 360 minutes (6 hrs) to give you a status and fails with: **`The job running on runner Hosted Agent has exceeded the maximum execution time of 360 minutes.`**. If you have `npm run test` defined in your `package.json`, this will be triggered by the workflow created from Azure App Service. The best option is to evaluate if this is required to be executed in the workflow since the majority of these tests will run Chrome browser, if this is not needed then it is better to remove it.
 
-    ![Angular App](/media/2022/01/angular-deployment-linux-05.png)
+    ![Vue App](/media/2022/01/angular-deployment-linux-05.png)
 
 - **Too many files and slow deployments**. Using `actions/upload-artifact@v2` to allow sharing data between jobs and store data once the a workflow is complete, it will depend on the JavaScript framework but Angular/React/Vue applications tends to have more than 10,000 files when it is compiled including the node_modules folder, when this condition is met, it will trigger the following warning `There are over 10,000 files in this artifact, consider creating an archive before upload to improve the upload performance.`, this will delay your deployment by several mins or hours. 
 
