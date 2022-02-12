@@ -182,7 +182,7 @@ You can find more details about these steps documented here:
  - [Set up a workflow manually](https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel#set-up-a-workflow-manually)
 
 
-For **Angular deployments** is recommended to modify the default template with the following changes:
+For **Angular deployments** is recommended to modify the default template with the following recommendations:
 
 1. Just upload the production build folder.
 2. Remove any npm run test if neccesary.
@@ -468,6 +468,10 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
     ![Angular App](/media/2022/01/angular-deployment-linux-06.png)
 
+    >From [Official Documentation](https://github.com/actions/toolkit/blob/master/packages/artifact/docs/additional-information.md#considerations): During upload, each file is uploaded concurrently in 4MB chunks using a separate HTTPS connection per file. Chunked uploads are used so that in the event of a failure, the upload can be retried. If there is an error, a retry will be attempted after a certain period of time.
+    >
+    >Uploading will be generally be faster if there are fewer files that are larger in size vs if there are lots of smaller files. Depending on the types and quantities of files being uploaded, it might be beneficial to separately compress and archive everything into a single archive (using something like tar or zip) before starting and artifact upload to speed things up. 
+    
     For those scenarios, you can implement the following alternatives:
 
     1. (*Recommended*) Upload just production dist folder in `actions/upload-artifact@v2` action:
@@ -512,12 +516,6 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
                 uses: actions/download-artifact@v2
                 with:
                 name: node-app
-                
-            - name: Unzip files for App Service Deploy
-                run: unzip angular.zip
-
-            - name: Delete zip file
-                run: rm angular.zip
 
             - name: 'Deploy to Azure Web App'
                 id: deploy-to-webapp
@@ -526,7 +524,10 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
                 app-name: 'sitename'
                 slot-name: 'Production'
                 publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000 }}
-                package: .
+                package: angular.zip
+
+            - name: Delete zip file
+            run: rm angular.zip
         ```
 
         ![Angular App](/media/2022/01/angular-deployment-linux-071.png)
