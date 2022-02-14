@@ -78,6 +78,8 @@ When using Local Git, you are using `App Service Build Service` also named as ([
 
 To setup this option and deploy a Vue application follow the below:
 > **NOTE**: Deploying from Local Git will likely prompt you for your Git credentials for the Azure Application. You can find it under the FTPS Credentials tab in the screenshot below. 
+
+
 1. Navigate to your Web App and select `Deployment Center` and then click on `Local Git` and then click on `Save`.
 
     ![Vue App](/media/2022/02/vue-deployment-linux-02.png)
