@@ -14,12 +14,30 @@ header:
 
 toc: true
 toc_sticky: true
-date: 2020-05-05 00:00:00
+date: 2020-05-05 12:00:00
 ---
 
 When it comes to slow performance on custom PHP applications running on Azure App Services, there will come a time where XDEBUG will need to be enabled to further assist the troubleshooting effort of an issue. Here is how we could do that.
 
-## Install PHP XDEBUG Extension
+## Enable XDEBUG (App Service on Linux)
+
+When using our blessed PHP images, XDebug can be enabled using an Application Setting via the Azure Portal.
+
+1. Go to the Azure Portal [https://portal.azure.com](https://portal.azure.com) and select your App Service Linux PHP application.
+2. Select **Configuration** option for your application.
+3. Under the Application Settings, click the "+ New Application Setting" option.
+4. Adding the following:
+
+        Name: PHP_ZENDEXTENSIONS
+        Value: xdebug
+
+5. Save the changes.
+
+**Note**: You will see that the container will be pulling from a different tag: `<PHP-Version>-apache-xdebug_<release-version>`
+
+## Install PHP XDEBUG Extension (Web App for Containers)
+
+Use the following sets to install XDebug if you are using a custom container for your application.
 
 ### Installing the extension
 
@@ -28,50 +46,56 @@ When it comes to slow performance on custom PHP applications running on Azure Ap
 3. In your SSH session, run the command
 `pear config-show`
 
-        root@3628690f5888:/home/site/wwwroot# pear config-show
-        Configuration (channel pear.php.net):
-        =====================================
-        Auto-discover new Channels     auto_discover    <not set>
-        Default Channel                default_channel  pear.php.net
-        HTTP Proxy Server Address      http_proxy       <not set>
-        PEAR server [DEPRECATED]       master_server    pear.php.net
-        Default Channel Mirror         preferred_mirror pear.php.net
-        Remote Configuration File      remote_config    <not set>
-        PEAR executables directory     bin_dir          /usr/local/bin
-        PEAR documentation directory   doc_dir          /usr/local/lib/php/doc
-        PHP extension directory        ext_dir          /usr/local/lib/php/extensions/no-debug-non-zts-20180731
-        PEAR directory                 php_dir          /usr/local/lib/php
-        PEAR Installer cache directory cache_dir        /tmp/pear/cache
-        PEAR configuration file        cfg_dir          /usr/local/lib/php/cfg
+```sh
+root@localhost:/home/site/wwwroot#> pear config-show
+Configuration (channel pear.php.net):
+=====================================
+Auto-discover new Channels     auto_discover    <not set>
+Default Channel                default_channel  pear.php.net
+HTTP Proxy Server Address      http_proxy       <not set>
+PEAR server [DEPRECATED]       master_server    pear.php.net
+Default Channel Mirror         preferred_mirror pear.php.net
+Remote Configuration File      remote_config    <not set>
+PEAR executables directory     bin_dir          /usr/local/bin
+PEAR documentation directory   doc_dir          /usr/local/lib/php/doc
+PHP extension directory        ext_dir          /usr/local/lib/php/extensions/no-debug-non-zts-20180731
+PEAR directory                 php_dir          /usr/local/lib/php
+PEAR Installer cache directory cache_dir        /tmp/pear/cache
+PEAR configuration file        cfg_dir          /usr/local/lib/php/cfg
+```
 
 4. In the output above, the path for **ext\_dir** is where your extension will be downloaded. Note the path for later use.
 5. To install an extension, perform the following.  I'll be installing the PHP extension "xdebug" in this example.
 
-        root@3628690f5888:/home/site/wwwroot# pecl install xdebug
-        downloading xdebug-2.9.5.tgz ...
-        Starting to download xdebug-2.9.5.tgz (243,710 bytes)
-        ..................................................done: 243,710 bytes
-        91 source files, building
-        running: phpize
-        Configuring for:
-        PHP Api Version:         20180731
-        Zend Module Api No:      20180731
-        Zend Extension Api No:   320180731
-        building in /tmp/pear/temp/pear-build-rootY28Lh2/xdebug-2.9.5
-        running: /tmp/pear/temp/xdebug/configure --with-php-config=/usr/local/bin/php-config
-        ……
-        Build process completed successfully
-        Installing '/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so'
-    install ok: channel://pecl.php.net/xdebug-2.9.5
-    configuration option "php_ini" is not set to php.ini location
-    You should add "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so" to php.ini
+```sh
+root@localhost:/home/site/wwwroot#> pecl install xdebug
+downloading xdebug-2.9.5.tgz ...
+Starting to download xdebug-2.9.5.tgz (243,710 bytes)
+..................................................done: 243,710 bytes
+91 source files, building
+running: phpize
+Configuring for:
+PHP Api Version:         20180731
+Zend Module Api No:      20180731
+Zend Extension Api No:   320180731
+building in /tmp/pear/temp/pear-build-rootY28Lh2/xdebug-2.9.5
+running: /tmp/pear/temp/xdebug/configure --with-php-config=/usr/local/bin/php-config
+……
+Build process completed successfully
+Installing '/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so'
+install ok: channel://pecl.php.net/xdebug-2.9.5
+configuration option "php_ini" is not set to php.ini location
+You should add "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so" to php.ini
+```
 
 6. You'll notice the path to the newly installed extension is also returned after it's installed and matches the **ext\_dir** path returned from the Pear configurations.
 
 7. Now that the extension is installed, we'll need to create an "ext" directory under "/home/site" and copy the extension to that directory so that the extension persists if the container is restarted.  Below are the commands to do this.
 
-          root@9a793907fbb0:/home# mkdir /home/site/ext
-          root@9a793907fbb0:/home# cp /usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so /home/site/ext
+```sh
+root@localhost:/home/site#> mkdir /home/site/ext
+root@localhost:/home/site#> cp /usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so /home/site/ext
+```
 
 **Note:**  The text may continue and look \*garbled.  Don't worry, keep entering the command.
 
@@ -79,35 +103,61 @@ When it comes to slow performance on custom PHP applications running on Azure Ap
 
 9. Once this is done, we can move to updating our PHP settings.
 
+## Update application settings
+
 ### Creating to INI file
 
 While we are still in the SSH of our KUDU site let's do the following.
 
 1. Go to your "/home/site" directory
 
-        root@3628690f5888:/home# cd /home/site
+```sh
+root@localhost:/home/site#> cd /home/site
+```
 
 2. Create a directory called "ini"
 
-        root@3628690f5888:/home/site# mkdir ini
+```sh
+root@localhost:/home/site#> mkdir ini
+```
 
 3. Change directories to "ini" directory
 
-        root@3628690f5888:/home/site# cd ini
+```sh
+root@localhost:/home/site#> cd ini
+```
 
 4. We'll need to create an "ini" file to add our settings to. Since we are looking to activate xdebug and set some settings, I'm using "xdebug.ini" for this example.
 
-        touch xdebug.ini
+```sh
+root@localhost:/home/site/ini#> touch xdebug.ini
+```
 
 5. Open the newly created file using VI or VIM.
 
-        vim xdebug.ini
+```sh
+root@localhost:/home/site/ini#> vim xdebug.ini
+```
 
 Press "i" on your keyboard to start editing and add the following:
 
-        zend_extension=/home/site/ext/xdebug.so
-        xdebug.profiler_enable_trigger=1
-        xdebug.profiler_output_dir=/home/LogFiles
+**For XDebug v2.x**
+
+```ini
+# Include this line if your are using custom container
+zend_extension=/home/site/ext/xdebug.so
+
+xdebug.profiler_enable_trigger=1
+xdebug.profiler_output_dir=/home/LogFiles
+```
+
+**For XDebug v3.x**
+
+```ini
+xdebug.output_dir=/home/LogFiles
+xdebug.mode=profile
+xdebug.start_with_request=trigger
+```
 
 Press "Esc", then ":wq!" and enter to save.
 
