@@ -13,10 +13,10 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/vuejs.png
+    teaser: /assets/images/flask-logo.png
 toc: true
 toc_sticky: true
-date: 2022-02-16 12:00:00
+date: 2022-02-17 12:00:00
 ---
 
 This section provides information for creating, configuring, and deploying a Flask application on App Service Linux. 
@@ -98,10 +98,10 @@ To setup this option and deploy a Flask application follow the below:
 
 1. Navigate to your Web App and select `Deployment Center` and then click on `Local Git` and then click on `Save`.
 
-    ![Vue App](/media/2022/02/flask-deployment-linux-03.png)
+    ![Flask App](/media/2022/02/flask-deployment-linux-03.png)
 2. Copy the remote git repository from Azure Portal.
 
-    ![Vue App](/media/2022/02/flask-deployment-linux-04.png)
+    ![Flask App](/media/2022/02/flask-deployment-linux-04.png)
 3. In your local terminal run the following commands in order:
     ```bash
     git add .
@@ -498,7 +498,7 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
 - **Too many files and slow deployments**. Using `actions/upload-artifact@v2` you can share files between jobs, such as `build` and `deploy`. Sometime it will trigger the following warning `There are over 10,000 files in this artifact, consider creating an archive before upload to improve the upload performance.` - if you have a large project and/or many dependencies. This may cause your deployment to take an extended amount of time. To overcome this you zip your content between jobs to improve deployment time. 
 
-    ![Vue App](/media/2022/02/vue-deployment-linux-09.png)
+    ![Flask App](/media/2022/02/vue-deployment-linux-09.png)
 
     For those scenarios, you can implement the following:
 
