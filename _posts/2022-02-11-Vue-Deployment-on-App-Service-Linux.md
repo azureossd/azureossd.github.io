@@ -572,4 +572,44 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
         ![Vue App](/media/2022/02/vue-deployment-linux-11.png)
 
+## Environment variables are missing after deployment
+If the application does not have access to the environment variables during build time **or** if the environment variable is not prefixed with `VUE_APP_` they will appear as `undefined`.
+
+**Resolution**:
+
+- **Syntax**: Ensure the variable is prefixed with `VUE_APP_`. Such as `VUE_APP_MY_ENV_VAR` and not just `MY_ENV_VAR`. The variable can be accessed using `process.env.VUE_APP_MY_ENV_VAR`. The `VUE_APP_` prefix is specific to vue.
+- **Oryx Build**: If building the application with Oryx make sure to add the AppSetting for the environment variable **first**. This will make sure the environment variable is available during the build. If the application is deployed first without adding the AppSetting, add the AppSetting and then redeploy the application.
+- **GitHub Actions**: All the build process will happen on the GitHub Agent, so the environment variables will need to be added in the workflow.
+
+    You can add custom environment variables in the first level before jobs:
+
+    ```
+    on:
+      push:
+        branches:
+          - main
+      workflow_dispatch:
+
+    env:
+      VUE_APP_MY_TEST_VAR : ${{ secrets.VUE_APP_MY_TEST_VAR }}
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+    ```
+
+    And then add these secrets in GitHub. *This can be done going to your project -> Settings -> Secrets -> Actions*.
+
+    **Note**: Since the build is done on the GitHub agent with the variables scoped to the Agent you do not need to re-add those AppSettings in the Azure Web App Portal.
+
+- **Azure DevOps**: Since the build will happen on the DevOps Agent, so the environment variables will need to be added in the pipeline. 
+
+    *This can be done by going to Pipeline -> Click on the Pipeline again -> Edit -> Variables*. 
+
+    After adding the needed environment variables in the pipeline trigger a build. The variables will now be replaced during the build. 
+    
+    **Note**: Since the build is done on the DevOps agent with the variables scoped to the Agent you do not need to re-add those AppSettings in the Azure Web App Portal.
+
+> **Note**: For more information on how Vue uses and expects environment variables click [here](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables).
+
 
