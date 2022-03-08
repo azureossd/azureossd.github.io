@@ -582,7 +582,7 @@ stages:
         python -m pip install --upgrade pip
         pip install setup
         pip install -r requirements.txt
-        python manage.py collectstatic
+        python manage.py collectstatic --no-input
         python manage.py makemigrations --empty polls
         python manage.py migrate polls
       workingDirectory: $(projectRoot)
