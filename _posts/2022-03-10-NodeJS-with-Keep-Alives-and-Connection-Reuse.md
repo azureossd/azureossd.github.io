@@ -1,5 +1,5 @@
 ---
-title: "NodeJS with Keep Alives and Connection Reuse"
+title: "NodeJS with Keep-Alives and Connection Reuse"
 author_name: "Anthony Salemo"
 tags:
     - Nodejs
@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2022-03-10 12:00:00
 ---
 
-This post will be an overview of how to implement connection reuse on Azure with Node.js. By default, Node.js doesn't reuse connections - and in terms of Azure and the way SNAT (Source Network Address Translation) works, we can effectively exhaust all of our available SNAT connections quickly if they're not being reused.
+This post will be an overview of how to implement connection reuse on Azure with Node.js. By default, Node.js doesn't reuse connections - and in terms of Azure and the way SNAT (Source Network Address Translation) works, we can effectively exhaust all of our available SNAT ports quickly if they're not being reused.
 
 # SNAT overview and recap
 We won't deep dive into SNAT itself as this is covered in multiple areas, such as:
@@ -27,7 +27,7 @@ We won't deep dive into SNAT itself as this is covered in multiple areas, such a
  - [Azure SNAT](https://docs.microsoft.com/en-us/archive/blogs/mast/azure-snat)
 
 
-But in short, there are 128 (or 160, depending on the algorithm) SNAT ports allocated **per instance** (Instance, meaning the underlying Virtual Machine(s)). Multiple applications on one instance would share these ports. Per TCP flow, one port is consumed. These ports are allocated at a 'best effort' basis - meaning there is also a potential that some number of ports over 160 could be allocated. These numbers cannot be changed, as this is generally fixed at the Stamp level.
+But in short, there are 128 (or 160, depending on the algorithm) SNAT ports allocated **per instance** (Instance, meaning the underlying Virtual Machine(s)). Multiple applications on one instance would share these ports. Per TCP flow, one port is consumed. There is a possibility more than 128 ports can be allocated - however this is on a 'best effort' basis and the recommended usage would be to use at most 128 SNAT ports since this is guaranteed. These numbers cannot be changed, as this is generally fixed at the Stamp level.
 
 # SNAT port exhaustion 
 
