@@ -113,9 +113,9 @@ Here is an example for removing policies for ghostscript:
 
 - **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy <RandomPolicy>. 
 
-    ```log
+  ```log
     PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in /home/site/wwwroot/index.php on line 11
-    ```
+  ```
 
   **Resolution**: Add a custom startup script to modify existing policy with read|write or removing the policy, check steps above.
 
