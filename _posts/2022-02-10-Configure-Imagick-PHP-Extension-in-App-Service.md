@@ -90,6 +90,39 @@ PHP images are [pre-build](https://github.com/microsoft/Oryx/blob/main/doc/runti
 
 >**Note**: Currently imagick is having compilation issues with PHP 8.x, recommend to use PHP 7.4 for now, for more information check this [reference](https://github.com/Imagick/imagick/issues/331).
  
+## ImageMagick policies
+ImageMagick best practices strongly encourages you to configure a security policy that suits your local environment. You can read more about these policies [here](https://imagemagick.org/script/security-policy.php).
 
+Policies can be found on `/etc/ImageMagick-6/policy.xml`
 
+If you desire to modify these policies on Azure App Service, the best option to accomplish this will be to use a startup script.
 
+Here is an example for removing policies for ghostscript:
+
+```bash
+  #!/bin/bash
+  #Removing ghostscript policies
+  sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml 
+  apt-get upgrade && apt-get install -y ghostscript
+  apache2-foreground 
+```
+
+## Troubleshooting
+
+### ghostscript
+
+- **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy <RandomPolicy>. 
+
+    ```log
+    PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in /home/site/wwwroot/index.php on line 11
+  ```
+
+  **Resolution**: Add a custom startup script to modify existing policy with read|write or removing the policy, check steps above.
+
+- **Scenario**: PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' 
+
+  ```log
+    PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=pngalpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r72x72' -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-60nJzxfIQqHrXx%d' '-f/tmp/magick-60rZK5yQMK31K7' '-f/tmp/magick-60_Dsu584RGIyH'' (1) @ error/pdf.c/InvokePDFDelegate/291 
+  ```
+
+    **Resolution**: Add a custom startup script to modify existing policy with `apt-get upgrade && apt-get install -y ghostscript`, check steps above.
