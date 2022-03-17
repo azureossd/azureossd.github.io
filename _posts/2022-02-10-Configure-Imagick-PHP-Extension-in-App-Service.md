@@ -111,18 +111,20 @@ Here is an example for removing policies for ghostscript:
 
 ### ghostscript
 
-- **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy <RandomPolicy>. 
+- **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy. 
 
   ```log
-    PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in /home/site/wwwroot/index.php on line 11
+    PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in
+     /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in
+     /home/site/wwwroot/index.php on line 11
   ```
 
-  **Resolution**: Add a custom startup script to modify existing policy with read|write or removing the policy, check steps above.
+  **Resolution**: Add a custom startup script to modify existing policy with read and/or write or removing the policy, check steps above.
 
-- **Scenario**: PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' 
+- **Scenario**: PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand 'gs' 
 
   ```log
     PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=pngalpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r72x72' -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-60nJzxfIQqHrXx%d' '-f/tmp/magick-60rZK5yQMK31K7' '-f/tmp/magick-60_Dsu584RGIyH'' (1) @ error/pdf.c/InvokePDFDelegate/291 
   ```
 
-    **Resolution**: Add a custom startup script to modify existing policy with `apt-get upgrade && apt-get install -y ghostscript`, check steps above.
+  **Resolution**: Add a custom startup script to modify existing policy with `apt-get upgrade && apt-get install -y ghostscript`, check steps above.
