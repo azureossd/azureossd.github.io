@@ -26,7 +26,7 @@ When using PHPMyAdmin via SiteExtension or with MySQL in-app on Azure Web Apps, 
 
 
         KEY = PHP_INI_SCAN_DIR
-        VALUE = D:\home\site\ini
+        VALUE = C:\home\site\ini
 
 
 ![php\_ini\_scan\_dir](/media/2017/03/php_ini_scan_dir.png)
