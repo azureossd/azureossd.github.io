@@ -17,19 +17,19 @@ toc_sticky: true
 date: 2021-06-17 00:00:00
 ---
 
-App Service Windows includes multiple versions of Tomat for your choosing & uses IIS to quickly update your process path once any new runtime version is pinned. Still, there are use cases where you may be looking to tweak the server configuration or completely modify the existing Tomcat installation that's in use. 
+App Service Windows includes multiple versions of Tomcat for your choosing & uses IIS to quickly update your process path once any new runtime version is pinned. Still, there are use cases where you may be looking to tweak the server configuration or completely modify the existing Tomcat installation that's in use. 
 
-The platform maintains all avaliable runtimes within the read-only system drive. Therefore, the Web App can access many standard Windows locations like %ProgramFiles%, but the Web App can never modify these files.
+The platform maintains all avaliable runtimes within the read-only system drive therefore, the Web App can't modify any installations in the `C:\Program Files\`.
 
 To work around this with Tomcat, we'll walk through modifying the IIS configuration with a web.config to either pass arguments to the current process path or update the path entirely.
 
-References:
-
-Azure File System Restrictions: https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox#file-system-restrictionsconsiderations
-
-Understanding the Azure App Service File System: https://github.com/projectkudu/kudu/wiki/Understanding-the-Azure-App-Service-file-system
-
-HttpPlatformHandler Configuration: https://docs.microsoft.com/en-us/iis/extensions/httpplatformhandler/httpplatformhandler-configuration-reference
+**See below to learn more about the App Service File System or the HttpPlatformHandler:**
+>
+> **Azure File System Restrictions:** https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox#file-system-restrictionsconsiderations
+>
+> **Understanding the Azure App Service File System:** https://github.com/projectkudu/kudu/wiki/Understanding-the-Azure-App-Service-file-system
+>
+> **HttpPlatformHandler Configuration:** https://docs.microsoft.com/en-us/iis/extensions/httpplatformhandler/httpplatformhandler-configuration-reference
 
 
 
@@ -43,10 +43,14 @@ HttpPlatformHandler Configuration: https://docs.microsoft.com/en-us/iis/extensio
 
 
 ## Custom server.xml Configuration
+This method allows us to pass our custom configuration while still using the existing Tomcat Installation. 
 
-1. Navigate to the site directory from the Kudu site (i.e https://\<sitename>\.scm.azurewebsites.net/webssh/host) 
-2. Copy the read-only server.xml from the system drive to the site directory. *Use your correct tomcat version*
+1. Navigate to the site directory from the Kudu site 
+       https://<sitename>.scm.azurewebsites.net/webssh/host
+2. Copy the read-only server.xml from the system drive to the site directory.
+   
     ```	
+    //*Use your identifed tomcat version*
     copy "C:\Program Files\apache-tomcat-X.X.XX\conf\server.xml" \home\site
     ```
 3. Create a `web.config` file inside `C:\home\site\wwwroot` with the configuration below.
@@ -80,10 +84,11 @@ HttpPlatformHandler Configuration: https://docs.microsoft.com/en-us/iis/extensio
 
 
 ## Custom Tomcat Configuration
+This method allows for complete control over the Tomcat installation. 
 >⚠️ Notice - When using a custom tomcat version, this is no longer maintained nor in sync with the App Service Platform if changes occur. (Configuration/Path-Mapping/Env Variables) 
 
 1. Navigate to the System drive for your tomcat directory from the Kudu site (i.e https://\<sitename>\.scm.azurewebsites.net/webssh/host) 
-[image](blob:https://teams.microsoft.com/33233024-5156-4528-a858-260f1025e80a)
+
 2. Download this from the system drive to your local machine.
     >  ![Download](/media/2021/12/tomcatDL.png )
 3. Using Kudu, create a tomcat directory `C:\home\site\tomcat` Drag & drop the tomcat.zip to upload & unzip. (C:\home\site\tomcat)
@@ -109,5 +114,4 @@ HttpPlatformHandler Configuration: https://docs.microsoft.com/en-us/iis/extensio
 5. Validate the new path tomcat handle path!
 
     >  ![End](/media/2021/12/tomcatconfigupdate.gif )
-
 
