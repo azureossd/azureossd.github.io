@@ -122,7 +122,7 @@ More information [here](http://php.net/manual/en/session.configuration.php#ini.s
 
 To configure IIS to send the `X-Frame-Options` header, add this your site's `Web.config` file:
 
-``` {.brush: .xml .line-numbers .language-xml style="padding-left: 30px"}
+``` 
 <system.webServer>
   ...
   <httpProtocol>
