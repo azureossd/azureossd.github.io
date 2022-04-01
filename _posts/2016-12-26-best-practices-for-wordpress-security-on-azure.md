@@ -25,7 +25,7 @@ header:
 
 This article was put together by **Mangesh Sangapu** and **Yi Wang**. Shout-out to **Cory Fowler** and **Sunitha Muthukrishna** for additional tips.
 
-WordPress Security is often an overlooked feature. Customers are quick to configure their site, but often forget to fine tune the security aspect. Here we have compiled steps that will help make your WordPress site more robust on Azure.
+WordPress Security is often an overlooked feature. Customers are quick to configure their site, but often forget to fine tune the security aspect. Here we have compiled steps that will help make your WordPress site more robust on Azure. Rules compiled are specified for configuration on App Service Windows, but the concepts are still identical on Linux.
 
 More information can also be found at the official WordPress.org site: <https://codex.wordpress.org/Hardening_WordPress>
 
@@ -67,7 +67,7 @@ Use web.config to disable access to wp-config.php and limit access to wp-login.p
 
 -   Restrict web access to wp-config.php
 
-``` {style="padding-left: 30px"}
+``` 
 <system.webserver>
    <security>
       <requestFiltering>
@@ -82,7 +82,7 @@ Use web.config to disable access to wp-config.php and limit access to wp-login.p
  
 
 -   Restrict access to wp-login.php by IP addresses
-
+```
 <!-- -->
 
       <location path="wp-login.php">
@@ -96,7 +96,7 @@ Use web.config to disable access to wp-config.php and limit access to wp-login.p
           </security>
         </system.webServer>
       </location>
-
+```
 -   Consider renaming this file (ex: login.php or secure\_xyz\_login.php)
 -   In addition to the WordPress login/password, use [PHP HTTP Authentication](http://php.net/manual/en/features.http-auth.php)
 
