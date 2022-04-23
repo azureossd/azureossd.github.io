@@ -1,5 +1,5 @@
 ---
-title: "Laravel deployment on App Service Linux"
+title: "Laravel Deployment on App Service Linux"
 author_name: "Anthony Salemo"
 tags:
     - PHP
@@ -227,7 +227,10 @@ To setup this option and deploy a Laravel application follow the below:
     git push azure master
     ```
 4. Then Oryx will build the application. You should see an output along the lines of the below:
+
 > **NOTE**: A `.gitignore` should be present in your repository root to avoid commiting directories like `/vendor`. If commiting this directory, or others like it (ex. `node_modules`) your deployment time can easily increase by minutes or eventually time-out. A Laravel based `.gitignore` can be found [here](https://github.com/github/gitignore/blob/main/Laravel.gitignore) on GitHub.
+
+
 ```
 remote: Deploy Async
 remote: Updating branch 'master'.
@@ -514,13 +517,13 @@ jobs:
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_d9402e5f7c954ed3a85c33ba0a300bbe }}
           package: .
-````
+```
+
 > **NOTE**: This `.yml` assumes the Laravel project was created with the default Laravel project structure. 
 
 Below is the output we'd see in the 'Actions' tab on Github after setting up Actions and pushing a new commit to trigger a deployment.
 
 ![Laravel App](/media/2022/04/azure-php-laravel-deployment-3.png)
-
 
 ### Change the PHP version
 If needed, we can specify the PHP version in an environment variable for easy access and the reference it later. The **7.x** or **8.x** syntax chooses the **latest minor of the targetted major**. For example, using 8.x at the time of writing this will use **8.1.4** in GitHub Actions to build the project:
@@ -630,6 +633,7 @@ steps:
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               appType: webAppLinux
 ```
+
 > **NOTE**: To avoid any definition errors in the yaml, add the property `appType` set to `webAppLinux` as seen in the above task.
 
 7. Save and `run` the pipeline.
@@ -724,6 +728,7 @@ stages:
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               appType: webAppLinux
 ```
+
 > **NOTE**: Depending on how you set up your pipeline, you may have to authorize permission for deployment. This is a one-time task, below is a screenshot of what you may see:
 
 ![Laravel App](/media/2022/02/vue-deployment-linux-07.png)
@@ -802,6 +807,7 @@ Add `APP_KEY` as an AppSetting with the appropriate value. This may also occur f
     yarn install
     yarn run production
 ```
+
 This would be added in **addition** to our GitHub Actions `.yaml` earlier. The same approach can be used for DevOps. For LocalGit or ZipDeploy(with Oryx Builder) a custom startup script may have to be used or pre-compiled before hand.
 
 
@@ -826,68 +832,68 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
     1. Zip the content and upload the zip as an artifact to the `deploy` stage:
 
-        ```yaml
-        # If using PHP 7.4 we need to specifically include .htaccess in the zip
-        # Since it's a hidden file it will get exluded unless otherwise specified 
-        - name: Zip artifact for deployment
-          run: zip release.zip ./* .htaccess -qr 
+```yaml
+# If using PHP 7.4 we need to specifically include .htaccess in the zip
+# Since it's a hidden file it will get exluded unless otherwise specified 
+- name: Zip artifact for deployment
+  run: zip release.zip ./* .htaccess -qr 
 
-        - name: Upload artifact for deployment jobs
-          uses: actions/upload-artifact@v2
-          with:
-            name: php-app
-            path: release.zip
-        ```
+- name: Upload artifact for deployment jobs
+  uses: actions/upload-artifact@v2
+  with:
+    name: php-app
+    path: release.zip
+```
 
-        **deploy job**: 
+**deploy job**: 
 
-        ```yaml
-            deploy:
-              runs-on: ubuntu-latest
-              needs: build
-              environment:
-                name: 'Production'
-                url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+```yaml
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-              steps:
-                - name: Download artifact from build job
-                  uses: actions/download-artifact@v2
-                  with:
-                    name: php-app
-                    
-                - name: 'Deploy to Azure Web App'
-                  uses: azure/webapps-deploy@v2
-                  id: deploy-to-webapp
-                  with:
-                    app-name: 'yourwebappname'
-                    slot-name: 'Production'
-                    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_000000000000000000000000000000 }}
-                    package: release.zip        
-          ```
-          You could additionally extract the .zip, delete it and then deploy the files as normal:
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: php-app
+          
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'yourwebappname'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_000000000000000000000000000000 }}
+          package: release.zip        
+```
+You could additionally extract the .zip, delete it and then deploy the files as normal:
 
-          ```yaml
-            steps:
-            - name: Download artifact from build job
-                uses: actions/download-artifact@v2
-                with:
-                name: php-app
-                
-            - name: Unzip files for App Service Deploy
-                run: unzip release.zip
+```yaml
+  steps:
+  - name: Download artifact from build job
+      uses: actions/download-artifact@v2
+      with:
+      name: php-app
+      
+  - name: Unzip files for App Service Deploy
+      run: unzip release.zip
 
-            - name: Delete zip file
-                run: rm release.zip
+  - name: Delete zip file
+      run: rm release.zip
 
-            - name: 'Deploy to Azure Web App'
-                id: deploy-to-webapp
-                uses: azure/webapps-deploy@v2
-                with:
-                app-name: 'sitename'
-                slot-name: 'Production'
-                publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000 }}
-                package: .
-          ```
+  - name: 'Deploy to Azure Web App'
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+      app-name: 'sitename'
+      slot-name: 'Production'
+      publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000 }}
+      package: .
+```
 
 
 
