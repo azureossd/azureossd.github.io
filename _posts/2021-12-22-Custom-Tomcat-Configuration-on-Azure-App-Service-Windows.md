@@ -114,3 +114,4 @@ This method allows for complete control over the Tomcat installation.
 5. Validate the new path tomcat handle path!
 
     >  ![End](/media/2021/12/tomcatconfigupdate.gif )
+

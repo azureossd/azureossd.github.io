@@ -67,7 +67,7 @@ Use web.config to disable access to wp-config.php and limit access to wp-login.p
 
 -   Restrict web access to wp-config.php
 
-``` 
+
 <system.webserver>
    <security>
       <requestFiltering>
@@ -101,7 +101,7 @@ Use web.config to disable access to wp-config.php and limit access to wp-login.p
 -   In addition to the WordPress login/password, use [PHP HTTP Authentication](http://php.net/manual/en/features.http-auth.php)
 
 <!-- this line blocks all IP addresses, except those listed below -->
-
+```
 ## 7) Xml-rpc.php
 
 This is WordPress API and if you don’t have any plugins requiring it, then you should disallow access by renaming it.
