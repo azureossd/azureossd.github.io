@@ -121,7 +121,7 @@ More on this can be found [here](https://docs.microsoft.com/en-us/azure/app-serv
 
 # PHP 8 (NGINX)
 
-PHP 8 on Azure App Service Linux use NGINX as the Web Server. To have NGINX route requests to `/public` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `nginx.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
+PHP 8 on Azure App Service Linux use NGINX as the Web Server. To have NGINX route requests to `/public` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
 
 This `default.conf` has the following line:
 
