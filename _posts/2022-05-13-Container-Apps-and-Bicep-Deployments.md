@@ -155,11 +155,11 @@ This command may take a few minutes to run. After a successful deployment a larg
 
 Navigate to the Azure Portal for your Container App and click on the Application URL, you should now see the Container App running.
 
-## Using Private Container Registries
+# Using Private Container Registries
 
 Private Container Registries can be used, such as DockerHub or Azure Container Registry. 
 
-### Azure Container Registry
+## Azure Container Registry
 The below file is using Azure Container Registry - note the following points:
 
 1. We use the `@secure()` decorator for our Azure Container Registry password - more information [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/scenarios-secrets#use-secure-parameters).
@@ -214,7 +214,7 @@ resource customimagecontainerapp 'Microsoft.App/containerApps@2022-01-01-preview
 }
 ```
 
-### DockerHub
+## DockerHub
 If we wanted to target DockerHub instead of Azure Container Registry we would change this to the below. We're just updating the **registries** and **containers** array from the above template.:
 
 ```arm
@@ -247,12 +247,12 @@ other code..
 ...
 ```
 
-## Managed Identity integration
+# Managed Identity integration
 We can specify our Container Apps to now use [Managed Identities](https://docs.microsoft.com/en-us/azure/container-apps/managed-identity?tabs=portal%2Cdotnet). Below we'll assume our Image we're deploying is configured to reach out to a KeyVault to retrieve secrets.
 
 This assumes the KeyVault is already existing. 
 
-### System Assigned Identity
+## System Assigned Identity
 Within our Container Apps `resource` we add the following property at the topmost level within the Container Apps resource object:
 
 ```arm
@@ -296,7 +296,7 @@ resource keyVaultPolicy 'Microsoft.KeyVault/vaults/accessPolicies@2021-11-01-pre
 }
 ```
 A full example can be found [here]()
-### User-Assigned Identities
+## User-Assigned Identities
 User-Assigned Identites can be configured as well with the below steps:
 
 1. Add a resource to create a User-Assigned identity during deployment. Note that `userAssignedIdentityName` is paramerized in this example:
