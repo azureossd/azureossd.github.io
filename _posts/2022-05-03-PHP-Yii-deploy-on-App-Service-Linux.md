@@ -53,7 +53,7 @@ Do you trust "yiisoft/yii2-composer" to execute code and wish to enable it now? 
 
     (output in browser)
 
-    ![Yii App](/media/2022/04/azure-ossd-yii-deployment-1.png)
+    ![Yii App](/media/2022/05/azure-ossd-yii-deployment-1.png)
 
     (output in terminal)
 
@@ -185,7 +185,7 @@ In the above script, this copies our custom `apache2.conf` over the existing `ap
 4. This [blog post](https://azureossd.github.io/2020/01/23/php-custom-startup-script-app-service-linux/index.html) be referenced for additional help with configuring custom startup scripts.
 5. After ensuring our custom `apache2.conf` and `startup.sh` is uploaded under `/home`, specify the startup script in the portal:
 
-![Yii App](/media/2022/04/azure-ossd-yii-deployment-2.png)
+![Yii App](/media/2022/05/azure-ossd-yii-deployment-2.png)
 
 # PHP 8 (NGINX)
 
@@ -285,7 +285,7 @@ To setup this option and deploy a Yii application follow the below:
     ![Yii App](/media/2022/02/flask-deployment-linux-03.png)
 2. Copy the remote git repository from Azure Portal.
 
-    ![Yii App](/media/2022/04/azure-ossd-yii-deployment-5.png)
+    ![Yii App](/media/2022/05/azure-ossd-yii-deployment-5.png)
 
 3. In your local terminal run the following commands in order:
     ```bash
@@ -519,7 +519,7 @@ jobs:
 
 Below is the output we'd see in the 'Actions' tab on Github after setting up Actions and pushing a new commit to trigger a deployment.
 
-![Yii App](/media/2022/04/azure-ossd-yii-deployment-6.png)
+![Yii App](/media/2022/05/azure-ossd-yii-deployment-6.png)
 
 ### Change the PHP version
 If needed, we can specify the PHP version in an environment variable for easy access and the reference it later. The **7.x** or **8.x** syntax chooses the **latest minor of the targetted major**. For example, using 8.x at the time of writing this will use **8.1.4** in GitHub Actions to build the project:
@@ -771,7 +771,7 @@ stages:
 
 ![Yii App](/media/2022/02/vue-deployment-linux-07.png)
 
-![Yii App](/media/2022/04/azure-ossd-yii-deployment-7.png)
+![Yii App](/media/2022/05/azure-ossd-yii-deployment-7.png)
 
 
 # Troubleshooting
