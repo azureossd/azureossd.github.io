@@ -362,7 +362,7 @@ After deploying with a Dapr enabled application you can verify the components th
 `level=info msg="component loaded. name: statestore, type: state.azure.blobstorage/v1"`
 
 **Important**:
-When using components you want to specify the names of the application that can use said component. In the Container App resource specfying the `daprId`, this should match the `scopes` property within the component being defined, like the below:
+When using Dapr components, you want to specify the names of the application that can use said component. In the Container App resource, the `daprId` should match the `scopes` property within the component being defined, like the below:
 
 ```arm
 dapr: {
@@ -439,13 +439,14 @@ Comparing this with the State Compenent, we can see these are effectively the sa
 To deploy a Container App Environment to an existing we can add the `vnetConfigurationProperties` object into our Container App **Environment** `resource`, like the below:
 
 ```arm
-    vnetConfiguration: {
-      internal: false
-      infrastructureSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnetName, infraSubnetName)
-      dockerBridgeCidr: '10.2.0.1/16'
-      platformReservedCidr: '10.1.0.0/16'
-      platformReservedDnsIP: '10.1.0.2'
-      runtimeSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnetName, runtimeSubnetName)
+vnetConfiguration: {
+  internal: false
+  infrastructureSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnetName, infraSubnetName)
+  dockerBridgeCidr: '10.2.0.1/16'
+  platformReservedCidr: '10.1.0.0/16'
+  platformReservedDnsIP: '10.1.0.2'
+  runtimeSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', vnetName, runtimeSubnetName)
+}
 ```
 
 > **NOTE**: `vnetName`, `runtimeSubnetName` and `infraSubnetName` are parameretized here. `vnetName` is the VNET that you intend to deploy into as well as the infrastructure Subnet name.
@@ -495,14 +496,14 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2021-08-01' = {
 We can then directly reference the names of the created resource, eg. Virtual Network name and Subnet names
 
 ```arm
-    vnetConfiguration: {
-      internal: false
-      infrastructureSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetwork.name, virtualNetwork.properties.subnets[0].name)
-      dockerBridgeCidr: '10.2.0.1/16'
-      platformReservedCidr: '10.1.0.0/16'
-      platformReservedDnsIP: '10.1.0.2'
-      runtimeSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetwork.name, virtualNetwork.properties.subnets[1].name)
-    }
+vnetConfiguration: {
+  internal: false
+  infrastructureSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetwork.name, virtualNetwork.properties.subnets[0].name)
+  dockerBridgeCidr: '10.2.0.1/16'
+  platformReservedCidr: '10.1.0.0/16'
+  platformReservedDnsIP: '10.1.0.2'
+  runtimeSubnetId: resourceId('Microsoft.Network/virtualNetworks/subnets', virtualNetwork.name, virtualNetwork.properties.subnets[1].name)
+}
 ```
 
 > **NOTE**: The above addresses are just used as examples. Replace yours as needed.
