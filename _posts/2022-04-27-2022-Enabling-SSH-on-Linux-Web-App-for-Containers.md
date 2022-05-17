@@ -33,6 +33,13 @@ This is in contrast to the ["Blessed" (built-in) Docker Images](https://docs.mic
 
 The below sections will be a general guide or starting point for SSH integration. This will be targetting Linux Containers (Alpine and Ubuntu/Debian). SSH integration is generally **language agnostic** in the sense that the same configuration can be used across runtimes since the integration is specifically focused on the container itself and not the runtime language.
 
+## Enable reading environment variables in an SSH session (optional)
+By default with Custom Docker Images, when SSH'ing into a container, only a few certain environment variables may be seen when trying to use something like `env` or `printenv`. To be able to see all environment variables within the container - such as ones you pass in to your application for runtime usage, add this line to your entrypoint script:
+
+`eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)`
+
+A full example can be seen [here](https://github.com/azureossd/docker-container-ssh-examples/blob/main/alpine-node/init_container.sh).
+
 ## Enable SSH for an Ubuntu/Debian based Linux Container
 
 There will be 3 files which we'll be focusing on:
@@ -74,6 +81,9 @@ In our entrypoint script we can start the SSH service such as below - assuming t
 #!/bin/sh
 set -e
 
+# Get env vars in the Dockerfile to show up in the SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
+
 echo "Starting SSH ..."
 service ssh start
 
@@ -86,6 +96,9 @@ This example is starting the application with `gunicorn`, **but that doesn't mat
 ```bash
 #!/bin/sh
 set -e
+
+# Get env vars in the Dockerfile to show up in the SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
 
 echo "Starting SSH ..."
 service ssh start
@@ -168,6 +181,9 @@ With our `init_container.sh`:
 #!/bin/sh
 set -e
 
+# Get env vars in the Dockerfile to show up in the SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
+
 echo "Starting SSH ..."
 service ssh start
 
@@ -230,6 +246,9 @@ For Alpine, the way we start SSH changes in our Entrypoint. We change this to `/
 ```bash
 #!/bin/sh
 set -e
+
+# Get env vars in the Dockerfile to show up in the SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
 
 echo "Starting SSH ..."
 /usr/sbin/sshd
@@ -304,6 +323,9 @@ With our completed Entrypoint file:
 ```bash
 #!/bin/sh
 set -e
+
+# Get env vars in the Dockerfile to show up in the SSH session
+eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
 
 echo "Starting SSH ..."
 /usr/sbin/sshd
