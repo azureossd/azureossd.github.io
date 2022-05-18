@@ -12,10 +12,10 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/azure-containerapps-logo.png
+    teaser: /assets/images/phplinux.png
 toc: true
 toc_sticky: true
-date: 2022-05-13 12:00:00
+date: 2022-05-18 12:00:00
 ---
 
 This post provides information on how to serve Single Page Applications(SPAs) with Azure App Service on Linux PHP "Blessed" Images.
@@ -458,6 +458,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: yourappname'
             inputs:
+              // Note that we remove 'startupCommand'
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
