@@ -458,6 +458,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy: yourappname'
             inputs:
+              // Note that we remove 'startupCommand'
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
