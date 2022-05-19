@@ -31,8 +31,11 @@ Instead of the default PHP runtime, App Service Web Apps (Windows) can use a PHP
     ![Configuration](/media/2022/05/custom-php-windows-00.png)
 
 7. From the **Configuration** blade select **Path mappings** and go to the **Handler mappings** section. Add `*.php` to the Extension field and add the path to the `php-cgi.exe` executable. If you put your PHP runtime in the `bin` directory in the root of you application, the path will be `C:\home\site\wwwroot\bin\php\php-cgi.exe`.
+
     ![Handler mappings](/media/2022/05/custom-php-windows-01.png)
+
 8. Click the **Save** button at the top of the Configuration settings blade. And then click on **Continue**.
+
     ![Save](/media/2022/05/custom-php-windows-02.png)
 
 
