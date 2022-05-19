@@ -41,7 +41,7 @@ Instead of the default PHP runtime, App Service Web Apps (Windows) can use a PHP
 
 [List of php.ini directives]: http://www.php.net/manual/en/ini.list.php
 
-> For additional configurations for runnig Composer or any popular automation tool at deployment time, review this [reference](https://docs.microsoft.com/en-us/azure/app-service/configure-language-php?pivots=platform-windows).
+> For additional configurations for running Composer or any popular automation tool at deployment time, review this [reference](https://docs.microsoft.com/en-us/azure/app-service/configure-language-php?pivots=platform-windows).
 
 # Validation
 
