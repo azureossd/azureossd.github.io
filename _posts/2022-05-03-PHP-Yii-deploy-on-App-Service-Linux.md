@@ -588,7 +588,7 @@ Total 1 new migration to be applied:
 	m220503_200207_create_user_table
 
 *** applying m220503_200207_create_user_table
-    > create table {{%user}} ... done (time: 0.168s)
+    > create table {{user}} ... done (time: 0.168s)
 *** applied m220503_200207_create_user_table (time: 0.252s)
 ```
 
