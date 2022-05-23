@@ -2,11 +2,15 @@
 title: "Enabling Code Profiler for Python on App Service Linux"
 author_name: "Kendrick Dubuisson"
 tags:
-    - python linux
+    - Python
+    - Performance
 categories:
-    - <Service Type> # Azure App Service on Linux
-    - <Stack> # Python
-    - <Blog Type> # How-To, Diagnostics, Configuration, Troubleshooting, Performance
+    - Azure App Service on Linux
+    - Python
+    - How-To
+    - Configuration
+    - Troubleshooting
+    - Performance
 header:
     teaser: "/assets/images/pylinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 
@@ -25,7 +29,7 @@ This blog will walk through enabling the profiler on App Service Linux & reviewi
 
 1.  To enable code profiler, first add the App Setting ***`WEBSITE_ENABLE_DEFAULT_CODE_PROFILER`=`true`*** to your App Service configuration. ⚠️ Adding this App Setting will restart your application.
 
-2. Validate the running process to profile. In this example, we're using gunicorn running in forked mode so it's expected to see multiple processes, but we can use variations of ps to target the process-id consuming cpu time. This same approach can be used if other python servers to serve your application.
+2. Validate the running process to profile. In this example, we're using gunicorn running in forked mode so it's expected to see multiple processes, but we can use variations of ps to target the process-id consuming cpu time. This same approach can be used if other python servers are used to serve your application.
 
     ```bash
     #checking for the running python process id
