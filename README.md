@@ -15,9 +15,9 @@ bundle install
 ``
 
 3. Run your Jekyll site locally.
-```
+``
 bundle exec jekyll serve
-```
+``
 ```bash
 #Sample Output
 Configuration file: C:/_Code/blog/azureossd.github.io/_config.yml
