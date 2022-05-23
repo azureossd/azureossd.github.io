@@ -12,7 +12,7 @@ categories:
     - Troubleshooting
     - Performance
 header:
-    teaser: "/assets/images/javalogo.png" 
+    teaser: "/assets/images/Javalogo.png" 
 toc: true
 toc_sticky: true
 date: 2022-05-20 00:00:00
