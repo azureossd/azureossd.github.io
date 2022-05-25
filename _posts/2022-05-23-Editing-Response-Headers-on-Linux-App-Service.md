@@ -12,7 +12,7 @@ header:
     teaser: "/assets/images/azurelinux.png" 
 toc: true
 toc_sticky: true
-date: 2022-05-23 12:00:00
+date: 2022-05-25 12:00:00
 ---
 Sometimes when working with applications, you may want to customize the response headers - maybe the application you're working with depends on it, or another service or application that is calling it depends on that header in the response.
 
