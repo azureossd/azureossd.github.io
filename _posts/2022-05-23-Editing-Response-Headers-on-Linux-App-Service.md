@@ -18,7 +18,7 @@ Sometimes when working with applications, you may want to customize the response
 
 On Linux App Services, there is no **'turn-key'** solution to customizing response headers, but there are other ways that this can be done. Either programatically or through other products that can be used with it.
 
-# Programatically
+# Programmatically
 A quick way that response headers can be changed as needed is through the application itself. With some bit of code added into the functions handling the response, we can append new response headers. It also may be possible to write this so all requests programatically send back custom response headers.
 
 > **NOTE**: There is multiple ways to add response headers for each language. Below is just a select few ways.
