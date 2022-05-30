@@ -257,6 +257,8 @@ docker push yourdnsname.location.cloudapp.azure.com/image:tag
 
     ![Nexus repository](/media/2022/05/azure-ossd-nexus3-blog-11.png)
 
+3. At this point, you should now be able to pull this from your local machine if desired - or else where, if those locations have access with `docker pull yourdnsname.location.cloudapp.azure.com/image:tag`
+
 # Web App for Containers
 ## Create and configure the App Service
 With the Virtual Machine, NGINX and Nexus now set up, we'll go ahead and create our Web App for Container.
