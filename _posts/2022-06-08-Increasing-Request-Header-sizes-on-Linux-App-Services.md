@@ -23,6 +23,10 @@ On Linux App Services, various stacks can be hosted - below are some common ways
 
 > **NOTE**: Depending on the application, a HTTP 400 may also be returned by the application when encountering this issue.
 
+<br>
+
+Code based examples can be found [here](https://github.com/azureossd/custom-request-header-size-examples).
+
 # Java
 ## Tomcat
 
