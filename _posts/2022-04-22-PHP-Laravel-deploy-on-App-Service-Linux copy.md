@@ -57,7 +57,7 @@ php artisan serve
     [Wed Apr 20 15:58:05 2022] 127.0.0.1:50227 Closing
     ```
 
-**Important pre-deployment checks**
+⚠️**Important pre-deployment checks**⚠️
 
 1. Set `APP_KEY` as an [App Setting](https://docs.microsoft.com/en-us/azure/app-service/configure-common?tabs=portal) in the Azure Portal for the application. The `.env` file that contains this in the local environment will **not** be commited as it's included in `.gitignore`. Without this set the application will crash on start up.
 
