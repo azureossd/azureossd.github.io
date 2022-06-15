@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2022-05-13 12:00:00
 ---
 
-This post provides information for deploying Container Apps with Bicep. **As of right now, Container Apps is currently in Public Preview and not recommended for production scenarios**. 
+This post provides information for deploying Container Apps with Bicep. 
 
 # Getting started
 
@@ -71,7 +71,7 @@ resource logAnalyticsWorkspace'Microsoft.OperationalInsights/workspaces@2020-03-
   })
 }
 
-resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
+resource environment 'Microsoft.App/managedEnvironments@2022-03-01' = {
   name: environment_name
   location: location
   properties: {
@@ -85,7 +85,7 @@ resource environment 'Microsoft.App/managedEnvironments@2022-01-01-preview' = {
   }
 }
 
-resource nginxcontainerapp 'Microsoft.App/containerApps@2022-01-01-preview' = {
+resource nginxcontainerapp 'Microsoft.App/containerApps@2022-03-01' = {
   name: 'nginxcontainerapp'
   location: location
   properties: {
@@ -168,7 +168,7 @@ The below file is using Azure Container Registry - note the following points:
 4. Aside from the decorator and paramterizing any values, these changes are **only** done in the Container App resource in the Bicep file. 
 
 ```arm
-resource customimagecontainerapp 'Microsoft.App/containerApps@2022-01-01-preview' = {
+resource customimagecontainerapp 'Microsoft.App/containerApps@2022-03-01' = {
   name: 'customimagecontainerapp'
   location: location
   properties: {
@@ -295,7 +295,7 @@ resource keyVaultPolicy 'Microsoft.KeyVault/vaults/accessPolicies@2021-11-01-pre
   }
 }
 ```
-A full example can be found [here]()
+A full example can be found [here](https://github.com/azureossd/Container-Apps/tree/master/ManagedIdentity/python/system-assigned)
 ## User-Assigned Identities
 User-Assigned Identites can be configured as well with the below steps:
 
@@ -390,7 +390,7 @@ The Bicep definition for scopes can be found [here](https://docs.microsoft.com/e
 Components can be switched out as needed. Using [this example](https://docs.microsoft.com/en-us/azure/container-apps/microservices-dapr-azure-resource-manager?tabs=bash&pivots=container-apps-bicep#create-azure-bicep-templates) which uses a State Storage component, we can effectively just replace a few values to switch to use another component, like the one below - which uses PubSub with Azure EventHubs.
 
 ```arm
-resource daprComponent 'Microsoft.App/managedEnvironments/daprComponents@2022-01-01-preview' = {
+resource daprComponent 'Microsoft.App/managedEnvironments/daprComponents@2022-03-01' = {
   name: 'pubsub'
   parent: environment
   properties: {
@@ -507,4 +507,74 @@ vnetConfiguration: {
 ```
 
 > **NOTE**: The above addresses are just used as examples. Replace yours as needed.
+
+# Storage
+## Setting and mounting Volumes
+
+Volumes can be mounted in conjunction with Azure Storage as well as using its own Container File System or emptyDir. Applications can then use these mounts to read or write files from the path specified. Below is an example of using Azure Files.
+
+Documentation can be found [here](https://docs.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=aca-arm) on these different ways to utilize mounts.
+
+Under the Managed Environment resource, add the below as a child resource:
+
+```yaml
+resource azurefilestorage 'storages@2022-03-01' = {
+    name: 'azurefilestorage'
+    properties: {
+      azureFile: {
+        accountKey: azureStorageAccountKey
+        accountName: azureStorageAccountName
+        shareName: azureFileShareName
+        accessMode: 'ReadWrite'
+      }
+    }
+  }
+```
+
+> **NOTE**: Take note of 'azurefilestorage', this will be needed later
+
+In the `template` property, add the following:
+
+```yaml
+template: {
+      containers: [
+        {
+          image: '${azureContainerRegistry}/azurefilescontainerapps:latest'
+          name: 'azurefilescontainerapps'
+          resources: {
+            cpu: '0.5'
+            memory: '1.0Gi'
+          }
+          volumeMounts: [
+            {
+              mountPath: '/azurefiles'
+              volumeName: 'azurefilemount'
+            }
+          ]
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
+      }
+      volumes: [
+        {
+          name: 'azurefilemount'
+          // https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/child-resource-name-type#within-parent-resource
+          storageName: environment::azurefilestorage.name
+          storageType: 'AzureFile'
+        }
+      ]
+    }
+  }
+```
+
+Points to note:
+- `storageName` should match the Storage Resource defined above that resides as a child resource of the Managed Environment.
+- `storageType` is set to AzureFile
+- `name` is an arbitrary name for the volume mount that should match `name` under `volumeMounts` 
+- `mountPath` is the path of where the volume will be mounted and the application can access said files
+
+
+A deployable example can be found [here](https://github.com/azureossd/Container-Apps/tree/master/Storage).
 
