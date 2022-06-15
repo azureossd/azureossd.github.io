@@ -511,7 +511,9 @@ vnetConfiguration: {
 # Storage
 ## Setting and mounting Volumes
 
-Volumes can be mounted in conjunction with Azure Storage. Applications can then use these mounts to read or write files from the path specified.
+Volumes can be mounted in conjunction with Azure Storage as well as using its own Container File System or emptyDir. Applications can then use these mounts to read or write files from the path specified. Below is an example of using Azure Files.
+
+Documentation can be found [here](https://docs.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=aca-arm) on these different ways to utilize mounts.
 
 Under the Managed Environment resource, add the below as a child resource:
 
@@ -573,7 +575,6 @@ Points to note:
 - `name` is an arbitrary name for the volume mount that should match `name` under `volumeMounts` 
 - `mountPath` is the path of where the volume will be mounted and the application can access said files
 
-Documentation can be found [here](https://docs.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=aca-arm)
 
 A deployable example can be found [here](https://github.com/azureossd/Container-Apps/tree/master/Storage).
 
