@@ -241,6 +241,8 @@ Create a Azure Python Function. This example was deployed to a [Dedicated Plan (
 A full example can be found [here](https://github.com/azureossd/python-wsgi-function-samples/tree/main/falcon).
 
 ## Bottle
+### Create and configure
+
 Deploying a [Bottle](https://bottlepy.org/docs/dev/) Function will be the same as the Flask and Falcon examples.
 
 Create a Python HTTP based function for the [Bottle](https://falconframework.org/) function, as explained earlier. In this example, we'll name the function **BottleTrigger**.
