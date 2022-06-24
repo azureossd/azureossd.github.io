@@ -161,7 +161,7 @@ Ensure that the targetted path for node with the web.config is pointing to a val
 
 This is also due to either the `node.exe` not being found due to an incorrect path or due to syntax issues. Although the message presents itself as being due to `web.config`, this can happen if `nodeProcessCommandLine` is defined in `iisnode.yml`, which may appear misleading. 
 
-## HTTP 500.1xxx's after changes
+### HTTP 500.1xxx's after changes
 Syntax issues or invalid paths can surface as HTTP 500.1002's or other 1000-range substatus codes after changing `web.config` and/or `iisnode.yml`.
 
 Review this link [here](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-practices-and-troubleshoot-guide#iisnode-http-status-and-substatus) on IISNode status codes as well as your `web.config` and `iisnode.yml`, if it exists.
