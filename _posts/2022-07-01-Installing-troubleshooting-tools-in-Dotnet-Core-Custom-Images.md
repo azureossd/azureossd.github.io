@@ -119,7 +119,7 @@ Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core
 - SSH into the container. Check if `curl` is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl.`
 - Run `curl -L https://aka.ms/dotnet-dump/linux-64 -o dotnet-dump` followed by `chmod +x dotnet-dump`. This will make dotnet-dump executable. The `curl` command will install and create this binary in the current working directory.
 
-## Running the command
+### Running the command
 - Run `./dotnet-dump ps` to get the current Dotnet PID, followed by `./dotnet-dump collect -p <PID>`. The below should be seen:
 
 ```
@@ -138,7 +138,7 @@ Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core
 - SSH into the container. Check if curl is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl`.
 - Run `curl -L https://aka.ms/dotnet-gcdump/linux-64 -o dotnet-gcdump` followed by `chmod +x dotnet-gcdump`. This will make `dotnet-gcdump` executable. The `curl` command will install and create this binary in the current working directory.
 
-## Running the command
+### Running the command
 - Run `./dotnet-gcdump ps` to get the current Dotnet PID, followed by `./dotnet-gcdump collect -p <PID>`. The below should be seen:
 
 ```
