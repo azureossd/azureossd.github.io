@@ -21,12 +21,14 @@ date: 2022-07-01 12:00:00
 
 Sometimes during performance troubleshooting you may need certain tools to profile or analyze the application during runtime. For example, to capture dumps during times of memory or CPU issues, slowness, or others.
 
-Sometimes Images that are built may not include these tools in the final layer to reduce overall Image size. This post will show how to install these tools if this is the case.
+In Azure Dotnet based 'Blessed Images', these Dotnet based performance tools are available since they're installed with the Image. **However, with Web App for Containers these may not be installed by the developer or maintainer as it is ultimately up to them.**
+
+These custom Dotnet based Web App for Containers that are built may not include these tools (for example, lack of SDK or global tools) in the final layer to reduce overall Image size. This post will show how to install these tools if this is the case inside custom Linux containers.
 
 # Prerequisites
 ## Enabling persistent storage
 
-If installing these tools to gather data and retrieve them later on, make sure that `WEBSITES_APP_SERVICE_ENABLE_STORAGE` is set to true first. This is set as an AppSetting. Review [here](https://docs.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#custom-containers) for documentation. 
+If installing these tools to gather data and retrieve them later on, make sure that `WEBSITES_APP_SERVICE_ENABLE_STORAGE` is set to **true** first. This is set as an AppSetting. Review [here](https://docs.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#custom-containers) for documentation. 
 
 Afterwards FTP or the Kudu /newui can be used to download these files from the custom container, as long as the files are moved under /home.
 
