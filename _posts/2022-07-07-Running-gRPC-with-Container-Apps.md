@@ -13,7 +13,7 @@ categories:
     - Configuration
     - Docker
 header:
-    teaser: "/assets/images/NETCoreIcon.png" 
+    teaser: "/assets/images/azure-containerapps-logo.png" 
 toc: true
 toc_sticky: true
 date: 2022-07-07 12:00:00
