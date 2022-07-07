@@ -7,11 +7,13 @@ tags:
     - Kubernetes
     - Configuration
     - Deployment
+    - gRPC
 categories:
     - Deployment    
     - How-To
     - Configuration
     - Docker
+    - gRPC
 header:
     teaser: "/assets/images/azure-containerapps-logo.png" 
 toc: true
