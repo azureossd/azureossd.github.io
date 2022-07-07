@@ -27,7 +27,7 @@ With using gRPC comes a few new concepts to be aware of, some that will be cover
 
 ## Configuring
 ### The Transport property
-By default when creating a Container App Environment, the `transport` property is set to `Auto` - assuming this is not changed explicitly during creation. 
+By default when creating a Container App, the `transport` property is set to `Auto` - assuming this is not changed explicitly during creation. 
 
 Values for `transport` can be `Auto`, `http` and `http2`. The `transport` setting for the environment can be checked in the portal in the **Overview** blade of the Container App like the below:
 
