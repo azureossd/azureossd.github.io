@@ -64,7 +64,7 @@ If invoking a gRPC server while `transport` is set to `Auto` or `http`, for exam
 
 If this is seen, double check that `transport` is set to `http2`, like in the method described above, or via [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/containerapp/ingress?view=azure-cli-latest#az-containerapp-ingress-show), such as with this command:
 
-`az containerapp ingress show --name dotnet-no-reflection --resource-group ansalemo-rg`
+`az containerapp ingress show --name mycontainerapp --resource-group my-rg`
 
 ## Reflection
 ### Whos responsibility 
