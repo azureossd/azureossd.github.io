@@ -87,6 +87,9 @@ server:
 
 The value of `min-response-size` is set to 1024 bytes before considering to compress a response. 
 
+
+Example code on how to enable this can be found [here](https://github.com/Ajsalemo/gzip-stack-examples/tree/main/java/gzip).
+
 ## Tomcat
 Compression is already turned on for Tomcat Blessed Images, which is the exception. The default `server.xml` can be found under `/usr/local/tomcat/conf/server.xml` which has the `compression` setting set to `on`. 
 
