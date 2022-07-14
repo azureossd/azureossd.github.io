@@ -97,7 +97,7 @@ Using the below example with Flask, this can be enabled with the [flask-compress
 
 ```python
 app = Flask(__name__)
-# Set the alogirthm to apply gzip - https://github.com/colour-science/flask-compress#options
+# Set the algoirthm to apply gzip - https://github.com/colour-science/flask-compress#options
 app.config['COMPRESS_ALGORITHM'] = 'gzip'
 Compress(app)
 ```
