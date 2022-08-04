@@ -24,7 +24,7 @@ date: 2022-08-03 12:00:00
 # Mixed Content error on WordPress site 
 What does the mixed content error message indicate?
 
-Normally when resources like image, CSS or JS files are requested with HTTPS and if they are loaded with HTTP protocol this can have an effect of mixed content error. 
+Normally when resources like images, CSS or JS files are requested with HTTPS and if they are loaded with HTTP protocol this can have an effect of mixed content error. 
  
 You can confirm if your site is being affected by mixed content errors by checking the browser inspect element console. 
 <br/><b>Error Message</b> - 
