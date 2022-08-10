@@ -50,7 +50,7 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
  3. Purge the Wordpress cache from the admin Dashboard. 
   >![WordPress common troubleshooting scenarios](/media/2022/08/wp_admin_clear_cache.png)
  4. If you're still facing mixed content error search for HTTP references in the database and replace it with HTTPS. You can easily do it using the plugins below -
-[Better Search and Replace](https://wordpress.org/plugins/better-search-replace/)
+[Better Search and Replace](https://wordpress.org/plugins/better-search-replace/) or
 [Search & Replace](https://wordpress.org/plugins/search-and-replace/)
 
 5. Please install the WordPress plugin SSL Insecure Content Fixer and select the appropriate HTTPS detection method as in the screenshot below. For example,HTTP_X_ARR_SSL setting works for Azure Linux App Service blessed images. 
