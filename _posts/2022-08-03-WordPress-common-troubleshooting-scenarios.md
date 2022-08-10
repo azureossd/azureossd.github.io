@@ -1,5 +1,5 @@
 ---
-title: "WordPress common troubleshooting scenarios"
+title: "WordPress Common Troubleshooting Scenarios"
 author_name: "Arjun Baliga"
 tags:
     - Azure App Service
@@ -32,7 +32,7 @@ Mixed Content the page URL was loaded over HTTPS but requested an insecure style
  >![WordPress common troubleshooting scenarios](/media/2022/08/mixed-content-error.png)
 
 Most browsers follow the RFC for Mixed Content, you can find information relevant on this restriction here:
- https://www.w3.org/TR/mixed-content/ and https://tools.ietf.org/html/rfc6797.
+ <a>https://www.w3.org/TR/mixed-content/</a> and <a>https://tools.ietf.org/html/rfc6797</a>.
 
 <br/><b>How to resolve the mixed content error?<b>
 1. In the wp-config.php, please check the below configurations like WP_HOME and WP_SITEURL settings are set properly as per your requirement. Please refer to the screenshot below for the recommended settings.
