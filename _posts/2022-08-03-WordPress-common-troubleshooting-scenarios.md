@@ -1,5 +1,5 @@
 ---
-title: "WordPress common troubleshooting scenarios"
+title: "WordPress Common Troubleshooting Scenarios"
 author_name: "Arjun Baliga"
 tags:
     - Azure App Service
@@ -31,8 +31,13 @@ You can confirm if your site is being affected by mixed content errors by checki
 Mixed Content: The page URL was loaded over HTTPS but requested an insecure stylesheet.
  >![WordPress common troubleshooting scenarios](/media/2022/08/mixed-content-error.png)
 
+<<<<<<< HEAD
+Most browsers follow the RFC for Mixed Content, you can find information relevant on this restriction here:
+ <a>https://www.w3.org/TR/mixed-content/</a> and <a>https://tools.ietf.org/html/rfc6797</a>.
+=======
 Most browsers follow the RFC for Mixed Content, you can find information relevant to this restriction here:
  https://www.w3.org/TR/mixed-content/ and https://tools.ietf.org/html/rfc6797.
+>>>>>>> efda73c02a36c0325b11e6bcb62b3cc2c460a63f
 
 <br/><b>How to resolve the mixed content error?<b>
 1. In the wp-config.php, please check if the below configurations like WP_HOME and WP_SITEURL settings are set properly as per your requirement. Please refer to the screenshot below for the recommended settings.
@@ -49,8 +54,13 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 
  3. Purge the Wordpress cache from the admin Dashboard. 
   >![WordPress common troubleshooting scenarios](/media/2022/08/wp_admin_clear_cache.png)
+<<<<<<< HEAD
+ 4. If you're still facing mixed content error search for HTTP references in the database and replace it with HTTPS. You can easily do it using the plugins below -
+[Better Search and Replace](https://wordpress.org/plugins/better-search-replace/) or
+=======
  4. If you're still facing mixed content errors, search for HTTP references in the database and replace them with HTTPS. You can easily do it using the plugins below -
 [Better Search and Replace](https://wordpress.org/plugins/better-search-replace/)
+>>>>>>> efda73c02a36c0325b11e6bcb62b3cc2c460a63f
 [Search & Replace](https://wordpress.org/plugins/search-and-replace/)
 
 5. Please install the WordPress plugin 'SSL Insecure Content Fixer' and select the appropriate HTTPS detection method as in the screenshot below. For example,HTTP_X_ARR_SSL setting works for Azure Linux App Service blessed images. 
