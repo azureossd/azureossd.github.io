@@ -34,6 +34,10 @@ This manager folder will be needed for later.
 # Create the application
 [Follow this quickstart](https://docs.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=tomcat&pivots=platform-linux-development-environment-azure-portal) to create a Java/Tomcat application on Azure App Service Linux.
 
+Make sure when creating the application the **Java web server stack** is set to **Apache Tomcat x.x**. Setting thise to Java SE will use an embedded Tomcat server which will not work here.
+
+![App stack creation](/media/2022/08/azure-oss-tomcat-manager-10.png)
+
 # Configure the application
 ## Configure existing Tomcat
 SSH into the application through the Azure Portal.
