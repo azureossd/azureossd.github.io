@@ -14,7 +14,7 @@ categories:
     - Deployment
     - Configuration
 header:
-    teaser: "/assets/images/apachetomcatlogo.jpg" 
+    teaser: "/assets/images/Javalogo.jpg" 
 toc: true
 toc_sticky: true
 date: 2022-08-11 12:00:00
@@ -64,7 +64,9 @@ Within `/home/site/wwwroot/webapps`, add the **Manager** folder that we covered 
 
 ![New Manager directory](/media/2022/08/azure-oss-tomcat-manager-7.png)
 
-## Edit /home/site/wwwroot/webapps/manager/context.xml
+## Edit /wwwroot/webapps/manager/META-INF/context.xml
+Navigate to `/wwwroot/webapps/manager`.
+
 Under our new `managers` directory will be a `META-INF/context.xml` file. We need to make the following change by **commenting out** the below `Valve`. Do this change with FTP or your favorite text editor.
 
 Faluire to do so will have the managers UI always return a HTTP 403.
