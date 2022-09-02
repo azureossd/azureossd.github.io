@@ -97,18 +97,17 @@ This method allows for complete control over the Tomcat installation.
 4. Add a web.config within the wwwroot to point to new tomcat location
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
-    <configuration>
-    <system.webServer>
-        <handlers>
-        <remove name="httpPlatformHandlerMain" />
-        <add name="httpPlatformHandlerMain" path="*" verb="*" modules="httpPlatformHandler" resourceType="Unspecified"/>
-        </handlers>
-        <httpPlatform processPath="C:\home\site\tomcat\bin\startup.bat" requestTimeout="00:04:00">
-            <environmentVariables>
-            </environmentVariables>
-        </httpPlatform>
-    </system.webServer>
-    </configuration>
+     <configuration>
+     <system.webServer>
+         <handlers>
+         <remove name="httpPlatformHandlerMain" />
+         <add name="httpPlatformHandlerMain" path="*" verb="*" modules="httpPlatformHandler" resourceType="Unspecified"/>
+         </handlers>
+         <httpPlatform processPath="C:\home\site\tomcat\bin\startup.bat" requestTimeout="00:04:00">
+         <environmentVariables></environmentVariables>
+         </httpPlatform>
+     </system.webServer>
+     </configuration>
     ```
 
 5. Validate the new path tomcat handle path!
