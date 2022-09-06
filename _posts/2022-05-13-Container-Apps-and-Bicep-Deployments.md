@@ -132,6 +132,8 @@ resource nginxcontainerapp 'Microsoft.App/containerApps@2022-03-01' = {
 
 To deploy this, run the following in your terminal:
 
+> **NOTE**: This is assumed to be ran in a bash/*nix shell. If using another terminal type, use the respective command.
+
 ```shell
 export RESOURCE_GROUP="yourresourcegroup"
 export CONTAINERAPPS_ENVIRONMENT="yourcontainerappenvironment"
