@@ -19,9 +19,10 @@ Node.js version 14 has included [Optional Chaining (**?.**) operator](https://de
 This change can be affecting **Node.js <=12 applications** which have npm modules dependencies that are implementing optional chaining in their code.
 
 ![Nodejs12-chaining-operator](/media/2022/09/chaining-operator-node-12.png) 
+
 (*Screenshot taken from https://node.green*)
 
-Some sceanrios are described below: 
+Some scenarios are described below: 
 
 # npx serve -s
 
@@ -42,9 +43,9 @@ SyntaxError: Unexpected token '?'
 
 You can mitigate this error with the following options:
 
-1. Run `npx serve@13 -s`, which will pull the latest 13 version (13.0.4) Or
-2. Install server@13.x version with `npm install serve@13.0.4 --save` and then you can use `npx serve -s` and it will pull the version from node_modules folder Or
-3. Upgrade your application to use Node.js 14 version.
+1. Run **`npx serve@13 -s`**, which will pull the latest 13 version (13.0.4) Or
+2. Install server@13.x version with **`npm install serve@13.0.4 --save`** and then you can use **`npx serve -s`** and it will pull the version from node_modules folder Or
+3. Upgrade your application to **use Node.js 14 version**.
 
 # Other scenarios
 
