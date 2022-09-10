@@ -37,7 +37,7 @@ error An unexpected error occurred: 'https://registry.yarnpkg.com/<package name>
 
 ## Yarn Configuration
 
-One way to add arguments to yarn without directly changing the `yarn install` directly is to utilize the Yarn configuration file.  Those files are `.yarnrc` or `.yarnrc.yml` for v1.x and v2+ respectively.
+One way to add arguments to yarn without directly changing the `yarn install` is to utilize the Yarn configuration file.  Those files are `.yarnrc` or `.yarnrc.yml` for v1.x and v2+ respectively.
 
 *As of this publication Oryx is utilizing Yarn Classic, v1.X.*
 
