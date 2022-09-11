@@ -15,8 +15,6 @@ toc_sticky: true
 date: 2022-09-10 12:00:00
 ---
 
-## Description
-
 During yarn install, you can often experience a timeout when downloading larger node modules.  These timeouts will cause build failures.  Increasing the timeout for `yarn install` with the flag `network-timeout` can resolve this problem.
 
 ```shell
