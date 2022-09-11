@@ -19,7 +19,7 @@ header:
     teaser: "/assets/images/azurelinux.png" 
 toc: true
 toc_sticky: true
-date: 2021-06-17 12:00:00
+date: 2021-06-17 00:00:00
 ---
 
 A useful tool to help with diagnosing network related issues on Azure App Service is TcpPing.  Below are the steps for installing the tool for Debian and Alpine based Docker images.
