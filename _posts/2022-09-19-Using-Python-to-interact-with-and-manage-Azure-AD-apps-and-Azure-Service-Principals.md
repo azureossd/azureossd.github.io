@@ -19,9 +19,7 @@ date: 2022-09-19 12:00:00
 
 Sometimes it may be needed to create, edit, manage or do some other operations on Azure AD applications and Service Principals. With Python and Azure, you can do that.
 
-
-# Available ways to interact
-As of writing this, there are a few ways you can go about doing this:
+As of writing this, there are a few ways you can go about doing this.
 
 ## Azure Active Directory Graph libraries for Python
 - [Azure Active Directory Graph libraries for Python](https://learn.microsoft.com/en-us/python/api/overview/azure/microsoft-graph?view=azure-python)
