@@ -19,7 +19,9 @@ date: 2021-01-28 16:00:00
 
 WordPress Security Best Practices on Azure App Services (Windows/Linux)
 
-## Best Practices
+**NOTICE** [After November 28, 2022, PHP will only be supported on App Service on Linux.](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/php_support.md#end-of-life-for-php-74)
+
+# Best Practices
 
 When it comes to Security, there are a few Best Practices recommended when using Azure App Services.
 
@@ -43,7 +45,7 @@ When it comes to Security, there are a few Best Practices recommended when using
         -   Add `session.cookie_httponly = true` in `php.ini` or `.user.ini`
 9.  Use a WordPress security plugin
 
-### Modifications in `wp-config.php`
+## Modifications in `wp-config.php`
 
 1. Change the `$table_prefix` from `wp_` to something unique.
     -   Example: `$table_prefix = 'mysite_';`
@@ -52,7 +54,17 @@ When it comes to Security, there are a few Best Practices recommended when using
 3. Disable File Editing by adding `define('DISALLOW_FILE_EDIT', true);`
     -   This will remove `edit_themes`, `edit_files`, and `edit_plugins` capabilites to all users.
 
-### WordPress Updates
+## Password Recommendations
+
+It is always recommended to use a strong password for WordPress. This should include some of the following examples:
+
+- Uppercase and lowercase characters
+- Numbers
+- Special haracters (@, #, *, etc.)
+- A minimum of 10 characters preferred.
+- Avoid using common phrases like: admin, administrator, test, password, 1234, etc.
+
+## WordPress Updates
 
 You can enable various levels of auto updates for WordPress by adding the following in your `wp-config.php` file.
 
@@ -62,14 +74,15 @@ You can enable various levels of auto updates for WordPress by adding the follow
 - When set to `false` - Development, minor, and major updates are all **disabled**.
 - When set to `'minor'` - Minor updates are **enabled**, development, and major updates are **disabled**.
 
-### Backup Regularly
+## Backup Regularly
 
 Follow these steps in the Azure App Service documentation for backing up your site with the Backup feature. [https://docs.microsoft.com/en-us/azure/app-service/manage-backup](https://docs.microsoft.com/en-us/azure/app-service/manage-backup)
 
-### Web Server config
+## Web Server config
 
-- Restrict access to `wp-config.php`
-    - Apache:
+- Restrict/limit access to `wp-config.php` and `wp-login.php`
+  - Apache
+
         ```apache
         <Files wp-config.php>
         # Apache 2.2
@@ -79,20 +92,7 @@ Follow these steps in the Azure App Service documentation for backing up your si
         # Apache 2.4+
         Require all denied
         </Files>
-        ```
-    - IIS
-        ```xml
-        <location path="wp-config.php">
-            <system.webServer>
-                <security>
-                    <ipSecurity allowUnlisted="false" />
-                </security>
-            </system.webServer>
-        </location>
-        ```
-- Limit access to `wp-login.php`
-    - Apache
-        ```apache
+
         <Files wp-login.php>
         # Apache 2.2
         Order Deny,Allow
@@ -106,8 +106,17 @@ Follow these steps in the Azure App Service documentation for backing up your si
         Require ip xxx.xxx.xxx.xxx
         </Files>
         ```
-    - IIS
-        ```xml
+
+  - IIS
+  
+    ```xml
+        <location path="wp-config.php">
+            <system.webServer>
+                <security>
+                    <ipSecurity allowUnlisted="false" />
+                </security>
+            </system.webServer>
+        </location>
         <location path="wp-login.php">
             <system.webServer>
                 <security>
@@ -117,7 +126,8 @@ Follow these steps in the Azure App Service documentation for backing up your si
                 </security>
             </system.webServer>
         </location>
-        ```
+    ```
+
 - Prevent clickjacking by adding an addditional header: `X-FRAME-OPTIONS = SAMEORIGIN`
     - Apache
         ```apache
@@ -135,7 +145,7 @@ Follow these steps in the Azure App Service documentation for backing up your si
         </system.webServer>
         ```
 
-### Enable Static/Dynamic IP Restrictions
+## Enable Static/Dynamic IP Restrictions
 
 IP restrictions can be enabled in App Services by setting up access restrictions. More information on this can be found here: [https://docs.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions](https://docs.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions)
 
@@ -178,15 +188,51 @@ IP restrictions can be enabled in App Services by setting up access restrictions
         </system.webServer>
         ```
 
-### PHP Modifications
+## PHP Modifications
 
 - Reduce Cross Site Scripting (XSS) attacks:
     - Add `session.cookie_httponly = true` in the `php.ini`, `.user.ini`, or custom `.ini` file being loaded into PHP.
 
-### WordPress security plugin
+## WordPress security plugin
 
 There are many different WP Security plugins out there that you could use. Using any one of them could help provide better overall security for your WordPress site compared to not having one at all. A list of some well known plugins are below:
 
 - Wordfence Security: [https://wordpress.org/plugins/wordfence/](https://wordpress.org/plugins/wordfence/)
 - All In One WP Security: [https://wordpress.org/plugins/all-in-one-wp-security-and-firewall/](https://wordpress.org/plugins/all-in-one-wp-security-and-firewall/)
 - Sucuri Security: [https://wordpress.org/plugins/sucuri-scanner/](https://wordpress.org/plugins/sucuri-scanner/)
+
+# Update for new WordPress on Linux App Service Marketplace offering (2022)
+
+More information regarding this offering can be found here: [https://docs.microsoft.com/en-us/azure/app-service/quickstart-wordpress](https://docs.microsoft.com/en-us/azure/app-service/quickstart-wordpress)
+
+## Updating Nginx headers
+
+This will allow for updating many different headers for WordPress security. To do this, follow the steps below:
+
+- Copy the required config file to the `/home` directory.
+  ```
+  cp /etc/nginx/conf.d/spec-settings.conf /home/custom-spec-settings.conf
+  ```
+- Edit `/home/custom-spec-settings.conf` using vi/vim editors to add custom settings.
+
+**NOTE**: you can also upload a custom config file to `/home` directory using file manager. Navigate to file manager through this URL: `<Wordpress_App_Name>.scm.azurewebsites.net/newui/fileManager`. Upload the custom configuration file in `/home` directory (ex: `/home/custom-spec-settings.conf`)
+
+- Edit `/home/custom-spec-settings` and at the bottom of file you can add the headers for security
+
+    ```nginx
+    add_header X-Xss-Protection "1; mode=block" always;
+    add_header Access-Control-Allow-Origin 'https://www.custom-domain.com/';
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Content-Security-Policy "base-uri 'self';"
+    add_header always X-Content-Type-Options 'nosniff';
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header Set-Cookie "Path=/; HttpOnly; Secure";
+    add_header Strict-Transport-Security 'max-age=63072000; includeSubdomains; preload';
+    add_header Referrer-Policy "strict-origin";
+    add_header Permissions-Policy;
+    remove_header X-Forwarded-Host;
+    ```
+
+## Remove `phpinfo()` file
+
+It is strongly recommended to remove any file that contains `phpinfo()`. By doing so, this will ensure that the database credentials stored as environment variables are not exposed to the public.

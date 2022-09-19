@@ -14,7 +14,7 @@ categories:
     - Deployment
     - Configuration
 header:
-    teaser: "/assets/images/Javalogo.jpg" 
+    teaser: "/assets/images/Javalogo.png" 
 toc: true
 toc_sticky: true
 date: 2022-08-11 12:00:00
