@@ -11,7 +11,7 @@ categories:
     - Python
     - Development 
 header:
-    teaser: /assets/images/yarnlogo.png
+    teaser: /assets/images/pythonlogo.png
 toc: true
 toc_sticky: true
 date: 2022-09-19 12:00:00
