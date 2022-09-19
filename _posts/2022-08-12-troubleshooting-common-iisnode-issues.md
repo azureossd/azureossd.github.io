@@ -33,7 +33,7 @@ We will use the issnode.yml file for:
 
 - Allowing stdout and stderr streams from node processes to be captured and made available.  
 - Configure where the files with stdout and stderr captures will be stored.
-- Watch error info on the web page (not recommended for production app).
+- Watch error info on the web page (not recommended for production apps).
 
 iisnode.yml:
 ```yaml
@@ -55,6 +55,42 @@ The contents of the /home/logfiles directory can be downloaded by following:
 
 You can also access the log files through the Kudu Debug Console.
 ![Kudu Debug Console - LogFiles Directory](/media/2022/08/kudu-logfiles.png)
+
+**STDOUT and STDERR**
+
+The below screenshot shows how to enable application logging through the portal. This will send STDOUT and STDERR output to the \home\logfiles\application directory.
+
+
+![App Service Portal Overview - Enable Application Logging ](/media/2022/08/enable-application-logging-iisnode.png)
+
+stdout : console.log("log content") - log content will be visible in the XXX-stdout-xxx.txt file under \home\LogFiles\Application directory
+
+stderror: console.error("error content") - error content will be visible in the XXX-stderr-xxx.txt file under \home\LogFiles\Application directory
+
+![Kudu Debug Console - STDOUT / STDERR LogFiles](/media/2022/08/stdout-stderr-logs-iisnode.png)
+
+**Using Failed request tracing in Azure Web Apps for Windows**
+
+- Click on App Service logs under Monitoring settings and Turn On Failed Request Tracing.
+
+    ![App Service Portal Overview - Enable Failed Request Tracing](/media/2022/08/freb-logs.png)
+
+- Another way to enle these logs is with azure cli with the following command:
+  ```
+  az webapp log config --name <sitename> --resource-group <resourcegroupname> --failed-request-tracing true
+  ```
+
+- After turning on Failed Request Tracing, new folders(W3SV****) containing failed request logs will be generated under D:\home\LogFiles\ in the Kudu console. 
+
+  Acces the debug console by following:
+  Your_Website_name.scm.azurewebsites.net/DebugConsole
+
+  ![Kudu Debug Console - view freb logs](/media/2022/08/freb-logs-W3SVC.png)
+
+- Failed request logs can provide you more meaningful insight into application errors. You can access the error pages withinin the browser for easier viewing.
+
+  ![Kudu Debug Console - view freb logs](/media/2022/08/failed-request-log-sample.png)
+
 
 # IISNODE http status and substatus
 
