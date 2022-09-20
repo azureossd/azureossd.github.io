@@ -34,9 +34,8 @@ When it comes to Security, there are a few Best Practices recommended when using
 3.  Keep WordPress updated.
 4.  Backup regularly
     -   Use Backups for Azure App Services.
-5.  Web Server config modifications (**IIS** and **Apache**)
-    -   Restrict access to `wp-config.php`
-    -   Limit access to `wp-config.php`
+5.  Web Server config modifications
+    -   Restrict/Limit access to `wp-config.php` and `wp-login.php`
     -   Prevent clickjacking with header: `X-FRAME-OPTIONS = SAMEORIGIN`
 6.  Delete `xml-rpc.php` if not used
 7.  Enable Static/Dynamic IP Restrictions
@@ -81,31 +80,44 @@ Follow these steps in the Azure App Service documentation for backing up your si
 ## Web Server config
 
 - Restrict/limit access to `wp-config.php` and `wp-login.php`
+  - Nginx
+
+    ```nginx
+    location = /wp-config.php {
+        deny all;
+    }
+
+    location = /wp-login.php {
+        allow xxx.xxx.xxx.xxx;
+        deny all;
+    }
+    ```
+
   - Apache
 
-        ```apache
-        <Files wp-config.php>
-        # Apache 2.2
-        Order Deny,Allow
-        Deny from all
+    ```apache
+    <Files wp-config.php>
+    # Apache 2.2
+    Order Deny,Allow
+    Deny from all
 
-        # Apache 2.4+
-        Require all denied
-        </Files>
+    # Apache 2.4+
+    Require all denied
+    </Files>
 
-        <Files wp-login.php>
-        # Apache 2.2
-        Order Deny,Allow
-        Deny from all
-        Allow from xxx.xxx.xxx.xxx
-        Allow from xxx.xxx.xxx.xxx
+    <Files wp-login.php>
+    # Apache 2.2
+    Order Deny,Allow
+    Deny from all
+    Allow from xxx.xxx.xxx.xxx
+    Allow from xxx.xxx.xxx.xxx
 
-        # Apache 2.4+
-        Require all denied
-        Require ip xxx.xxx.xxx.xxx
-        Require ip xxx.xxx.xxx.xxx
-        </Files>
-        ```
+    # Apache 2.4+
+    Require all denied
+    Require ip xxx.xxx.xxx.xxx
+    Require ip xxx.xxx.xxx.xxx
+    </Files>
+    ```
 
   - IIS
   
