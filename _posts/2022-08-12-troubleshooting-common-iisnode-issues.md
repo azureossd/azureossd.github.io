@@ -13,12 +13,12 @@ date: 2022-08-12 12:00:00
 
 Azure provides built-in diagnostics to assist in debugging node applications hosted on Azure App Service Windows. This article will cover how to enable logging of stdout/stderr and use diagnostic tools to troubleshoot common iisnode issues.
 
-Use caution when using troubleshooting steps on your production site. Recommendation is to troubleshoot your app on a non-production setup for example your staging slot and when the issue is fixed, swap your staging slot with your production slot.
+Use caution when using troubleshooting steps on your production site. The recommendation is to troubleshoot your app on a non-production setup, for example, your staging slot and when the issue is fixed, swap your staging slot with your production slot.
 
 # Enable Logging
 **Enable logging on the platform**
 
-Azure provides built-in diagnostics to assist with debugging an App Service app. For Windows applications you can enable application logging, web server logging, detailed error messages and failed request tracing.
+Azure provides built-in diagnostics to assist with debugging an App Service app. For Windows applications, you can enable application logging, web server logging, detailed error messages and failed request tracing.
 
 ![Windows Diagnostic Logging](/media/2022/08/windows-diagnostic-logging.png)
 
@@ -41,7 +41,7 @@ loggingEnabled: true
 logDirectory: /home/logfiles/iisnode
 devErrorsEnabled: true
 ```
-The iisnode.yml file can be created or edited within the Kudu Debug Console. you can access this through Advanced tools in the portal or editing this URL to include your app name. 
+The iisnode.yml file can be created or edited within the Kudu Debug Console. You can access this through Advanced tools in the portal or by editing this URL to include your app name. 
 
 <i>web-app-name.scm.azurewebsites.net/DebugConsole</i>
 
@@ -50,16 +50,19 @@ The iisnode.yml file can be created or edited within the Kudu Debug Console. you
 **Accessing log files**
 
 The contents of the /home/logfiles directory can be downloaded by following: 
-
 <i>web-app-name.scm.azurewebsites.net/api/zip/logfiles</i>
 
 You can also access the log files through the Kudu Debug Console.
 ![Kudu Debug Console - LogFiles Directory](/media/2022/08/kudu-logfiles.png)
 
+**Viewing Uncaught Exceptions**
+
+All uncaught exceptions are by default written to logging-errors.txt file under \home\LogFiles\Application directory.
+Note, If you have updated your iisnode.yml file to point to a custom log directory, then logging-errors.txt will be found there.
+
 **STDOUT and STDERR**
 
 The below screenshot shows how to enable application logging through the portal. This will send STDOUT and STDERR output to the \home\logfiles\application directory.
-
 
 ![App Service Portal Overview - Enable Application Logging ](/media/2022/08/enable-application-logging-iisnode.png)
 
@@ -75,19 +78,20 @@ stderror: console.error("error content") - error content will be visible in the 
 
     ![App Service Portal Overview - Enable Failed Request Tracing](/media/2022/08/freb-logs.png)
 
-- Another way to enle these logs is with azure cli with the following command:
+- Another way to enable these logs is through using the Azure CLI with the following command:
+
   ```
   az webapp log config --name <sitename> --resource-group <resourcegroupname> --failed-request-tracing true
   ```
 
-- After turning on Failed Request Tracing, new folders(W3SV****) containing failed request logs will be generated under D:\home\LogFiles\ in the Kudu console. 
+- After turning on Failed Request Tracing, new folders(W3SV****) containing failed request logs will be generated under \home\LogFiles and can be accessed through the Kudu console. 
 
-  Acces the debug console by following:
-  Your_Website_name.scm.azurewebsites.net/DebugConsole
+  Acces the Kudu debug console by following:
+  <i>web-app-name.scm.azurewebsites.net/DebugConsole</i>
 
   ![Kudu Debug Console - view freb logs](/media/2022/08/freb-logs-W3SVC.png)
 
-- Failed request logs can provide you more meaningful insight into application errors. You can access the error pages withinin the browser for easier viewing.
+- Failed request logs can provide you with more meaningful insight into application errors. You can access the error pages within the browser for easier viewing.
 
   ![Kudu Debug Console - view freb logs](/media/2022/08/failed-request-log-sample.png)
 
@@ -114,7 +118,7 @@ https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-p
 
 **You do not have permission to view this directory or page**
 
-The below output typically indicates you are missing a web.config file. When using the App Service Build engine, one will be generated but if using a service like GitHub Actions you will need to configure your own web.config. For more information see:
+The below output typically indicates you are missing a web.config file. When using the App Service Build engine, one will be generated, but if using a service like GitHub Actions, you will need to configure your own web.config. For more information, see:
 
 https://docs.microsoft.com/en-us/azure/app-service/configure-language-nodejs?pivots=platform-windows#you-do-not-have-permission-to-view-this-directory-or-page
 
@@ -130,7 +134,7 @@ Validate which file is being displayed and check your web.config. In this scenar
 
 # Troubleshooting 5xx Server Errors
 
-If you're application is returning a 500 error, the next place to look is the detailed errors within the /home/LogFiles directory. This will give you the substatus code and win32 error code, which can be used to help isolate the issue further. An example of the detailed error output can be observed in the next section.
+If your application is returning a 500 error, the next place to look is the detailed errors within the /home/LogFiles directory. This will give you the substatus code and win32 error code, which can be used to help isolate the issue further. An example of the detailed error output can be observed in the next section.
 
 ![iis node 500 error](/media/2022/08/iisnode-500.png)
 
@@ -145,13 +149,45 @@ If you're application is returning a 500 error, the next place to look is the de
 
 **HTTP Error 500.1001 - Internal Server error**
 
-As well as the detailed errors view. If we have dev errors enabled within the issnode.yml file then we will recieve the below browser output.
+As well as the detailed errors view, we will receive the below browser output if we have dev errors enabled within the issnode.yml file.
 
 ![HTTP Error 500.1001 - DevErrors enabled](/media/2022/08/dev-errors-enabled-iisnode.png)
 
-Searching for HResult code 0x2 returns - Win32Error 0x2 - App is not responding to the URL. Check the URL rewrite rules or check if your express app has the correct routes defined.
+Searching for HResult code 0x2 returns - Win32Error 0x2 - App is not responding to the URL. Check the URL rewrite rules and if your app has the correct routes defined.
 
 The above scenario was resolved after updating the misconfigured handlers within the web.config.
 
 ![HTTP Error 500.1001 - misconfigured handlers in web.config](/media/2022/08/web-config-handlers-iisnode.png)
 
+**HTTP Error 500.1013 with code Win32ErrorCode: 0x0000006d (IISNODE_ERROR_FAILED_PROCESS_HTTP_STATUS_LINE)**
+
+This condition often indicates that the connection between node.exe and iisnode was broken in the middle of the application sending back the HTTP response. This, in turn, may result from an exception during response processing.
+
+Reviewing your response code paths for unhandled exceptions and checking the application logs for further details will be an excellent next step.  
+
+All uncaught exceptions are by default written to logging-errors.txt and can be found under \home\logfiles\application or the directory specified in your iisnode.yml.
+
+Suppose the Nodejs process is crashing but not logging anything in the Application Logs. In that case, the application logging will need to be improved to capture the uncaught exceptions before the process crashes. 
+
+The below recommendation should only be used for troubleshooting purposes and as a last resort. The correct use of 'uncaughtException' is to perform synchronous cleanup of allocated resources (e.g. file descriptors, handles, etc.) before shutting down the process. It is not safe to resume regular operation after 'uncaughtException' because the system becomes corrupted. 
+
+
+[Using 'uncaughtException' correctly](https://nodejs.org/api/process.html#process_warning_using_uncaughtexception_correctly)
+```JavaScript
+process.on('unhandledRejection', (reason, p) => {
+  console.error(reason, 'Unhandled Rejection at Promise', p);
+  }).on('uncaughtException', err => { 
+  console.error(err, 'Uncaught Exception thrown');
+   process.exit(1);
+});
+```
+
+
+This scenario can also occur when the application runs out of memory or has a high CPU. You can review memory and CPU usage through the [diagnose and solve problems blade](https://learn.microsoft.com/en-us/azure/app-service/overview-diagnostics). 
+
+
+## Articles of Note:
+- [Configure a Node.js app for Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-language-nodejs?pivots=platform-windows)
+- [Best practices and troubleshooting guide for node applications on Azure App Service Windows](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-practices-and-troubleshoot-guide)
+- [Easy profiling for Node.js Applications](https://nodejs.org/en/docs/guides/simple-profiling/)
+- [Local Debugging Guide](https://nodejs.org/en/docs/guides/debugging-getting-started/)
