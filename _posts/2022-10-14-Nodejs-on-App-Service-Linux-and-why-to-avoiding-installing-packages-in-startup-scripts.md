@@ -114,6 +114,8 @@ Make sure that [App Service Logs](https://learn.microsoft.com/en-us/azure/app-se
 
 For the `eperm: operation not permitted lchown:`, this is due to trying to install packages under `/home` in the **application container**, which on Blessed Images have a volume mounted to it when `WEBSITES_APP_SERVICE_ENABLE_STORAGE` is set to true ([the default for Blessed Images](https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/things_you_should_know.md#you-can-enable-and-disable-storage-persistence-with-an-app-setting)).
 
+Permissions on the /home directory are set to 777. You cannot change these permissions even if you attempt to do so from an initialization script or from SSH.
+
 Some packages may attempt to change permissions - permissions on this directory cannot be changed, which is why this happens. 
 
 #### Solution
