@@ -131,5 +131,5 @@ node: /lib/x86_64-linux-gnu/xxx.so.6: version `xxx′ not found
 #### Solution
 The solution for these specific missing packages can go two general ways:
 
-- Add a custom startup script and install the needed packages via package manager (`apt`, `apt-get`, or `apk`, depending on the distribution). Note that if needing to install numerous Linux packages or the packages are large, you'll end up running into the same issue described in this blog pog.
+- Add a custom startup script and install the needed packages via package manager (`apt`, `apt-get`, or `apk`, depending on the distribution). Note that if needing to install numerous Linux packages or the packages are large, you'll end up running into the same issue described in this blog post.
 - Use a **Custom Docker Image**. Sometimes, it makes more sense to use a custom Image that you can build yourself to what your project needs. If the Linux package sizes that you're installing at runtime is adding a large amount of container startup time - then it may make more sense to include these in the custom Docker Image itself.
