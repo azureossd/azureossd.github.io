@@ -34,7 +34,7 @@ https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs
 
 You can use an **iisnode.yml** file to control several configuration options for iisnode. If not already created, the file can be placed under the **/home/site/wwwroot** directory.
 
-We will use the issnode.yml file for:
+We will use the iisnode.yml file for:
 
 - Allowing stdout and stderr streams from node processes to be captured and made available.  
 - Configure where the files with stdout and stderr captures will be stored.
@@ -149,7 +149,7 @@ The reccomended method is to set the version to the latest minor of the major ve
 
 **WEBSITE_NODE_DEFAULT_VERSION=~16**
 
-Be mindful of conflicts between versions set in the **issnode.yml**, **web.config** and **WEBSITE_NODE_DEFAULT_VERSION** 
+Be mindful of conflicts between versions set in the **iisnode.yml**, **web.config** and **WEBSITE_NODE_DEFAULT_VERSION** 
 
 More inforamtion on this can be found here:
 [Avoiding hardcoding Node versions on App Service Windows](https://azureossd.github.io/2022/06/24/Avoiding-hardcoding-Node-versions-on-App-Service-Windows/index.html#in-the-azure-portal)
@@ -171,7 +171,7 @@ If your application is returning a **HTTP 500 error**, the next place to look is
 
 ## HTTP Error 500.1001 - Internal Server error
 
-As well as the detailed errors view, we will receive the below browser output if we have **dev errors enabled** within the **issnode.yml** file.
+As well as the detailed errors view, we will receive the below browser output if we have **dev errors enabled** within the **iisnode.yml** file.
 
 ![HTTP Error 500.1001 - DevErrors enabled](/media/2022/08/dev-errors-enabled-iisnode.png)
 
