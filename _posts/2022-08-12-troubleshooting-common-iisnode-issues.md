@@ -9,7 +9,11 @@ categories:
   - Nodejs
   - Azure App Service on Windows
   - Debugging
-date: 2022-08-12 12:00:00
+header:
+  teaser: "/assets/images/nodejslogo.png" 
+toc: true
+toc_sticky: true
+date: 2022-10-17 12:00:00
 ---
 
 Azure provides built-in diagnostics to assist in debugging node applications hosted on Azure App Service Windows. This article will cover how to enable logging of stdout/stderr and use diagnostic tools to troubleshoot common iisnode issues.
