@@ -592,7 +592,7 @@ Total 1 new migration to be applied:
 *** applied m220503_200207_create_user_table (time: 0.252s)
 ```
 
-> **NOTE**: If you commited local migrations under the `migrations/` directory and try to rerun migrations, you may have your build fail with `create table {{%user}} ...Exception: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'sometablename' already exists`
+> **NOTE**: If you commited local migrations under the `migrations/` directory and try to rerun migrations, you may have your build fail with `create table {{ user}} ...Exception: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'sometablename' already exists`
 
 **Important**: Make sure to also add your needed environment variables as App Settings to the application in the Azure Portal. These are two separate environments. Failing to add these same database environment variables may have your container crash on start up.
 
