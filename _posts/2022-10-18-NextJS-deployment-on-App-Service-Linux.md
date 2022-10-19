@@ -13,7 +13,7 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/next.png
+    teaser: /assets/images/nextjs.png
 toc: true
 toc_sticky: true
 date: 2022-10-18 12:00:00
