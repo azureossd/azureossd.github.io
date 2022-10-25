@@ -31,9 +31,23 @@ But what may be noticed is that the symlinks required for these Node application
 
 This may show up like the below:
 
-```javascript
-code: 'module_not_found'
-requirestack: [ '/home/site/wwwroot/node_modules/.bin/next' ]
+
+```
+Require stack:
+    - /home/site/wwwroot/node_modules/.bin/nest
+    at Module._resolveFilename (node:internal/modules/cjs/loader:939:15)
+    at Module._load (node:internal/modules/cjs/loader:780:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/home/site/wwwroot/node_modules/.bin/nest:5:20)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Module._load (node:internal/modules/cjs/loader:827:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12) {
+        code: 'MODULE_NOT_FOUND',
+        requireStack: [ '/home/site/wwwroot/node_modules/.bin/nest' ]
+    }
 ```
 
 The above message would of course vary for different frameworks or NPM packages. Such as below, which is for **Nuxt.js**. The `requirestack` may vary but the premise is the same that the required symlink is missing.
@@ -47,6 +61,12 @@ Or with [**concurrently.js**](https://www.npmjs.com/package/concurrently):
 ```javascript
 code: 'MODULE_NOT_FOUND',
 requireStack: [ '/home/site/wwwroot/node_modules/.bin/concurrently' ]
+```
+
+Next.js (etc.)
+```javascript
+code: 'module_not_found'
+requirestack: [ '/home/site/wwwroot/node_modules/.bin/next' ]
 ```
 
 You can confirm if symlinks exist by running `ls -lrta ./node_modules/.bin`, and should get an output like this (this can find **entrypoint** which is talked about below in the Resolution):
