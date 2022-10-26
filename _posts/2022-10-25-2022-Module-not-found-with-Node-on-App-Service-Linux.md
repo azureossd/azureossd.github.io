@@ -221,7 +221,7 @@ The App Setting **SCM_DO_BUILD_DURING_DEPLOYMENT** for remote builds is inferred
 
 If you are noticing that Oryx Build is not being ran and packages are not being installed, while yet deploying from a place relative to your `package.json` (and all above points are valid) - try setting **SCM_DO_BUILD_DURING_DEPLOYMENT** to **true**.
 
-## GitHub Actions (GitHub Builder)
+### GitHub Actions (GitHub Builder)
 When using pipeline based approaches, it is generally assuming that any package installations and application compiling/transpiling, etc. will be done on the pipeline itself.
 
 Therefor it is important you check these following points:
@@ -297,7 +297,7 @@ For more examples of GitHub Action workflows that ensure packages are installed 
 
 If you are choosing to publish the zip to the Kudu side via a deployment task without wanting to build the application on the pipeline - then follow the steps in the **Zip Deploy (with Oryx Builder)** section.
 
-## DevOps pipelines
+### DevOps pipelines
 **This largely follows the GitHub Actions approach to troubleshooting `module not found errors`.**
 
 When using pipeline based approaches, it is generally assuming that any package installations and application compiling/transpiling, etc. will be done on the pipeline itself.
