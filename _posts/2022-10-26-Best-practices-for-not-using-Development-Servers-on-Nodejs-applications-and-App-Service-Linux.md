@@ -86,7 +86,7 @@ One thing that can happen when trying to deploy with a development server is tha
 
 For example, using the Angular example above - we see this: `angular live development server is listening on localhost:4200 open your browser on http://localhost:4200/`. This would obviously fail since it wouldn't be accepting external connections. 
 
-Depending on the development serer, you may be able to set HOST (as an environment variable (App Setting)) to 0.0.0.0. Which may resolve this, but would lead to the problems below.
+Depending on the development server, you may be able to set HOST (as an environment variable (App Setting)) to 0.0.0.0. Which may resolve this, but would lead to the problems below.
 
 ### Slow performance
 The Development Server for any of the above frameworks will always be slower than serving a production build. 
@@ -236,5 +236,20 @@ See our blog posts for deploying these frameworks on Nodejs with App Service Lin
 - [Nest Deployment on App Service Linux](https://azureossd.github.io/2022/02/11/Nest-Deployment-on-App-Service-Linux/index.html)
 - [Nuxtjs Deployment with App Service Linux](https://azureossd.github.io/2022/01/28/Nuxtjs-Deployment-with-Azure-DevOps-Pipelines/index.html)
  
-PM2 is built into Nodejs "Blessed" Images on App Service Linux. Review this blog post on [Using PM2 on App Service Linux](https://azureossd.github.io/2022/02/22/Using-PM2-on-App-Service-Linux/index.html)
 
+You can serve these applications multiple ways, with production HTTP servers or process managers - instead of running through just `npm` or `yarn`. For instance, PM2 is built into Nodejs "Blessed" Images on App Service Linux. Review this blog post on [Using PM2 on App Service Linux](https://azureossd.github.io/2022/02/22/Using-PM2-on-App-Service-Linux/index.html)
+
+You can also serve these applications with other HTTP servers such as:
+
+- [serve](https://www.npmjs.com/package/serve)
+    - example: `npx serve -s <buildFolder>` - which can be added as a Startup Command to the application.
+
+- [http-server](https://www.npmjs.com/package/http-server)
+    - example: `npx http-server <buildFolder>` - which can be added as a Startup Command to the application.
+
+### Workaround
+Although not recommended, if unable to change to serve a production build currently and experiencing long start up times for the application due to the Development Server going through compilation on startup - which may lead to the container timing out - the App Setting `WEBSITES_CONTAINER_START_TIME_LIMIT` can be added which can extend the allowed container startup time if needed.
+
+An official reference can be located [here](https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux#is-it-possible-to-increase-the-container-warmup-request-timeout-).
+
+The value is 240 seconds by default and can be increased to a maximum of 1800 seconds.
