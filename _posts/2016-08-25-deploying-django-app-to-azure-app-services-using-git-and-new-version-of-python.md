@@ -42,7 +42,7 @@ Follow <https://www.djangoproject.com/start/> to get started with Django
 If you have [PyCharm](https://www.jetbrains.com/pycharm/), Follow details at below link to create a sample app\
 <https://www.jetbrains.com/help/pycharm/2016.1/creating-django-project.html>
 
-![Sample Django Project](http://techiecouple.azurewebsites.net/content/images/2016/08/djangosample.PNG)
+![Sample Django Project](/media/2016/08/djangosample.PNG)
 
 ## Create Azure WebApp and Use Site Extension to Upgrade Python
 
@@ -100,7 +100,7 @@ Navigate to your root folder and commit your changes to `WEB_APP_GIT_URL`
 
 Here is my App on Azure After publish
 
-![Django Sample App Azure](http://techiecouple.azurewebsites.net/content/images/2016/08/djangopublish.PNG)
+![Django Sample App Azure](/media/2016/08/djangopublish.PNG)
 
 You can find a Sample Python Django project with above operations @ [GitHub Link](https://github.com/prashanthmadi/azure-django-customdeployment)
 

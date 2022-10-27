@@ -54,7 +54,7 @@ Navigate to [Azure portal](https://portal.azure.com/)
 -   Create a new web app
 -   [Setup Continuous Deployment](https://docs.microsoft.com/en-us/azure/app-service-web/app-service-continuous-deployment)
 -   Navigate to your App Service blade, select Extensions and then Add.
--   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need ![Site Extension](https://prmadi.com/content/images/2016/11/siteextensions.png){.full-img}
+-   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need ![Site Extension](/media/2016/11/siteextensions.png){.full-img}
 
 For this blog I'm choosing `Python 2.7.12 x64`, It would install new version of python @ D:\\home\\Python27
 
@@ -174,7 +174,7 @@ Navigate to your root folder and commit your changes to `WEB_APP_GIT_URL`
 
 Here is my App on Azure After publish
 
-![Django Sample App Azure](https://prmadi.com/content/images/2016/08/djangopublish.PNG)
+![Django Sample App Azure](/media/2016/08/djangopublish.PNG)
 
 You can find a Sample Python Django project with above operations @ [GitHub Link](https://github.com/prashanthmadi/azure-django-httphandler)
 
@@ -186,7 +186,7 @@ Use below line of code(at `D:\home\site\wwwroot` using kudu console) to generate
 
     D:\home\python27\python.exe manage.py collectstatic --noinput  
 
-![Django Sample App with static folder](https://prmadi.com/content/images/2017/03/staticfolder.PNG)
+![Django Sample App with static folder](/media/2017/03/staticfolder.PNG)
 
 Once you have static folder in `D:\home\site\wwwroot` folder as above screenshot
 
@@ -198,9 +198,9 @@ Once you have static folder in `D:\home\site\wwwroot` folder as above screenshot
     value : site\wwwroot\static  
     mark the application checkbox  
 
-![static folder virtual directory](https://prmadi.com/content/images/2017/03/virtualdirectoyr.PNG)
+![static folder virtual directory](/media/2017/03/virtualdirectory.PNG)
 
--   Navigate to `D:\home\site\wwwroot\static` folder and add web.config file with below content ![static folder virtual directory](https://prmadi.com/content/images/2017/03/staticwebconfig.PNG)
+-   Navigate to `D:\home\site\wwwroot\static` folder and add web.config file with below content ![static folder virtual directory](/media/2017/03/staticwebconfig.PNG)
 
 **D:\\home\\site\\wwwroot\\static\\web.config content**
 
@@ -220,7 +220,7 @@ Once you have static folder in `D:\home\site\wwwroot` folder as above screenshot
 
 #### Final Output (with static files working) 
 
-![Final Output](https://prmadi.com/content/images/2017/03/djangosuccess.PNG)
+![Final Output](/media/2017/03/djangosuccess.PNG)
 :::
 
 
