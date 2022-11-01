@@ -227,8 +227,6 @@ See our blog posts for deploying these frameworks and serving them with PM2 on N
 
 - [NextJS - nextjs.org - Deployment](https://nextjs.org/docs/deployment#nodejs-server)
 - [NuxtJS - nuxtjs.org - Deployments](https://nuxtjs.org/deployments/azure-portal)
-- [NextJS Deployment on App Service Linux - Azure DevOps](https://azureossd.github.io/2022/10/18/NextJS-deployment-on-App-Service-Linux/index.html#azure-devops)
-
 
 See our blog posts for deploying these frameworks on Nodejs with App Service Linux:
 
