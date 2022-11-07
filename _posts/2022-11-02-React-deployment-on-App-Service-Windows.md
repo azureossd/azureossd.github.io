@@ -84,9 +84,9 @@ This blog post will cover deploying a React application to Azure App Service on 
 # Deployment Options
 There are multiple deployment options in App Service Linux as Continuous Deployment (GitHub/GitHub Actions, Bitbucket, Azure Repos, External Git, Local Git), ZipDeploy, Run from Package, FTP, etc. 
 
-## Pre-requesites
+## Prerequisites
 **IMPORTANT**:
-Prior to doing any of the below methods, you should know about these two items:
+Prior to doing any of the below methods, you should know about these three items:
 
 1. Make sure the application generates a production build. Which is explained above.
 2. You may need to set your **Physical Path** to point to the **build** folder. This build folder is what contains your site content bundled for production.
@@ -419,7 +419,7 @@ jobs:
           path: build/
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
@@ -615,7 +615,7 @@ To deploy all content and not only the `\build` folder, just change the `Archive
 ## Routes are giving 404 or showing "You do not have permission to view this directory or page"
 For routes other than "/" (aka., the root path), you may see `You do not have permission to view this directory or page` or `The resource you are looking for has been removed, had its name changed, or is temporarily unavailable.`. This is different than the below section where this will appear even on the root path.
 
-This may also happen if you navigate to these paths through client-side routers (for example, using the [Link](https://github.com/remix-run/react-router/blob/main/docs/start/tutorial.md#client-side-routing) API in react-router-dom) and then refreshing the page on that route. This will reload on the current route but show `You do not have permission to view this directory or page`. Additionally, if trying to access the route URI directly through the address bar - this may occur as well.
+This may also happen if you navigate to these paths through client-side routers (for example, using the [Link](https://github.com/remix-run/react-router/blob/main/docs/start/tutorial.md#client-side-routing) API in [react-router-dom](https://www.npmjs.com/package/react-router-dom)) and then refreshing the page on that route. This will reload on the current route but show `You do not have permission to view this directory or page`. Additionally, if trying to access the route URI directly through the address bar - this may occur as well.
 
 **Resolution**:
 Most real-world React applications use client-side routing. We need to add a `web.config` in our project to send all requests back to "/" so client-side routing can take over. This is happening because without this `web.config` for client side routes, the browser is trying to look up an actual corresponding `html` page from the server.
