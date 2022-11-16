@@ -19,6 +19,14 @@ date: 2020-08-07 16:00:00
 
 WordPress Performance Best Practices on Azure App Services (Windows/Linux)
 
+## WordPress on App Service
+
+It is recommended to utilize the Azure App Service WordPress offering within the Azure Marketplace. More information on how to create this resource can be found here:
+
+[Quickstart: Create a WordPress site - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/quickstart-wordpress)
+
+This offering follows the below best practices and is recommended for optimal performance with Azure App Service.
+
 ## Best Practices
 
 When it comes to Performance, there are a few Best Practices recommended when using Azure App Services.
@@ -178,20 +186,23 @@ If you used the WordPress or WordPress on Linux marketplace items on the Azure P
 
 Once installed and activated, you will need to navigate to **Settings > Redis** to update settings.
 
-By default, Redis Object Cache will connect to 127.0.0.1:6379 for Redis. We will need to modify the ***wp-config.php*** file to connect to Azure Cache for Redis.
+By default, Redis Object Cache will connect to **127.0.0.1:6379** for Redis. We will need to modify the ***wp-config.php*** file to connect to Azure Cache for Redis.
 
 If you do not have an Azure Cache for Redis, follow these steps to set one up: [https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/quickstart-create-redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/quickstart-create-redis).
 
 Via SSH or FTP, open your wp-config.php and add the following defines:
 
-- define('WP_REDIS_HOST', getenv('REDIS_HOST'));
-- define('WP_REDIS_PASSWORD', getenv('REDIS_PASSWORD'));
+```php
+define('WP_REDIS_HOST', getenv('REDIS_HOST'));
+define('WP_REDIS_PASSWORD', getenv('REDIS_PASSWORD'));
+```
 
 Once these defines are added into your wp-config.php file, let's navigate to the App Service in the Azure Portal. We will be setting App Settings for your values:
 
-- **NAME | VALUE**
-- REDIS_HOST | yourRedisEndpoint.redis.cache.windows.net
-- REDIS_PASSWORD | yourAccessKey
+| **NAME** | **VALUE** |
+| --- | --- |
+| REDIS_HOST | yourRedisEndpoint.redis.cache.windows.net |
+| REDIS_PASSWORD | yourAccessKey |
 
 Using App Settings will better secure your Redis information as it will not be hardcoded inside your wp-config.php file.
 
@@ -245,4 +256,4 @@ define('DISABLE_WP_CRON', true);
 
 ## Conclusion
 
-With all these best practices or at least some of these, you will have a WordPress site running at better speeds.
+With all these best practices or at least some of these, you will have a WordPress site running with improved performance.
