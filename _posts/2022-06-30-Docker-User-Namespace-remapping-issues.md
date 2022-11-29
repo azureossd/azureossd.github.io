@@ -114,6 +114,68 @@ If the Image is a 3rd party image, contact the maintainer about the `UID` used. 
 
 After resolving this, **the image must be rebuilt** and then can be deployed. This **must** be done locally.
 
+## NPM specific issues causing userns remap exceptions
+Certain versions of NPM may install node_modules into your `node_modules` directory with an extremely high ID for the file owner/creator.
+
+If deploying the below `Dockerfile` to App Service, explicitly targeting **npm 9**, we get a userns remapping error:
+
+> **NOTE**: This can happen with other version previously, like [npm 5](https://github.com/projectkudu/kudu/issues/2512)
+
+**(Dockerfile)**:
+```Dockerfile
+FROM node:18.9.0-alpine3.15
+
+WORKDIR /app
+COPY package.json ./
+RUN npm i -g npm@9.1.1 && \
+    npm i
+
+COPY . ./
+
+EXPOSE 8080 
+
+CMD [ "node", "/app/server.js" ]
+```
+
+Error seen on App Services:
+
+```
+ERROR - failed to register layer: Error processing tar file(exit status 1): Container ID 1516583083 cannot be mapped to a host IDErr: 0, Message: failed to register layer: Error processing tar file(exit status 1): Container ID 1516583083 cannot be mapped to a host ID
+```
+
+Using the same general approach above, we will **need to investigate this locally**. However, as a caveat, the `find` command mentioned above won't actually find this ID as the file UID itself is not high, but rather the owner/creator of the files name is actually the ID itself.
+
+We can use this approach to find the high ID in the container - since we know this is related to NPM and node_modules, we use this:
+
+```bash
+FILES=$(find /app/node_modules/ ! -user root)
+ls -lrta $FILES
+```
+
+We can now see the owner name is actually the ID that matches the above error:
+
+```bash
+-rw-r--r--    1 501      dialout       1490 Nov 29 17:18 /app/node_modules/cookie-signature/Readme.md
+-rw-r--r--    1 501      dialout        695 Nov 29 17:18 /app/node_modules/cookie-signature/History.md
+-rw-r--r--    1 501      dialout         29 Nov 29 17:18 /app/node_modules/cookie-signature/.npmignore
+-rw-r--r--    1 15165830 root          1070 Nov 29 17:18 /app/node_modules/content-type/package.json
+-rw-r--r--    1 15165830 root          4809 Nov 29 17:18 /app/node_modules/content-type/index.js
+-rw-r--r--    1 15165830 root          2796 Nov 29 17:18 /app/node_modules/content-type/README.md
+-rw-r--r--    1 15165830 root          1089 Nov 29 17:18 /app/node_modules/content-type/LICENSE
+-rw-r--r--    1 15165830 root           436 Nov 29 17:18 /app/node_modules/content-type/HISTORY.md
+-rw-r--r--    1 501      dialout        703 Nov 29 17:18 /app/node_modules/asynckit/stream.js
+-rw-r--r--    1 501      dialout       1751 Nov 29 17:18 /app/node_modules/asynckit/serialOrdered.js
+-rw-r--r--    1 501      dialout        501 Nov 29 17:18 /app/node_modules/asynckit/serial.js
+-rw-r--r--    1 501      dialout       1017 Nov 29 17:18 /app/node_modules/asynckit/parallel.js
+```
+
+As a resolution, we can either downgrade NPM (current Docker Images with Node have NPM preinstalled which are an earlier version than 9) - or - change the ownership of `node_modules`, like the below:
+
+```
+RUN npm i -g npm@9.1.1 && \
+    npm i && \
+    find /app/node_modules/ ! -user root | xargs chown root:root
+```
 
 
 
