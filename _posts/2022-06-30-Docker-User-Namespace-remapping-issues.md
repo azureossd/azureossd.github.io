@@ -145,7 +145,7 @@ ERROR - failed to register layer: Error processing tar file(exit status 1): Cont
 
 Using the same general approach above, we will **need to investigate this locally**. However, as a caveat, the `find` command mentioned above won't actually find this ID as the file UID itself is not high, but rather the owner/creator of the files name is actually the ID itself.
 
-We can use this approach to find the high ID in the container - since we know this is related to NPM and node_modules, we use this:
+We can use this approach to find the high ID in the container - since we know this is related to NPM and node_modules, we use this. Make sure to replace the below path with your path to your `node_modules`:
 
 ```bash
 FILES=$(find /app/node_modules/ ! -user root)
