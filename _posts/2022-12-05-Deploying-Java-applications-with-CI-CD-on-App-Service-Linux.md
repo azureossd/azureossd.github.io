@@ -391,7 +391,7 @@ Maven and Gradle are configured to point to a specific Java version. What is the
 
 You can alternatively use the **JavaToolInstaller@0** task to point to a specific JDK version, this will be set to `$PATH`, which Maven and Gradle will pick up. You can alternatively use the `javaHomeOption` option to point `JAVA_HOME` to the JDK that's installed and discovered (i.e through the JavaToolInstaller) or to a specific path on the agent.
 
-For example:
+For example (using JavaToolInstaller):
 
 ```yaml
 - task: JavaToolInstaller@0
@@ -434,7 +434,7 @@ This typically means your jar is not under wwwroot **or** is not named `app.jar`
 
 If you absolutely need to run a jar with a specific name, then you must use a startup command as defined [here](https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux#what-are-the-expected-values-for-the-startup-file-section-when-i-configure-the-runtime-stack-).
 
-It is advised to review the file content under `/home/site/wwwroot` when these scenarios occur (such as with FTP), to check that you're not accidentially deploying a nested zip - if these `.yml` file have been changed to add further logic. 
+It is advised to review the file content under `/home/site/wwwroot` when these scenarios occur (such as with FTP), to check that you're not accidentally deploying a nested zip. If this is the case we fallback to showing the default hosting page 
 
 #### Pipeline is failing on the build or deploy stage
 This can fail for various reasons, and is usually a product of the tasks being configured here - troubleshooting this needs to be on the **Azure DevOps or GitHub Actions side**, especially if this is failing _only_ in the **Build** stage. This alone would mean this is not an App Service issue, but rather a pipeline issue.
