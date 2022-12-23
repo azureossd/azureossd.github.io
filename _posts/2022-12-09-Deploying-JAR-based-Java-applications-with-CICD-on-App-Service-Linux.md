@@ -1,5 +1,5 @@
 ---
-title: "Deploying JAR based Java applications with CI/CD (GitHub Actions, Azure DevOps)"
+title: "Deploying JAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux"
 author_name: "Anthony Salemo"
 tags:
     - Java
@@ -45,7 +45,7 @@ For simplicity, we'll be using Spring Boot to create the application we'll be de
 - **Language**: Java
 - **Spring Boot**: 3.0.0
 - **Project Metadata**: Fill this as fits your needs
-- **Packaging**: Jar
+- **Packaging**: War
 - **Java**: 17
 
 For Dependencies, go to **Add Dependencies** and choose **Spring Web**. Click **Generate** after this, which will download a zip which we'll extract into a project workspace. 
@@ -180,7 +180,12 @@ stages:
       displayName: 'Copy Files to artifact staging directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
+        # NOTE: You can use glob patterns to specify a jar, without having to explicitly name one
+        # eg. like:
+        # Contents: '**/target/*.jar'
+        # Assuming that only one (1) jar exists or the glob pattern is specific to avoid passing multiple jars to the next stage
+        # Which may fail
+        Contents: '**/target/$(YOUR_JAR).jar'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
     - upload: $(Build.ArtifactStagingDirectory)
@@ -297,6 +302,9 @@ stages:
     # We change this to reflect Gradles build output location for our jars
     # Which is /build/libs/<jar>.jar
     # Replace JAR_NAME with the name of your jar -eg., azure-0.0.1.SNAPSHOT.jar
+    # NOTE: You can use glob patterns to specify a jar, without having to explicitly name one, eg. like:
+    # Contents: '**/target/*.jar'
+    # Assuming that only one (1) jar exists or the glob pattern is specific to avoid passing multiple jars to the next stage - Which may fail
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
@@ -653,8 +661,6 @@ deploy:
       - run: |
           az logout
 ```
-
-
 
 ### Troubleshooting
 #### Error: More than one package matched with specified pattern: *.jar. Please restrain the search pattern.
