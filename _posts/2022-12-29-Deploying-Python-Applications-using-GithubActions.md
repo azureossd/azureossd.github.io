@@ -40,7 +40,7 @@ You can follow along by forking the following Azure Sample Repository:
     ```
     This will enable the app service build system oryx, however for the purpose of this article we would like to **disable** this as we want the build to only occur on Github Actions.
 
-2. Disable the oryx build system by changing this to 0 or false and saving your changes.
+2. Disable the oryx build system by changing this to 0 or false and save your changes.
      ```
     SCM_DO_BUILD_DURING_DEPLOYMENT = 0
     ```
@@ -113,11 +113,13 @@ You can follow along by forking the following Azure Sample Repository:
     <summary>Explanation</summary>
     Since the build is not occuring on the app service side we need to include the created virtual enviornment in the .zip archive.
     
-    Previously this was being exculding and the virtual environment was being build by the app service build system again.
+    Previously this was being exculding and the virtual environment was being built by the app service build system again.
 
     You can validate that your virtual environment is included inside the article by downloading it and extracting the content to see if the virtual environment was included.
 
     https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts
+    
+    https://github.com/actions/upload-artifact
 
     </details>
 
@@ -135,7 +137,7 @@ You can follow along by forking the following Azure Sample Repository:
 
    
 ## Reasoning
-- Simplifies the deployment process by removing the app service oryx build process. By default is the pip install is running twice, once on Github Actions and once during the oryx build process.
+- Simplifies the deployment process by removing the app service oryx build process. By default the pip install is running twice, once on Github Actions and once during the oryx build process.
 - Allows users to take of Advantage of Github Actions Features, such as a build cache to possibly improve deployment times.
 
     More information here: [Caching dependencies to speed up workflows](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
