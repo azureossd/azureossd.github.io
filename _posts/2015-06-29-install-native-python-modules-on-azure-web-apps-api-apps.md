@@ -59,7 +59,7 @@ I'm using `Python 3.5.2 x64` for this blog. So i will create wheel files for Pyt
 
 Above step would have created a **wheelhouse** folder with wheel files for modules listed in requirements.txt file (In my cases it created wheel files for Python35 arch as you can see in file names)\
 \
-![Creating Wheel Files](https://prmadi.com/content/images/2016/12/webjob4.PNG)
+![Creating Wheel Files](/media/2016/12/webjob4.PNG)
 
 -   Alternatively, You can also Download wheel files available online @ <http://www.lfd.uci.edu/~gohlke/pythonlibs/>
 
@@ -72,7 +72,7 @@ Follow Below steps to update Python version on your web app.
 -   Navigate to [Azure portal](https://portal.azure.com/)
 -   Click on App Service blade of Web App, select Extensions and then Add.
 -   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need\
-    ![Site Extension](https://prmadi.com/content/images/2016/11/siteextensions.png)
+    ![Site Extension](/media/2016/11/siteextensions.png)
 
 For this blog I'm choosing `Python 3.5.2 x64`, It would install new version of python @ D:\\home\\Python35
 
@@ -84,7 +84,7 @@ For this blog I'm choosing `Python 3.5.2 x64`, It would install new version of p
 
     --find-links wheelhouse
 
-![find links in requirements.txt](https://prmadi.com/content/images/2016/12/webjob5.PNG)
+![find links in requirements.txt](/media/2016/12/webjob5.PNG)
 
 ##### Install Manually using Kudu 
 

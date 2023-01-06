@@ -36,7 +36,7 @@ ex: **start.py**
 *   Navigate to [Azure portal](https://portal.azure.com/)
 *   Create a new web app
 *   Navigate to your App Service blade, select Extensions and then Add.
-*   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need![Site Extension](http://prmadi.com/content/images/2016/11/siteextensions.png)
+*   From the list of extensions, scroll down until you spot the Python logos, then choose the version you need![Site Extension](/media/2016/11/siteextensions.png)
 
 For this blog I'm choosing `Python 3.5.2 x64`, It would install new version of python @ D:\\home\\Python35
 
@@ -61,11 +61,11 @@ you can use any other file instead of `start.py` and python version above as per
 *   zip all your app content in local
 *   Navigate to [Azure portal](https://portal.azure.com/)
 *   Navigate to your App Service blade, select WebJobs and then Add.
-*   ![Add Webjob](http://prmadi.com/content/images/2016/11/webjob1.PNG)
+*   ![Add Webjob](/media/2016/11/webjob1.PNG)
 *   Provide Necessary details like type and others
-*   ![Webjob details](http://prmadi.com/content/images/2016/11/webjob2.PNG)
+*   ![Webjob details](/media/2016/11/webjob2.PNG)
 *   After clicking Ok, you should see new webjob available to run
-*   Below is my webjob output, where i'm printing python version used to run it![Webjob Output](http://prmadi.com/content/images/2016/11/webjob3.PNG)
+*   Below is my webjob output, where i'm printing python version used to run it![Webjob Output](/media/2016/11/webjob3.PNG)
 
 ## Install dependencies
 
