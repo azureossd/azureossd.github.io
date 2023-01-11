@@ -121,7 +121,7 @@ https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-p
 
 # Troubleshooting Common Issues
 
-## Hard Coding the PORT
+## Hard coding the PORT
 
 If your application does not listen on the correct port, it can result in 500 errors. 
 
