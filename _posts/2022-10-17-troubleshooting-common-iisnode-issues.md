@@ -121,6 +121,26 @@ https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-p
 
 # Troubleshooting Common Issues
 
+## Hard coding the PORT
+
+If your application does not listen on the correct port, it can result in 500 errors. 
+
+Your Node.js app should listen to the port specified in the process.env.PORT variable. The following example shows how you do it in a simple Express app:
+
+```javascript
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+```
+
 ## You do not have permission to view this directory or page
 
 The below output typically indicates you are missing a **web.config** file. When using the App Service Build engine, one will be generated, but if using a service like GitHub Actions, you will need to configure your own **web.config**. For more information, see:
