@@ -27,9 +27,9 @@ This blog will walk through enabling the profiler on App Service Linux & reviewi
 
 ## Enabling & Gathering a trace on App Service Linux
 
-1.  To enable code profiler, first add the App Setting ***`WEBSITE_ENABLE_DEFAULT_CODE_PROFILER`=`true`*** to your App Service configuration. ⚠️ Adding this App Setting will restart your application.
+1.  The code profiler is currently an opt-out feature, meaning it is enabled by default. There is no need to add any additional app settings.
 
-2. Validate the running process to profile. In this example, we're using gunicorn running in forked mode so it's expected to see multiple processes, but we can use variations of ps to target the process-id consuming cpu time. This same approach can be used if other python servers are used to serve your application.
+2. Validate the running process to profile. In this example, we're using gunicorn running in forked mode so it's expected to see multiple processes, but we can use variations of ps to target the process-id consuming cpu time. In general the second Gunicorn process serves the request and should be profiled. This same approach can be used if other python servers are used to serve your application.
 
     ```bash
     #checking for the running python process id
