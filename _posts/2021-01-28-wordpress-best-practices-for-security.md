@@ -215,7 +215,7 @@ There are many different WP Security plugins out there that you could use. Using
 
 # Update for new WordPress on Linux App Service Marketplace offering (2022)
 
-More information regarding this offering can be found here: [https://docs.microsoft.com/en-us/azure/app-service/quickstart-wordpress](https://docs.microsoft.com/en-us/azure/app-service/quickstart-wordpress)
+More information regarding this offering can be found here: [https://github.com/Azure/wordpress-linux-appservice](https://github.com/Azure/wordpress-linux-appservice)
 
 ## Updating Nginx headers
 
@@ -232,17 +232,13 @@ This will allow for updating many different headers for WordPress security. To d
 - Edit `/home/custom-spec-settings` and at the bottom of file you can add the headers for security
 
     ```nginx
+    add_header Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';" always;
     add_header X-Xss-Protection "1; mode=block" always;
-    add_header Access-Control-Allow-Origin 'https://www.custom-domain.com/';
+    add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
-    add_header Content-Security-Policy "base-uri 'self';"
-    add_header always X-Content-Type-Options 'nosniff';
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header Set-Cookie "Path=/; HttpOnly; Secure";
-    add_header Strict-Transport-Security 'max-age=63072000; includeSubdomains; preload';
+    add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload';
     add_header Referrer-Policy "strict-origin";
-    add_header Permissions-Policy;
-    remove_header X-Forwarded-Host;
+    add_header Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self)";
     ```
 
 ## Remove `phpinfo()` file
