@@ -1,5 +1,5 @@
 ---
-title: "Configurating Gunicorn worker classes and other general settings"
+title: "Configuring Gunicorn worker classes and other general settings"
 author_name: "Anthony Salemo"
 tags:
     - Python
