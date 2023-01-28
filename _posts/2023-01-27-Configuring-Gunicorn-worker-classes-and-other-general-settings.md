@@ -1,6 +1,6 @@
 ---
-title: "Configuration Gunicorn worker classes and other general settings"
-author_name: "Keegan D'Souza"
+title: "Configurating Gunicorn worker classes and other general settings"
+author_name: "Anthony Salemo"
 tags:
     - Python
     - WSGI
