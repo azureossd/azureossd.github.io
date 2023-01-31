@@ -5,7 +5,7 @@ tags:
     - Nginx
     - Apache
     - Lets Encrypt
-    - SSL Certicate
+    - SSL Certificate
 categories:
     - Azure Linux VM 
     - Nginx 
