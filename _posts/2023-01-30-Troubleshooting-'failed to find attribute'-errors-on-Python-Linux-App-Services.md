@@ -64,6 +64,8 @@ As mentioned above, this is because Gunicorn cannot find the wSGI or aSGI callab
 - The callable is **not** named `app`
 - The file in which the callable lives is **not** in the root of your project
 - If relying on Oryx for the startup command, then your callable **file name** is not one of the following: `application.py`, `app.py`, `index.py` or `server.py` (in addition to points 1 and 2)
+- **Note**: For Django, Oryx expects the callable to be named `application`, which would be in `mysite`/`wsgi.py` in a typical Django structure. If is not, it'll manifest as `Failed to find attribute 'application' in 'mysite.wsgi'.`
+    - If your `wsgi.py` file is more than one (1) folder deep, Oryx will fail to find the location and show `No framework detected`
 
 Oryx runs a Gunicorn command on startup that is generally like this:
 
@@ -74,7 +76,7 @@ gunicorn --bind 0.0.0.0 --timeout 600 --access-logfile '-' --error-logfile '-' a
 The contributor to this error is the last entry in this particular command, which equates to:
 
 ```
-gunicorn --bind 0.0.0.0 --timeout 600 --access-logfile '-' --error-logfile '-' <the_file_that_has_your_callable>:<your_callable_varialbe_name>
+gunicorn --bind 0.0.0.0 --timeout 600 --access-logfile '-' --error-logfile '-' <the_file_that_has_your_callable>:<your_callable_variable_name>
 ```
 
 `app:app` would mean:
