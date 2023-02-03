@@ -16,7 +16,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: YYYY-MM-DD 00:00:00
+date: YYYY-MM-DD 12:00:00
 ---
 
 ## Overview that is using a H2 header which is useful for a TOC

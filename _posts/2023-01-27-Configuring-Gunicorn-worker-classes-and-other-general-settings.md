@@ -15,7 +15,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2023-01-27 00:00:00
+date: 2023-01-27 12:00:00
 ---
 
 In thos post we'll go over how to make Gunicorn target different worker classes for different types of applications - and other general settings we can configure through Gunicorn.

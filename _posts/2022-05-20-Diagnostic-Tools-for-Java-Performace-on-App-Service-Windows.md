@@ -15,7 +15,7 @@ header:
     teaser: "/assets/images/Javalogo.png" 
 toc: true
 toc_sticky: true
-date: 2022-05-20 00:00:00
+date: 2022-05-20 12:01:00
 ---
 When dealing with High CPU, High Memory, or general performance scenarios on App Service Windows, it’s recommended to profile the application locally, but this may not always be possible nor reflect the same results. This may be due to the difference in load or environment configuration.
 

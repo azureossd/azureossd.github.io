@@ -16,7 +16,7 @@ header:
 
 toc: true
 toc_sticky: true
-date: 2022-05-09 00:00:00
+date: 2022-05-09 12:00:00
 ---
 
 The App Service Linux Python images now come pre-configured with a code-profiler. This quickly allows us to collect traces for troubleshooting High Memory & High CPU against our running Python process without installing any additional packages within your application manually. 
