@@ -8,7 +8,7 @@ categories:
     - How-To # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/javafunction.png" # There are multiple logos that can be used in 
-date: 2020-01-20 00:00:00
+date: 2020-01-20 12:00:00
 
 ---
 
