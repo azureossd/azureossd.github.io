@@ -25,8 +25,6 @@ links:
         url: https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-faq
       - title: "Things You Should Know: Web Apps and Linux"
         url: https://techcommunity.microsoft.com/t5/azure-app-service/things-you-should-know-web-apps-and-linux/ba-p/392472
-      - title: "Java on App Service"
-        url: https://github.com/Azure-Samples/java-on-app-service
   - title: Other Blogs
     children:
       - title: "Azure Blog"
@@ -37,13 +35,11 @@ links:
         url: https://azure.microsoft.com/en-us/updates/
   - title: Other Resources
     children:
-      - title: "Java LTS for Azure"
-        url: https://docs.microsoft.com/en-us/java/azure/jdk/?view=azure-java-stable
-      - title: "Azure Spring Cloud"
-        url: https://docs.microsoft.com/en-us/azure/spring-cloud/
-      - title: "Nodejs"
-        url: https://nodejs.org/
-      - title: "PHP"
-        url: https://www.php.net/
-      - title: "Python"
-        url: https://www.python.org/
+      - title: "Azure Spring Apps"
+        url: https://learn.microsoft.com/en-us/azure/spring-apps/
+      - title: "Azure Container Apps"
+        url: https://learn.microsoft.com/en-us/azure/container-apps/
+      - title: "Oryx Microsoft"
+        url: https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md
+      - title: "Apps on Azure Blog"
+        url: https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog
