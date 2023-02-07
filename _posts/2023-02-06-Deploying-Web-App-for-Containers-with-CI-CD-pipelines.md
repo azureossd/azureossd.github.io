@@ -21,7 +21,7 @@ date: 2023-02-06 00:00:00
 This post will cover some ways to set up a CI/CD pipeline and deploy your image to Web App for Containers on Azure.
 
 ## Overview
-
+You can continuously build and deploy your images to Web App for Containers through GitHub Actions or Azure DevOps pipelines. Through this approach, you can simply push commits to your repository in question - and from there, will kick off the workflows defined below that will automatically build, tag, push and deploy your images to Azure Container Registry and your Web App for Container on Azure.
 ## Prerequisites
 ### Application Logs
 **IMPORTANT:** Ensure that App Service Logs are enabled - review [this document on](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer) how to do so.
