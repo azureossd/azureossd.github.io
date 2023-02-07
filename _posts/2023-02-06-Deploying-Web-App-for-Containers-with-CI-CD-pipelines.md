@@ -142,6 +142,7 @@ The UI should look like this:
 
 9. We'll need to change the `.yml` a bit to properly integrate the new task, the final output should look as below:
 
+{% raw %}
 ```yaml
 # Docker
 # Build and push an image to Azure Container Registry
@@ -204,6 +205,7 @@ stages:
         # Then it's highly recommended to explicitly set this App Setting to the port exposed in your Dockerfile
         AppSettings: '-WEBSITES_PORT 3000'
 ```
+{% endraw %}
 
 > **NOTE**: You may need to authorize your release on the first deployment attempt. The screen will look like this - and is a one time thing:
 
@@ -242,6 +244,7 @@ GitHub Actions with Web App for Containers can be easily set up through the Azur
 
     You can preview the file before saving, the file in question will look like the below - which should be enough to build, push and pull the image for a working application.
 
+{% raw %}
   ```yaml
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
@@ -295,6 +298,7 @@ jobs:
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
         images: 'youracr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00000000000000000000000000000000 }}/wafc-githubactions:${{ github.sha }}'
   ```
+{% endraw %}
 
   This will login to the registry first, build the image afterwards and push this to the selected Container Registry.
 
@@ -325,6 +329,7 @@ We need to add the Service Principal Client (App) ID and Service Principal Clien
 
 4. Lastly, change your `.yaml` to the below:
 
+{% raw %}
 ```yaml
 name: Build and deploy container app to Azure Web App - yoursite
 
@@ -359,6 +364,7 @@ jobs:
 
 ...rest of your yaml
 ```
+{% endraw %}
 
 ### Adding App Settings
 For parity with Azure DevOps, the below shows how to integrate adding App Settings to this flow, as mentioned in the Azure DevOps section - if you're not using a container that listens on port 80 (in those example, port 3000) - you should be using the `WEBSITES_PORT` App Setting.
@@ -378,6 +384,7 @@ To get set up on authentication, review [this documentation](https://github.com/
 
 Add the below JSON into your **Deploy** stage:
 
+{% raw %}
 ```json
 - uses: azure/login@v1
   with:
@@ -388,6 +395,7 @@ Add the below JSON into your **Deploy** stage:
     app-name: 'yourapp'
     app-settings-json: '[{ "WEBSITES_PORT": "3000" }]'
 ```
+{% endraw %}
 
 ### Troubleshooting
 #### Application Error :(
@@ -430,9 +438,3 @@ When building locally, the image may work fine - however, when building on the D
 This depends on the Dockerfile and instructions - but this can be most likely attributed to your container entrypoint not having executable permissions.
 
 To resolve this, add a `RUN chmod +x /some/entrypoint.sh` instruction, and rebuild the image in the pipeline.
-
-
-
-
-
-
