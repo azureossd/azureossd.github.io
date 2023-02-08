@@ -27,6 +27,9 @@ When these `UID`s are mapped to an id out of range, errors can occur, as explain
 
 You can read more of the official documentation [here](https://docs.docker.com/engine/security/userns-remap/#user-namespace-known-limitations).
 
+# Important note
+The concept of username spaces is a typical Linux construct. The error described in this article is **NOT** an App Service and/or an Azure issue. This can easily be reproduced on essentially any machine that supports user namespaces and remapping, and is trying to create an ID out of the range set on the machine.
+
 > **NOTE**: The range of these id's can **not** be changed on App Services. It is ultimately up to the developer or maintainer of the Image to resolve what is set with too high of an id.
 
 
@@ -114,8 +117,13 @@ If the Image is a 3rd party image, contact the maintainer about the `UID` used. 
 
 After resolving this, **the image must be rebuilt** and then can be deployed. This **must** be done locally.
 
-## NPM specific issues causing userns remap exceptions
-Certain versions of NPM may install node_modules into your `node_modules` directory with an extremely high ID for the file owner/creator.
+## NPM based projects causing userns remap exceptions
+Certain versions of NPM may install packages into your `node_modules` directory with an extremely high ID for the file owner/creator. This has been more prevalent in **npm 9**, there has been discussion surrounding this in the npm community, which can be found in these threads - it is highly recommended to read these for context:
+
+- [RFC thread ([RRFC] Clean up file ownership story)](https://github.com/npm/rfcs/issues/546)
+- [NPM 9 change log (Breaking Changes)](https://docs.npmjs.com/cli/v9/using-npm/changelog?v=true#900-pre6-2022-10-19)
+- [This GitHub issue (GitHub Issue 5900)](https://github.com/npm/cli/issues/5900)
+
 
 If deploying the below `Dockerfile` to App Service, explicitly targeting **npm 9**, we get a userns remapping error:
 
@@ -143,7 +151,7 @@ Error seen on App Services:
 ERROR - failed to register layer: Error processing tar file(exit status 1): Container ID 1516583083 cannot be mapped to a host IDErr: 0, Message: failed to register layer: Error processing tar file(exit status 1): Container ID 1516583083 cannot be mapped to a host ID
 ```
 
-Using the same general approach above, we will **need to investigate this locally**. However, as a caveat, the `find` command mentioned above won't actually find this ID as the file UID itself is not high, but rather the owner/creator of the files name is actually the ID itself.
+Using the same general approach above, we will **need to investigate this locally**. However, as a caveat, the `find` command may not find the UID that it's failing with - due to the fact that ID switching may be occurring (described in the earlier linked threads).
 
 We can use this approach to find the high ID in the container - since we know this is related to NPM and node_modules, we use this. Make sure to replace the below path with your path to your `node_modules`:
 
@@ -169,14 +177,33 @@ We can now see the owner name is actually the ID that matches the above error:
 -rw-r--r--    1 501      dialout       1017 Nov 29 17:18 /app/node_modules/asynckit/parallel.js
 ```
 
-As a resolution, we can either downgrade NPM (current Docker Images with Node have NPM preinstalled which are an earlier version than 9) - or - change the ownership of `node_modules`, like the below:
+As a resolution, we can change the ownership of the files under this directory with `chown`.
 
+**IMPORTANT**: If you're going to use `chown`, it **must** be in the same layer as `npm install`. If this is in two seperate/distinct layers, ownership change will not work and you'll still end up getting an ID out of range error due to userns.
+
+(Do)
 ```
 RUN npm i -g npm@9.1.1 && \
     npm i && \
     find /app/node_modules/ ! -user root | xargs chown root:root
 ```
 
+(Dont)
+```
+RUN npm i -g npm@9.1.1 && \
+    npm i 
+
+RUN find /app/node_modules/ ! -user root | xargs chown root:root
+```
+
+### What if I can't find the UID?
+There is a chance the UID that the pull and container creation is failing on cannot be found.
+
+This is not always the case. However, **you should still use the same approaches**.
+
+The reason for this is if using the `find /app/node_modules/ ! -user root` approach, for example, you may see node_module related files with the user in a range of **50x** and in the group **dialout**. When searching through the entire filesystem, these would generally be the only ones appearing other than the user/group `node` and `root`.
+
+In these specific scenarios, after changing these 50x users and dialout groups to **root** (or a user within an acceptable UID range), this issue is resolved. This may be due to user switching during NPM installation, which is called out at the top of the **npm** section in the threads linked. 
 
 
 
