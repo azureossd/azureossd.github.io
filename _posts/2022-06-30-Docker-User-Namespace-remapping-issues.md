@@ -28,7 +28,7 @@ When these `UID`s are mapped to an id out of range, errors can occur, as explain
 You can read more of the official documentation [here](https://docs.docker.com/engine/security/userns-remap/#user-namespace-known-limitations).
 
 # Important note
-The concept of username spaces is a typical Linux construct. The error described in this article is **NOT** an App Service and/or an Azure issue. This can easily be reproduced on essentially any machine that supports user namespaces and remapping, and is trying to create an ID out of the 0 - 65k~ range.
+The concept of username spaces is a typical Linux construct. The error described in this article is **NOT** an App Service and/or an Azure issue. This can easily be reproduced on essentially any machine that supports user namespaces and remapping, and is trying to create an ID out of the range set on the machine.
 
 > **NOTE**: The range of these id's can **not** be changed on App Services. It is ultimately up to the developer or maintainer of the Image to resolve what is set with too high of an id.
 
