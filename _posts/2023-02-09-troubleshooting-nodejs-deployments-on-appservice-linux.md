@@ -14,7 +14,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: YYYY-MM-DD 12:00:00
+date: 2023-02-09 12:00:00
 ---
 
 There are different ways to deploy a Node.js application to Azure App Service Linux. In this post we are covering the most common scenarios when doing deployments.
