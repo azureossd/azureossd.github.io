@@ -32,7 +32,7 @@ When changing port settings - you'll see these in your container logs. Specifica
 What appears in these logs is the `docker run` command for your container, which should look like the following:
 
 ```
-docker run -d -p 9519:8080 --name somesite_1_c51f434a -e -e WEBSITE_SITE_NAME=ansalemo-port-test -e WEBSITE_AUTH_ENABLED=False -e WEBSITE_ROLE_INSTANCE_ID=0 -e WEBSITE_HOSTNAME=somesite.azurewebsites.net -e WEBSITE_INSTANCE_ID=0000000000000000000000000000000000000000000000000 -e HTTP_LOGGING_ENABLED=1 -e WEBSITE_USE_DIAGNOSTIC_SERVER=True appsvc/someblessedimage:someblessedimagetag
+docker run -d -p 9519:8080 --name somesite_1_c51f434a -e -e WEBSITE_SITE_NAME=somesite -e WEBSITE_AUTH_ENABLED=False -e WEBSITE_ROLE_INSTANCE_ID=0 -e WEBSITE_HOSTNAME=somesite.azurewebsites.net -e WEBSITE_INSTANCE_ID=0000000000000000000000000000000000000000000000000 -e HTTP_LOGGING_ENABLED=1 -e WEBSITE_USE_DIAGNOSTIC_SERVER=True appsvc/someblessedimage:someblessedimagetag
 ```
 
 Let's break the important parts of this. The parts that really matter are:
