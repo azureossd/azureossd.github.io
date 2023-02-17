@@ -157,7 +157,7 @@ Validate which file is being displayed and check your **web.config**. In this sc
 
 ![web.config re-write rule - iisnode](/media/2022/08/web-config-rewrite-iisnode.png)
 
-## Avoid hardcoding Node Versions
+## Avoid hardcoding Node versions
 
 With PaaS services, such as App Services, the platform underneath is managed for you - therefor over time versions(major, minor, or patch) may be upgraded, removed, or deprecated. Given this, it is best to not hardcode to a specific version within code as this may cause unintended issues down the road.
 
@@ -173,6 +173,21 @@ Be mindful of conflicts between versions set in the **iisnode.yml**, **web.confi
 
 More inforamtion on this can be found here:
 [Avoiding hardcoding Node versions on App Service Windows](https://azureossd.github.io/2022/06/24/Avoiding-hardcoding-Node-versions-on-App-Service-Windows/index.html#in-the-azure-portal)
+
+## Slow performance observed alongside high CPU usage
+
+Starting your application using PM2 in cluster mode will ensure you use all available vCPU cores on your App Service Plan, optimizing performance
+
+[PM2 - Cluster Mode (keymetrics.io)](https://pm2.keymetrics.io/docs/usage/cluster-mode/)
+
+An example of an updated package.json start script file using PM2. Replace .bin/www with your application entry point.
+
+```JSON
+ "scripts": {
+    "start": "pm2 start ./bin/www -i max"
+  },
+```
+To validate CPU usage, you can review the detectors under the App Service [Diagnose and Solve Problems](https://learn.microsoft.com/en-us/azure/app-service/overview-diagnostics) blade.
 
 # Troubleshooting 5xx Server Errors
 
