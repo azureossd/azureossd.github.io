@@ -101,24 +101,6 @@ The below screenshot shows how to enable application logging through the portal.
   ![Kudu Debug Console - view freb logs](/media/2022/08/failed-request-log-sample.png)
 
 
-# IISNODE http status and substatus
-
-The below table is referenced from:
-
-https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-practices-and-troubleshoot-guide#iisnode-http-status-and-substatus
-
-| HTTP Status | HTTP Substatus | Possible reason? |
-|-------------|----------------|------------------|
-| 500         | 1000           | 	There was some issue dispatching the request to IISNODE – Check if node.exe was started. Node.exe could have crashed when starting. Check your web.config configuration for errors. |
-| 500         | 1001           | - Win32Error 0x2 - App is not responding to the URL. Check the URL rewrite rules or check if your express app has the correct routes defined. - Win32Error 0x6d – named pipe is busy – Node.exe is not accepting requests because the pipe is busy. Check high cpu usage. - Other errors – check if node.exe crashed. |
-| 500          | 1002          | Node.exe crashed – check d:\home\LogFiles\logging-errors.txt for stack trace. |
-| 500          | 1003          | Pipe configuration Issue – The named pipe configuration is incorrect. |
-| 500          | 1004-1018     | 	There was some error while sending the request or processing the response to/from node.exe. Check if node.exe crashed. check d:\home\LogFiles\logging-errors.txt for stack trace. |
-| 503          | 1000          | Not enough memory to allocate more named pipe connections. Check why your app is consuming so much memory. Check maxConcurrentRequestsPerProcess setting value. If it's not infinite and you have many requests, increase this value to prevent this error. |
-| 503          | 1001          | Request could not be dispatched to node.exe because the application is recycling. After the application has recycled, requests should be served normally. |
-| 503          | 1002          | 	Check win32 error code for actual reason – Request could not be dispatched to a node.exe. |
-| 503          | 1003          | Named pipe is too Busy – Verify if node.exe is consuming excessive CPU. |
-
 # Troubleshooting Common Issues
 
 ## Hard coding the PORT
@@ -157,7 +139,7 @@ Validate which file is being displayed and check your **web.config**. In this sc
 
 ![web.config re-write rule - iisnode](/media/2022/08/web-config-rewrite-iisnode.png)
 
-## Avoid hardcoding Node Versions
+## Avoid hardcoding Node versions
 
 With PaaS services, such as App Services, the platform underneath is managed for you - therefor over time versions(major, minor, or patch) may be upgraded, removed, or deprecated. Given this, it is best to not hardcode to a specific version within code as this may cause unintended issues down the road.
 
@@ -173,6 +155,53 @@ Be mindful of conflicts between versions set in the **iisnode.yml**, **web.confi
 
 More inforamtion on this can be found here:
 [Avoiding hardcoding Node versions on App Service Windows](https://azureossd.github.io/2022/06/24/Avoiding-hardcoding-Node-versions-on-App-Service-Windows/index.html#in-the-azure-portal)
+
+## Slow performance observed alongside high CPU usage
+
+Starting your application using PM2 in cluster mode will ensure you use all available vCPU cores on your App Service Plan, optimizing performance
+
+[PM2 - Cluster Mode (keymetrics.io)](https://pm2.keymetrics.io/docs/usage/cluster-mode/)
+
+An example of an updated package.json start script file using PM2. Replace .bin/www with your application entry point.
+
+```JSON
+ "scripts": {
+    "start": "pm2 start ./bin/www -i max"
+  },
+```
+To validate CPU usage, you can review the detectors under the App Service [Diagnose and Solve Problems](https://learn.microsoft.com/en-us/azure/app-service/overview-diagnostics) blade.
+
+## NPM version conflict
+
+If you run into an issue where you believe the conflict is due to the NPM version, you can test by updating the NPM version using the application setting <b>WEBSITE_NPM_DEFAULT_VERSION=desired-version</b>.
+
+To validate the NPM version being used, you can run the below command within the SCM site debug console found here: <b>webapp-name.scm.azurewebsites.net/DebugConsole</b>
+
+```sh
+npm --version
+```
+
+To validate which versions of NPM are installed on your App Service plan, you can browse your application's SCM site and review the runtime versions here: <b>webapp-name.scm.azurewebsites.net/api/diagnostics/runtime</b>
+
+Testing the behaviour locally to validate a conflict with a specific NPM version is best.
+
+# IISNODE http status and substatus
+
+The below table is referenced from:
+
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-nodejs-best-practices-and-troubleshoot-guide#iisnode-http-status-and-substatus
+
+| HTTP Status | HTTP Substatus | Possible reason? |
+|-------------|----------------|------------------|
+| 500         | 1000           | 	There was some issue dispatching the request to IISNODE – Check if node.exe was started. Node.exe could have crashed when starting. Check your web.config configuration for errors. |
+| 500         | 1001           | - Win32Error 0x2 - App is not responding to the URL. Check the URL rewrite rules or check if your express app has the correct routes defined. - Win32Error 0x6d – named pipe is busy – Node.exe is not accepting requests because the pipe is busy. Check high cpu usage. - Other errors – check if node.exe crashed. |
+| 500          | 1002          | Node.exe crashed – check d:\home\LogFiles\logging-errors.txt for stack trace. |
+| 500          | 1003          | Pipe configuration Issue – The named pipe configuration is incorrect. |
+| 500          | 1004-1018     | 	There was some error while sending the request or processing the response to/from node.exe. Check if node.exe crashed. check d:\home\LogFiles\logging-errors.txt for stack trace. |
+| 503          | 1000          | Not enough memory to allocate more named pipe connections. Check why your app is consuming so much memory. Check maxConcurrentRequestsPerProcess setting value. If it's not infinite and you have many requests, increase this value to prevent this error. |
+| 503          | 1001          | Request could not be dispatched to node.exe because the application is recycling. After the application has recycled, requests should be served normally. |
+| 503          | 1002          | 	Check win32 error code for actual reason – Request could not be dispatched to a node.exe. |
+| 503          | 1003          | Named pipe is too Busy – Verify if node.exe is consuming excessive CPU. |
 
 # Troubleshooting 5xx Server Errors
 
