@@ -132,3 +132,7 @@ You can use `add_header` directive to add security headers that your server need
 4. Restart nginx with `sudo service nginx restart` and test the configuration with `sudo nginx -t` for any typo or issue.
 
 >Note: If you are using Let's encrypt, cerbot will add this configuration `include /etc/letsencrypt/options-ssl-nginx.conf` which can be conflicting with security headers, review if there is any header that is overwritten in this file.
+
+# Additional references
+You can find other ways to edit response headers in App Service Linux using code, or services as Application Gateway, Azure Front Door, etc in this reference. 
+["Editing Response Headers on Linux App Service"](https://azureossd.github.io/2022/05/25/Editing-Response-Headers-on-Linux-App-Service/index.html)
