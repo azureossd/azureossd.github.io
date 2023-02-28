@@ -43,7 +43,7 @@ We use port 2222 for SSH into your app's container, but that doesn't mean that p
 We provide the ability to SSH into your app, but if you're using a custom container, you need to take additional steps in order to add this ability to your app. 
 * [App Service enable SSH](https://learn.microsoft.com/en-us/azure/app-service/configure-custom-container?tabs=debian&pivots=container-linux#enable-ssh)
 
-## Why App Service terminates SSL at the Fron-Ends?
+## Why App Service terminates SSL at the Front-Ends?
 App Service terminates SSL/TLS at the network load balancers (front-ends). That means that SSL/TLS requests never get to your app. That's good news for you because it means that you don't need to (and should not) implement any support for SSL/TLS into your app, since all HTTPS requests reach your app as unencrypted HTTP requests. If your app logic needs to check if the user requests are encrypted or not, inspect the `X-Forwarded-Proto` header. Also as stated above, it's important to understand that the front-ends where SSL/TLS is terminated are inside of our Azure data centers. 
 * [Handle TLS termination](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-bindings#handle-tls-termination)
 
