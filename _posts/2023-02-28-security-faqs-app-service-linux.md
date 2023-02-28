@@ -54,11 +54,11 @@ If you scan App Service, you'll find several ports that are exposed for inbound 
 * [Inbound Network Ports Used in an App Service Environment](https://learn.microsoft.com/en-us/azure/app-service/environment/app-service-app-service-environment-control-inbound-traffic#inbound-network-ports-used-in-an-app-service-environment)
  
 
- ## How to disable weaker TLS Cipher Suites?
- If a customer's organization has restrictions on what cipher suites are not be allowed, they may update their web app's minimum TLS cipher suite property to ensure that the weaker cipher suites would be disabled for their web app. This can be done if you have:
+## How to disable weaker TLS Cipher Suites?
+If a customer's organization has restrictions on what cipher suites are not be allowed, they may update their web app's minimum TLS cipher suite property to ensure that the weaker cipher suites would be disabled for their web app. This can be done if you have:
 
- - [Multi-tenant premium App Service Plans](https://azure.github.io/AppService/2022/10/11/Public-preview-min-tls-cipher-suite.html)
- - [ASE (App Service Environment)](https://learn.microsoft.com/en-us/azure/app-service/environment/app-service-app-service-environment-custom-settings#change-tls-cipher-suite-order)
+- [Multi-tenant premium App Service Plans](https://azure.github.io/AppService/2022/10/11/Public-preview-min-tls-cipher-suite.html)
+- [ASE (App Service Environment)](https://learn.microsoft.com/en-us/azure/app-service/environment/app-service-app-service-environment-custom-settings#change-tls-cipher-suite-order)
 
 ## How software updates are handled by App Service?
 Azure manages OS patching on two levels, the physical servers and the guest virtual machines (VMs) that run the App Service resources. Both are updated monthly, which aligns to the monthly [Patch Tuesday](https://learn.microsoft.com/en-us/security-updates/) schedule. These updates are applied automatically, in a way that guarantees the high-availability SLA of Azure services. 
