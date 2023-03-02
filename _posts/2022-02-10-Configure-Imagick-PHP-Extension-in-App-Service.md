@@ -39,8 +39,13 @@ Here is an example for removing policies for ghostscript:
   #Removing ghostscript policies
   sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml 
   apt-get upgrade && apt-get install -y ghostscript
-  apache2-foreground 
+  service nginx reload
 ```
+
+And then update the startup script location from Azure Portal:
+
+ ![PHP extension](/media/2022/01/php-imagick-00.png)
+
 
 ## Troubleshooting
 
