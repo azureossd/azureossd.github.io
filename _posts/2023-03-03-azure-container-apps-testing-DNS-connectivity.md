@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting netowrk connectivity on Azure Container Apps"
+title: "Troubleshooting DNS connectivity on Azure Container Apps"
 author_name: "Aldmar Joubert"
 tags:
     - Docker
@@ -23,10 +23,17 @@ Azure Container Apps provides a convenient and efficient way to deploy container
 
 In this post, we will focus on installing and running tools to isolate network DNS connectivity issues.
 
-# Connect to a container console
-Connecting to a container's console is useful when you want to troubleshoot your application inside a container. We will install the connectivity testing tools here. Azure Container Apps lets you connect to a container's console using the Azure portal or the Azure CLI.
+# Common issue - Name or service not known
+A common application exception returned when there is a DNS misconfiguration is <b>Name or service not known</b>. When troubleshooting this issue you will first need to review your DNS records to ensure the remote server has the appropriate entries.
 
-https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=bash
+If your VNET uses a custom DNS server instead of the default Azure-provided DNS server, configure your DNS server to forward unresolved DNS queries to 168.63.129.16. [Azure recursive resolvers](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server) uses this IP address to resolve requests. If you don't use the Azure recursive resolvers, the Container Apps environment won't function.
+
+More on information on Container Apps and DNS can be found [here.](https://learn.microsoft.com/en-us/azure/container-apps/networking#dns)
+
+# Connect to a container console
+Connecting to a container's console is useful when you want to troubleshoot your application inside a container. We will install and run the DNS connectivity testing tools here.
+
+Instructions on how to connect to a container console can be found [here.](https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=bash)
 
 # Installing nslookup and dig
 Once connected to your container console run ```cat /etc/os-release``` to double check which Linux distribution the container is running on.
@@ -81,3 +88,7 @@ dig microsoft.com MX
 ```
 
 ![running nslookup and dig](/media/2023/02/azure-blog-container-apps-run-dig-nslookup.png)
+
+# Articles of Note
+- [Networking architecture in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/networking)
+- [Securing a custom VNET in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/firewall-integration)
