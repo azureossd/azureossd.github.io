@@ -17,22 +17,75 @@ toc_sticky: true
 date: 2022-02-10 12:00:00
 ---
 
-This blog explains how to configure Imagick PHP Extension in App Service Windows and the alternatives you have for App Service Linux. 
+This blog explains how to configure Imagick PHP Extension in App Service and most common troubleshooting scenarios.
 
 
-Reference: [Microsoft Q&A questions](https://docs.microsoft.com/en-us/answers/questions/494672/how-can-i-install-the-php-module-imagick-on-my-web.html).
+# App Service Linux
+
+PHP 8.x images are [pre-built](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/php.md#system-packages) with imagick extension. It will pull the latest available version of imagick when a new tag is available following the [App Service OS and runtime patching times](https://learn.microsoft.com/en-us/azure/app-service/overview-patch-os-runtime). You can check the latest stable version of imagick [here](http://pecl.php.net/package/imagick).
+
+ 
+## ImageMagick policies
+ImageMagick best practices strongly encourages you to configure a security policy that suits your local environment. You can read more about these policies [here](https://imagemagick.org/script/security-policy.php).
+
+Policies can be found on `/etc/ImageMagick-6/policy.xml`
+
+If you desire to modify these policies on Azure App Service Linux, the best option to accomplish this will be to use a startup script.
+
+Here is an example for removing policies for ghostscript:
+
+```bash
+  #!/bin/bash
+  #Removing ghostscript policies
+  sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml 
+  apt-get upgrade && apt-get install -y ghostscript
+  service nginx reload
+```
+
+And then update the startup script location from Azure Portal:
+
+ ![PHP extension](/media/2022/01/php-imagick-00.png)
+
+
+## Troubleshooting
+
+### ghostscript
+
+- **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy. 
+
+  ```log
+    PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in
+     /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in
+     /home/site/wwwroot/index.php on line 11
+  ```
+
+  **Resolution**: Add a custom startup script to modify existing policy with read and/or write or removing the policy, check steps above.
+
+- **Scenario**: PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand 'gs' 
+
+  ```log
+    PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=pngalpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r72x72' -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-60nJzxfIQqHrXx%d' '-f/tmp/magick-60rZK5yQMK31K7' '-f/tmp/magick-60_Dsu584RGIyH'' (1) @ error/pdf.c/InvokePDFDelegate/291 
+  ```
+
+  **Resolution**: Add a custom startup script to modify existing policy with `apt-get upgrade && apt-get install -y ghostscript`, check steps above.
+
+  
 
 # App Service Windows
+
+Reference: [Microsoft Q&A questions](https://docs.microsoft.com/en-us/answers/questions/494672/how-can-i-install-the-php-module-imagick-on-my-web.html)
+
+>**Update 3/2/2023**: Running PHP 7.4 or PHP in general on Azure App Service (Windows) is no longer supported since 28 November 2022. It is recommended to migrate your application to App Service Linux. If you need a specific version of PHP you can bring your [own runtime](https://azureossd.github.io/2022/05/18/Custom-PHP-runtime-for-App-Service-Windows/index.html) but this will be out of support and you will need to update the versions for any vulnerability reported by the PHP community. 
+
 
 Based on your **PHP version** and **Platform (32/64 bits)**, get the latest `php_imagick.dll` from https://windows.php.net/downloads/pecl/releases/imagick/.
 
 Since App Service Windows is running IIS as the webserver, you can select **NTS (Non-Thread Safe)**. This is used when PHP runs on Fast CGI binary.
 
 
+## Custom PHP version
 
-## PHP 7.4
-
-For this scenario `php_imagick-3.7.0-7.4-nts-vc15-x64.zip` was selected. 
+For this scenario `php_imagick-3.7.0-7.4-nts-vc15-x64.zip` was selected which targets 7.4, you need to select the correct version for your application.
 
  ![PHP extension](/media/2022/01/php-imagick-01.png)
 
@@ -83,48 +136,3 @@ For this scenario `php_imagick-3.7.0-7.4-nts-vc15-x64.zip` was selected.
     ![PHP extension](/media/2022/01/php-imagick-04.png)
 
 
-
-# App Service Linux
-
-PHP images are [pre-build](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/php.md#system-packages) with imagick extension.
-
->**Note**: Currently imagick is having compilation issues with PHP 8.x, recommend to use PHP 7.4 for now, for more information check this [reference](https://github.com/Imagick/imagick/issues/331).
- 
-## ImageMagick policies
-ImageMagick best practices strongly encourages you to configure a security policy that suits your local environment. You can read more about these policies [here](https://imagemagick.org/script/security-policy.php).
-
-Policies can be found on `/etc/ImageMagick-6/policy.xml`
-
-If you desire to modify these policies on Azure App Service, the best option to accomplish this will be to use a startup script.
-
-Here is an example for removing policies for ghostscript:
-
-```bash
-  #!/bin/bash
-  #Removing ghostscript policies
-  sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml 
-  apt-get upgrade && apt-get install -y ghostscript
-  apache2-foreground 
-```
-
-## Troubleshooting
-
-### ghostscript
-
-- **Scenario**: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy. 
-
-  ```log
-    PHP Fatal error: Uncaught ImagickException: attempt to perform an operation not allowed by the security policy `PDF' @ error/constitute.c/IsCoderAuthorized/408 in
-     /home/site/wwwroot/index.php:11\nStack trace:\n#0 /home/site/wwwroot/index.php(11): Imagick->readImage('random.pdf')\n#1 {main}\n thrown in
-     /home/site/wwwroot/index.php on line 11
-  ```
-
-  **Resolution**: Add a custom startup script to modify existing policy with read and/or write or removing the policy, check steps above.
-
-- **Scenario**: PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand 'gs' 
-
-  ```log
-    PHP Fatal error: Uncaught ImagickException: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=pngalpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r72x72' -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-60nJzxfIQqHrXx%d' '-f/tmp/magick-60rZK5yQMK31K7' '-f/tmp/magick-60_Dsu584RGIyH'' (1) @ error/pdf.c/InvokePDFDelegate/291 
-  ```
-
-  **Resolution**: Add a custom startup script to modify existing policy with `apt-get upgrade && apt-get install -y ghostscript`, check steps above.
