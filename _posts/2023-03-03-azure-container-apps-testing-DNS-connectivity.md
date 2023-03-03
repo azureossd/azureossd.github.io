@@ -32,7 +32,7 @@ If your VNET uses a custom DNS server instead of the default Azure-provided DNS 
 More information on Container Apps and DNS can be found [here.](https://learn.microsoft.com/en-us/azure/container-apps/networking#dns)
 
 # Connect to a container console
-Connecting to a container's console is useful when you want to troubleshoot your application inside a container. We will install and run the DNS connectivity testing tools here.
+Connecting to a container's console is useful when it is needed to run connectivity tests.
 
 Instructions on how to connect to a container console through the portal or the Azure CLI can be found [here.](https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=bash)
 
