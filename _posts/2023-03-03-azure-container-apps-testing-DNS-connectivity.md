@@ -27,7 +27,7 @@ In this post, we will focus on installing and running tools to isolate network D
 # Common issue - Name or service not known
 A typical application exception observed when there is a DNS misconfiguration is <b>Name or service not known</b>. When troubleshooting this issue, you will first need to review your DNS records to ensure the appropriate entries for the remote server have been added and are pointing to the correct location.
 
-If your VNET uses a custom DNS server instead of the default Azure-provided DNS server, configure your DNS server to forward unresolved DNS queries to 168.63.129.16. [Azure recursive resolvers](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances#name-resolution-that-uses-your-own-dns-server) uses this IP address to resolve requests. If you don't use the Azure recursive resolvers, the Container Apps environment won't function.
+If your VNET uses a custom DNS server instead of the default Azure-provided DNS server, configure your DNS server to forward unresolved DNS queries to 168.63.129.16.
 
 More information on Container Apps and DNS can be found [here.](https://learn.microsoft.com/en-us/azure/container-apps/networking#dns)
 
