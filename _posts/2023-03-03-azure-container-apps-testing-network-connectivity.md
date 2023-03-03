@@ -31,7 +31,7 @@ https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=ba
 # Installing nslookup and dig
 Once connected to your container console run ```cat /etc/os-release``` to double check which Linux distribution the container is running on.
 
-![running cat /etc/os-release to check linux distro](/media/2023/02/azure-blog-container-apps-check-linux-distr.png)
+![running cat /etc/os-release to check linux distro](/media/2023/02/azure-blog-container-apps-check-linux-distro.png)
 
 For Ubuntu/Debian/Jessie Based Images, you need to run the below commands
 
