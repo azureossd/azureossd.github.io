@@ -36,7 +36,7 @@ This change will restart the container, then you can use WebSSH and check the cu
 
 ![TimeZone Config](/media/2023/03/timezone-03.png)
 
-## Troubleshooting
+# Troubleshooting
 
 In case the change is not being updated, you can get the latest tzdata list from the distro repository through `apt install tzdata` for Debian based or `apk add tzdata` for Alpine images and build a custom startup script. Here is an example for Alpine:
 
