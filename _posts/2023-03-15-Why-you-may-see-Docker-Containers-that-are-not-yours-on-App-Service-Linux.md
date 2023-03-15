@@ -49,6 +49,11 @@ Most output of this will only be on startup, however, depending on where you're 
 Startup logging from this container looks like the following (and can be found in the above log):
 
 ```
+2023-03-15T21:46:22.281Z INFO  - Initiating warmup request to container myfakesite_4_1b8de193_middleware for site myfakesite
+2023-03-15T21:46:22.320Z INFO  - Container myfakesite_4_1b8de193_middleware for site myfakesite initialized successfully and is ready to serve requests.
+```
+
+```
 2023-03-15T21:46:22.052079080Z Updating certificates in /etc/ssl/certs...
 2023-03-15T21:46:25.170991072Z 7 added, 0 removed; done.
 2023-03-15T21:46:25.176722062Z Running hooks in /etc/ca-certificates/update.d...
@@ -68,15 +73,21 @@ file, if needed).
 Startup and general stdout from this container would look like the following and can be viewed in the `YYYY_MM_DD_machinename_msi_docker.log` that is automatically created when this container is started:
 
 ```
+2023-03-15T21:46:22.281Z INFO  - Initiating warmup request to container myfakesite_4_1b8de193_msiProxy for site myfakesite
+2023-03-15T21:46:22.320Z INFO  - Container myfakesite_4_1b8de193_msiProxy for site myfakesite initialized successfully and is ready to serve requests.
+```
+
+```
 2023-03-15T21:46:18.825803194Z Hosting environment: Production
 2023-03-15T21:46:18.831961567Z Content root path: /app
 2023-03-15T21:46:18.832871878Z Now listening on: http://[::]:8081
-2023-03-15T21:46:19.147393005Z ansalemo-wafc-disk-space-test : [87400098-aada-45a1-8eab-42b17d08e7f1] Incoming request on /healthcheck?api-version=2021-08-01
-2023-03-15T21:46:19.155189998Z ansalemo-wafc-disk-space-test : [87400098-aada-45a1-8eab-42b17d08e7f1] Request to TokenService: Endpoint 172.16.1.5:8081, Port 8081, Path /healthcheck, Query ?api-version=2021-08-01, Method GET, UserAgent HealthCheck/1.0
-2023-03-15T21:46:19.417182701Z ansalemo-wafc-disk-space-test : [87400098-aada-45a1-8eab-42b17d08e7f1] Returning response for Site , Endpoint 172.16.1.5:8081, Port 8081, Path /healthcheck, Method GET, Result = 200
-2023-03-15T21:46:22.313836833Z ansalemo-wafc-disk-space-test : [db040408-542a-489f-8db4-1146b1493527] Incoming request on /robots933456.txt
-2023-03-15T21:46:22.314948029Z ansalemo-wafc-disk-space-test : [db040408-542a-489f-8db4-1146b1493527] Request to TokenService: Endpoint 172.16.1.5:8081, Port 8081, Path /robots933456.txt, Query , Method GET, UserAgent HealthCheck/1.0
+2023-03-15T21:46:19.147393005Z myfakesite : [00000000-000-0000-0000-000000000] Incoming request on /healthcheck?api-version=2021-08-01
+2023-03-15T21:46:19.155189998Z myfakesite : [00000000-000-0000-0000-000000000] Request to TokenService: Endpoint 172.16.1.5:8081, Port 8081, Path /healthcheck, Query ?api-version=2021-08-01, Method GET, UserAgent HealthCheck/1.0
+2023-03-15T21:46:19.417182701Z myfakesite : [00000000-000-0000-0000-000000000] Returning response for Site , Endpoint 172.16.1.5:8081, Port 8081, Path /healthcheck, Method GET, Result = 200
+2023-03-15T21:46:22.313836833Z myfakesite : [00000000-000-0000-0000-000000000] Incoming request on /robots933456.txt
+2023-03-15T21:46:22.314948029Z myfakesite : [00000000-000-0000-0000-000000000] Request to TokenService: Endpoint 172.16.1.5:8081, Port 8081, Path /robots933456.txt, Query , Method GET, UserAgent HealthCheck/1.0
 ```
+
 
 # Takeaways
 - Enabling the above services can cause the `middleware` container or `msiProxy` container to start.
