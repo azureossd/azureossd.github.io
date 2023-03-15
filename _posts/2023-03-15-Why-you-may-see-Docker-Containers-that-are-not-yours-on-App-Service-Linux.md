@@ -49,8 +49,8 @@ Most output of this will only be on startup, however, depending on where you're 
 Startup logging from this container looks like the following (and can be found in the above log):
 
 ```
-2023-03-15T21:46:22.281Z INFO  - Initiating warmup request to container myfakesite_4_1b8de193_msiProxy for site myfakesite
-2023-03-15T21:46:22.320Z INFO  - Container myfakesite_4_1b8de193_msiProxy for site myfakesite initialized successfully and is ready to serve requests.
+2023-03-15T21:46:22.281Z INFO  - Initiating warmup request to container myfakesite_4_1b8de193_middleware for site myfakesite
+2023-03-15T21:46:22.320Z INFO  - Container myfakesite_4_1b8de193_middleware for site myfakesite initialized successfully and is ready to serve requests.
 ```
 
 ```
