@@ -28,7 +28,7 @@ The UI in which it can be seen will vary on deployment method, but will generall
 ![GitHub Actions failure](/media/2023/03/azure-blog-oss-swap-slots-1.png)
 
 ## Prerequisites
-**IMPORTANT**: Ensure that App Service Logs are enabled. Click [here](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer) on how to enble this. Otherwise, you'll only be seeing one of two error messages generally:
+**IMPORTANT**: Ensure that App Service Logs are enabled. Click [here](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer) on how to enable this. Otherwise, you'll only be seeing one of two error messages generally:
 - `cannot swap slots for site because the slot did not respond to http ping`
 - `container couldn't be started`
 
