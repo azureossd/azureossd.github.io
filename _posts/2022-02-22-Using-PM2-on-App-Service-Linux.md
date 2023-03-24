@@ -127,6 +127,20 @@ The `-i max` flag will make sure to start the application in cluster-mode, spawn
 
 # Troubleshooting
 
+## Script not found
+
+In scenarios that PM2 is not finding the js script file, you can get similar error:
+
+E.g. **`pm2 error: [pm2][error] script not found: /home/site/wwwroot/dist/index.js`**
+
+You can validate the following:
+- If you are deploying from Azure DevOps, GitHub Actions or using ZipDeploy and building the modules not using App Service Build (Oryx), then validate if `node_modules` and application files are inside `/home/site/wwwroot`. You can use `https://<site-name>.scm.azurewebsites.net/newui/fileManager`
+- In case of bash script, review if structure content is valid and if script extension file has EOL sequence [LF and not CRLF](https://azureossd.github.io/2020/03/25/docker-run-fails-with-standard-init-linux-error/index.html).
+- If npm or module not found, check these references:
+    - [NPM executables (nest start, nuxt start, next start) not being found](https://azureossd.github.io/2022/10/24/NPM-Executables-not-being-found-at-startup-on-App-Service-Linux/index.html)
+    - [Cannot find module 'module-name'](https://azureossd.github.io/2022/10/25/Module-not-found-with-Node-on-App-Service-Linux/index.html)
+
+
 ## Node Options
 
 In case you want to pass node options to pm2 you can use `--node-args` for example, when increasing heap memory: 
