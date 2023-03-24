@@ -104,22 +104,65 @@ For certain situations when using Oryx and the [expected build files](https://gi
 For other situations where the entrypoint .js file may be in a non-typical location expected by Oryx, a custom startup command can still be used as this ideally is just to run the application.
 
 ### Permissions issues, OOM kills (JavaScript Heap OOM), Maximum call stack size exceeded and others
-Trying to reinstall packages or compile the application at runtime (for example, TypeScript to JavaScript) can also present other issues. We'll list some common scenarios that may be seen:
 
-- `npm ERR! Maximum call stack size exceeded`
+It is not recommended to install modules using `npm install` inside `/home` through WebSSH or using a custom startup script. 
+
+The file system of your application is a mounted network share (Windows fileshare) and certain npm packages look for chown permissions which will not apply for the remote home storage. The permissions on this are 777. You cannot change these permissions, even if you attempt to do so from an initialization script or from SSH. This will also apply if you have Web App for Containers using an App Setting `WEBSITES_APP_SERVICE_ENABLE_STORAGE=true` .
+
+You can see errors like this:
+
+**EPERM**
+```bash
+npm ERR! code EPERM
+npm ERR! syscall lchown
+npm ERR! path /home/node_modules/.bin/is-docker
+npm ERR! errno -1
+npm ERR! Error: EPERM: operation not permitted, lchown '/home/node_modules/.bin/is-docker'
+npm ERR!  [OperationalError: EPERM: operation not permitted, lchown '/home/node_modules/.bin/is-docker'] {
+npm ERR!   cause: [Error: EPERM: operation not permitted, lchown '/home/node_modules/.bin/is-docker'] {
+npm ERR!     errno: -1,
+npm ERR!     code: 'EPERM',
+npm ERR!     syscall: 'lchown',
+npm ERR!     path: '/home/node_modules/.bin/is-docker'
+npm ERR!   },
+npm ERR!   errno: -1,
+npm ERR!   code: 'EPERM',
+npm ERR!   syscall: 'lchown',
+npm ERR!   path: '/home/node_modules/.bin/is-docker'
+npm ERR! }
+npm ERR! 
+npm ERR! The operation was rejected by your operating system.
+npm ERR! It is likely you do not have the permissions to access this file as the current user
+npm ERR! 
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator.
+npm timing npm Completed in 74867ms
+```
+
+**ERR! Maximum call stack size exceeded**
+
+```bash
+root@251a3b9444f8:/home/site/wwwroot# npm i webpack
+npm info it worked if it ends with ok
+npm info using npm@6.14.15
+npm info using node@v14.21.2
+npm http fetch GET 200 https://registry.npmjs.org/webpack 187ms
+npm http fetch GET 200 https://registry.npmjs.org/webpack/-/webpack-5.76.3.tgz 148ms
+npm ERR! Maximum call stack size exceeded
+npm timing npm Completed in 1187ms
+```
+
+Or **JavaScript out of memory (OOM)**:
+
 - `Allocation failed - JavaScript heap out of memory`
-- `eperm: operation not permitted lchown '/home/site/wwwroot/node_modules/<somePackage`
 
 Make sure that [App Service Logs](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer) are enabled to view these failures.
 
-For the `eperm: operation not permitted lchown:`, this is due to trying to install packages under `/home` in the **application container**, which on Blessed Images have a volume mounted to it when `WEBSITES_APP_SERVICE_ENABLE_STORAGE` is set to true ([the default for Blessed Images](https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/things_you_should_know.md#you-can-enable-and-disable-storage-persistence-with-an-app-setting)).
-
-Permissions on the /home directory are set to 777. You cannot change these permissions even if you attempt to do so from an initialization script or from SSH.
-
-Some packages may attempt to change permissions - permissions on this directory cannot be changed, which is why this happens. 
 
 #### Solution
-The solution for any of these, if installing node packages (or rebuilding) at **runtime** via custom startup script/command is the same as previously explained above.
+
+The solution for any of these scenarios, will be to leverage App Service Build (Oryx) to build your code and avoid rebuilding at runtime/startup. Any custom startup script that is doing `npm install` can experience the same issue.
 
 ### Missing shared libraries: xxx.so.1: and other Linux specific dependencies
 Some Node packages may require C library based Linux packages being available on the filesystem. These libraries are normally `.so` files, shared libaries, that can be installed via Linux distribution based package managers (eg., `apt-get`, `apk`).
