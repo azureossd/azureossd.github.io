@@ -126,9 +126,11 @@ Issues with ingress for gRPC applications (using HTTP2) may manifest in differen
 
 **Possible cause:**
 - The gRPC server (the application) does not support or have reflection enabled
+- The Container App ingress is set to internal, but the client is external
 
 **Recomended actions**:
 - Read this article on reflection and how it can affect interaction with your applications [here](https://azureossd.github.io/2022/07/07/Running-gRPC-with-Container-Apps/index.html#reflection).
+- Ensure that ingress is not set to internal only, in which the default FQDN would look like `someapp.internal.funnyname12345a.azurecontainerapps.io`. If the client is external (eg., a Browser), and Server reflection is actually enabled - set Ingress to **external**.
 
 ### stream timeout
 **Possible cause:**
