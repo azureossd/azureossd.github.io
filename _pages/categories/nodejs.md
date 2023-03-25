@@ -1,6 +1,6 @@
 ---
 permalink: "/nodejs/"
-layout: "home"
+layout: home
 title: "Nodejs"
 sidebar: 
     nav: "links"
