@@ -51,7 +51,7 @@ When deploying your application to Blessed Images - it should be known that thes
 - **Ruby**:
     - Port is 8080 the default exposed port for the Ruby Blessed Image. 
 
-## How to change the listening port
+## How to change the exposed port
 Adding the App Setting `PORT` to your new value will change the listening port. This will change the port exposed for the container in the `docker run` command.
 
 Assuming the application is listening for the `PORT` environment variable (if applicable), this should be generally fine. If you're hardcoding the value and make this change, your container will likely time out on startup due to the port value mismatch.
