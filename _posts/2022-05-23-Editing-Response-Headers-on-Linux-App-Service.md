@@ -52,6 +52,13 @@ Here is [documentation](https://nodejs.org/api/http.html#responsesetheadername-v
 
 Here is [documentation](https://expressjs.com/en/5x/api.html#res.set) for Express.
 
+### Static Javascript applications/SPA's
+- For **Static Javascript applications/SPA's** being hosted on a Linux App Service - like Angular, React, Vue, etc. - either something such as an AppGateway would need to be placed in front of the application, ran ontop of a Node server, a custom Docker Image (bringing your own Web Server to serve the static files), or [served through a Web Server on a PHP Blessed Image](https://azureossd.github.io/2022/05/18/Serving-SPAs-with-PHP-Blessed-Images/index.html) to accomplish this. 
+
+This is because SPA's are typically client-side code, executed in the browser, and have no notation of anything server side - **which means they can't change headers without additional configuration.** This concept is nothing Azure specific, but rather programmatic in general.
+
+**NOTE**: Node Blessed Images on App Service Linux comes with PM2 as a process-manager, but this does **not** handle changes to request or response headers.
+
 ## Python
 
 Adding a new response header with Flask:
@@ -158,12 +165,13 @@ Further information on editing headers (adding, deleting, or others) with Azure 
     If you'd rather add or change response headers through here, a custom startup script would need to be used. This can be done following either of this blog posts:
     1. [PHP Custom Startup Script - App Service Linux - Apache](https://azureossd.github.io/2020/01/23/php-custom-startup-script-app-service-linux/index.html) - this post also includes a way to include headers into Apache.
     2. [PHP Custom Startup Script - App Service Linux - NGINX](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html)
+    3. For the current PHP 8.x Blessed Images - NGINX is the default, but adding the App Setting `WEBSITES_DISABLE_FPM` will pull a PHP 8.x image using Apache as the Web Server.
 
 - For **Tomcat containers** - bringing your own `web.xml` or [custom Tomcat Installation](https://azureossd.github.io/2022/05/20/Custom-Tomcat-Configuration-on-Azure-App-Service-Linux/index.html) may need to be done to do this through the Web Server itself. Embedded Tomcat in Spring Boot applications would be able to do this without the need for a custom installation. 
-
-- For **Static Javascript applications/SPA's** being hosted on a Linux App Service - either something such as an AppGateway would need to be placed in front of the application, ran ontop of a Node server, or [served through a Web Server on a PHP Blessed Image](https://azureossd.github.io/2022/05/18/Serving-SPAs-with-PHP-Blessed-Images/index.html) to accomplish this. 
 
 > **NOTE**: `web.config` files would **NOT** work in any of these scenarios since this is specific to IIS. Additionally, Apache and NGINX are **only** available on PHP Blessed Images and not available in any other images. 
 
 ## Custom Docker Images
-If you'd rather have more control over how to set up a Web Server to change response headers, rather than programatically, another recommendation would be to bring your own Custom Docker Image. 
+If you'd rather have more control over how to set up a Web Server to change response headers, rather than programatically, or through an additioanl service in front like App Gateway, another recommendation would be to bring your own Custom Docker Image. 
+
+You have more of a choice on which Web Server to use and additional configuration through this.
