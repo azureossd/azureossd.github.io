@@ -4,10 +4,8 @@ main:
     url: /posts/
   - title: "Categories"
     url: /categories/
-  - title: "Topics"
+  - title: "Tags"
     url: /tags/
-  - title: "App Service Docs"
-    url: https://docs.microsoft.com/en-us/azure/app-service/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
@@ -17,6 +15,14 @@ main:
   # - title: "Sitemap"
   #   url: /sitemap/
 links:
+  - title: "Product Areas"
+    children:
+      - title: "Node.js"
+        url: "/nodejs/"
+      #- title: "Java"
+      #  url: "/java/"
+      #- title: "Container Apps"
+      #  url: "/ca/"
   - title: Azure Resources
     children:
       - title: "Linux Best Practices and FAQ"
@@ -43,3 +49,17 @@ links:
         url: https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md
       - title: "Apps on Azure Blog"
         url: https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog
+  - title: "Archives"
+    children:
+      - title: "2023"
+        url: "/posts/#2023"
+      - title: "2022"
+        url: "/posts/#2022"
+      - title: "2021"
+        url: "/posts/#2021"
+      - title: "2020"
+        url: "/posts/#2020"
+      - title: "2019"
+        url: "/posts/#2019"
+      - title: "All posts"
+        url: "/posts/"

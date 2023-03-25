@@ -25,7 +25,7 @@ url                      : "https://azureossd.github.io" # the base hostname & p
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "azureossd/azureossd.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "assets/images/icon.png" #"assets/images/azurelogo.svg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : "assets/images/App-Services.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "assets/images/appservicelogo.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "Azure OSS Developer Support"# overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 150
@@ -221,14 +221,21 @@ sass:
 
 # Outputting
 permalink: /:year/:month/:day/:title/index.html
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+#paginate: 5 # amount of posts to show
+#paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
+pagination:
+  enabled: true
+  permalink: /page:num/
+  per_page: 5
+  title: ' '
+  trail: 
+    before: 2
+    after: 2
 
 # Plugins (previously gems:)
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
