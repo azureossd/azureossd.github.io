@@ -3,21 +3,6 @@ layout: archive
 entries_layout: grid
 ---
 
-{% if paginator.page == 1 %}
-  <div class="home-content">
-    {{ content | markdownify  }}
-  </div>
-{% endif %}
-
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
-<div class="grid__wrapper">
-  {% for post in site.posts limit:8 %}
-    {% include archive-single.html type="grid" %}
-  {% endfor %}
-</div>
-
-{% include paginator.html %}
 <!--<a href="/posts" class="btn btn--info">See All Blog Posts</a>-->
 
 
