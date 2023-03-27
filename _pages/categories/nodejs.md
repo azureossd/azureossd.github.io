@@ -4,14 +4,6 @@ layout: home
 title: "Nodejs"
 sidebar: 
     nav: "links"
-pagination: 
-  enabled: true
-  category: nodejs
-  sort_reverse: true
-  trail: 
-    before: 2
-    after: 2
-toc: true
 ---
 App Service on Linux supports a number of language specific built-in images. One of the supported languages is Node.js.
 

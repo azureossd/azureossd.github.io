@@ -19,10 +19,18 @@ links:
     children:
       - title: "Node.js"
         url: "/nodejs/"
-      #- title: "Java"
-      #  url: "/java/"
-      #- title: "Container Apps"
-      #  url: "/ca/"
+      - title: "Java"
+        url: "/java/"
+      - title: "Python"
+        url: "/python/"
+      - title: "PHP"
+        url: "/php/"
+      - title: "App Service Linux and WafC"
+        url: "/appservice/"
+      - title: "Container Apps"
+        url: "/containerapps/"
+      - title: "Azure Linux VMs"
+        url: "/linux/"
   - title: Azure Resources
     children:
       - title: "Linux Best Practices and FAQ"
