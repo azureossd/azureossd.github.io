@@ -8,10 +8,17 @@ header:
     overlay_image: /media/pages/background.png
     overlay_filter: 0.3
     og_image: "assets/images/App-Services.png"
-pagination: 
-    enabled: true
-    sort_reverse: true
-    trail: 
-        before: 2
-        after: 2
 ---
+
+
+<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+
+<div class="grid__wrapper">
+    {% for post in site.posts limit:8 %}
+      {% include archive-single.html type="grid" %}
+    {% endfor %}
+</div>
+
+{% include paginator.html %}
+
+<a href="/posts" class="btn btn--info">See All Blog Posts</a>
