@@ -1,12 +1,21 @@
 ---
 permalink: "/python/"
-layout: home
+layout: single
+toc: true
 title: "Python"
 sidebar: 
     nav: "links"
 ---
 
-## Availability
+App Service on Linux supports `Python` as a runtime stack built-in image.
+
+>**Python Update Policy** - App Service upgrades the underlying Python runtime of your application as part of the regular platform updates. As a result of this regular update process, your application will be automatically updated to the latest patch version of Python available for that platform. For more information about current supported Python versions check [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/python_support.md#support-timeline).
+
+You can find a compilation of resources by categories:
+
+# Linux 
+
+## Availability and Post Deployment issues
 - [Troubleshooting 'failed to find attribute' errors on Python Linux App Services](https://azureossd.github.io/2023/01/30/Troubleshooting-'failed-to-find-attribute'-errors-on-Python-Linux-App-Services/index.html)
 - [Python on Linux App Service and ModuleNotFoundError](https://azureossd.github.io/2022/11/24/Python-on-Linux-App-Service-and-ModuleNotFound-Errors/index.html)
 
@@ -21,9 +30,3 @@ sidebar:
   - [Django Deployment on App Service Linux](https://azureossd.github.io/2022/02/20/Django-Deployment-on-App-Service-Linux/index.html)
   - [Flask Deployment on App Service Linux](https://azureossd.github.io/2022/02/17/Flask-Deployment-on-App-Service-Linux/index.html)
 
-
-
-
-## Functions
-- [wSGI and aSGI Python Applications on Azure Functions](https://azureossd.github.io/2022/06/20/wSGI-and-aSGI-Python-Applications-on-Azure-Functions/index.html)
-- [Python Function App - Processing Multiple requests](https://azureossd.github.io/2021/03/11/Python-Function-App-Processing-Multiple-Requests/index.html)
