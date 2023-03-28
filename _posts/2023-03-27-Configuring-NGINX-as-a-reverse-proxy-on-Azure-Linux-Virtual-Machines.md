@@ -311,3 +311,8 @@ This is generally a runtime error thrown by an application - if this is being re
 ### HTTP 404
 Review if the route being proxied to actually exists - if it's an external hostname, ensure this is able to be properly accessed and resolved by bypassing the proxy first, if possible.
 
+### ERR_CONNECTION_REFUSED or "[somepage] took too long to respond"
+Review if your NSG is letting traffic through on the port that NGINX is exposed on, which, by default is 80 (and 443 if SSL/TLS is enabled).
+
+If this is set through a custom domain - check if bypassing the domain and instead hitting the Virtual Machine public IP or the cloudapp DNS name is successful. Else, if NSG ports are opened to appropriate traffic - check that the FQDN/IP of this VM is resolvable from the current client, in case additional networking is a cause here.
+
