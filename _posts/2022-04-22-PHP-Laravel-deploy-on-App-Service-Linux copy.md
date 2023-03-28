@@ -121,7 +121,9 @@ More on this can be found [here](https://docs.microsoft.com/en-us/azure/app-serv
 
 # PHP 8 (NGINX)
 
-PHP 8 on Azure App Service Linux use NGINX as the Web Server. To have NGINX route requests to `/public` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
+> **NOTE**: You can use Apache as a Web Server on PHP 8.x Blessed Images by setting an App Setting named `WEBSITES_DISABLE_FPM` - this will pull a PHP 8.x Docker Image with Apache as the Web Server. A typical .htaccess file can now be used to rewrite requests to /home/site/wwwroot/public as well as updating DocumentRoot, if needed.
+
+PHP 8.x on Azure App Service Linux uses NGINX as the default Web Server. To have NGINX route requests to `/public` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
 
 This `default.conf` has the following line:
 
