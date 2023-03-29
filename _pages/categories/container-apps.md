@@ -11,6 +11,8 @@ Azure Container Apps is a serverless hosting service for containerized applicati
 
 > You can find what is in current pipeline and features comming next in [**Roadmap**](https://github.com/orgs/microsoft/projects/540).
 
+> Find additional Container Apps articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/Azure%20Container%20Apps).
+
 Here is a compilation of resources by categories:
 
 ## Configuration
@@ -25,3 +27,4 @@ Here is a compilation of resources by categories:
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
+

@@ -11,6 +11,10 @@ App Service on Linux supports `Node.js` as a runtime stack built-in image.
 
 >**Node.js Update Policy** - App Service upgrades the underlying Node.js runtime and SDK of your application as part of the regular platform updates. As a result of this update process, your application will be automatically updated to the latest patch version available in the platform for the configured runtime of your app. For more information about current supported node.js versions check [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/node_support.md#support-timeline).
 
+> Find additional Node.js articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/Node.js).
+
+
+
 You can find a compilation of resources by categories:
 
 # Linux

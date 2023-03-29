@@ -10,6 +10,9 @@ App Service on Linux supports a number of language specific built-in images and 
 
 >Check for [Azure App Service on Linux/WafC FAQ](https://learn.microsoft.com/en-us/troubleshoot/azure/app-service/faqs-app-service-linux)
 
+> Find additional Azure App Service articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog).
+
+
 Here is a compilation of resources by categories:
 
 # App Service Linux
