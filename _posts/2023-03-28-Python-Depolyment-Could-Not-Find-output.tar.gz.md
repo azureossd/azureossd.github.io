@@ -59,7 +59,7 @@ On app service startup, if your application is built with our oryx build system 
 
 More information here: [Python Build Changes](https://github.com/Azure-App-Service/KuduLite/wiki/Python-Build-Changes)
 
-# Common Sceneraios / Fixes
+# Common Scenarios / Fixes
 
 ## Intermittent Behavior
 You may notice this error *intermittantly* if you are deploying mulitple times, in conjuction with an app service restart operation. 
