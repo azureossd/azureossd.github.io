@@ -7,6 +7,7 @@ sidebar:
     nav: "links"
 ---
 
+> Find additional Azure Functions articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/Azure%20Functions).
 
 You can find a compilation of resources by categories:
 

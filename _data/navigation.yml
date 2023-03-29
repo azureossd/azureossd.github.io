@@ -25,6 +25,8 @@ links:
         url: "/python/"
       - title: "PHP"
         url: "/php/"
+      - title: "WordPress"
+        url: "/wordpress/"
       - title: ".NET"
         url: "/dotnet/"
       - title: "App Service Linux and WafC"

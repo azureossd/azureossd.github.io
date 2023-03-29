@@ -12,6 +12,8 @@ App Service on Linux supports `Java` as a runtime stack built-in image, and `Jav
 
 >**Java Runtime Support** - Microsoft and Adoptium builds of OpenJDK are provided and supported on App Service for Java 8, 11, and 17. You can check the JDK versions and Security updates in [Java runtime statement of support](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#java-runtime-statement-of-support).
 
+> Find additional Java articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/Java).
+
 You can find a compilation of resources by categories:
 
 # Linux
