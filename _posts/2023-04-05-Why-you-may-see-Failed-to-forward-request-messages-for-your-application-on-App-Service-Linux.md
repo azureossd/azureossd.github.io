@@ -1,5 +1,5 @@
 ---
-title: "Why you may see "Failed to forward request" messages for your application on App Service Linux"
+title: "Why you may see 'Failed to forward request' messages for your application on App Service Linux"
 author_name: "Anthony Salemo"
 tags:
     - Middleware
