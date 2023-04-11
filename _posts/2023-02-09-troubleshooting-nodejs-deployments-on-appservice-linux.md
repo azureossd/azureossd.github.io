@@ -35,11 +35,20 @@ Before starting you need to identify **where is your source code** and **which i
 | Local Computer (Using ZipDeploy)           | App Service Build Service (Oryx) or Building Assets locally (Basic builder) |
 | Local Computer (Using RunFromPackage)      | Building Assets locally (Basic builder)                                     |
 | Local Computer (Using OneDeploy)           | Building Assets locally (Basic builder)                                     |
-| Local Computer (FTP)                       | No builder                                                                  | 
+| Local Computer (FTP)                       | No builder   
 
 > When using `GitHub Actions`, `Azure Pipelines` or `ZipDeploy`, Oryx is not enabled by default since you are using a `Remote/External builder`. If you prefer to enable App Service Build Service (Oryx) then you need to add a new App Setting **`SCM_DO_BUILD_DURING_DEPLOYMENT`= `true`** and redeploy.
 >
 >When using `Local Git`, `Bitbucket` or `External Git`, Oryx is enabled by default.
+
+## Azure JavaScript and TypeScript Functions
+
+If you are using `Azure Functions for Visual Studio Code` extension, then it will generate a production-ready build and use zipdeploy to deploy your assets.
+But you can let App Service Build provider builds the assets for you adding these two app settings:
+
+`ENABLE_ORYX_BUILD=true`
+
+`SCM_DO_BUILD_DURING_DEPLOYMENT=true`
 
 # Using Oryx builder
 
@@ -71,6 +80,25 @@ If Oryx is not finding any condition met then it will not detect any platform or
 - Review if your files are in root folder when doing git commits and if there is any `package.json/yarn.lock` and you have any application files like `app.js, server.js` to detect a valid Node.js application.
 - When doing `ZipDeploy` and using `Oryx build` check if file directories are correct inside the zip file and not having a subdirectory.
 
+## Platform is unsupported
+
+**Errors**
+
+- `Platform 'nodejs' version 'xx' is unsupported.`
+
+**Actions**
+- Using a particular node.js framework defined in package.json? If yes, try the default node.js version assigned by the runtime and redeploy.
+- Validate if the Node.js framework is a supported stack runtime from [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/node_support.md). If this is then create a support case to report the issue.
+
+## Kudu Parent process crashed
+
+**Errors**
+- `GetParentProcessLinux (id) failed.: Could not find a part of the path '/proc/id/stat'`
+
+**Actions**
+- Redeploy, if the issue continues, then stop the site and redeploy, then start site.
+- If issue continues, scale up and down to replace the instance. 
+
 ##  Connection or socket time issues
 
 
@@ -86,7 +114,7 @@ If Oryx is not finding any condition met then it will not detect any platform or
 
 | Error | Reason | Actions |
 | -------- | -------- | -------- |
-| - `info There appears to be trouble with your network connection. Retrying…` <br/> - `error An unexpected error occurred: 'https://registry.yarnpkg.com/<package name>.tgz: ESOCKETTIMEDOUT'.`    | If using Yarn install, there are some libraries that can take more time and can timeout after the [default value](https://yarnpkg.com/configuration/yarnrc#httpTimeout)= `60000`     |  - Detect which library is timing out <br/> - [Increase yarn timeout](https://azureossd.github.io/2022/09/10/fix-yarn-ESOCKETTIMEDOUT-with-.yarnrc-configuration-file/index.html) <br/> - Redeploy <br/> - Build `node_modules` not using Oryx (last option)  |
+| - `info There appears to be trouble with your network connection. Retrying…` <br/> - `error An unexpected error occurred: 'https://registry.yarnpkg.com/<package name>.tgz: ESOCKETTIMEDOUT'.`    | If using Yarn install, there are some libraries that can take more time and can timeout after the [default value](https://yarnpkg.com/configuration/yarnrc#httpTimeout)= `60000`     |  - Detect which library is timing out <br/> - [Increase yarn timeout](https://azureossd.github.io/2023/03/24/yarn-install-timeouts-and-private-packages/index.html) <br/> - Redeploy <br/> - Build `node_modules` not using Oryx (last option)  |
 | - `ERR_SOCKET_TIMEOUT` <br/> - `npm ERR! network Socket timeout` | Network connectivity issues | - VNET integrated? Allow outbound access from the webapp to [`oryx-cdn.microsoft.io`](https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md#network-dependencies) on port `443` or access to npm registry <br/> - Private module? Test connectivity to that npm registry or validate location. Cant pull from private registry: `npm ERR! 404 Not Found - GET https://<url>/npm/...` <br/> --- Validate connectivity to private registry <br/> --- Check if `.npmrc` contains correct credentials <br/> --- You can define `NPM_REGISTRY_URL` appsettings to private registry or use any `Prebuild/custom build` commands  and update the token or credentials. Example: `'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc'`  <br/> --- For Yarn, you need .yarnrc check [reference](https://joegornick.com/2019/04/15/yarn-with-private-npm-registries-and-authentication/)   <br/> - ASE? Check for internet outbound connectivity and Oryx cdn endpoint 
 
 
@@ -103,7 +131,17 @@ If Oryx is not finding any condition met then it will not detect any platform or
 
     ![Oxy debug log](/media/2023/02/nodejs-deployment-01.png)
 - Also review if you have any of the [App Settings](https://github.com/microsoft/Oryx/blob/main/doc/configuration.md) that Oryx uses and validate if the settings are correct.
-- If you are using VNET integration, then review if the [Oryx CDN endpoint](https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md#network-dependencies) being allowed.
+- If you are using VNET integration and getting the following errors:
+    - `Http request to retrieve the SDKs available to download from 'https://oryx-cdn.microsoft.io' failed. Please ensure that your network configuration allows traffic to required Oryx dependencies  as documented in 'https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md#network-dependencies'`
+    - `Error: System.AggregateException: One or more errors occurred. (A task was canceled.)
+ ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Microsoft.Oryx.BuildScriptGenerator.SdkStorageVersionProviderBase.GetAvailableVersionsFromStorage(String platformName)`
+
+        Review if the [Oryx CDN endpoint](https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md#network-dependencies) is whitelisted in VNET.
+> **Note**: For Azure Functions, you need to review stack trace.
 
 
 ##  Angular CLI requires a minimum Nodejs version
@@ -138,6 +176,17 @@ If Oryx is not finding any condition met then it will not detect any platform or
 - Is this running locally? Validate with your dev local environment
 
 
+## TypeScript cannot find module name
+
+**Errors**:
+-  `Error: TS2304 cannot find name ' require'`
+- `sh: 1: tsc: not found`
+
+**Actions**:
+-  Review how the library is imported, review for models or classes that are properly exported for other file. 
+- It can be related to Common js interop with ES modules. 
+- Review for tsconfig.json types.
+- Review package.json to include typescript
 
 ##  Error installing dependencies that requires C/C++ compilation 
 
@@ -151,6 +200,17 @@ If Oryx is not finding any condition met then it will not detect any platform or
 - Identify the library that is requiring compilation, most of the times there is a missing module first.
 - Can you reproduce the issue locally with same environment? If you do, please open a Suppor ticket.
 - As a workaround build your app without Oryx and then ZipDeploy or try with another build agent for the moment.
+
+## Can't find Python
+
+**Errors**:
+- `npm ERR! command sh -c node-gyp rebuild`
+- `npm ERR! gyp ERR! find Python`
+- `npm ERR! gyp ERR! stack Error: Could not find any Python installation to use`
+
+**Reasons**
+- Oryx will pull the runtime based on the stack runtime. If there is a particular module that requires building for a C++ binding with node-gyp, the quick way it is to build your assets locally and then do a zipdeploy.
+
 
 ## Failed to compile when using JavaScript frameworks
 
