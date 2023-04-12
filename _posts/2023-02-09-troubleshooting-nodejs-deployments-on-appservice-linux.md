@@ -88,7 +88,7 @@ If Oryx is not finding any condition met then it will not detect any platform or
 
 **Actions**
 - Using a particular node.js framework defined in package.json? If yes, try the default node.js version assigned by the runtime and redeploy.
-- Validate if the Node.js framework is a supported stack runtime from [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/node_support.md). If this is then create a support case to report the issue.
+- Validate if the Node.js framework is a supported stack runtime from [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/node_support.md). If this is valid then create a support case to report the issue.
 
 ## Kudu Parent process crashed
 
@@ -209,7 +209,7 @@ If Oryx is not finding any condition met then it will not detect any platform or
 - `npm ERR! gyp ERR! stack Error: Could not find any Python installation to use`
 
 **Reasons**
-- Oryx will pull the runtime based on the stack runtime. If there is a particular module that requires building for a C++ binding with node-gyp, the quick way it is to build your assets locally and then do a zipdeploy.
+- Oryx will pull the runtime version based on the stack runtime preselected. If there is a particular module that requires building for a C++ binding with node-gyp, this will call Python for building and will not be available. The quick way to resolve this scenario is to build your assets locally and then do a zipdeploy.
 
 
 ## Failed to compile when using JavaScript frameworks
