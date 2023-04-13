@@ -1,0 +1,72 @@
+---
+title: "Using custom startup commands with Web App for Containers"
+author_name: "Anthony Salemo"
+tags:
+    - App Service Linux
+    - Docker
+    - Configuration
+categories:
+    - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
+    - Docker # Python, Java, PHP, Nodejs, Ruby, .NET Core
+    - Configuration # Django, Spring Boot, CodeIgnitor, ExpressJS
+header:
+    teaser: "/assets/images/azurelinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
+# If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
+toc: true
+toc_sticky: true
+date: 2023-04-13 12:00:00
+---
+
+This post will cover how to use "Startup Command" option to quickly change the startup entrypoint for your custom container on Web Apps for Containers.
+
+# Overview
+The "Startup Command" option is available on both App Service Blessed Images and Web App for Containers - however, there are some important differences here.
+
+"Blessed Images" are prebuilt containers which mount a volume to `/home` to run your code. The Dockerfile used for these images are configured in a way that this command can easily integrate with your code, since the architecture here is designed to just deploy and run code and not focus on the nuances of configuring the image itself.
+
+On the other hand, Web App for Containers have the expectation set that the customer would be building their own custom Docker Image - and bringing that for Azure to run as a container. With this, most people have an already set and defined container entrypoint, through the `ENTRYPOINT` instruction, or the CMD command to run their application through `CMD`.
+
+If you add a "Startup Command", this may cause issues unknowingly, as it may override your command in the same way you can do `docker run -it [someimage] [somecommand]`.
+
+# Good to knows
+If your custom Docker Image already has a `ENTRYPOINT` or `CMD` set, setting this custom startup command option may break your application, as it's essentially trying to override your entrypoint or command execution.
+
+Take the below example. We have a quickstart `nginx:latest` image being used - which runs fine on it's own. If we add a command of `echo "Hello"` as the Startup Command, we see it execute - but ultimately the container fails because it's overriding NGINX's entrypoint.
+
+
+
+![NGINX](/media/2023/04/azure-oss-blog-wafc-custom-startup-1.png)
+
+![Startup Command](/media/2023/04/azure-oss-blog-wafc-custom-startup-2.png)
+
+![Echo Command](/media/2023/04/azure-oss-blog-wafc-custom-startup-3.png)
+
+![Container Crash](/media/2023/04/azure-oss-blog-wafc-custom-startup-4.png)
+
+Knowing this, we will go through a setup below to successfully use this option for a Web App for Container.
+
+# Set up
+1. To be able to start a container with this method, do not have a `CMD` or `ENTRYPOINT` in your `Dockerfile`. See the below example. We're just copying in our application source and exposing the port. If you have a `CMD` or `ENTRYPOINT` already set, there is a likely chance this may crash the container, as seen above, if you put a command that your application is not expecting.
+
+```Dockerfile
+FROM node:18.9.0-alpine3.15
+
+WORKDIR /app
+COPY package.json ./
+RUN npm i
+
+COPY . ./
+
+EXPOSE 8080 
+```
+
+2. In the "Startup Command" field, add your command.
+
+![Startup Command](/media/2023/04/azure-oss-blog-wafc-custom-startup-5.png)
+
+3. We can now validate the container has started:
+
+![Startup Command](/media/2023/04/azure-oss-blog-wafc-custom-startup-6.png)
+
+This approach can be used an alternative to the typical `ENTRYPOINT` or `CMD` methods with containerized applications.
+
