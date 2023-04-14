@@ -135,7 +135,7 @@ On Web App for Containers, this defaults to false. Set this to true to proceed, 
     ![Init Script](/media/2023/04/azure-oss-blog-wafc-custom-startup-10.png)
 
 
-4. Save the configuration. The container should now be using the `.sh` file being referenced for containers start up.
+4. Save the configuration. The container should now be using the `.sh` file being referenced for container start up.
 
 
 
