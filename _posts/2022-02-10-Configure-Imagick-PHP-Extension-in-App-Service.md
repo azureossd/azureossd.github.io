@@ -38,11 +38,8 @@ Here is an example for removing policies for ghostscript:
   #!/bin/bash
   #Removing ghostscript policies
   sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
-  #Update linux packages
-  export ACCEPT_EULA=y
-  apt-get update && apt-get upgrade -y
-  #Install Ghostscript
-  apt-get install -y ghostscript
+  #Update Ghostscript
+  apt-get update && apt-get install -y ghostscript
   service nginx reload
 ```
 
