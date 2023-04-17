@@ -22,6 +22,8 @@ You can find a compilation of resources by categories:
 - [Troubleshooting 'failed to find attribute' errors on Python Linux App Services](https://azureossd.github.io/2023/01/30/Troubleshooting-'failed-to-find-attribute'-errors-on-Python-Linux-App-Services/index.html)
 - [Python on Linux App Service and ModuleNotFoundError](https://azureossd.github.io/2022/11/24/Python-on-Linux-App-Service-and-ModuleNotFound-Errors/index.html)
 - [Python Deployment - Could not find output.tar.gz](https://azureossd.github.io/2023/03/28/Python-Depolyment-Could-Not-Find-output.tar.gz/index.html)
+- [Python Startup - Could not open shared object file: no such file or directory](https://azureossd.github.io/2023/04/17/Python-Deployment-could-not-open-shared-object-file/index.html)
+
 
 ## Configuration
 - [Configuring Gunicorn worker classes and other general settings](https://azureossd.github.io/2023/01/27/Configuring-Gunicorn-worker-classes-and-other-general-settings/index.html)
