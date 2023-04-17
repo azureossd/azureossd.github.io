@@ -46,6 +46,18 @@ After enabling this you should see the `Content-Encoding` header now set to `gzi
 
 Example of code that uses this can be found [here](https://github.com/azureossd/gzip-stack-examples/tree/main/node/gzip).
 
+### Single Page Applications (SPA's)
+Single Page Applications, like React, Angular, Vue, and others related to this - that are built with pure client-side/browser executed JavaScript, means these applications have no notion on how to set headers or configure compression.
+
+In other posts on this blog, PM2 is recommended to serve these applications - however, it's important to know that PM2 does not handle compression either. PM2 is simply a process manager, and not a full blown Web Server.
+
+Therefor, if your application falls into this cateogry, you would need to go about this in any of the following ways (or others) to enable compress on responses:
+
+- Serve the production SPA assets with a server like Express, a basic Node HTTP server, or other Node HTTP server framework/libraries. You would then need to programatically enable compression on the responses.
+- Use a CDN, like [Azure CDN](https://learn.microsoft.com/en-us/azure/cdn/cdn-improve-performance) - depending on what is trying to be compressed. 
+- Use a custom Docker Image to serve the production SPA assets with a Web Server like NGINX or Apache HTTP - which then can give you control on compression
+- Use a proxy or another device in front of the application to compress responses going through there from the SPA.
+
 ## Dotnet
 Compression can be enabled in Dotnet with the following:
 
