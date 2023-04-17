@@ -115,11 +115,19 @@ The workaround for this would be to create an app service [startup script](https
     gunicorn app:app
     ~~~
 
-    Once created make sure to upload this file anywhere under the */home* folder. You can also use the *bash* feature from the [Kudu New UI](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/new-kudu-ui-for-app-service-on-linux-preview/ba-p/3212270) to create this file directly using a text editor (vim / emacs). 
+- Once created make sure to upload this file anywhere under the */home* folder. You can also use the *bash* feature from the [Kudu New UI](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/new-kudu-ui-for-app-service-on-linux-preview/ba-p/3212270) to create this file directly using a text editor (vim / emacs). 
     ![Startup File](/media/2023/04/python-startup-cannot-open-shared-object-file-02.png)
 
+- Then from your app services Azure Portal under *Configuration -> General Settings -> Startup Command* make sure to reference the startup file path and save your changes. 
+
+    ![Startup Command](/media/2023/04/python-startup-cannot-open-shared-object-file-03.png)
+
+
+
+
+
 # Most common packages / installation commands.
-Below is a table of the most commam libraries currently missing and some of popular python packages currently reliant on them.
+Below is a table of the most common libraries currently missing and some of popular python packages currently reliant on them.
 
 | Library              | Common Package              
 | -------              | --------------              | 
