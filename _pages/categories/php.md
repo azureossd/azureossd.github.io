@@ -9,7 +9,7 @@ sidebar:
 
 App Service on Linux supports `PHP` as a runtime stack built-in image.
 
->**Python Update Policy** - App Service upgrades the underlying PHP runtime of your application as part of the regular platform updates. As a result of this regular update process, your application will be automatically updated to the latest patch version of PHP available in the platform. For more information about current supported PHP versions check [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/php_support.md#support-timeline).
+>**PHP Update Policy** - App Service upgrades the underlying PHP runtime of your application as part of the regular platform updates. As a result of this regular update process, your application will be automatically updated to the latest patch version of PHP available in the platform. For more information about current supported PHP versions check [Support Timeline](https://github.com/Azure/app-service-linux-docs/blob/master/Runtime_Support/php_support.md#support-timeline).
 
 > Find additional PHP articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/PHP).
 
