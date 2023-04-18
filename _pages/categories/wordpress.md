@@ -32,7 +32,7 @@ You can find a compilation of resources by categories:
 * [Adding PHP extensions for WordPress on Linux App Service](./WordPress/wordpress_adding_php_extensions.md)
 * [AFD Integration with WordPress on Azure App Service](./WordPress/wordpress_afd_configuration.md)
 * [WordPress Best Practices for Security](https://azureossd.github.io/2021/01/28/wordpress-best-practices-for-security/index.html)
-
+* [Installing WordPress within Subdirectory](https://azureossd.github.io/2023/03/30/wordpress-subdirectory/index.html)
 
 ## Performance
 - [How to improve performance of WP Admin](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-improve-performance-of-wp-admin-wordpress-on-azure-app/ba-p/3731647)

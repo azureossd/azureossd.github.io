@@ -13,7 +13,7 @@ sidebar:
 You can find a compilation of resources by categories:
 
 ## Configuration
-
+- [Using .htaccess with Apache on Azure Linux](https://azureossd.github.io/2023/04/04/Using-.htaccess-with-Apache-on-Azure-Linux/index.html)
 - [How to set Nginx headers](https://azureossd.github.io/2023/02/24/how-to-modify-nginx-headers/index.html)
 - [Adding SSL/TLS certificates for Apache and NGINX on Azure Virtual Machines](https://azureossd.github.io/2022/04/16/SSL-TLS-certificates-for-Apache-and-NGINX-on-Azure-VMs/index.html)
 - [How to configure Let's Encrypt Certificates for Nginx or Apache in Azure Linux Virtual Machines](https://azureossd.github.io/2023/01/30/how-to-configure-lets-encrypt-certificates-in-azure-linux-vms/index.html)
