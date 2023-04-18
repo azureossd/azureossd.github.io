@@ -7,6 +7,7 @@ tags:
     - Troubleshooting
 categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
+    - Function App
     - Nodejs # Python, Java, PHP, Nodejs, Ruby, .NET Core
     - Troubleshooting 
 header:
@@ -37,7 +38,7 @@ Before starting you need to identify **where is your source code** and **which i
 | Local Computer (Using OneDeploy)           | Building Assets locally (Basic builder)                                     |
 | Local Computer (FTP)                       | No builder   
 
-> When using `GitHub Actions`, `Azure Pipelines` or `ZipDeploy`, Oryx is not enabled by default since you are using a `Remote/External builder`. If you prefer to enable App Service Build Service (Oryx) then you need to add a new App Setting **`SCM_DO_BUILD_DURING_DEPLOYMENT`= `true`** and redeploy.
+> When using `GitHub Actions`, `Azure Pipelines` or `ZipDeploy`, Oryx is not enabled by default since you are using an `External builder`. If you prefer to enable App Service Build Service (Oryx) then you need to add a new App Setting **`SCM_DO_BUILD_DURING_DEPLOYMENT`= `true`** and redeploy.
 >
 >When using `Local Git`, `Bitbucket` or `External Git`, Oryx is enabled by default.
 
@@ -128,7 +129,8 @@ If Oryx is not finding any condition met then it will not detect any platform or
 
 **Actions**
 - SSH into Kudu using `https://<your_sitename>.scm.azurewebsites.net/newui/kududebug` and review  `/tmp/build-debug.log` for insights.
-
+  > **Note**: For Azure Functions, you need to review stack trace.
+  
     ![Oxy debug log](/media/2023/02/nodejs-deployment-01.png)
 - Also review if you have any of the [App Settings](https://github.com/microsoft/Oryx/blob/main/doc/configuration.md) that Oryx uses and validate if the settings are correct.
 - If you are using VNET integration and getting the following errors:
@@ -141,7 +143,7 @@ If Oryx is not finding any condition met then it will not detect any platform or
    at Microsoft.Oryx.BuildScriptGenerator.SdkStorageVersionProviderBase.GetAvailableVersionsFromStorage(String platformName)`
 
         Review if the [Oryx CDN endpoint](https://github.com/microsoft/Oryx/blob/main/doc/hosts/appservice.md#network-dependencies) is whitelisted in VNET.
-> **Note**: For Azure Functions, you need to review stack trace.
+
 
 
 ##  Angular CLI requires a minimum Nodejs version
@@ -277,7 +279,8 @@ If Oryx is not finding any condition met then it will not detect any platform or
 - `Error: ENOSPC: no space left on device close`
 
 **Reason**
-* No temporary space left on the App Service Plan, this is different from what you pay for storage, this is a temporary disk space limited to containers size/files created inside a container, not persistance storage.
+* No temporary space left on the App Service Plan, this is different from what you pay for storage, this is a temporary disk space limited to containers size/files created inside a container, not persistance storage. Review [Troubleshooting No space left on device](https://azureossd.github.io/2023/04/11/troubleshooting-no-space-left-on-device/index.html).
+
 
 **Actions**
 * Use `App Service Diagnostics` blade in Azure Portal and review for `Linux - Host Disk Space Usage` section.  
@@ -292,7 +295,7 @@ If Oryx is not finding any condition met then it will not detect any platform or
 *  `npm ERR! 404 Not Found - GET https://registry.npmjs.org/<library> - Not found`
 
 **Reason**
-* Incorrect and potentially broken dependency, likely the library doesn't exit in npm regist or has incompatibility
+* Incorrect and potentially broken dependency, likely the library doesn't exit in npm registry or has incompatibility
 
 **Actions**
 * Validate if issue is reproducible in local env
@@ -342,9 +345,9 @@ Whenever you run a git process, git creates an `index.lock` file within the .git
 - Is the application running in multiple instances? This is usually most common in this scenario when all instances are using the remote home storage and you are doing a deployment. You can stop the site and redeploy or implement best practices as [deployment slots](https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices#use-deployment-slots).
 
 
-# Using Remote builder
+# Using External builder
 
-When using `GitHub Actions`, `Azure DevOps`, `ZipDeploy`, `OneDeploy` is likely that you are not using `Kudu service Build (Oryx)`, instead you are building remotely. Kudu container will consider this deployment as `Remote/External build` and extract the built assets into the home storage `/home/site/wwwroot` of you app container without building it again. 
+When using `GitHub Actions`, `Azure DevOps`, `ZipDeploy`, `OneDeploy` is likely that you are not using `Kudu service Build (Oryx)`, instead you are building remotely. Kudu container will consider this deployment as `External build` and extract the built assets into the home storage `/home/site/wwwroot` of you app container without building it again. 
 
 Here are the most common things to review when dealing with deployment issues:
 
@@ -379,7 +382,7 @@ Here are the most common things to review when dealing with deployment issues:
 
 - When using a [custom deployment script](https://github.com/projectkudu/kudu/wiki/Customizing-deployments), you need to validate all the commands included in `deploy.sh`, check for `npm install` and `npm run build` lines. 
 - Bash scripts must have Unix-style (LF) line endings! If you are developing on Windows, make sure to configure your editor properly.
-- If possible use Oryx build instead removing the files `.deployment` and `deploy.sh`
+- If possible use Oryx build instead and remove the files `.deployment` and `deploy.sh`
 
 # Deploying Frameworks
 
