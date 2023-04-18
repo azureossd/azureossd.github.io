@@ -18,6 +18,10 @@ App Service on Linux supports `Node.js` as a runtime stack built-in image.
 You can find a compilation of resources by categories:
 
 # Linux
+
+## General
+- [App Service recommendations for Node.js version upgrades and end of life](https://azureossd.github.io/2023/03/29/App-service-recommendations-for-nodejs-version-upgrades-and-end-of-life/index.html)
+
 ## Availability and Post Deployment issues
 - [Missing or undefined environment variables](https://azureossd.github.io/2022/11/14/Missing-or-undefined-environment-variables-with-Node-on-App-Service-Linux/index.html)
 - [Module not found](https://azureossd.github.io/2022/10/25/Module-not-found-with-Node-on-App-Service-Linux/index.html)

@@ -25,6 +25,7 @@ Here is a compilation of resources by categories:
 
 
 ## Configuration
+- [Using custom startup commands with Web App for Containers](https://azureossd.github.io/2023/04/13/Using-custom-startup-commands-with-Web-App-for-Containers/index.html)
 - [Manage Timezones in App Service Linux](https://azureossd.github.io/2023/03/13/managing-timezones-appservice-linux/index.html)
 - [Increasing Request Header sizes on Linux App Services](https://azureossd.github.io/2022/06/08/Increasing-Request-Header-sizes-on-Linux-App-Services/index.html)
 - [Editing Response Headers on Linux App Service](https://azureossd.github.io/2022/05/25/Editing-Response-Headers-on-Linux-App-Service/index.html)
@@ -32,6 +33,8 @@ Here is a compilation of resources by categories:
 
 ## Availability and Startup issues
 - [Troubleshooting failed slot swaps on App Service Linux](https://azureossd.github.io/2023/03/15/Troubleshooting-Failed-Slot-Swaps-on-App-Service-Linux/index.html)
+- [Troubleshooting No space left on device](https://azureossd.github.io/2023/04/11/troubleshooting-no-space-left-on-device/index.html)
+- [Middleware containers - Why you may see "Failed to forward request messages" for your application on App Service Linux](https://azureossd.github.io/2023/04/05/Why-you-may-see-Failed-to-forward-request-messages-for-your-application-on-App-Service-Linux/index.html)
 
 # Web app for Containers
 
