@@ -21,7 +21,7 @@ date: 2023-04-18 12:00:00
 This post will cover what it means when you see "Container didn't respond to HTTP pings on port, failing site start" and what may cause this.
 
 # Overview
-When troubleshooting an application that is failing to start - and combing through App Service logging, this is one of the first and maybe more common messages you may see. App Service on Linux (for both Blessed and Custom Docker Images) requires that the application container send back an HTTP response to the internal platform ping that is send - which dictates that the container is started and in general, able to return a response.
+When troubleshooting an application that is failing to start - and combing through App Service logging, this is one of the first and maybe more common messages you may see. App Service on Linux (for both Blessed and Custom Docker Images) requires that the application container send back an HTTP response to the internal platform ping that is sent - which dictates that the container is started and in general, able to return a response. This platform ping is sent over HTTP to the root of the site.
 
 This message indicates that the application container did not send back an HTTP response to the platform ping in the predetermined time. By default, this time is 230 seconds before it times out - in which case, the message `Container didnt respond to HTTP pings on port, failing site start` will be returned and the site will attempt to start the container again after some time.
 
