@@ -102,5 +102,23 @@ This applies to installing either language/stack specific packages or Linux spec
 
 A more detailed example of this, which can also apply to all stacks on App Service Linux, can be found [here - Nodejs on App Service Linux and why to avoid installing packages in startup scripts](https://azureossd.github.io/2022/10/14/Nodejs-on-App-Service-Linux-and-why-to-avoiding-installing-packages-in-startup-scripts/index.html).
 
+## High CPU or Memory
+High CPU and/or Memory on the instances that these containers run on can contribute to container time outs on startup.
+
+A common scenario for this is:
+- After restarts, such as a manual restart, deployment, swaps, or others.
+- After instance movement - which will start up all/any sites on this App Service Plan on the new instances
+
+If for some reason process(es) started to consume a large amount of memory, and/or, spend a lot of time with CPU cycles, this can cause resource contention on the host. In this case, if this happened to coincide with an application restart or startup - the application may ultimately fail to site due to lack of memory or extreme CPU usage.
+
+As this could either OOM kill the container, cause the container to be able to respond to HTTP requests, or cause Docker on these hosts to fail to start the container under this stress.
+
+Some ways to validate if this is the case is to use:
+- **Diagnose and Solve Problems** - and viewing some of the memory and/or CPU based detectors
+- **Metrics blade** - which can break down resource usage per instance by using the "Splitting" option, if needed
+- **Application Insights**
+
+A possible mitigation or resolution would be to scale up the App Service Plan, if applicable - or, if this is a density issue - to split the App Service Plan. If it's determined that a specific application process is the offender, profiling and/or memory dumps may be worth while.
+
 ## Other scenarios
 There may be other scenarios not covered here which can cause the container to time out - if that is the case, it's always key to have App Service Logs enabled and to review these appropriately. 
