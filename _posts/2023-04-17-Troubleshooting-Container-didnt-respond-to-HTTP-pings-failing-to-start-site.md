@@ -55,7 +55,7 @@ For more information on these settings, read this - [Whats the different between
 ## Binding to localhost
 Applications deployed to App Service Linux should not be attempting to bind to `localhost` or `127.0.0.1`. This listening address is normally passed to what the Web/Application server should be listening on.
 
-Any external requests trying to be made to the container will never get a response in this case - and in this case, platform pings will also not get a response, timing out the container. Applications should be listenong on `0.0.0.0` instead.
+Any external requests trying to be made to the container will never get a response in this case - and in this case, platform pings will also not get a response, timing out the container. Applications should be listening on `0.0.0.0` instead.
 
 ## Long application startup routines and logic
 Applications that have a very long startup time before an HTTP response is sent back may encounter this error described here. Some scenarios here are:
