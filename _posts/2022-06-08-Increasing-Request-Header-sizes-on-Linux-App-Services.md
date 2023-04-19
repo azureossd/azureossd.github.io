@@ -27,6 +27,11 @@ On Linux App Services, various stacks can be hosted - below are some common ways
 
 Code based examples can be found [here](https://github.com/azureossd/custom-request-header-size-examples).
 
+# Important information about request limits on App Service
+The "[Front Ends](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/february/azure-inside-the-azure-app-service-architecture#front-end)" that act as load balancers to the application(s) running behind them have a **hard upper limit of 64KB for total request header sizes**.
+
+The Front End configuration is **not** able to be changed. This means that although the application side can be changed (as discussed below), and depending on the server running the application - may have a various default total header size limit, but in all cases, the upper limit will always only be 64KB in size.
+
 # Java
 ## Tomcat
 
