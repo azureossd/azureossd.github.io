@@ -90,6 +90,15 @@ You can check connectivity and resolution with commands like the following - the
 - `dig yourstorage.file.core.windows.net`
 - `tcpping yourstorage.file.core.windows.net`
 
+**NOTE**: If you enable a Storage Firewall after succesfully mounting storage - and try to `tcpping` the Storage Account, you may be unable to reach it.
+
+If you try to list the contents while still in the mapped directory, you may recieve the following message:
+
+```
+root@8576066a2932:/home/site/files# ls -ltra
+ls: cannot open directory '.': Host is down
+```
+
 ## Mount Paths
 `/home` or `/` cannot be mounted to (as well as from the `az cli`).
 
