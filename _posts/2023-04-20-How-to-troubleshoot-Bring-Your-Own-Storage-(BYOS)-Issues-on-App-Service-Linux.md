@@ -97,6 +97,40 @@ Mounting to `/home` or `/`, if it was possible, would likely cause the container
 
 Mounting to `/tmp` or directories under `/tmp` is not recommended as this has the potential to cause the container to not start.
 
+## File Locking
+Depending on what the application is doing, file locking for certain services running over a volume may cause the application to crash (or not start) - depending on the application logic.
+
+Below are some examples:
+
+**Scenario**:
+
+Trying to run MongoDB over mounted storage:
+
+- Example error: `connection: /data/db/: handle-open: open: Operation not permitted`
+    - MongoDB has limitations surrounding trying to mount a volume that is mapped to a Windows File Share (which in this case, is what Azure Files is)
+    - There may be other limitations with Windows File Shares, MongoDB, and non-root users.
+    - There may be lower level API's that are not supported with MongoDB when mapped to a Windows File Share.
+
+    **Resolution**:
+- Use a managed MongoDB instance like Mongo Atlas or the [MongoDB API For CosmosDB](https://learn.microsoft.com/en-us/azure/cosmos-db/mongodb/introduction).
+
+**Scenario**:
+
+Trying to run PostgreSQL over mounted storage:
+
+- Example error: `data directory "/var/lib/postgresql/data" has wrong ownership`:
+    - PostgreSQL may have limitations with being used over a Windows File Share mounted to the container due to the user being different in regards to the volume (and data ownership) - reference article - [pgdata has wrong ownership - forums.docker](https://forums.docker.com/t/data-directory-var-lib-postgresql-data-pgdata-has-wrong-ownership/17963)
+
+    **Resolution**:
+- Use a managed PostgreSQL instance like [Azure Database for PostgreSQL](https://learn.microsoft.com/en-us/azure/postgresql/)
+    
+**Scenario**:
+
+- Trying to use SQLite over mounted storage:
+    - As called out in [Best Practices](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?pivots=container-linux&tabs=portal#best-practices) - _It's not recommended to use storage mounts for local databases (such as SQLite) or for any other applications and components that rely on file handles and locks._
+    - SQLite is not recommended for production scenarios. Using a managed database offering should be used instead.
+    - Since SQLite is a file-based database implementation, there are various reports throughout the years of SQLite file locking issues, including over volume mounts.
+
 ## Best practices and limitations
 For general best practices and limiaations not within the scope of this post, review the below:
 - [Mount Azure Storage as a local share - Azure App Service - Limitations](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?tabs=cli&pivots=container-linux#limitations)
