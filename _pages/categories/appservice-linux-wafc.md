@@ -31,10 +31,13 @@ Here is a compilation of resources by categories:
 - [Editing Response Headers on Linux App Service](https://azureossd.github.io/2022/05/25/Editing-Response-Headers-on-Linux-App-Service/index.html)
 - [Installing TcpPing on Azure App Service Linux](https://azureossd.github.io/2021/06/17/installing-tcpping-linux/index.html)
 
+
 ## Availability and Startup issues
 - [Troubleshooting failed slot swaps on App Service Linux](https://azureossd.github.io/2023/03/15/Troubleshooting-Failed-Slot-Swaps-on-App-Service-Linux/index.html)
 - [Troubleshooting No space left on device](https://azureossd.github.io/2023/04/11/troubleshooting-no-space-left-on-device/index.html)
 - [Middleware containers - Why you may see "Failed to forward request messages" for your application on App Service Linux](https://azureossd.github.io/2023/04/05/Why-you-may-see-Failed-to-forward-request-messages-for-your-application-on-App-Service-Linux/index.html)
+- [Troubleshooting Container didnt respond to HTTP pings on port, failing site start](https://azureossd.github.io/2023/04/18/Troubleshooting-Container-didnt-respond-to-HTTP-pings-failing-to-start-site/index.html)
+- [Troubleshooting Bring Your Own Storage (BYOS) issues on App Service Linux](https://azureossd.github.io/2023/04/20/How-to-troubleshoot-Bring-Your-Own-Storage-(BYOS)-Issues-on-App-Service-Linux/index.html)
 
 # Web app for Containers
 
