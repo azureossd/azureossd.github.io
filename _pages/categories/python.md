@@ -29,7 +29,6 @@ You can find a compilation of resources by categories:
 ## Configuration
 - [Configuring Gunicorn worker classes and other general settings](https://azureossd.github.io/2023/01/27/Configuring-Gunicorn-worker-classes-and-other-general-settings/index.html)
 - [Gunicorn Update HTTP Headers on Azure App Service](https://azureossd.github.io/2022/08/03/Gunicorn-update-HTTP-headers-On-Azure-App-Service/index.html)
-- [Enabling Code Profiler for Python on App Service Linux](https://azureossd.github.io/2022/05/09/Enabling-Code-Profiler-for-Python-on-App-Service-Linux/index.html)
 
 ## Deployment
 - [Troubleshooting Python deployments on App Service Linux](https://azureossd.github.io/2023/04/17/troubleshooting-python-deployments-on-appservice-linux/index.html)
