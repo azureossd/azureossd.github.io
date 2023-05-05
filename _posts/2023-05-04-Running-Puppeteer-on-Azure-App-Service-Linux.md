@@ -359,6 +359,16 @@ const browser = await puppeteer.launch({
 
 # Troubleshooting
 ## Missing Shared Libraries
+You may see various missing Shared Libraries as called out earlier, such as:
+- `error while loading shared libraries: libatk-bridge-2.0.so.0`
+- `error while loading shared libraries: libatk-1.0.so.0`
+- `error while loading shared libraries: libcups.so.2`
+
+If the `chromium` package is not used to download. A resolution in this case would be to either:
+- Use the `chromium` package in your Startup Command (explained above)
+- Install missing required Shared Libraries
+    - Note: This may cause the application startup time to become rather long, incase many libraries are needed to be brought up one-by-one
+- Use a custom Docker Image
 
 ## Running as root without --no-sandbox is not supported
 When starting Puppetteer without the `--no-sandbox` args in the code above, you may see this message:
@@ -402,6 +412,6 @@ This will possibly also happen if the puppeteer configuration file does not poin
 
 As we can see, our `.cache` is set to `/home/site/wwwroot`, but in this example, it was deleted and recreated. A typical restart may not help. If this is the case, redeploy the application.
 
-## 
+
 
 
