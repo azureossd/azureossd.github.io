@@ -40,6 +40,7 @@ You can find a compilation of resources by categories:
   - [React](https://azureossd.github.io/2022/02/07/React-Deployment-on-App-Service-Linux/index.html)
   - [Angular](https://azureossd.github.io/2022/01/29/Angular-Deployment-on-App-Service-Linux/index.html)
   - [Nuxtjs](https://azureossd.github.io/2022/01/28/Nuxtjs-Deployment-with-Azure-DevOps-Pipelines/index.html)
+  - [Puppeteer](https://azureossd.github.io/2023/05/05/Running-Puppeteer-on-Azure-App-Service-Linux/index.html)
 
 ## Configuration and Best Practices
 - [Using PM2 on App Service Linux](https://azureossd.github.io/2022/02/22/Using-PM2-on-App-Service-Linux/index.html)

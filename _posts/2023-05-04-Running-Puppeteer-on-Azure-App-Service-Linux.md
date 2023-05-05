@@ -17,7 +17,7 @@ toc: true
 toc_sticky: true
 date: 2023-05-05 12:00:00
 ---
-This post will cover getting set up to run [Puppeteer](`/controllers/scrapeController.js`) on Azure App Service Linux.
+This post will cover getting set up to run [Puppeteer](https://pptr.dev/) on Azure App Service Linux.
 
 # Overview
 Puppeteer is a Node.js library which lets you access Chrome/Chromium through exposed API's. This lets you handle web scraping, screenshots, automated browser interaction, and others. This can be ran in headless and "headfull" mode.
