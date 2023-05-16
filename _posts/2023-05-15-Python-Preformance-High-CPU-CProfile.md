@@ -43,7 +43,7 @@ You can view this information either from the [SSH console](https://learn.micros
 
 
 
- > Note: if you not seeing any high CPU, but still noticing performance issues with simultaneous requests you many want to make sure you optimize your gunicorn settings first and then retest before profiling. More information here: [Configuring Gunicorn worker class and other general settings]('https://azureossd.github.io/2023/01/27/Configuring-Gunicorn-worker-classes-and-other-general-settings/index.html')
+ > Note: If you not seeing any high CPU, but still noticing performance issues with simultaneous requests you many want to make sure you optimize your gunicorn settings first and then retest before profiling. More information here: [Configuring Gunicorn worker class and other general settings](https://azureossd.github.io/2023/01/27/Configuring-Gunicorn-worker-classes-and-other-general-settings/index.html)
 
 ## Implement CProfile
 Profiling your application using CProfile will require you to make minimal changes to your code base and redeploy.

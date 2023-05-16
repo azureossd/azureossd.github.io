@@ -37,3 +37,5 @@ You can find a compilation of resources by categories:
   - [Django Deployment on App Service Linux](https://azureossd.github.io/2022/02/20/Django-Deployment-on-App-Service-Linux/index.html)
   - [Flask Deployment on App Service Linux](https://azureossd.github.io/2022/02/17/Flask-Deployment-on-App-Service-Linux/index.html)
 
+## Performance
+ - [Using CProfile to troubleshoot high CPU on Linux Python App Services](https://azureossd.github.io/2023/05/15/Python-Preformance-High-CPU-CProfile/index.html)
