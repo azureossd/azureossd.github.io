@@ -28,6 +28,7 @@ You can find a compilation of resources by categories:
 - [NPM executables not being found](https://azureossd.github.io/2022/10/24/NPM-Executables-not-being-found-at-startup-on-App-Service-Linux/index.html)
 - [getaddrinfo ENOTFOUND](https://azureossd.github.io/2022/09/30/Node-applications-on-App-Service-Linux-and-getaddrinfo-ENOTFOUND/index.html)
 - [ENOSPC: System limit for number of file watchers reached](https://azureossd.github.io/2022/09/28/ENOSPC-System-limit-for-number-of-file-watchers-reached/index.html)
+- [Node Deployments and 'node_modules.tar.gz: cannot open: no such file or directory'](https://azureossd.github.io/2023/05/15/Node-Deployments-and-node_modules-tar-gz-cannot-open-no-such-file-or-directory/index.html)
 - [Node.js 12 applications failing by Optional chaining](https://azureossd.github.io/2022/09/06/Nodejs-12-failing-by-Optional-Chaining/index.html)
 
 ## Deployment
