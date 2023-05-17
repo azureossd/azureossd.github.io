@@ -30,12 +30,10 @@ This post will cover application failures with Node on App Service Linux - speci
 If App Service Logs are not enabled, only `docker.log` files will be generated, which will not show application related `stdout` / `stderr` and will make troubleshooting these kinds of issues more complicated.
 
 # Overview
-This will be a brief post covering the message `npm ERR! Missing script:`. This is targeted towards **Blessed Images** on App Service Linux.
+This will be a brief post covering the message `npm ERR! Missing script:`. This is targeted towards **Node.js Blessed Images** on App Service Linux.
 
 Generally, this may show if a **Startup command** is specified, while there is no matching `scripts` property in your `package.json` - or, if the `scripts` property or the associated command in `scripts` is missing.
 
-
-## Overview
 Consider reviewing the **run** logic that is defined for Node.js applications [here](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/nodejs.md#run)
 
 
