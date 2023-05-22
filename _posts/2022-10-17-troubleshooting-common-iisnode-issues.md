@@ -158,17 +158,13 @@ More inforamtion on this can be found here:
 
 ## Slow performance observed alongside high CPU usage
 
-Starting your application using PM2 in cluster mode will ensure you use all available vCPU cores on your App Service Plan, optimizing performance
+The <b>" nodeProcessCountPerApplication "</b> setting determines the number of node processes initiated per IIS application. The value is set to 1 by default, launching a single node.exe process. However, you can adjust the value to 0, allowing the launching of node.exes equal to the count of vCPUs on your virtual machine/App Service Plan. For optimal performance in most applications, it is recommended to set the value to 0, enabling the utilization of all available vCPUs on your machine. It's important to note that node.exe operates on a single thread, meaning each node.exe process utilizes a maximum of 1 vCPU. Therefore, using all vCPUs can help achieve peak node application performance.
 
-[PM2 - Cluster Mode (keymetrics.io)](https://pm2.keymetrics.io/docs/usage/cluster-mode/)
-
-An example of an updated package.json start script file using PM2. Replace .bin/www with your application entry point.
-
-```JSON
- "scripts": {
-    "start": "pm2 start ./bin/www -i max"
-  },
+/home/site/iisnode.yml:
+```yaml
+nodeProcessCountPerApplication: 0
 ```
+
 To validate CPU usage, you can review the detectors under the App Service [Diagnose and Solve Problems](https://learn.microsoft.com/en-us/azure/app-service/overview-diagnostics) blade.
 
 ## NPM version conflict
