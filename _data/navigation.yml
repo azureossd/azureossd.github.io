@@ -37,6 +37,8 @@ links:
         url: "/linux/"
       - title: "Azure Functions"
         url: "/functions/"
+      - title: "Azure DevOps"
+        url: "/devops/"
   - title: Azure Resources
     children:
       - title: "Linux Best Practices and FAQ"
@@ -45,14 +47,8 @@ links:
         url: https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-faq
       - title: "Things You Should Know: Web Apps and Linux"
         url: https://techcommunity.microsoft.com/t5/azure-app-service/things-you-should-know-web-apps-and-linux/ba-p/392472
-  - title: Other Blogs
-    children:
-      - title: "Azure Blog"
-        url: https://azure.microsoft.com/en-us/blog/
       - title: "Azure App Service Blog"
         url: https://azure.github.io/AppService/
-      - title: "Azure Updates"
-        url: https://azure.microsoft.com/en-us/updates/
   - title: Other Resources
     children:
       - title: "Azure Spring Apps"
