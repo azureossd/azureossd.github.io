@@ -160,7 +160,7 @@ More inforamtion on this can be found here:
 
 The <b>" nodeProcessCountPerApplication "</b> setting determines the number of node processes initiated per IIS application. The value is set to 1 by default, launching a single node.exe process. However, you can adjust the value to 0, allowing the launching of node.exes equal to the count of vCPUs on your virtual machine/App Service Plan. For optimal performance in most applications, it is recommended to set the value to 0, enabling the utilization of all available vCPUs on your machine. It's important to note that node.exe operates on a single thread, meaning each node.exe process utilizes a maximum of 1 vCPU. Therefore, using all vCPUs can help achieve peak node application performance.
 
-/home/site/iisnode.yml:
+/home/site/wwwroot/iisnode.yml:
 ```yaml
 nodeProcessCountPerApplication: 0
 ```
