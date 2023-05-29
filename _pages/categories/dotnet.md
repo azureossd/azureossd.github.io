@@ -18,3 +18,7 @@ You can find a compilation of resources by categories:
 ## Configuration
 
 - [Installing troubleshooting tools in Dotnet Core custom Images](https://azureossd.github.io/2022/07/01/Installing-troubleshooting-tools-in-Dotnet-Core-Custom-Images/index.html)
+
+## Deployment
+
+- [Using WebDeploy on Linux App Services](https://azureossd.github.io/2023/05/26/Using-WebDeploy-OnLinuxAppServices/index.html)
