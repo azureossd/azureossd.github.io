@@ -6,15 +6,19 @@ tags:
     - Dotnet Core
     - Deployment
 categories:
-    -  Azure App Service on Linux
-    -  .NET Core
+    - Azure App Service on Linux
+    - .NET Core
     -  How-To
+    
+header:
     teaser: "/assets/images/dotnetcorelinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 05-26-23 12:00:00
+date: 2023-05-26 12:00:00
 ---
+
+This post will cover how to use Web Deploy to Deploy to a Linux App Service, using Visual Studio 2022.
 
 ## Overview
 
@@ -22,7 +26,7 @@ date: 05-26-23 12:00:00
 
 For Linux App Services, normally it is recommend to use [zip deploy](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli) for most deployment cases. If your team is just deploying for the first time we recommend you stick with this method. 
 
-However Web Deploy is supported for Linux App Service, in certain[link] scenarios this can be useful. 
+However Web Deploy is supported for Linux App Service, in certain [scenarios](#sample-scenarios) this can be useful. 
 
 For this tutorial we are using a .Net Core 6 application, deploying from Visual Studio 2022
 
@@ -37,7 +41,7 @@ For this tutorial we are using a .Net Core 6 application, deploying from Visual 
 
      ![Download Publish Profile](/media/2023/05/linux-web-deploy-1.png)
 
-3. Open your publish profile in any editor it a .xml format and take note of the following information the publishProfile value labed <your app service name> - Web Deploy
+3. Open your publish profile in any editor in a .xml format and take note of the following information the publishProfile value labeled ***{your app service name} - Web Deploy***
     - publishUrl
     - userName
     - userPWD
@@ -49,6 +53,7 @@ For this tutorial we are using a .Net Core 6 application, deploying from Visual 
      ![Publish Profile VS New](/media/2023/05/linux-web-deploy-3.png)
 
 5. Make sure to choose Web Server (IIS)
+
     ![Publish Profile VS Web Server Selection](/media/2023/05/linux-web-deploy-4.png)
 
 6. Enter the values you downloaded in step 3 and click Finish. 
@@ -65,6 +70,6 @@ There are multiple reasons why your team might use Web Deploy instead of the Sta
 
 - Your team has configured [access restrictions](https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli) / [private endpoints](https://learn.microsoft.com/en-us/azure/app-service/networking/private-endpoint) on your Kudu (Advanced Tools) Site, that will prevent a Zip Deploy Operation.
 
-- Rare occasions where the Kudu Advanced Tools Site is down, your team can use Web Deploy as a mitigation. 
+- Rare occasions where the Kudu (Advanced Tools) Site is down, your team can use Web Deploy as a mitigation, until the issue is mitigated. 
 
-- Organizational practice or policy to use Web Deploy / Ms Deploy
+- Organizational practices or policy to use Web Deploy / Ms Deploy.
