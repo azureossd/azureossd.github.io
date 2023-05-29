@@ -90,7 +90,7 @@ In your `package.json` at the **root** of your repository, **relative** to `serv
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "cd ./frontend && npm run build"
+    "build": "cd ./frontend && npm i && npm run build"
   }
 ```
 
