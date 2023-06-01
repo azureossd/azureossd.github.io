@@ -31,6 +31,7 @@ You can find a compilation of resources by categories:
 - [Node Deployments and 'node_modules.tar.gz: cannot open: no such file or directory'](https://azureossd.github.io/2023/05/15/Node-Deployments-and-node_modules-tar-gz-cannot-open-no-such-file-or-directory/index.html)
 - [Node Deployments and 'npm ERR! Missing Script'](https://azureossd.github.io/2023/05/16/Node-Deployments-and-npm-ERR!-Missing-script/index.html)
 - [Node.js 12 applications failing by Optional chaining](https://azureossd.github.io/2022/09/06/Nodejs-12-failing-by-Optional-Chaining/index.html)
+- [Troubleshooting a ‘Module was compiled against a different Nodejs version’ errors](https://azureossd.github.io/2023/05/31/Troubleshooting-a-Module-was-compiled-against-a-different-Node.js-version-errors/index.html)
 
 ## Deployment
 - [Troubleshooting Node.js deployments on App Service Linux](https://azureossd.github.io/2023/02/09/troubleshooting-nodejs-deployments-on-appservice-linux/index.html)
