@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting a 'Module was compiled against a different Nodejs version' errors"
-author_name: "Keegan D'Souza"
+author_name: "Anthony Salemo"
 tags:
     - Node
     - Troubleshooting
