@@ -13,7 +13,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2023-06-02 23:59:59
+date: 2023-06-02 12:00:00
 ---
 
 This post will cover what it means to see 'ClusterExecEndpointWebSocketConnectionError' when trying to use the Console blade for Container Apps to connect to a replica or pod.
