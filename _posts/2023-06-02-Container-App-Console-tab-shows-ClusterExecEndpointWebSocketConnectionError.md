@@ -41,10 +41,12 @@ Although this may seem like a vague or cryptic error, it is more simply due to t
 
 Just like on a local k8s cluster or other clusters, if the pod is not running, you will not be able to open a shell into it - which is what the Console blade essentially does.
 
+If this is being encountered, review application or system logging with [Monitor logs in Azure Container Apps with Log Analytics](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash).
+
 **NOTE:** You may also see the below error if a shell is opened to the pod. This can happen if there is an event, such as updating a revision in single revision mode, or other events that cause a new pod to be created - the exit code 137 is due to k8s shutting down the pod to create a new one.
 
 ```
 ERROR: {"Error":{"Code":"ClusterExecFailure","Message":"Cluster exec API returns error: command terminated with non-zero exit code: error executing command [/bin/sh], exit code 137, code: 0.","Details":null,"Target":null,"AdditionalInfo":null}}
 ```
 
-Refresh the Console session to reconnect to the new pod/replica.
+**For the above message regarding 'exit code 137' specifically** - refresh the Console session to reconnect to the new pod/replica. This does not apply to the main error in this post.
