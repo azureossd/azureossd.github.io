@@ -160,3 +160,25 @@ Server listening on port: 8080
 ```
 
 **In summary**, what we're doing above to resolve this is to point directly to the package entrypoint. Which is the same entrypoint NPM would have been ultimately pointing to. 
+
+**Another resolution**:
+
+Another potential resolution, although a bit more redundant here since we'd ideally want to contain out install and build logic for the application on the pipeline, is to set `SCM_DO_BUILD_DURING_DEPLOYMENT` to `true.
+
+This uses Oryx as the builder, which means the install and build (if applicable) will be handled by Oryx and is run on the Kudu container, which then files are synced to `/home/site/wwwroot` - as opposed to a zip package being POST'ed to Kudu, and then extracted with our application ready to run.
+
+You can confirm the differences in builders by viewing the file named `Background_POST_api-zipdeploy_pending.xml` under `/home/LogFiles/kudu/trace` - in other cases, it _may_ be possible to see the builder being used in **Deployment Center** -> **Logs** tab. For the `.xml file`, there is an xml element containing the builder being used at the time, for example:
+
+(BasicBuilder)
+```xml
+<step title="Determining deployment builder" date="2023-06-09T15:40:30.155" >
+    <step title="Builder is BasicBuilder" date="2023-06-09T15:40:30.159" />
+</step>
+```
+
+(Oryx being used)
+```xml
+<step title="Determining deployment builder" date="2023-06-09T15:50:03.027" >
+    <step title="Builder is OryxBuilder" date="2023-06-09T15:50:03.031" />
+</step>
+```
