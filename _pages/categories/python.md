@@ -24,6 +24,8 @@ You can find a compilation of resources by categories:
 - [Python on Linux App Service and ModuleNotFoundError](https://azureossd.github.io/2022/11/24/Python-on-Linux-App-Service-and-ModuleNotFound-Errors/index.html)
 - [Python Deployment - Could not find output.tar.gz](https://azureossd.github.io/2023/03/28/Python-Depolyment-Could-Not-Find-output.tar.gz/index.html)
 - [Python Startup - Could not open shared object file: no such file or directory](https://azureossd.github.io/2023/04/17/Python-Deployment-could-not-open-shared-object-file/index.html)
+- [Python Deployments: ‘File not found’ and filesystem directory differences with app content](https://azureossd.github.io/2023/06/12/Python-Deployments-File-not-found-and-filesystem-directory-differences-with-app-content/index.html)
+- [Python on App Service Linux and why to avoid installing packages on startup](https://azureossd.github.io/2023/06/09/Python-on-App-Service-Linux-and-why-to-avoid-installing-packages-on-startup/index.html)
 
 
 ## Configuration
