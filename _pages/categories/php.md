@@ -18,6 +18,9 @@ You can find a compilation of resources by categories:
 
 # Linux
 
+## Availability and Post Deployment issues
+- [PHP Deployments: cannot open shared object file: no such file or directory](https://azureossd.github.io/2023/06/14/PHP-Deployments-could-not-open-object-file-no-such-file-or-directory/index.html)
+
 ## Configuration
 - [Modifiying PHP FPM settings](https://azureossd.github.io/2023/01/06/Modifiying-PHP-FPM-settings/index.html)
 - [How to set Nginx headers](https://azureossd.github.io/2023/02/24/how-to-modify-nginx-headers/index.html)
