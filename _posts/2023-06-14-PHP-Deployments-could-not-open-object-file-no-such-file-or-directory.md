@@ -52,9 +52,35 @@ Assuming that you know the extension you need to install, but it is failing with
 - There may be a syntax error in your path
 - If using a custom startup script, the package may be failing to install
 
+**Pecl**:
+
 If installing via [Pecl](https://pecl.php.net/) - this may install to directories _outside_ of `/home`. If you then have your `.ini` pointing to an `.so`, eg., simply `extension=mysharedlib.so` - this would obviously likely fail:
 - 1. Because of the path difference locations and the possibility this does **not** fall under one of the paths that PHP tries to use for dynamic libraries
 - 2. After any container restart, changes outside of `/home` are reverted
+
+You can validate where Pecl will install extensions with the `pear config-show` command and looking at the `ext_dir` column with `PEAR extension directory`.
+
+```
+root@b37f5b3aca46:/home# pear config-show
+Configuration (channel pear.php.net):
+=====================================
+Auto-discover new Channels     auto_discover    0
+Default Channel                default_channel  pear.php.net
+HTTP Proxy Server Address      http_proxy       <not set>
+PEAR server [DEPRECATED]       master_server    pear.php.net
+Default Channel Mirror         preferred_mirror pear.php.net
+Remote Configuration File      remote_config    <not set>
+PEAR executables directory     bin_dir          /usr/local/bin
+PEAR documentation directory   doc_dir          /usr/local/lib/php/doc
+PHP extension directory        ext_dir          /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+PEAR directory                 php_dir          /usr/local/lib/php
+```
+
+If installing extensions this way, ensure to copy the contents from ` /usr/local/lib/php/extensions/no-debug-non-zts-yyymmdd` to `/home/site/ext` (or your relevant extension direcotry), for example:
+
+```
+cp /usr/local/lib/php/extensions/no-debug-non-zts-20220829/rdkafka.so /home/site/ext
+```
 
 **NOTE**: If you're manually uploading `.gz` packages from Pecl, or, their extracted contents, ensure that if these are being manually built with `phpize` / `./config` / `./make` - that these properly build. Packages that are incorrectly built, or fail to build, may show the same `Unable to load dynamic library` message.
 
