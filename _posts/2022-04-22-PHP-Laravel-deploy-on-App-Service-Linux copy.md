@@ -121,7 +121,7 @@ More on this can be found [here](https://docs.microsoft.com/en-us/azure/app-serv
 
 # PHP 8 (NGINX)
 
-> **NOTE**: You can use Apache as a Web Server on PHP 8.x Blessed Images by setting an App Setting named `WEBSITES_DISABLE_FPM` - this will pull a PHP 8.x Docker Image with Apache as the Web Server. A typical .htaccess file can now be used to rewrite requests to /home/site/wwwroot/public as well as updating DocumentRoot, if needed.
+> **NOTE**: You can use Apache as a Web Server on PHP 8.x Blessed Images by setting an App Setting named `WEBSITES_DISABLE_FPM` to `true` - this will pull a PHP 8.x Docker Image with Apache as the Web Server. A typical .htaccess file can now be used to rewrite requests to /home/site/wwwroot/public as well as updating DocumentRoot, if needed.
 
 PHP 8.x on Azure App Service Linux uses NGINX as the default Web Server. To have NGINX route requests to `/public` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
 
@@ -562,7 +562,7 @@ Migrations can be ran during the build if desired by adding a script like the fo
 
 ```yaml
 - name: Run database migrations
-  run: php artisan make:migration posts
+  run: php artisan make:migration posts --no-interaction && php artisan migrate --no-interaction --force && php artisan migrate:status --no-interaction
 ```
 
 ### Composer version
@@ -595,7 +595,7 @@ Here is an example in how to implement Azure Pipelines with App Service Linux.
 ```yaml
   variables:
     # Specify the version of PHP that's needed
-    phpVersion: '8.0'
+    phpVersion: '8.x'
 ```
 
 It's then included in the 'Use PHP version x.x' script
@@ -671,7 +671,7 @@ stages:
 - stage: Build
   displayName: Build stage
   variables:
-    phpVersion: '8.0.13'
+    phpVersion: '8.x'
   jobs:
   - job: BuildJob
     pool:
@@ -692,7 +692,9 @@ stages:
       displayName: 'Composer install'
       
     - script: |
-        php artisan make:migration posts
+        php artisan make:migration posts --no-interaction
+        php artisan migrate --no-interaction --force
+        php artisan migrate:status --no-interaction
       workingDirectory: $(rootFolder)
       displayName: 'Run Laravel migrations'
 
@@ -729,7 +731,32 @@ stages:
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               appType: webAppLinux
+              runtimeStack: 'PHP|8.2'
+              # These are some common/required environment variables for Laravel that we're adding on the deployment task, which will be set as AppSettings on App Service
+              # This is an example of adding them here for convenience
+              appSettings: '
+              -DB_CONNECTION mysql 
+              -DB_HOST "some-mysqldbserver.mysql.database.azure.com" 
+              -DB_PORT 3306 
+              -DB_DATABASE laraveltodo 
+              -DB_USERNAME "user@some-mysqldbserver"
+              -DB_PASSWORD somepass
+              -APP_DEBUG false
+              -APP_KEY "base64:somebase64key"
+              ' 
 ```
+
+### Laravel Migrations
+Migrations can be ran during the pipeline, as seen in the `script` task above. When doing this with Azure DevOps - you will need to populate the pipeline environment with Laravel's environment variables needed for a database connection. Notably, the ones seen in the deployment (`AzureWebApp@1`) - you can follow [this](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=classic%2Cbatch#set-variables-in-pipeline) on how to add variables to a pipeline.
+
+A simplification of how to add these variables is:
+- Go to your pipline and choose **Edit pipeline**
+- In the top right, click **Variables** (next to run)
+- Add the `DB_*` prefixed variables pointing to your database
+- Click save
+- These will now be able to be referenced when making migrations
+
+If these are incorrectly set, have the wrong values, or the database cannot be connected to due to access/network restrictions - you may get a `Connection Refused` message while running migrations.
 
 > **NOTE**: Depending on how you set up your pipeline, you may have to authorize permission for deployment. This is a one-time task, below is a screenshot of what you may see:
 
