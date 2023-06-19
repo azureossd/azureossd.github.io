@@ -565,6 +565,41 @@ Migrations can be ran during the build if desired by adding a script like the fo
   run: php artisan make:migration posts --no-interaction && php artisan migrate --no-interaction --force && php artisan migrate:status --no-interaction
 ```
 
+To accomplish this, you will need to populate and make the DB_* environment variables expects to be available in the pipeline. You can see these values as secrets and expose them as such via environment variables:
+
+```yaml
+env:
+  APP_KEY: ${{ secrets.APP_KEY_SECRET }}
+  APP_DEBUG: false
+  DB_CONNECTION: 'mysql'
+  DB_HOST: ${{ secrets.DB_HOST_SECRET }}
+  DB_PORT: 3306
+  DB_DATABASE: ${{ secrets.DB_DATABASE_SECRET }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME_SECRET }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD_SECRET }}
+```
+
+If you attempt to run the pipeline without these being exposed, the pipeline will fail with an exit code and `SQLSTATE[HY000] [2002] Connection refused` since likely the wrong MySQL database (typically fallback to `localhost`) is used. If the database is locked down from a networking/access restrictions standpoint, this may introduce the same or related error until the pipeline has access as a client.
+
+In the GitHub Actions pipeline workflow, you'll see the output of ran migrations.
+
+```
+Created Migration: 2023_06_16_222540_posts
+Migrating: 2023_06_16_222540_posts
+Migrated:  2023_06_16_222540_posts (0.54ms)
++------+-------------------------------------------------------+-------+
+| Ran? | Migration                                             | Batch |
++------+-------------------------------------------------------+-------+
+| Yes  | 2014_10_12_000000_create_users_table                  | 1     |
+| Yes  | 2014_10_12_100000_create_password_resets_table        | 1     |
+| Yes  | 2019_08_19_000000_create_failed_jobs_table            | 1     |
+| Yes  | 2019_12_14_000001_create_personal_access_tokens_table | 1     |
+| Yes  | 2023_06_16_222540_posts                               | 2     |
++------+-------------------------------------------------------+-------+
+```
+
+Not using the `--no-interaction` flag will cause the pipeline to potentially fail, as these commands may prompt for user input. This silences these prompts. Additionally, the `--force flag` is used if the `env` in `config/app.php` is set for "production" (the default). If `--force` is not used, the migration will not be ran for production applications.
+
 ### Composer version
 The latest version of Composer is automatically added with the `shivammathur/setup-php@v2 Action.` This version can be changed if needed, use the following as an example:
 
