@@ -28,6 +28,7 @@ You can find a compilation of resources by categories:
 
 ## Performance
 - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
+- [PHP performance: AH00161: server reached MaxRequestWorkers setting](https://azureossd.github.io/2023/06/19/PHP-performance-AH00161-server-reached-MaxRequestWorker-setting/index.html)
 
 ## Deployment
 - **Frameworks**
