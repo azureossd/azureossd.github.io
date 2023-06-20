@@ -33,3 +33,8 @@ You can find a compilation of resources by categories:
 - **Frameworks**
    - [Laravel Deployment on App Service Linux](https://azureossd.github.io/2022/04/22/PHP-Laravel-deploy-on-App-Service-Linux-copy/index.html)
    - [Yii Deployment on App Service Linux](https://azureossd.github.io/2022/05/03/PHP-Yii-deploy-on-App-Service-Linux/index.html) 
+
+# Windows
+
+## Configuration
+- [How to use a Custom PHP runtime for App Service Windows](http://azureossd.github.io/2022/05/18/Custom-PHP-runtime-for-App-Service-Windows/index.html)
