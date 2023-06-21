@@ -140,7 +140,9 @@ $config = require __DIR__ . '/../config/web.php';
 
 
 
-# PHP 7.x (Apache)
+# PHP 7.x (Apache) - Deprecated
+**IMPORTANT**: PHP 7.4 is end-of-life, using this version is not recommended.
+
 PHP 7.x on Azure App Service Linux use Apache as the Web Server. Since Yii uses `/web` as the site root we need to override the default existing `apache2.conf` with our on following [Yii's recommendations on how to configure the site root](https://www.yiiframework.com/doc/guide/2.0/en/start-installation#configuring-web-servers).
 
 We can do this with the following:
@@ -188,7 +190,6 @@ In the above script, this copies our custom `apache2.conf` over the existing `ap
 ![Yii App](/media/2022/05/azure-ossd-yii-deployment-2.png)
 
 # PHP 8 (NGINX)
-
 > **NOTE**: You can use Apache as a Web Server on PHP 8.x Blessed Images by setting an App Setting named `WEBSITES_DISABLE_FPM` - this will pull a PHP 8.x Docker Image with Apache as the Web Server. A typical .htaccess file can now be used to rewrite requests to /home/site/wwwroot/web as well as updating DocumentRoot, if needed.
 
 PHP 8 on Azure App Service Linux uses NGINX as the default Web Server. To have NGINX route requests to `/web` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
@@ -270,7 +271,9 @@ Next, under 'Configuration' in the portal target `/home/startup.sh` (or whatever
 **Lastly,** restart the App Service. This should now be using our custom startup script. Use LogStream or the Diagnose and Solve -> Application Logs detector, or other methods, to see the stdout from the script.
 
 
-This [blog](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html) can be referenced for further details with NGINX, startup scripts and PHP 8 on Azure App Service Linux.
+## Further reading
+- This [blog](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html) can be referenced for further details with NGINX, startup scripts and PHP 8 on Azure App Service Linux.
+- This post covers how to configure NGINX error pages for PHP "Blessed Images". This can be useful if NGINX HTTP 404's are returned while the application is actually returning HTTP 5xx's - [PHP configuration: Customizing NGINX’s error page handling](https://azureossd.github.io/2023/06/21/PHP-configuration-Customizing-NGINXs-error-page-handling/index.html)
 
 # Deployment Options 
 There are multiple deployment options in PHP on App Service Linux such as Continuous Deployment(GitHub Actions, DevOps pipelines), External Git, Local Git, [ZipDeploy with Oryx Builder](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli#enable-build-automation-for-zip-deploy), etc. We'll be covering 3 of these methods below.
