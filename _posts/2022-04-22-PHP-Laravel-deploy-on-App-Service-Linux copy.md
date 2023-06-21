@@ -105,7 +105,9 @@ php artisan serve
 ```
 
 
-# PHP 7.x (Apache)
+# PHP 7.x (Apache) - Deprecated
+**IMPORTANT**: PHP 7.4 is end-of-life, using this version is not recommended. 
+
 PHP 7.x on Azure App Service Linux use Apache as the Web Server. Since Laravel uses `/public` as the site root we need to use an `.htaccess` to rewrite these requests accordingly. Create an `.htaccess` in the root of your repo with the following:
 
 > **NOTE**: If this is not added or is accidentally included in your `.gitignore` you will still see the default developer page. Ensure this file is commited with your source code.
@@ -201,8 +203,9 @@ Next, under 'Configuration' in the portal target `/home/startup.sh` (or whatever
 
 **Lastly,** restart the App Service. This should now be using our custom startup script. Use LogStream or the Diagnose and Solve -> Application Logs detector, or other methods, to see the stdout from the script.
 
-
-This [blog](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html) can be referenced for further details with NGINX, startup scripts and PHP 8 on Azure App Service Linux.
+## Further reading
+- This [blog](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html) can be referenced for further details with NGINX, startup scripts and PHP 8 on Azure App Service Linux.
+- This post covers how to configure NGINX error pages for PHP "Blessed Images". This can be useful if NGINX HTTP 404's are returned while the application is actually returning HTTP 5xx's - [PHP configuration: Customizing NGINX’s error page handling](https://azureossd.github.io/2023/06/21/PHP-configuration-Customizing-NGINXs-error-page-handling/index.html)
 
 # Deployment Options 
 There are multiple deployment options in PHP on App Service Linux such as Continuous Deployment(GitHub Actions, DevOps pipelines), External Git, Local Git, [ZipDeploy with Oryx Builder](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli#enable-build-automation-for-zip-deploy), etc. We'll be covering 3 of these methods below.
