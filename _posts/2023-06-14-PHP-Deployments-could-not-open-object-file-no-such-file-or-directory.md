@@ -19,7 +19,7 @@ date: 2023-06-14 12:00:00
 This post will cover "cannot open shared object file: no such file or directory" messages seen at startup for PHP applications.
 
 # Prerequisites
-**IMPORTANT:** Make sure App Service Logs are enabled first
+**IMPORTANT:** Make sure App Service Logs are enabled first. You can then view logging in a few different ways:
 
 - LogStream
 - Retrieving logs directly from the Kudu site, or directly view/download via an FTP client
