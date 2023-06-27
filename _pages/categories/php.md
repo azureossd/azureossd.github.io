@@ -25,6 +25,7 @@ You can find a compilation of resources by categories:
 - [Modifiying PHP FPM settings](https://azureossd.github.io/2023/01/06/Modifiying-PHP-FPM-settings/index.html)
 - [How to set Nginx headers](https://azureossd.github.io/2023/02/24/how-to-modify-nginx-headers/index.html)
 - [NGINX Rewrite Rules for Azure App Service Linux PHP 8.x](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html)
+- [PHP configuration: Customizing NGINX’s error page handling](https://azureossd.github.io/2023/06/21/PHP-configuration-Customizing-NGINXs-error-page-handling/index.html)
 
 ## Performance
 - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
