@@ -867,7 +867,7 @@ Add `APP_KEY` as an AppSetting with the appropriate value. This may also occur f
 - name: Set up Node.js version
   uses: actions/setup-node@v1
   with:
-    node-version: '14.x'
+    node-version: '16.x'
   # Using Yarn to install dependencies and running 'mix --production' for production Laravel Mix
 - name: Run Laravel Mix
   run: |
@@ -875,7 +875,7 @@ Add `APP_KEY` as an AppSetting with the appropriate value. This may also occur f
     yarn run production
 ```
 
-This would be added in **addition** to our GitHub Actions `.yaml` earlier. The same approach can be used for DevOps. For LocalGit or ZipDeploy(with Oryx Builder) a custom startup script may have to be used or pre-compiled before hand.
+This would be added in **addition** to our GitHub Actions `.yaml` earlier. The same approach can be used for DevOps. For LocalGit or ZipDeploy(with Oryx Builder) a post deployment script may have to be used or pre-compiled before hand.
 
 
 ## php: error while loading shared libraries: libonig.so.4: cannot open shared object file: No such file or directory
