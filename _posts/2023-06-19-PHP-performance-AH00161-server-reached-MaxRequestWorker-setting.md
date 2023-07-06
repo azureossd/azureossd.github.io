@@ -128,7 +128,7 @@ In our `mpm_prefork.conf` file, we're increasing `MaxRequestWorkers` to 3000 and
         MaxConnectionsPerChild   0
         ServerLimit 1000
 </IfModule>
-``
+```
 
 Assuming our `mpm_prefork.conf` is under a directory named `apache` in our project, we copy it over to override the default `.conf` as seen below:
 
