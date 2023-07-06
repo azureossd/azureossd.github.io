@@ -105,3 +105,42 @@ If this occurs due to a spike in requests or organic traffic load, consider:
 If this issue is still prevalent after the above - and is occurring with a lower request rate, this may be an application performance issue. In that case, understanding the work being done per request, dependencies, framework(s) is required. Profiling the application while reproducing the issue would be a next step.
 
 This post can be used to help enable Xdebug and profile the application while reproducing performance issues - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
+
+# Custom Image
+If a custom Docker Image is being used with Apache - the below could be used to override `mpm_prefork.conf`, as an example. Note that the location of the `mpm_prefork.conf` file may differ, such as under `/etc/apache2/mods-available/mpm_prefork.conf`, `/etc/httpd/mods-available/mpm_prefork.conf`, or others.
+
+In our `mpm_prefork.conf` file, we're increasing `MaxRequestWorkers` to 3000 and adding a `ServerLimit` of 300.
+
+```conf
+# cat mpm_prefork.conf
+# prefork MPM
+# StartServers: number of server processes to start
+# MinSpareServers: minimum number of server processes which are kept spare
+# MaxSpareServers: maximum number of server processes which are kept spare
+# MaxRequestWorkers: maximum number of server processes allowed to start
+# MaxConnectionsPerChild: maximum number of requests a server process serves
+
+<IfModule mpm_prefork_module>
+        StartServers                     5
+        MinSpareServers           5
+        MaxSpareServers          10
+        MaxRequestWorkers         300
+        MaxConnectionsPerChild   0
+        ServerLimit 1000
+</IfModule>
+``
+
+Assuming our `mpm_prefork.conf` is under a directory named `apache` in our project, we copy it over to override the default `.conf` as seen below:
+
+```Dockerfile
+.. other instructions ..
+COPY apache/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
+.. other instructions ..
+```
+
+You can confirm this is copied and set by running `cat /path/to/apache/mods-enabled/mpm_prefork.conf` in the container. This should reflect what's in `mods-available` since `mods-enabled` is symlinked to `mods-available`.
+
+```
+# ls -lrta | grep "mpm_prefork.conf"
+lrwxrwxrwx 1 root root   34 Jul  4 13:43 mpm_prefork.conf -> ../mods-available/mpm_prefork.conf
+```
