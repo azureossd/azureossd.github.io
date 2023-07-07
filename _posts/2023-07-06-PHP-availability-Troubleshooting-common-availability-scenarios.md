@@ -1,5 +1,5 @@
 ---
-title: "PHP Deployments: Troubleshooting PHP availability scenarios"
+title: "PHP availability: Troubleshooting PHP availability scenarios"
 author_name: "Anthony Salemo"
 tags:
     - PHP
@@ -121,7 +121,7 @@ Application processes are showing that they're n a `D` state.
 - For these scenarios, review if the application is writing/reading many files to `/home` storage, CDN for static files or any cache implementation to reduce I/O operations can be attempted as a resolution.
   - If I/O is the main issue here with many file access attempts, or read/write scenarios, considering doing this outside of `/home` to avoid potential issues with waiting on I/O due to having to make calls through the mounted `/home` volume which is backed by a networked File Share.
 
-If it is determined the I/O is the most likely contributor to this state - read this blog post which explains this scenario more in detail - []
+If it is determined the I/O is the most likely contributor to this state - read this blog post which explains this scenario more in detail - [PHP performance: Disk I/O causing slow performance](https://azureossd.github.io/2023/07/06/PHP-performance-Disk-IO-causing-slow-performance/index.html)
 
 > **NOTE**: "Blessed" images enable `/home` storage by default. Custom Images do _not_ enable `/home` storage by default, unless you explicitly enable `WEBSITES_ENABLE_APP_SERVICE_STORAGE` to `true`
 
