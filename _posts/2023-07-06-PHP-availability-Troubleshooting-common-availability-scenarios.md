@@ -233,17 +233,40 @@ Although this is not PHP specific, your PHP application may return HTTP 502's in
         - Linux Load Average
         - Process Full List
 
+**HTTP 504's**:
+
 Troubleshooting HTTP 504's mostly follow this same logic. A major difference is that the upstream dependency may not have sent back a response by the time the 240 second request timeout limit was hit on Azure.
+
+**HTTP 503's**:
 
 HTTP 503's typically indicate the container/application has exited.
 
 ### APM (Application Performance Monitoring) tools
 In these scenarios, using APM tools could be beneficial to trace these requests to external dependencies, below are some examples:
 
-- **New Relic**: https://newrelic.com/php
-- **Retrace**: https://stackify.com/retrace-apm-php/
-- **AppDynamics**: https://docs.appdynamics.com/display/PRO45/PHP+Agent
-- **Dynatrace**: https://www.dynatrace.com/technologies/php-monitoring/
-- **Instrumental**: https://instrumentalapp.com/docs/php
-- **BlackFire**: https://www.blackfire.io/
-- **Tideways**: https://tideways.com/
+- **New Relic**: [https://newrelic.com/php](https://newrelic.com/php)
+- **Retrace**: [https://stackify.com/retrace-apm-php/](https://stackify.com/retrace-apm-php/)
+- **AppDynamics**: [https://docs.appdynamics.com/display/PRO45/PHP+Agent](https://docs.appdynamics.com/display/PRO45/PHP+Agent)
+- **Dynatrace**: [https://www.dynatrace.com/technologies/php-monitoring/](https://www.dynatrace.com/technologies/php-monitoring/)
+- **Instrumental**: [https://instrumentalapp.com/docs/php](https://instrumentalapp.com/docs/php)
+- **BlackFire**: [https://www.blackfire.io/](https://www.blackfire.io/)
+- **Tideways**: [https://tideways.com/](https://tideways.com/)
+
+## Static content failing to download when using PHP and Apache
+A user may normally see a HTTP 502 immediately, or, potentially a HTTP 400 (Bad Request) if a some other endpoint is infront of App Service.
+
+See the blog post here - [Unable to download static content when using php images on Azure App Service - Linux](https://azureossd.github.io/2020/09/15/unable-to-download-static-content-php-on-azure-app-service-linux/index.html).
+
+At this point in time, PHP "Blessed" images have the fix disabling `EnableMMap` and `EnableSendFile` usage - where this problem was closely associated with.
+However, custom images with Apache installations typically do not seem to have either of these disabled. If you are running an application that uses a CIFS volume (which both [App Service BYOS](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?tabs=portal&pivots=container-linux) and App Service persistent storage on Linux use), while also using a custom image with Apache (and typically PHP) in which content is served over those paths mounted with CIFS, and noticing this behavior - then follow the above blog post to disable `EnableMMap` and `EnableSendFile` in your custom image.
+
+This problem does not seem to occur when using NGINX.
+
+**Further reading**:
+
+Further reading on this behavior and bug can be found in these threads:
+- [Serverfault thread](https://serverfault.com/questions/1044724/apache2-sends-corrupt-responses-when-using-a-cifs-share#:~:text=The%20cifs-share%20is%20working%20normally%2C%20files%20are%20correct,file%20is%20downloaded%20and%20saved%20to%20the%20client.)
+- [Tracked Ubuntu bug - Ubuntu bug reports](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=900821)
+- [GitHub issue where it’s repro'd on Apache and NGINX - common theme is mmap()](https://github.com/nextcloud/server/issues/31361)
+- [Apache EnableMMap - Directive](https://httpd.apache.org/docs/current/mod/core.html#enablemmap)
+
