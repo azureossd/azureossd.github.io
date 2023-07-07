@@ -54,7 +54,7 @@ Some additional tooling that can be used to review activity on disk and over the
   - [cifsiostat](https://linux.die.net/man/1/cifsiostat) (only outputs read or write ops per second - doesn't show kb r/w (s))
   - [top](https://linux.die.net/man/1/top) / htop
 
-> **NOTE**: Some other commands may be blocked due to certain host access
+> **NOTE**: Some other commands may be blocked or show limited information due to certain host access
 
 With these tools, you can see the remote file share in use. Below is using `cifsiostat`:
 
