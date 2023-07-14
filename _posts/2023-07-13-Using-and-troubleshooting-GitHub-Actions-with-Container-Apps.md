@@ -98,6 +98,7 @@ This section implies this is either using a "manual" deployment method by manual
 ### Using Oryx++ to build source code into a runnable Docker Image
 Below is a full example of using Oryx++ to create a runnable image of our application:
 
+{% raw %}
 ```yaml
 name: Build and deploy an aplication to Container Apps
 
@@ -130,6 +131,7 @@ jobs:
           resourceGroup: some-rg
           runtimeStack: 'php:8.2'
 ```
+{% endraw %}
 
 The above example uses a Service Principal via `azure/login@v1` with an assigned role of `AcrPush` to push the image Oryx++ built, and then, uses Admin Credentials (implied by `acrUsername, acrPassword`) to have the Container App pull the image. This can also be changed out to use [Managed Identity](https://learn.microsoft.com/en-us/azure/container-apps/github-actions#create-a-container-app-with-managed-identity-enabled) instead, to pull the image.
 
@@ -203,6 +205,7 @@ You can use almost the same exact task set up above, in the Oryx++ section, to b
 
 Below is an example using Admin Credentials for the Azure Container Registry:
 
+{% raw %}
 ```yaml
 name: Trigger auto deployment for some-app
 
@@ -244,6 +247,7 @@ jobs:
           imageToBuild: someacr.azurecr.io/some-app:${{ github.sha }}
           dockerfilePath: Dockerfile
 ```
+{% endraw %}
 
 This task would assume that `appSourcePath`'s location contains a `Dockerfile`. If it does, you'll something like the below followed by the begining of the build output from the supplied `Dockerfile`:
 
@@ -281,6 +285,7 @@ This can be for a few reasons:
 ### Using the Azure Container Apps Task to build an existing image in Azure Container Registry
 You can deploy images to Container Apps that are already prebuilt and existing. For instance:
 
+{% raw %}
 ```yaml
 name: Trigger auto deployment for some-app
 
@@ -320,6 +325,8 @@ jobs:
           resourceGroup: some-rg
           imageToDeploy: someacr.azurecr.io/some-app:some-tag
 ```
+{% endraw %}
+
 Note the change to **imageToDeploy**. This is targeting Azure Container Registry, where said image _should_ already exist. It then uses that image to have the Azure Container App pull and run it.
 
 #### Troubleshooting
@@ -339,6 +346,7 @@ The below method to deploy was originally what would be created when setting up 
 
 However, if you did not want to use that action for some reason, you could still use the below approach which effectively does the same work as `azure/container-apps-deploy-action@v1`, minus the Oryx++ builder usage.
 
+{% raw %}
 ```yaml
 name: Trigger auto deployment for containerapp app
 
@@ -403,5 +411,6 @@ jobs:
             az containerapp registry set -n yourContainerAppName -g yourResourceGroup --server yourcontainerregistry.azurecr.io --username  ${{ secrets.YOURCONTAINERAPPNAME_REGISTRY_USERNAME }} --password ${{ secrets.YOURCONTAINERAPPNAME_REGISTRY_PASSWORD }}
             az containerapp update -n yourContainerAppName -g yourResourceGroup --image yourcontainerregistry.azurecr.io/yourContainerAppName :${{ github.sha }}
 ```
+{% endraw %}
   
 In this example, we add three secrets to the GitHub repository - `YOURCONTAINERAPPNAME_REGISTRY_USERNAME`, `YOURCONTAINERAPPNAME_REGISTRY_PASSWORD` and `YOURCONTAINERAPPNAME_AZURE_CREDENTIALS` to be referenced in our `.yaml`.
