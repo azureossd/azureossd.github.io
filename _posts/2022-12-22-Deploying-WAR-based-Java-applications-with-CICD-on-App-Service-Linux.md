@@ -261,7 +261,7 @@ This is because, by default, the API's used in this deployment task pass the nam
 
 This is opposed to the **OneDeploy** API being used on deployment methods such as the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-deploy) or the [Maven Plugin](https://learn.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux-development-environment-maven#configure-the-maven-plugin) which, under the hood, rename our war (or jar) to `app.war` and deploy directly to `wwwroot` instead of `wwwroot/webapps`. This in turn is mapped directly to the root context ("/").
 
-Another quick way to solve this, aside from using the `customDeployProperty` is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
+Another quick way to solve this, aside from using the `customDeployFolder` property is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
 
 `<finalName>ROOT</finalName>` 
 
