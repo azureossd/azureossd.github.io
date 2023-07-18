@@ -284,6 +284,14 @@ You can replace the Deployment Task in the above `.yaml` with this script. Ensur
     inlineScript: 'az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --type war --async true'
 ```
 
+Another example using a command we can put in `inlineScript` is with `--target-path`, for instance:
+
+```
+az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --target-path webapps/test --type war --async true
+```
+
+> **NOTE**: `--target-path` should be relative. An absolute may fail with an internal server error.
+
 You can further confirm **OneDeploy** is being used from the JSON output after the CLI command completes:
 
 ```json
@@ -686,6 +694,8 @@ deploy:
 ```
 
 In this example, we use the help of the [azure/login@v1](https://github.com/Azure/login) and [azure/cli@v1](https://github.com/Azure/cli) task. As discussed in the [Maven - Azure DevOps](#azure-devops---why-am-i-getting-a-404-after-deployment) section, the Azure CLI uses the **OneDeploy** deployment API, which will automatically rename our war to `app.war` and place this directly under wwwroot - which maps to the root context with Tomcat.
+
+As seen in the above Azure DevOps section, you can alternatively target a non-root path with the `--target-path` flag passed to `az webapp deploy`. The path should be relative (eg., `webapps/test`)
 
 
 If you don't want to alter the workflow file - or can't, you can add `<finalName>ROOT</finalName>` to the `<build></build>` section of your `pom.xml`. This will name your war to `ROOT.war` and always be deployed in a root context.
