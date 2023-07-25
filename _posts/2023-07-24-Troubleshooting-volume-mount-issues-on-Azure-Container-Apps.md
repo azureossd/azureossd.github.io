@@ -30,10 +30,10 @@ This post will cover Azure File mounts - since this option, generally compared t
 
 
 # What behavior will I see
-If a volume set up with Azure Files is unable to mounted to the pod, you may see a few notable behaviors:
+If a volume set up with Azure Files is unable to be mounted to the pod, you may see a few notable behaviors:
 - Zero replicas. Additionally if going to the "Console" tab, it may also show "This revision is scaled to zero". This is because the volume is mounted to a pod early on in the pod lifecycle - when this fails, the pod (or replicas) are never able to be created. Therefor, nothing is ever ran/started - and ultimately pods/replicas will show zero (0).
   - In the **Revisions** blade it may show the Revision as "Scaled to 0"
-  - This will even be the case is minimum replica's is set to 0. 
+  - This will even be the case is minimum replica's is set to >= 1. 
   - This concept can potentially be replicated in other environments with containers or Kubernetes - if trying to mount a volume that is invalid or inaccessible, you will likely see the container or pods can never be created to run.
 - If browsing the application through its FQDN, a `stream timeout` will occur - due to hitting the 240 second defined request duration ingress limit.
 - There may be no `stdout` in `ContainerAppConsoleLogs_CL` - since a pod/replica is never running.
