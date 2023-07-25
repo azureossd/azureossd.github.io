@@ -19,9 +19,10 @@ date: 2023-07-24 12:00:00
 This post will cover troubleshooting issues seen when setting up volume mounts on Azure Container Apps
 
 # Overview
-Currently, with Container Apps, you can mount two (2) different types of volumes:
+Currently, with Container Apps, you can mount two (3) different types of volumes:
 - Ephemeral Volume
 - Azure Files
+- Secrets (preview)
 
 Then there is the option to write to the local container filesystem. This option (container filesystem) and "Ephemeral" volumes are ephemeral overal and not designed to persist for long periods of time, since pods/replicas are ephemeral as well.
 
