@@ -25,7 +25,7 @@ date: 2022-12-22 12:00:00
 In this blog post we'll cover some examples of how to deploy war based applications using Azure DevOps and GitHub Actions.
 
 ## Overview
-**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-devops-examples)**.
+**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-cicd-examples)**.
 
 This section will cover CI/CD deployment for war-based applications - this is for Blessed **Tomcat** images, which will act as our Web Container for our war. With this image, you still have the option to choose your Java major version, as well as Apache Tomcat major and minor version - but the premise is that we're deploying a war file into a Tomcat container, which Tomcat itself will run.
 

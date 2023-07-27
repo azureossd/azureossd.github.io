@@ -26,7 +26,7 @@ date: 2022-12-09 12:00:00
 In this blog post we'll cover some examples of how to deploy jar based applications using Azure DevOps and GitHub Actions.
 
 ## Overview
-**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-jar-devops-examples)**.
+**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-jar-cicd-examples)**.
 
 
 This section will cover deploying jar files - specifically for deploying jar files to **Java SE** applications on Java with App Service Linux. The approach to build the jar will generally be the same across different Java frameworks, although there may be some minor differences depending on what is needing to done. This can be used as a starting approach. 
