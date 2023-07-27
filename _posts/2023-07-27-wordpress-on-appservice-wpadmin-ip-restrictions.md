@@ -36,12 +36,12 @@ You can edit the file using the Kudu newui file manager which can be accessed fr
 
 ![Kudu newui file manager - edit file](/media/2023/07/wordpress-newui-filemanager-editing.png)
 
-```sh
+```conf
 set_real_ip_from 0.0.0.0/0;
 real_ip_header X-Forwarded-For;
 ```	
 
-```sh
+```conf
 location ~* wp-login\.php {
             allow <YOUR-IP>;
             deny all;
