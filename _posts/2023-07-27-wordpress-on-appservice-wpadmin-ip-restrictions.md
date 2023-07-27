@@ -67,7 +67,7 @@ location ~* wp-login\.php {
 	
 cp /home/dev/default.conf /etc/nginx/conf.d/default.conf 
 	
-/usr/sbin/gnix -s reload
+/usr/sbin/nginx -s reload
 ```
 
 # 4. Point to /home/dev/startup.sh in the App Service portal under configuration --> general settings. Saving the changes will restart the App Service.
