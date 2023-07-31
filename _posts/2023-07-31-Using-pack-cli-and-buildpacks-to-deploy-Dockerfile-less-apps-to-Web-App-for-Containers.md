@@ -10,11 +10,11 @@ categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Deployment # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
-    teaser: "assets/images/WordPress.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
+    teaser: "/assets/images/azurelinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2023-07-24 12:00:00
+date: 2023-07-31 12:00:00
 ---
 
 This post will cover how to use pack cli and CNF buildpacks to deploy Dockerfile-less applications to Web App for Containers.
