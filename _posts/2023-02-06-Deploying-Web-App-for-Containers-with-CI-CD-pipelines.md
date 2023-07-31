@@ -280,7 +280,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: youracr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00000000000000000000000000000000 }}/wafc-githubactions:${{ github.sha }}
+        tags: youracr.azurecr.io/wafc-githubactions:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -298,7 +298,7 @@ jobs:
         app-name: 'yoursite'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
-        images: 'youracr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00000000000000000000000000000000 }}/wafc-githubactions:${{ github.sha }}'
+        images: 'youracr.azurecr.io/wafc-githubactions:${{ github.sha }}'
   ```
 {% endraw %}
 
@@ -368,7 +368,9 @@ jobs:
 ```
 {% endraw %}
 
-If you instead wanted to stay inline with more of what the default template uses, you can reuse the `docker/login-action@v1` task. Below is a full example. You can also plug the above example in that _doesn't_ use `docker/login-action@v1` but rather only the `docker cli` as well in the build portion, if desired:
+If you instead wanted to stay inline with more of what the default template uses, you can reuse the `docker/login-action@v1` task. Below is a full example. You can also plug the above example in that _doesn't_ use `docker/login-action@v1` but rather only the `docker cli` as well in the build portion of the workflow, if desired.
+
+Since the Service Principal was already configured to use `AcrPush`, we can use it to authenticate via our `DOCKER_REGISTRY_SERVER_PASSWORD` and `DOCKER_REGISTRY_SERVER_USERNAME` to pull our image on App Service.
 
 {% raw %}
 ```yaml
@@ -421,7 +423,30 @@ jobs:
     - uses: azure/appservice-settings@v1
       with:
         app-name: 'yoursite'
-        app-settings-json: '[{ "WEBSITES_PORT": "3000" }]'
+        app-settings-json: |
+          [
+            { 
+              "name": "WEBSITES_PORT",
+              "value": "3000",
+              "slotSetting": false
+
+            },
+            {
+                "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                "value": "${{ secrets.AZURE_SP_CLIENT_SECRET }}",
+                "slotSetting": false
+            },  
+            {
+                "name": "DOCKER_REGISTRY_SERVER_URL",
+                "value": "https://${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}",
+                "slotSetting": false
+            },
+            {
+                "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                "value": "${{ secrets.AZURE_SP_CLIENT_ID }}",
+                "slotSetting": false
+            }
+          ]
 
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
@@ -432,6 +457,8 @@ jobs:
         images: 'youracr.azurecr.io/wafc-githubactions:${{ github.sha }}'
 ```
 {% endraw %}
+
+You can additionally configure Managed Identity to pull the image on App Service, or, you can use this [code snippet](https://github.com/Azure/actions-workflow-samples/blob/master/AppService/docker-webapp-container-on-azure.yml#L44) to set otherwise required docker related App Setting used for pulling the image on the App Service.
 
 ### Adding App Settings
 For parity with Azure DevOps, the below shows how to integrate adding App Settings to this flow, as mentioned in the Azure DevOps section - if you're not using a container that listens on port 80 (in those example, port 3000) - you should be using the `WEBSITES_PORT` App Setting.
