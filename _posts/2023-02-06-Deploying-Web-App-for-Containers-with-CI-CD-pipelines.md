@@ -39,7 +39,7 @@ A custom Docker Image should be used, otherwise, one will be provided in the sou
 ## Azure DevOps pipelines
 > **NOTE**: If you do not have a Azure DevOps organization, review this documentation [here](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops) to create one
 
-We'll use be using the project and `Dockerfile` from [this repository](https://github.com/azureossd/wafc-devops-pipelines-examples). You can use your own project as well.
+> We'll use be using the project and `Dockerfile` from [this repository](https://github.com/azureossd/wafc-cicd-pipelines-examples). You can use your own project as well.
 
 1. In your Azure DevOps organization, click on **New Project** in the upper right side of your organization. 
 
@@ -216,6 +216,8 @@ stages:
     These settings are used from the **App Service** side to be able to pull the image from Azure Container Registry.
 
 ## GitHub Actions
+> We'll use be using the project and `Dockerfile` from [this repository](https://github.com/azureossd/wafc-cicd-pipelines-examples). You can use your own project as well.
+
 GitHub Actions with Web App for Containers can be easily set up through the Azure Portal. Follow these steps to configure the workflow. This will cover using Username and Password based authentication for logging into the container registry, as well as Service Principal based.
 
 1. Navigate to the Azure Portal and go to **Deployment Center**.
@@ -359,10 +361,75 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: yourregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00000000000000000000000000000000 }}/wafc-githubactions:${{ github.sha }}
+        tags: yourregistry.azurecr.io/wafc-githubactions:${{ github.sha }}
         file: ./Dockerfile
 
 ...rest of your yaml
+```
+{% endraw %}
+
+If you instead wanted to stay inline with more of what the default template uses, you can reuse the `docker/login-action@v1` task. Below is a full example. You can also plug the above example in that _doesn't_ use `docker/login-action@v1` but rather only the `docker cli` as well in the build portion, if desired:
+
+{% raw %}
+```yaml
+name: Build and deploy container app to Azure Web App - yoursite
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://youracr.azurecr.io/
+        username: ${{ secrets.AZURE_SP_CLIENT_ID }}
+        password: ${{ secrets.AZURE_SP_CLIENT_SECRET }}
+      
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: youracr.azurecr.io/wafc-githubactions:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    # You can use this to set App Settings - see here on setting this up - https://github.com/marketplace/actions/azure-app-service-settings
+    - uses: azure/login@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+
+    - uses: azure/appservice-settings@v1
+      with:
+        app-name: 'yoursite'
+        app-settings-json: '[{ "WEBSITES_PORT": "3000" }]'
+
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'yoursite'
+        slot-name: 'production'
+        images: 'youracr.azurecr.io/wafc-githubactions:${{ github.sha }}'
 ```
 {% endraw %}
 
