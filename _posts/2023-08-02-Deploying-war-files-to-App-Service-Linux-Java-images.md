@@ -9,7 +9,7 @@ categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Deployment # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
-    teaser: "/assets/images/azurelinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
+    teaser: "/assets/images/javalinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
