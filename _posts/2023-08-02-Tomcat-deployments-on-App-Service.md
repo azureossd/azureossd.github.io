@@ -380,9 +380,60 @@ Java "Blessed" Images on Azure App Service do not support Local Git deployments.
 
 Additionally, Java "Blessed Images" additionally do not support any usage of Oryx-based deployments. Any Local Git and/or Oryx related configuration, settings, or troubleshooting does not apply to these Java images.
 
-## Azure DevOps and GitHub Actions
+# Azure DevOps and GitHub Actions
 See [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html).
 
+# War Deploy
+**War Deploy _only_ applies to War (`.war`) based applications. This is for .war files being deployed into a Tomcat Image.**
+
+Documentation on War Deploycan be found [here](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy).
+
+War Deploy is recommended, along with One Deploy and Zip Deploy since logic is carried out to unpack the war locally - which helps avoid race-conditions typically prevalent when using FTP as a deployment method, where multiple application instances are trying to unpack a war from a single point, which is the `/home` mount. This may manifest as HTTP 404's from specific application instances after a restart.
+
+You can invoke the War Deploy API in some of the following ways:
+- Bash/NIX terminals - [documentation](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy#bash)
+- PowerShell and Windows CMD - [documentation](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy#powershell)
+
+
+
+## What uses War Deploy?
+In addition to the API usage seen above, the below also use War Deploy implicitly:
+
+- GitHub Actions 
+  - `azure/webapps-deploy@v2`
+- Azure DevOps
+  - `AzureWebApp@1`
+  - `AzureRmWebAppDeployment`
+
+## Deploying to a specific context
+Since War Deploy is intended to deploy to Tomcat applications, this brings up the idea of "contexts", in other words, apps that live under `/home/site/wwwroot/webapps` and each app can be accessible by name.
+
+War Deploy does _not_ rename the .war being deployed. The name of the war is the name of the context it will be expanded under the `webapps` folder.
+
+Your war will only be accessible under the "root" path (/) if it is named `ROOT`. If you want to deploy to a specific named context, you can do it in the following manner:
+
+**Kudu API**:
+- Documentation - [Deploying to apps other than ROOT](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy#deploying-to-apps-other-than-root)
+- Following the example above in the [quickstart section](#bash/nix-terminals), change the War Deploy API URL to use `https://$sitename.scm.azurewebsites.net/api/wardeployname=myapp`
+- This will deploy the war to an expanded location under `/home/site/wwwroot/webapps/myapp` 
+- This would now be accessible over `https://sitename.azurewebsites.net/myapp`
+
+**Azure DevOps**:
+- Since Azure DevOps also uses War Deploy for `AzureWebApp@1` and `AzureRmWebAppDeployment` tasks, follow this post - [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html#maven) 
+- You can use the `customDeployFolder` property on the `AzureWebApp@1` task, or use the Azure CLI, or also the Maven Plugin are other ways to deploying to different contexts.
+
+**GitHub Actions**:
+- GitHub Actions and the common task `azure/webapps-deploy@v2` uses War Deploy when deploying .war-based applications, follow this post [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html)
+- `azure/webapps-deploy@v2` doesn't offer any properties to specify a custom context, rather, the AZ CLI or Maven would need to be used to target a custom context.
+
+In all of these cases, and normally, we can see the context expanded under `wwwroot/webapps` and to the local Tomcat webapps directory:
+
+```
+root@80521ccbd25c:/# ls /home/site/wwwroot/webapps/
+azure-0.0.1-SNAPSHOT
+root@80521ccbd25c:/# ls /usr/local/tomcat/webapps/
+azure-0.0.1-SNAPSHOT
+```
 
 # Troubleshooting
 ## Parking page is showing
