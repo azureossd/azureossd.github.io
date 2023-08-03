@@ -1,5 +1,5 @@
 ---
-title: "Deploying war files to App Service Linux Java images"
+title: "Tomcat deployments on App Service - War file location, behavior and troubleshooting"
 author_name: "Anthony Salemo"
 tags:
     - Deployment
@@ -20,7 +20,7 @@ This post will cover various ways you can deploy war files to Java applications 
 
 This was intended to be used in relation to App Service Linux, but all of these concepts can apply to Java on Windows App Service as well.
 
-# Tomcat deployments on App Service - War file location, behavior and troubleshooting
+# Overview
 This boils down to usually either:
 - The war being deployed and expanded under `/home/site/wwwroot/webapps/[context]` - which deployment methods like [War Deploy](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy#deploying-to-apps-other-than-root) will implicitly do
 - Or, the war remaining "as is" under `/home/site/wwwroot/app.war` - deployment methods that utilize OneDeploy will typically rename the war to `app.war` - the war will be copied locally and expanded under `/usr/local/tomcat/webapps/ROOT` in the container. This is handled by the platform.
