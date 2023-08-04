@@ -20,6 +20,7 @@ Here is a compilation of resources by categories:
 - [Using a Dapr Secret Store with Azure Key Vault to source credentials for a Dapr State Store](https://azureossd.github.io/2023/02/23/Using-a-Dapr-Azure-KeyVault-Secret-Store-to-source-credentials-for-a-Dapr-State-Store/index.html)
 - [Running gRPC with Container Apps](https://azureossd.github.io/2022/07/07/Running-gRPC-with-Container-Apps/index.html)
 - [Using Managed Identity and Bicep to pull images with Azure Container Apps](https://azureossd.github.io/2023/01/03/Using-Managed-Identity-and-Bicep-to-pull-images-with-Azure-Container-Apps/index.html)
+- [Troubleshooting volume mount issues on Azure Container Apps](https://azureossd.github.io/2023/07/24/Troubleshooting-volume-mount-issues-on-Azure-Container-Apps/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
@@ -28,4 +29,6 @@ Here is a compilation of resources by categories:
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
+- [Using and troubleshooting GitHub Actions with Container Apps](https://azureossd.github.io/2023/07/13/Using-and-troubleshooting-GitHub-Actions-with-Container-Apps/index.html)
+- [Using and troubleshooting Azure DevOps with Container Apps](https://azureossd.github.io/2023/06/30/Using-and-troubleshooting-Azure-DevOps-with-Container-Apps/index.html)
 

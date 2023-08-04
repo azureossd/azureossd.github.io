@@ -30,6 +30,7 @@ Here is a compilation of resources by categories:
 - [Increasing Request Header sizes on Linux App Services](https://azureossd.github.io/2022/06/08/Increasing-Request-Header-sizes-on-Linux-App-Services/index.html)
 - [Editing Response Headers on Linux App Service](https://azureossd.github.io/2022/05/25/Editing-Response-Headers-on-Linux-App-Service/index.html)
 - [Installing TcpPing on Azure App Service Linux](https://azureossd.github.io/2021/06/17/installing-tcpping-linux/index.html)
+- [Troubleshooting Bring Back SSH for App Service (Blessed) Images](https://azureossd.github.io/2023/06/27/Troubleshooting-Bring-Back-SSH-for-App-Service-(Blessed)-Images/index.html)
 
 
 ## Availability and Startup issues
@@ -45,10 +46,13 @@ Here is a compilation of resources by categories:
 ## Availability and Startup issues
 - [Troubleshooting common Docker Pull errors on Linux Web App for Containers](https://azureossd.github.io/2023/02/28/Troubleshooting-common-Docker-Pull-errors-on-Linux-Web-App-for-Containers/index.html)
 - [Docker User Namespace remapping issues](https://azureossd.github.io/2022/06/30/Docker-User-Namespace-remapping-issues/index.html)
+- [Troubleshooting OCI runtime create errors](https://azureossd.github.io/2023/07/17/Troubleshooting-OCI-Runtime-Create-errors/index.html)
 
 ## Configuration
 - [Enabling SSH on Linux Web App for Containers](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html)
+- [How to download files from a custom container](https://azureossd.github.io/2023/07/20/How-to-download-files-from-a-custom-container/index.html)
 
 ## Deployment
 - [Deploying Web App for Containers with CI/CD pipelines](https://azureossd.github.io/2023/02/06/Deploying-Web-App-for-Containers-with-CI-CD-pipelines/index.html)
 - [How to deploy Custom Docker containers using Azure DevOps public and self-host agent](https://azureossd.github.io/2023/03/20/how-to-deploy-azure-functions-as-custom-container-using-azure-devops/index.html)
+- [Using pack cli and buildpacks to deploy Dockerfile-less apps to Web App for Containers](https://azureossd.github.io/2023/07/31/Using-pack-cli-and-buildpacks-to-deploy-Dockerfile-less-apps-to-Web-App-for-Containers/index.html)

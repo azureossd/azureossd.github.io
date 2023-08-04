@@ -30,6 +30,7 @@ You can find a compilation of resources by categories:
 - [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html)
 - [Deploying JAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/09/Deploying-JAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html)
 - [Adding Tomcat Manager to Blessed Java Images on Linux App Service](https://azureossd.github.io/2022/08/11/Using-Tomcat-Manager-in-Blessed-Java-Images-in-Linux-App-Service/index.html)
+- [Tomcat deployments on App Service - War file location, behavior and troubleshooting](https://azureossd.github.io/2023/08/02/Tomcat-deployments-on-App-Service/index.html)
 
 
 # Windows
