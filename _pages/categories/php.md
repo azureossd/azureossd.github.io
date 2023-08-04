@@ -32,8 +32,10 @@ You can find a compilation of resources by categories:
 - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
 - [PHP performance: AH00161: server reached MaxRequestWorkers setting](https://azureossd.github.io/2023/06/19/PHP-performance-AH00161-server-reached-MaxRequestWorker-setting/index.html)
 - [PHP performance: Disk I/O causing poor performance](https://azureossd.github.io/2023/07/06/PHP-performance-Disk-IO-causing-slow-performance/index.html)
+- [PHP performance: Profilers and debuggers for PHP applications on App Service Linux](https://azureossd.github.io/2023/07/06/PHP-performance-Profilers-and-debuggers-for-PHP-applications-on-App-Service-Linux/index.html)
 
 ## Deployment
+- [PHP Deployments: Troubleshooting PHP deployments on App Service Linux with Oryx](https://azureossd.github.io/2023/06/27/PHP-deployments-Troubleshooting-PHP-deployments-on-App-Service-Linux-with-Oryx/index.html)
 - **Frameworks**
    - [Laravel Deployment on App Service Linux](https://azureossd.github.io/2022/04/22/PHP-Laravel-deploy-on-App-Service-Linux-copy/index.html)
    - [Yii Deployment on App Service Linux](https://azureossd.github.io/2022/05/03/PHP-Yii-deploy-on-App-Service-Linux/index.html) 
