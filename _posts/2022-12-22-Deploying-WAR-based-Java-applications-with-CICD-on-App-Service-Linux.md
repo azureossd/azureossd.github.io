@@ -25,7 +25,7 @@ date: 2022-12-22 12:00:00
 In this blog post we'll cover some examples of how to deploy war based applications using Azure DevOps and GitHub Actions.
 
 ## Overview
-**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-devops-examples)**.
+**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-cicd-examples)**.
 
 This section will cover CI/CD deployment for war-based applications - this is for Blessed **Tomcat** images, which will act as our Web Container for our war. With this image, you still have the option to choose your Java major version, as well as Apache Tomcat major and minor version - but the premise is that we're deploying a war file into a Tomcat container, which Tomcat itself will run.
 
@@ -261,7 +261,7 @@ This is because, by default, the API's used in this deployment task pass the nam
 
 This is opposed to the **OneDeploy** API being used on deployment methods such as the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-deploy) or the [Maven Plugin](https://learn.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux-development-environment-maven#configure-the-maven-plugin) which, under the hood, rename our war (or jar) to `app.war` and deploy directly to `wwwroot` instead of `wwwroot/webapps`. This in turn is mapped directly to the root context ("/").
 
-Another quick way to solve this, aside from using the `customDeployProperty` is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
+Another quick way to solve this, aside from using the `customDeployFolder` property is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
 
 `<finalName>ROOT</finalName>` 
 
@@ -283,6 +283,14 @@ You can replace the Deployment Task in the above `.yaml` with this script. Ensur
     scriptLocation: 'inlineScript'
     inlineScript: 'az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --type war --async true'
 ```
+
+Another example using a command we can put in `inlineScript` is with `--target-path`, for instance:
+
+```
+az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --target-path webapps/test --type war --async true
+```
+
+> **NOTE**: `--target-path` should be relative. An absolute may fail with an internal server error.
 
 You can further confirm **OneDeploy** is being used from the JSON output after the CLI command completes:
 
@@ -686,6 +694,8 @@ deploy:
 ```
 
 In this example, we use the help of the [azure/login@v1](https://github.com/Azure/login) and [azure/cli@v1](https://github.com/Azure/cli) task. As discussed in the [Maven - Azure DevOps](#azure-devops---why-am-i-getting-a-404-after-deployment) section, the Azure CLI uses the **OneDeploy** deployment API, which will automatically rename our war to `app.war` and place this directly under wwwroot - which maps to the root context with Tomcat.
+
+As seen in the above Azure DevOps section, you can alternatively target a non-root path with the `--target-path` flag passed to `az webapp deploy`. The path should be relative (eg., `webapps/test`)
 
 
 If you don't want to alter the workflow file - or can't, you can add `<finalName>ROOT</finalName>` to the `<build></build>` section of your `pom.xml`. This will name your war to `ROOT.war` and always be deployed in a root context.

@@ -20,6 +20,7 @@ You can find a compilation of resources by categories:
 
 ## Availability and Post Deployment issues
 - [PHP Deployments: cannot open shared object file: no such file or directory](https://azureossd.github.io/2023/06/14/PHP-Deployments-could-not-open-object-file-no-such-file-or-directory/index.html)
+- [PHP Deployments: Troubleshooting PHP availability scenarios](https://azureossd.github.io/2023/07/06/PHP-availability-Troubleshooting-common-availability-scenarios/index.html)
 
 ## Configuration
 - [Modifiying PHP FPM settings](https://azureossd.github.io/2023/01/06/Modifiying-PHP-FPM-settings/index.html)
@@ -30,8 +31,11 @@ You can find a compilation of resources by categories:
 ## Performance
 - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
 - [PHP performance: AH00161: server reached MaxRequestWorkers setting](https://azureossd.github.io/2023/06/19/PHP-performance-AH00161-server-reached-MaxRequestWorker-setting/index.html)
+- [PHP performance: Disk I/O causing poor performance](https://azureossd.github.io/2023/07/06/PHP-performance-Disk-IO-causing-slow-performance/index.html)
+- [PHP performance: Profilers and debuggers for PHP applications on App Service Linux](https://azureossd.github.io/2023/07/06/PHP-performance-Profilers-and-debuggers-for-PHP-applications-on-App-Service-Linux/index.html)
 
 ## Deployment
+- [PHP Deployments: Troubleshooting PHP deployments on App Service Linux with Oryx](https://azureossd.github.io/2023/06/27/PHP-deployments-Troubleshooting-PHP-deployments-on-App-Service-Linux-with-Oryx/index.html)
 - **Frameworks**
    - [Laravel Deployment on App Service Linux](https://azureossd.github.io/2022/04/22/PHP-Laravel-deploy-on-App-Service-Linux-copy/index.html)
    - [Yii Deployment on App Service Linux](https://azureossd.github.io/2022/05/03/PHP-Yii-deploy-on-App-Service-Linux/index.html) 
