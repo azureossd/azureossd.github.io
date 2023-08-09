@@ -34,7 +34,6 @@ You can find a compilation of resources by categories:
 
 ## Deployment
 - [Troubleshooting Python deployments on App Service Linux](https://azureossd.github.io/2023/04/17/troubleshooting-python-deployments-on-appservice-linux/index.html)
-- [Deploying Python Applications using Github Actions](https://azureossd.github.io/2022/12/29/Deploying-Python-Applications-using-GithubActions/index.html)
 - **Frameworks**
   - [Django Deployment on App Service Linux](https://azureossd.github.io/2022/02/20/Django-Deployment-on-App-Service-Linux/index.html)
   - [Flask Deployment on App Service Linux](https://azureossd.github.io/2022/02/17/Flask-Deployment-on-App-Service-Linux/index.html)
