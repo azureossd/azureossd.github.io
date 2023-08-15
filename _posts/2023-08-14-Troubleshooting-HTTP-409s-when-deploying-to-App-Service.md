@@ -8,6 +8,7 @@ tags:
     - Azure App Service on Windows
 categories:
     - Azure App Service on Linux # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
+    - Azure App Service on Windows
     - Deployment # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/App-Services.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
