@@ -18,7 +18,7 @@ toc_sticky: true
 date: 2023-08-14 12:00:00
 ---
 
-This post will cover troubleshooting HTTP 409 issues when doing to Azure App Service.
+This post will cover troubleshooting HTTP 409 issues when deploying to Azure App Service.
 
 # Overview
 HTTP 409's may occur from various deployment methods when deploying code to Azure App Service.
