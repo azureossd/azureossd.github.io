@@ -84,7 +84,7 @@ This will now generate a `cachegrind.out.*.gz` file under `/home/LogFiles`.
 cachegrind.out.248.gz
 ```
 
-You can download these files through an FTP client, Kudu's /newui endpoint, or others. After downloaded, review [PHP performance: Profilers and debuggers for PHP applications on App Service Linux - Reviewing XDebug profiles](https://azureossd.github.io/2023/07/06/PHP-performance-Profilers-and-debuggers-for-PHP-applications-on-App-Service-Linux/index.html#reviewing-xdebug-profiles), ideally using the VSCode option or QcacheGrind.
+You can download these `cachegrind` files through an FTP client, Kudu's /newui endpoint, or others. After downloaded, review [PHP performance: Profilers and debuggers for PHP applications on App Service Linux - Reviewing XDebug profiles](https://azureossd.github.io/2023/07/06/PHP-performance-Profilers-and-debuggers-for-PHP-applications-on-App-Service-Linux/index.html#reviewing-xdebug-profiles), ideally using the VSCode option or QcacheGrind.
 
 
 
