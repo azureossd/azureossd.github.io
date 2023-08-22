@@ -124,6 +124,7 @@ You can deploy to App Service Linux by using a [Publish Profile](https://learn.m
 
 6. Add the following file to your new workflow - replace the App Service name where needed:
 
+{% raw %}
 ```yaml
 name: Go
 
@@ -177,6 +178,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
 ```
+{% endraw %}
 
 What does the above file do?:
 - It runs `go build` to build the binary
@@ -192,6 +194,7 @@ What does the above file do?:
 
 3. Use the following `.yaml`, below is a complete example - the only major change we do in this one is to remove the `publish-profile` property from the `azure/webapps-deploy@v2` task and add the `azure/login@v1` task as a replacement for authentication.
 
+{% raw %}
 ```yaml
 name: Go
 
@@ -252,6 +255,7 @@ jobs:
         run: |
           az logout
 ```
+{% endraw %}
 
 ## Enable GitHub Actions (Azure Portal)
 At this current time while in _expiremental_ status, using the Azure Portal to set up GitHub Actions and commit a workflow file does not work for Go "Blessed" images. It will not create a GitHub Actions workflow (thus not committing to it the repository to kick off a workflow run).
