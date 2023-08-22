@@ -38,6 +38,7 @@ You can find a compilation of resources by categories:
 ## Performance
 - [How to improve performance of WP Admin](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-improve-performance-of-wp-admin-wordpress-on-azure-app/ba-p/3731647)
 - [WordPress Best Practices for Performance](https://azureossd.github.io/2020/08/07/wordpress-best-practices-for-performance/index.html)
+- [Using Xdebug with Wordpress on App Service Linux](https://azureossd.github.io/2023/08/17/Using-Xdebug-with-Wordpress-on-App-Service-Linux/index.html)
 
 ## Availability
 - [WordPress Common Troubleshooting Scenarios](https://azureossd.github.io/2022/08/03/WordPress-common-troubleshooting-scenarios/index.html)
