@@ -292,10 +292,10 @@ Essentially, this error means that an HTTPS probe was specified for a path that 
 
 **NOTE**: As called out in the HTTPS Probes section above - Kubelet skips certificate validation, so self-signed certificates can be used.
 
-### Connection refused for 3501/v1.10/
+### Connection refused for 3501/v1.0/healthz
 This message will manifest as `[some probe] failed: Get "http://xxx.xxx.xx.xx:3501/v1.0/healthz": dial tcp xxx.xxx.xx.xx:3501: connect: connection refused`
 
-If this appears, this is should _only_ appear if [Dapr](https://dapr.io/) is enabled. Seeing this is essentially noise, and explained in the "Connection Refused" message, generally not an issue. 
+If this appears, this is should _only_ appear if [Dapr](https://dapr.io/) is enabled. Seeing this is essentially noise, and explained in the "Connection Refused" message, generally not an issue. This message is for probes to the Dapr sidecar container, when Dapr is enabled.
 
 If this does show, this is typically if there is pod movement or other activity. 
 
