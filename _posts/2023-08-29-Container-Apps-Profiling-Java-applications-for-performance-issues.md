@@ -111,6 +111,11 @@ You can use the following metric breakdowns in the **Metrics** blade to diagnose
 - **Reserved Cores**
 - **Total Reserved Cores**
 
+## cgroupv2 change
+See this GitHub issue - [Mitigate Potential Memory Pressure Effects With cgroup v2](https://github.com/microsoft/azure-container-apps/issues/724) - With the change for cgroupv2 from cgroupv1 can introduce unexpected memory management issues for applications. This includes JRE versions 11.0.18 and below in terms of Java.
+
+Review the GitHub issue and the included links for further details. This should only affect memory usage.
+
 # Generating dumps or profiling
 ## Best practices
 When taking a heap dump, thread dump, or profiling - it is recommended to take a few of these while reproducing the issue for consistent data.
