@@ -4,6 +4,7 @@ author_name: "Anthony Salemo"
 tags:
     - Deployment
     - Troubleshooting
+    - Configuration
     - Container Apps
     - Java
 categories:
