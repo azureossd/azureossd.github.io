@@ -3,7 +3,7 @@ title: "Container Apps: How to capture a network trace using TCPDUMP"
 author_name: "Aldmar Joubert"
 tags:
     - Configuration
-    - TCPDUMP
+    - tcpdump
     - networking
     - network trace
     - storage mounts
