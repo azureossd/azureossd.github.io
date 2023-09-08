@@ -3,6 +3,9 @@
 View the GitHub Pages site at [azureossd.github.io](https://azureossd.github.io/).
 
 ## Prerequisites
+
+- Easy install, use RubyInstaller with DevKit v2.7 [RubyInstaller](https://rubyinstaller.org/downloads/)
+
 1. Install Ruby. For more information, see "[Installing Ruby](https://www.ruby-lang.org/en/documentation/installation/)" in the Ruby documentation.
 2. Install Bundler. For more information, see "[Bundler](https://bundler.io/)."
 3. Install Jekyll. For more information see "[Guides](https://jekyllrb.com/docs/installation/)"
