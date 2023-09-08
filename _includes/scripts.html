@@ -21,6 +21,8 @@
       {% include_cached search/google-search-scripts.html %}
     {%- when "algolia" -%}
       {% include_cached search/algolia-search-scripts.html %}
+    {%- when "azcogsearch" -%}
+      {% include_cached search/azcogsearch-search-scripts.html %}
   {%- endcase -%}
 {% endif %}
 
