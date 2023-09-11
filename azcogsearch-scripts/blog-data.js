@@ -16,7 +16,7 @@ module.exports = {
             let postDate = new Date(f.substr(0, 10));
             const singlePost = fs.readFileSync(path.resolve(postDir, f), 'utf-8');
             let doc = matter(singlePost);
-            let permalink = `${f.substr(0, 4)}/${f.substr(5, 2)}/${f.substr(8, 2)}/${doc.data.title.trim().replace(/\s+/g, '-')}/index.html`;
+            let permalink = `${f.substr(0, 4)}/${f.substr(5, 2)}/${f.substr(8, 2)}/${f.trim().replace(/\s+/g, '-').replace(/\.[^/.]+$/, '').slice(11)}/index.html`;
             posts.push({
                 '@search.action': 'mergeOrUpload',
                 id: f.trim().replace(/\s+/g, '-').replace(/\.[^/.]+$/, "").replace(/[^\w ]/g, ''),
