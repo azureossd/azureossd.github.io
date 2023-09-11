@@ -29,6 +29,8 @@ links:
         url: "/wordpress/"
       - title: ".NET"
         url: "/dotnet/"
+      - title: "Go"
+        url: "/go/"
       - title: "App Service Linux and WafC"
         url: "/appservice/"
       - title: "Container Apps"
