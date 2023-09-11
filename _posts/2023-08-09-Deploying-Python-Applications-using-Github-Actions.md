@@ -33,7 +33,7 @@ Please only consider following this blog if you run into the following sceneario
 
 -  The app service your are deploying to is networking restricted to block all outbound requests, which would prevent the app service build system (oryx) from downloading the necessary pip packages.
 
-- You are incountering an ackownledgded bug or limitation with the app serivce oryx build system. 
+- You are incountering an acknowledged bug or limitation with the app serivce oryx build system. 
 
 - Your team can *potentially* speed up your deployment time by take of Advantage of Github Actions Features, such as a build cache to possibly improve deployment times. 
 
@@ -61,7 +61,7 @@ Sync your Github Repository to the app service deployment center.
 
 - 
     ```json
-    PYTHONPATH = /home/site/wwwroot/***{your-virtual-environment-name}***/lib/***{your-python-version}***/site-packages* 
+    PYTHONPATH = /home/site/wwwroot/{your-virtual-environment-name}/lib/{your-python-version}/site-packages* 
     ``` 
             
     This will allow for the python interperter on the app service to look for the python packages we built for your virtual environment.

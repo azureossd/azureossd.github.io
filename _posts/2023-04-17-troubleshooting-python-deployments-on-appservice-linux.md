@@ -346,7 +346,7 @@ Here are the most common things to review when dealing with deployment issues:
     ```
 
 ## GitHub Actions
-> For more details information check [Deploying Python Applications using GitHub Actions](https://azureossd.github.io/2022/12/29/Deploying-Python-Applications-using-GithubActions/index.html).
+> For more details information check [Deploying Python Applications using GitHub Actions](https://azureossd.github.io//2023/08/09/Deploying-Python-Applications-using-Github-Actions/index.html).
 
 - Validate all jobs inside workflow yml file, by default Oryx is enabled with GitHub Actions with this appsetting `SCM_DO_BUILD_DURING_DEPLOYMENT = 1` to ensure same Python version dependencies, but if you decide to build in GitHub Actions you need to create a virtual environment and upload it with the zip file. Then after deployment you will need a **custom startup script** to update `PYTHONPATH` pointing to the virtual environment site packages and start your application. 
 
