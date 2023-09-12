@@ -39,6 +39,8 @@ The "middleware" container will activate if any of these services are activated 
 
 In your `docker.log`, you’ll see this running with the `_middleware` suffix - `myfakesite_2_abc12345_middleware`. This container will generate its own log with the naming scheme of `YYYY_MM_DD_machinename_easyauth_docker.log`
 
+**IMPORTANT**: Regardless of whether just CORS, EasyAuth, or AutoHeal is enabled - they will all create and write to `YYYY_MM_DD_machinename_easyauth_docker.log` - this is because they all run through the `middleware` container. This can appear misleading at times.
+
 # Why does this appear?
 As the message states, the `middleware` container was not able to forward the request to the application container successfully. This is usually the case due to an application issue/error. When the request is forwarded, if an error is encountered, the middleware logic will return this message indicating an issue has occurred to the client. 
 
