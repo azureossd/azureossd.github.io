@@ -51,7 +51,7 @@ Follow the steps below to install `dotnet-counters`:
 
 ### Installation
 - SSH into the container. Check if `curl` is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl`.
-- Run `curl -L https://aka.ms/donet-counters/linux-64 -o dotnet-counters` followed by `chmod +x dotnet-counters`. 
+- Run `curl -L https://aka.ms/dotnet-counters/linux-x64 -o dotnet-counters` followed by `chmod +x dotnet-counters`. 
 - This will make `dotnet-counters` executable. The curl command will install and create this binary in the current working directory.
 
 ### Running the command
@@ -91,7 +91,7 @@ Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core
 
 ### Installation
 - SSH into the container. Check if `curl` is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl`.
-- Run `curl -L https://aka.ms/donet-trace/linux-64 -o dotnet-trace` followed by `chmod +x dotnet-trace`. This will make `dotnet-trace` executable. The `curl` command will install and create this binary in the current working directory.
+- Run `curl -L https://aka.ms/dotnet-trace/linux-x64 -o dotnet-trace` followed by `chmod +x dotnet-trace`. This will make `dotnet-trace` executable. The `curl` command will install and create this binary in the current working directory.
 
 ### Running the command
 - Run `./dotnet-trace ps` to get the current Dotnet PID, followed by `./dotnet-trace collect -p <PID>`. Use `ENTER` or `CTRL+C` to terminate. The below should be seen:
@@ -117,7 +117,7 @@ Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core
 
 ### Installation
 - SSH into the container. Check if `curl` is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl.`
-- Run `curl -L https://aka.ms/dotnet-dump/linux-64 -o dotnet-dump` followed by `chmod +x dotnet-dump`. This will make dotnet-dump executable. The `curl` command will install and create this binary in the current working directory.
+- Run `curl -L https://aka.ms/dotnet-dump/linux-x64 -o dotnet-dump` followed by `chmod +x dotnet-dump`. This will make dotnet-dump executable. The `curl` command will install and create this binary in the current working directory.
 
 ### Running the command
 - Run `./dotnet-dump ps` to get the current Dotnet PID, followed by `./dotnet-dump collect -p <PID>`. The below should be seen:
@@ -136,7 +136,7 @@ Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core
 
 ### Installation
 - SSH into the container. Check if curl is installed. If it not, run `apt-get update && apt-get install curl`, for Ubuntu/Debian based Images. Alpine Images do not need to do this and would just need to run `apk add curl`.
-- Run `curl -L https://aka.ms/dotnet-gcdump/linux-64 -o dotnet-gcdump` followed by `chmod +x dotnet-gcdump`. This will make `dotnet-gcdump` executable. The `curl` command will install and create this binary in the current working directory.
+- Run `curl -L https://aka.ms/dotnet-gcdump/linux-x64 -o dotnet-gcdump` followed by `chmod +x dotnet-gcdump`. This will make `dotnet-gcdump` executable. The `curl` command will install and create this binary in the current working directory.
 
 ### Running the command
 - Run `./dotnet-gcdump ps` to get the current Dotnet PID, followed by `./dotnet-gcdump collect -p <PID>`. The below should be seen:
@@ -151,3 +151,22 @@ Writing gcdump to '/root/20220616_204244_17.gcdump'...
 > **NOTE:** To walk the GC heap, this command triggers a generation 2 (full) garbage collection, which can suspend the runtime for a long time, especially when the GC heap is large. Don't use this command in performance-sensitive environments when the GC heap is large.
 
 Review the [official documentation](https://docs.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-gcdump) for more passable flags.
+
+# Tool troubleshooting
+## Permission Denied
+For any tools that are downloaded via `curl`, you may see `/bin/sh: 40: dotnet-gcdump: Permission denied` - for example.
+
+This can happen if `chmod +x [toolname]` is not ran. Rerun this to ensure the tool is executable.
+
+## Syntax error: redirection unexpected
+You may see this error on any of the tools installed, below is an example:
+
+```
+app/dotnet-gcdump: 1: Syntax error: redirection unexpected
+```
+
+This can happen if you mistype the domain to download the tool, eg:
+- **Proper**: https://aka.ms/dotnet-gcdump/linux-x64
+- **Inproper**: https://aka.ms/dotnet-gcdump/linux-64
+
+Correct the download URI and redownload the binary.

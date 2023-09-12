@@ -98,6 +98,17 @@ apt-get install openjdk-17-jdk -yy
 
 After this, typical JDK tooling should now be accessible on `$PATH`
 
+## Outbound connectivity
+Installing these tools will require outbound connectivity to the internet for two aspects of this post:
+
+1. To install `curl`, if it's not already installed in the container. This is needed to download the actual dotnet tools:
+  - Ubuntu/Debian-based containers can run `apt-get update -yy && apt-get install curl`
+  - Alpine-based containers can run `apk add curl`
+
+2. Using `curl` to install and download dotnet tools from over the internet from `https://aka.ms`
+
+This needs to be taken into account if outbound access is restricted or completely locked down. These requests will potentialy fail.
+
 # Determining high CPU or memory
 ## Diagnose and Solve problems
 You can use the following detectors in the **Diagnose and Solve Problems** blade to diagnose these issues:
