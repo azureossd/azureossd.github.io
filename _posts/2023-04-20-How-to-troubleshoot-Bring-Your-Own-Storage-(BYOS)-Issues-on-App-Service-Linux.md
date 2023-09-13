@@ -71,7 +71,7 @@ However, read/write operations to the blob or share may fail even if the applica
 
 If the Blob or File Share is deleted - you can try to recreate these with the same name. A recreated Storage Account will need to use a different Access Key than the original.
 
-## Networking
+## Networking and DNS
 If the Storage Account cannot be accessed, then mounting the volume will fail.
 
 Consider the following if your application is in a VNET and this is a possibility in case the application is down:
@@ -79,6 +79,7 @@ Consider the following if your application is in a VNET and this is a possibilit
     - Networking changes, such as changing traffic flow or any reconfiguration that may affect DNS resolution may not show up as a change on the application side.
 - Storage firewall is supported only through service endpoints and private endpoints (when VNET integration is used).
     - If the app and Azure Storage account are in same Azure region, and if you grant access from App Service IP addresses in the Azure Storage firewall configuration, then these IP restrictions are not honored.
+- Is custom DNS being used? Unresolvable DNS for the Storage Account will result in failure to mount the volume
 - When VNET integration is used, ensure the following ports are open:
     - Azure Files: 80 and 445.
     - Azure Blobs: 80 and 443.
