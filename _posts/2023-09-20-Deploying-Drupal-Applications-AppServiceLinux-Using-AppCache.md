@@ -38,7 +38,7 @@ For this demo we are using the pre-made unami, food blog provided by Drupal- [Dr
 
 Will be using the Drupal 'Unami' demo connected to an [Azure Database for MySQL](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/overview)
 
-Here is my repo that containers the code for this demo and all the sample config files: https://github.com/kedsouza/Umami-Demo 
+Here is my repo that containers the code for this demo and all the sample config files: [kedsouza - Umami-Demo](https://github.com/kedsouza/Umami-Demo)
 
 ![Drupal Profile](/media/2023/09/appcache-drupal-1.png)
 
@@ -49,7 +49,7 @@ Here is my repo that containers the code for this demo and all the sample config
 ## Enabling App Cache - [Read Only]
 For ease of instructions we will first proceed with enabling the app cache to improve preformance and deployment times.
 
-> While enabling app cache will make your Drupal App Perform faster this will not allow you to save or write content to be persited to the app service files system. Meaning if your team is making change / adding content these changes will not be presisted. You will lose content when the app service preforms a restart operation.
+> While enabling app cache will make your Drupal App Perform faster this will **not** allow you write content to the app service files system. Meaning if your team is making change / adding content these changes will not be presisted. You will lose content when the app service preforms a restart operation.
 
 We will explore possiblities on how to presit Drupal Content in subsquence sections in this blog. However we are seperating these steps because some organization choose not to add  /edit content directly to their production durpal site. They instead devolop / test  on a dev site and push the changes to production. In this sceneario making Drupal 'Read Only' can work and can aid in simplicity. 
 
