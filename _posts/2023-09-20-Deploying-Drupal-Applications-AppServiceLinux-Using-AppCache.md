@@ -17,6 +17,7 @@ toc: true
 toc_sticky: true
 date: 2023-09-20 12:00:00
 ---
+This blog will show you have to deploy your Drupal Site to an Linux PHP App Service with app cache for better preformance.
 
 ## Overview
 
