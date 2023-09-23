@@ -1,5 +1,5 @@
 ---
-title: "Container Apps: Profiling Go applications for performance issues"
+title: "Container Apps: Profiling PHP applications for performance issues"
 author_name: "Anthony Salemo"
 tags:
     - Deployment
