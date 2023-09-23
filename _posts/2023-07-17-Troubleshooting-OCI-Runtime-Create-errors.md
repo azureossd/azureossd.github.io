@@ -119,6 +119,14 @@ More on this can be read here - [Docker User Namespace remapping issues](https:/
 ## Other errors
 Errors that can cause container create failures, but not appear as `OCI runtime create failed`, would be to mount volumes with Bring Your Own Storage, to a volume that already exists at the path specific. For instead, with "Blessed Images", this may occur if you mount to `/var/ssl` with BYOS. There is an already defined mapping to this location, as well as some others. This can be checked with `df -h`.
 
+Other errors may also be related to specific directories, like `/proc`, for instance - which should be avoided when using BYOS:
+
+```
+OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting ...." cannot be mounted because it is not of type proc: unknown"
+```
+
 There are other errors or reasons for container creation to fail that may not be covered here. To resolve or mitigate, some of these may require access to the Docker daemon and/or Docker specific filesystem locations for storage. On App Service Linux, this access is not possible. In certain edge-cases where this may be an issue, and is causing `OCI runtime create failed:` where it has been completely ruled out to be a user-induced problem, scaling up (or down), or using the [Reboot Worker API](https://learn.microsoft.com/en-us/rest/api/appservice/app-service-plans/reboot-worker), can be done.
 
 Attempting to restart the application (start, stop, restart, or advanced application restart), such as in these edge-case scenarios (and above) will have typically zero affect - as these are intended to operate on a container that is able to run. 
+
+
