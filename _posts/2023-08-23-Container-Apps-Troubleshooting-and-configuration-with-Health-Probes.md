@@ -36,7 +36,6 @@ Probes originate from within the managed Container App environment, much like it
 # Probe mechanisms and restrictions
 Supported mechanisms are:
 - HTTP(s) and TCP
-    - TCP startup probes are not supported for Consumption workload profiles in the Consumption + Dedicated plan structure. See [here](https://learn.microsoft.com/en-us/azure/container-apps/health-probes?tabs=arm-template#restrictions)
 
 Current restrictions are:
 - gRPC, named ports, and exec commands are not supported. See [here](https://docs.microsoft.com/azure/container-apps/health-probes?tabs=arm-template#restrictions)
