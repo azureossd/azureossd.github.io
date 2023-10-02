@@ -351,7 +351,7 @@ snapshot.dump("/app/profiles/snap.out")
 
 To be able to download this for later viewing, make sure that the path specified in `dump()` is pointing to a mounted volume path as described earlier in this blog post.
 
-## memray 
+### memray 
 [memray](https://github.com/bloomberg/memray) is a Python memory profiler developed by Bloomberg. This library can track memory allocations in Python-based code as well as native code (C/C++), which can help with certain Python libraries that rely on native code or modules.
 
 > **NOTE**: memray does not work directly on windows, but will work in containerized or WSL2 environments on Windows. See below on ways to view generated output.
@@ -396,17 +396,17 @@ memray run --follow-fork -o /app/profiles/$PROFILE_FILE -m gunicorn app:app -b 0
 ```
 `$PROFILE_FILE` will create a profile file in the format of `dd-mm-yy-mm:hh.profile.bin` - to keep the file generally unique in name.
 
-### Analyzing output
+#### Analyzing output
 **IMPORTANT**: memray does _not_ work on Windows. If testing in a containerized or WSL2 based environment - run a container with a mount option from your local machine - (ex., `docker run -d -p 8000:8000 -v "%cd%"\profiles:/app/profiles container-apps-python-profilers-memray:latest`) - in the container you can generate the below reports to view as tabular or `.html` format.
 
-#### memray summary
+##### memray summary
 `memray summary [profile_file.bin]` provides a nice tabular and easy to read output when ran against a profile file. Below is an example - we can see that function calls (highlighted) `make_two_arrays()` at `/app/app.py` and the numpy method `np.ones` is allocating and using the most out of the ones in this output. 
 
 ![memray summary output](/media/2023/09/aca-py-profile-3.png)
 
 For more documentation on summary reporter usage, see [memray - summary reporter](https://bloomberg.github.io/memray/summary.html).
 
-#### memray flamegraph
+##### memray flamegraph
 You can generate a flamegraph with the `memray flamegraph [profile_file.bin]` command. This will create an `.html` file in the name of `meray-flamegraph-[nameofprofilefile].bin.html`. You can then view this locally in your browser or through a IDE browser extension.
 
 ![memray summary output](/media/2023/09/aca-py-profile-4.png)
