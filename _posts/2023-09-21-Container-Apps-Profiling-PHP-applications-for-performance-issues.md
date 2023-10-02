@@ -32,6 +32,10 @@ Some **important** prerequisites is to be able to:
 - Being able to connect to the container through the **Console** blade or use the [`az containerapp exec`](https://learn.microsoft.com/en-us/cli/azure/containerapp?view=azure-cli-latest#az-containerapp-exec) command. See console documentation [here](https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=bash)
 - Able to download files from the container
 
+There is no out-of-the-box method to profile/generate a dump for an application container on Container Apps. To understand if there is application slowness, either due to high CPU, high memory, dependency problems, or other reasons - a profiler typically specific to the language/runtime you're using should be used.
+
+In the case of PHP - most debuggers and profilers are installed as packages and used through code or configuration. This should be validated and tested locally to ensure this works before testing on Container Apps.
+
 ## Console access
 You can use either the Azure CLI or the portal for console access. Below is what portal access would look like:
 
