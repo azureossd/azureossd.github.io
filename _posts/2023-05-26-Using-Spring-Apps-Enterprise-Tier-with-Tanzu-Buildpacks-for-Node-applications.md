@@ -128,8 +128,6 @@ az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" 
 
 
 ## Angular
-> **NOTE**: The method is using the "default" configured buildpack on Azure Spring Apps Enterprise
-
 Create an Angular application - you can use the quickstart from the Angular CLI [here](https://angular.io/quick-start#create-a-new-angular-app-from-the-command-line).
 
 ### Deploying only the production build
@@ -145,12 +143,21 @@ In the root of your project, run the below command to deploy the build:
 az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-app" --source-path "./dist" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT=""
 ```
 
+Note, that this method is using the **default** builder.
+
 ### Build the production folder on each deployment
+This method is using a **custom webserver builder**.
+
 Following the same approach in the React section for [building the production folder on each deployment](#build-the-production-folder-on-each-deployment), using the **Webserver** Tanzu buildpack, run the following command - we replace the value of `BP_WEB_SERVER_ROOT` to use `dist`:
 
 ```
 az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="dist" BP_NODE_RUN_SCRIPTS=build --builder=webserver --verbose
 ```
+
+### 'ng not found'
+When deploying an Angular application using the _Build the production folder on each deployment_ method above - you may see `/workspace/start.sh: 3: ng: not found` if you're using the **default** builder provided by Tanzu through Spring Apps.
+
+To get around this, make sure to create a new builder using just the **web server** buildpack and specify this as a builder to your deployment command - eg., (`--builder=mynewwebserverbuilder`)
 
 ## Client-side routing
 If client side routing is enabled, for example with React and using `react-router-dom` - you may encounter HTTP 404's from NGINX:
