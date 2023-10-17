@@ -123,7 +123,7 @@ Use the below command to deploy the application. This command will:
 - Use the **webserver** buildpack we configured for building
 
 ```
-az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="build" BP_NODE_RUN_SCRIPTS=build --builder=websrver --verbose
+az spring app deploy --resource-group "your-rg-name" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="build" BP_NODE_RUN_SCRIPTS=build --builder=websrver --verbose
 ```
 
 
@@ -140,7 +140,7 @@ In the root of your project, run the below command to deploy the build:
 **NOTE**: Also, ensure `/dist` is removed from your `.gitignore`
 
 ```
-az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-app" --source-path "./dist" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT=""
+az spring app deploy --resource-group "your-rg-name" --service "your-asa-enterprise" --name "your-app" --source-path "./dist" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT=""
 ```
 
 Note, that this method is using the **default** builder.
