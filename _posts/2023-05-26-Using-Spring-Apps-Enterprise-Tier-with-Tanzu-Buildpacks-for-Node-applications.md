@@ -151,7 +151,7 @@ This method is using a **custom webserver builder**.
 Following the same approach in the React section for [building the production folder on each deployment](#build-the-production-folder-on-each-deployment), using the **Webserver** Tanzu buildpack, run the following command - we replace the value of `BP_WEB_SERVER_ROOT` to use `dist`:
 
 ```
-az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="dist" BP_NODE_RUN_SCRIPTS=build --builder=webserver --verbose
+az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="dist" BP_NODE_RUN_SCRIPTS=build --builder=websrver --verbose
 ```
 
 ### 'ng not found'
