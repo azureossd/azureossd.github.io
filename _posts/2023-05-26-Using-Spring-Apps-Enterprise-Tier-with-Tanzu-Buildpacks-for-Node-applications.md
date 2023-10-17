@@ -123,7 +123,7 @@ Use the below command to deploy the application. This command will:
 - Use the **webserver** buildpack we configured for building
 
 ```
-az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="build" BP_NODE_RUN_SCRIPTS=build --builder=webserver --verbose
+az spring app deploy --resource-group "your-rg" --service "your-asa-enterprise" --name "your-asa-app" --source-path "./" --build-env BP_WEB_SERVER=nginx BP_WEB_SERVER_ROOT="build" BP_NODE_RUN_SCRIPTS=build --builder=websrver --verbose
 ```
 
 
