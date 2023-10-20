@@ -190,8 +190,8 @@ After the file is written, it would look something like like: `CPU.20231017.1908
 
 You can download the `*.cpuprofile` generated file and use Chrome/Edge to analyze it. In Chrome browser `chrome://inspect/`, or, with Edge `edge://inspect`, and then click on _Open dedicated DevTools for Node_. Then select the _Performance_ tab and load the `*.cpuprofile` file. 
 
-# Reading CPU profiles
-## In Chromium browsers
+## Reading CPU profiles
+### In Chromium browsers
 For documentation on the **Performance** tab used below - see [Chrome - Devtools - Performance - Reference](https://developer.chrome.com/docs/devtools/performance/reference/)
 
 Since Chrome and Edge Browsers (Chromium) uses the same JavaScript runtime (V8 engine), profiler traces can be read using Chrome or Edge DevTools for Node. 
@@ -217,7 +217,7 @@ To load a profile into the DevTools view - go to the **Performance** tab and the
 
 ![VSCode profile](/media/2023/10/aca-node-profile-2.png)
 
-## VSCode
+### VSCode
 You can read `.cpuprofile` files through Visual Studio Code. Additional documentation on how to view profiles can be found here - [VSCode - nodejs - profiling](https://code.visualstudio.com/docs/nodejs/profiling).
 
 > **NOTE**: You can view these profiles in a flamegraph by installing the extension [VSCode JS Profile Flame](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-js-profile-flame) - the "flame" icon in the bottom right screenshot view will take you there in VSCode automatically if this is not installed
@@ -330,3 +330,16 @@ There is, however, a slight difference in UI presentation for these profiles - a
 The right right column shows the file name the function was called from.
 
 ![heapprofile profile](/media/2023/10/aca-node-profile-5.png)
+
+# Application Performance Monitoring tools (APM's)
+There are third-party tools that can also be used - the majority of these tools are not free, but the advantage can be huge, since these tools are specifically designed to gather extra information and present it in an understandable way for memory, cpu, and other scenarios.
+
+Below are some popular APMs for Node:
+
+1. [New Relic](https://docs.newrelic.com/docs/apm/agents/nodejs-agent/getting-started/introduction-new-relic-nodejs/)
+2. [AppDynamics](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/node-js-agent)
+3. [Dynatrace](https://www.dynatrace.com/hub/detail/nodejs/)
+4. [Scout](https://app.telemetryhub.com/docs/guides/traces/nodejs)
+5. [Retrace](https://docs.stackify.com/docs/nodejs-getting-started)
+6. [Datadog](https://docs.datadoghq.com/integrations/node/)
+7. [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/js/)
