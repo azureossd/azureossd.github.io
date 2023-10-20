@@ -21,14 +21,25 @@ Here is a compilation of resources by categories:
 - [Running gRPC with Container Apps](https://azureossd.github.io/2022/07/07/Running-gRPC-with-Container-Apps/index.html)
 - [Using Managed Identity and Bicep to pull images with Azure Container Apps](https://azureossd.github.io/2023/01/03/Using-Managed-Identity-and-Bicep-to-pull-images-with-Azure-Container-Apps/index.html)
 - [Troubleshooting volume mount issues on Azure Container Apps](https://azureossd.github.io/2023/07/24/Troubleshooting-volume-mount-issues-on-Azure-Container-Apps/index.html)
+- [Container Apps: How to capture a network trace using TCPDUMP](https://azureossd.github.io/2023/09/06/capturing-a-network-trace-aca/index.html)
+- [Container Apps: Troubleshooting and configuration with Health Probes](https://azureossd.github.io/2023/08/23/Container-Apps-Troubleshooting-and-configuration-with-Health-Probes/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
 - [Container Apps and Failed Revisions](https://azureossd.github.io/2022/08/01/Container-Apps-and-failed-revisions-Copy/index.html)
 - [Container App ‘Console’ tab shows 'ClusterExecEndpointWebSocketConnectionError'](https://azureossd.github.io/2023/06/02/Container-App-Console-tab-shows-ClusterExecEndpointWebSocketConnectionError/index.html)
+- [Container Apps: Troubleshooting image pull errors](https://azureossd.github.io/2023/08/25/Container-Apps-Troubleshooting-image-pull-errors/index.html)
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
 - [Using and troubleshooting GitHub Actions with Container Apps](https://azureossd.github.io/2023/07/13/Using-and-troubleshooting-GitHub-Actions-with-Container-Apps/index.html)
 - [Using and troubleshooting Azure DevOps with Container Apps](https://azureossd.github.io/2023/06/30/Using-and-troubleshooting-Azure-DevOps-with-Container-Apps/index.html)
+
+## Performance
+- [Container Apps: Profiling Node applications for performance issues](https://azureossd.github.io/2023/10/19/Container-Apps-Profiling-Node-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling Python applications for performance issues](https://azureossd.github.io/2023/10/02/Container-Apps-Profiling-Python-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling PHP applications for performance issues](https://azureossd.github.io/2023/09/22/Container-Apps-Profiling-PHP-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling Go applications for performance issues](https://azureossd.github.io/2023/09/18/Container-Apps-Profiling-Go-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling Dotnet applications for performance issues](https://azureossd.github.io/2023/09/12/Container-Apps-Profiling-Dotnet-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling Java applications for performance issues](https://azureossd.github.io/2023/08/30/Container-Apps-Profiling-Java-applications-for-performance-issues/index.html)
 
