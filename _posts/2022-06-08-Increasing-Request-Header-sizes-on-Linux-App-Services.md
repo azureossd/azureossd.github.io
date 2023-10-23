@@ -104,6 +104,26 @@ Optionally, you can add an AppSetting with the name `NODE_OPTIONS` and a value o
 
 ![Node NODE_OPTIONS](/media/2022/06/azure-ossd-node-request-headers-1.png)
 
+If you're using PM2 to serve the node application, you can try the following options:
+- Pass `node-args` to the PM2 start command: `pm2 start server.js --node-args="--max-http-header-size=16000"`
+- Or, use an `ecosystem.config.js` file - below is an example:
+
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./server.js", 
+    node_args: "--max-http-header-size=16000"
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
+
 ## Single Page Applications (and other client-side JavaScript applications)
 For applications using Angular, React, Vue and others - that fall into the SPA category - which is generally purely client-side executed code when served for production - you cannot directly increase header sizes without the help of serving this through some type of Web Server or process manage that allows arguments to change the header size.
 
