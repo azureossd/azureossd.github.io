@@ -33,6 +33,19 @@ const headerController = router.get("/", (req, res) => {
 });
 ```
 
+You can also set response headers for all routes by passing a custom function to middleware (`app.use()`) _before_ application routes in the middleware chain - via code. Below is an example:
+
+```javascript
+const updateHeadersForAllRoutes = (_req, res, next) => {
+    res.header("Foo", "Bar");
+    next();
+}
+
+app.use(updateHeadersForAllRoutes);
+app.use("/", homeController);
+app.use("/api/cpu", fibonacciController);
+```
+
 In plain Node, the following can be done to set headers - the below can be further abstracted into seperate routes:
 
 ```javascript
@@ -77,6 +90,8 @@ def headers():
 Flask [documentation](https://flask.palletsprojects.com/en/2.1.x/api/?highlight=headers#response-objects) on response headers.
 
 Django [documentation](https://docs.djangoproject.com/en/4.0/ref/request-response/#setting-header-fields-1) on response headers.
+
+Since Python applications are, by default, served with Gunicorn on App Service given Gunicorn is apart of the Python "Blessed Image" - you can use Gunicorn to set response headers. You can follow this blog post on how to accomplish this - [Gunicorn Update HTTP Headers on Azure App Service](https://azureossd.github.io/2022/08/03/Gunicorn-update-HTTP-headers-On-Azure-App-Service/index.html)
 
 ## Java
 
@@ -164,7 +179,7 @@ Further information on editing headers (adding, deleting, or others) with Azure 
 
     If you'd rather add or change response headers through here, a custom startup script would need to be used. This can be done following either of this blog posts:
     1. [PHP Custom Startup Script - App Service Linux - Apache](https://azureossd.github.io/2020/01/23/php-custom-startup-script-app-service-linux/index.html) - this post also includes a way to include headers into Apache.
-    2. [PHP Custom Startup Script - App Service Linux - NGINX](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html)
+    2. [How to set Nginx headers](https://azureossd.github.io/2023/02/24/how-to-modify-nginx-headers/index.html) - 
     3. For the current PHP 8.x Blessed Images - NGINX is the default, but adding the App Setting `WEBSITES_DISABLE_FPM` will pull a PHP 8.x image using Apache as the Web Server.
 
 - For **Tomcat containers** - bringing your own `web.xml` or [custom Tomcat Installation](https://azureossd.github.io/2022/05/20/Custom-Tomcat-Configuration-on-Azure-App-Service-Linux/index.html) may need to be done to do this through the Web Server itself. Embedded Tomcat in Spring Boot applications would be able to do this without the need for a custom installation. 
@@ -172,6 +187,11 @@ Further information on editing headers (adding, deleting, or others) with Azure 
 > **NOTE**: `web.config` files would **NOT** work in any of these scenarios since this is specific to IIS. Additionally, Apache and NGINX are **only** available on PHP Blessed Images and not available in any other images. 
 
 ## Custom Docker Images
-If you'd rather have more control over how to set up a Web Server to change response headers, rather than programatically, or through an additioanl service in front like App Gateway, another recommendation would be to bring your own Custom Docker Image. 
+If you'd rather have more control over how to set up a Web Server to change response headers, rather than programatically, or through an additional service in front like App Gateway, another recommendation would be to bring your own Custom Docker Image. 
 
 You have more of a choice on which Web Server to use and additional configuration through this.
+
+# Application Gateway
+If one is not able to do a "programmatic" or code-related configuration approach, then it's possible to follow what's here - [Application Gateway - Rewrite HTTP headers and URL with Application Gateway](https://learn.microsoft.com/en-us/azure/application-gateway/rewrite-http-headers-url).
+
+This applies to _both_ request and response headers. See the above link for more information.
