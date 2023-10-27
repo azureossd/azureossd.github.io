@@ -237,6 +237,7 @@ You can find more details about these steps documented here:
 
 Below is the yaml file generated after setting up Github Actions
 
+{% raw %}
 ```yaml
 name: Build and deploy Python app to Azure Web App - yoursitenamehere
 
@@ -267,13 +268,15 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
-            . 
+            release.zip
             !venv/
 
   deploy:
@@ -289,6 +292,9 @@ jobs:
         with:
           name: python-app
           path: .
+
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -297,7 +303,44 @@ jobs:
           app-name: 'yoursitenamehere'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_000000000000000000000000000 }}
-````
+```
+{% endraw %}
+
+If desired, you can pass in a specific `package` name in the `azure/webapps-deploy@v2` task - the `package` being the zip from earlier in the pipeline:
+
+{% raw %}
+```yaml
+- name: 'Deploy to Azure Web App'
+  uses: azure/webapps-deploy@v2
+  id: deploy-to-webapp
+  with:
+    app-name: 'yoursitenamehere'
+    slot-name: 'Production'
+    package: release.zip
+    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_000000000000000000000000000 }}
+```
+{% endraw %}
+
+If wanting to use a Service Principal instead of a Publish Profile, follow the walkthrough [here](https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=userlevel). After configuring the Service Principal and the `AZURE_CREDENTIALS` secret, simply change the release portion of your `yaml` to the following:
+
+{% raw %}
+```yaml
+- uses: azure/login@v1
+  with:
+    creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+- name: 'Deploy to Azure Web App'
+  uses: azure/webapps-deploy@v2
+  id: deploy-to-webapp
+  with:
+    app-name: 'ansalemo-fast-api'
+    slot-name: 'Production'
+
+- name: logout
+  run: |
+    az logout
+```
+{% endraw %}
 
 Below is the output we'd see in the 'Actions' tab on Github after setting up Actions and pushing a new commit to trigger a deployment.
 
@@ -489,6 +532,11 @@ stages:
 
     `gunicorn --bind 0.0.0.0:8000 --timeout 600 app:flaskapp`
 
+## Error: Couldn't detect a version for the platform 'python' in the repo.
+This would happen during the deployment phase on either Github Actions or Azure Devops. Ensure the following:
+- The project structure matches is defined [here](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/python.md#detect)
+- If using a .zip (such as in GitHub Actions), ensure the zip if unzipped first (if not using the `package` property) - or - if using the `package` property, pass the correct zip name with the appropriate project structure
+
 
 ## Github Actions
 
@@ -566,6 +614,7 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
           ```
 
         ![Flask App](/media/2022/02/flask-deployment-linux-07.png)
+
 
 
 
