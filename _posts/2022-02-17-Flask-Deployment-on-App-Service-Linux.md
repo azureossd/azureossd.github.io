@@ -306,7 +306,7 @@ jobs:
 ```
 {% endraw %}
 
-If desired, you can pass in a specific `package` name in the `azure/webapps-deploy@v2` task:
+If desired, you can pass in a specific `package` name in the `azure/webapps-deploy@v2` task - the `package` being the zip from earlier in the pipeline:
 
 {% raw %}
 ```yaml
