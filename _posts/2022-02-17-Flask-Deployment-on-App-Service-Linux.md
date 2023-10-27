@@ -252,7 +252,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python version
         uses: actions/setup-python@v1
@@ -272,7 +272,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
@@ -288,10 +288,9 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: python-app
-          path: .
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
@@ -333,7 +332,7 @@ If wanting to use a Service Principal instead of a Publish Profile, follow the w
   uses: azure/webapps-deploy@v2
   id: deploy-to-webapp
   with:
-    app-name: 'ansalemo-fast-api'
+    app-name: 'yoursitenamehere'
     slot-name: 'Production'
 
 - name: logout
@@ -539,6 +538,7 @@ This would happen during the deployment phase on either Github Actions or Azure 
 
 
 ## Github Actions
+> **NOTE**: The below is now included by default in GitHub Action generated templates when setting up with App Service. If you are manually creating a workflow, you'll need to configure it yourself.
 
 A normal deployment doesn't need to take more than 5-15 mins. If the workflow is taking more than that then you might need to review current implementation. Here is a list of things to check:
 
