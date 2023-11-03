@@ -8,7 +8,7 @@ tags:
     - Linux
 categories:
     - Configuration
-    - Web Apps for Containe # Python, Java, PHP, Nodejs, Ruby, .NET Core
+    - Web Apps for Containers # Python, Java, PHP, Nodejs, Ruby, .NET Core
     - Linux
     - Troubleshooting 
 header:
