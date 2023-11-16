@@ -15,7 +15,7 @@ header:
     teaser: "/assets/images/azurelinux.png" 
 toc: true
 toc_sticky: true
-date: 2023-04-18 12:00:00
+date: 2023-04-17 12:00:00
 ---
 
 This post will cover what it means when you see "Container didn't respond to HTTP pings on port, failing site start" and what may cause this.
