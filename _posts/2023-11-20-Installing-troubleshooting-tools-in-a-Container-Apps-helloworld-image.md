@@ -1,5 +1,5 @@
 ---
-title: "Installing troubleshooting tools in a Container APps 'hello-world' image"
+title: "Installing troubleshooting tools in a Container Apps 'hello-world' image"
 author_name: "Anthony Salemo"
 tags:
     - Deployment
