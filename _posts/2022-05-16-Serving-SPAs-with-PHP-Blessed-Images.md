@@ -45,6 +45,8 @@ For the SPA itself, use a quickstart for any of the following
 Depending on how deployment is done, you may run into errors if you attempt to deploy a typical SPA directly to a Linux PHP App Service without any additional configuration. This is because of the logic **[here](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/php.md#detect)** in what Oryx (the build agent for certain deployments) looks for.
 
 # PHP 7.4 (Apache)
+**NOTE**: PHP 7.4 is end-of-life. Consider upgrader to at least PHP 8.2.
+
 This will target deployment and configuration for deploying SPA's to a PHP 7.4 Linux App Service which utilizes Apache as its Web Server.
 
 ## Configure a startup script to override Apache 
@@ -241,7 +243,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - name: yarn install, build
         run: |
@@ -419,7 +421,7 @@ stages:
         // Change this to your desired Node version
         // In the format of 'major.x'
         // '.x' denotes latest minor of the specified major
-        versionSpec: '16.x'
+        versionSpec: '18.x'
       displayName: 'Install Node.js'
 
     // This can be either npm or yarn
@@ -493,6 +495,7 @@ server {
 
     location / {            
         index  index.php index.html index.htm hostingstart.html;
+        try_files $uri /index.html =404;
     }
 
     ....
@@ -501,6 +504,8 @@ server {
     ..
 }
 ```
+
+**NOTE**: The `try_files $uri /index.html =404;` above helps redirect requests back to `index.html` for client-side routing to take over (if enabled). For example, if using `react-router-dom` or others. This should also handle proper routing with query strings.
 
 Our custom startup script will look like this:
 
@@ -534,7 +539,7 @@ Upload this to the application and portal with the steps mentioned [earlier.](#c
 
 ## Azure DevOps
 1. Create a PHP 8 Linux App Service.
-2. There is only one change that needs to be made here, which is to the `runtimeStack` option in the `.yaml` file. Set this to: `runtimeStack: PHP|8.0`
+2. There is only one change that needs to be made here, which is to the `runtimeStack` option in the `.yaml` file. Set this to: `runtimeStack: PHP|8.2`
 3. The rest of the steps mentioned earlier still apply [here](#github-actions).
 
 # Troubleshooting
