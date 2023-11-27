@@ -137,7 +137,24 @@ On Web App for Containers, this defaults to false. Set this to true to proceed, 
 
 4. Save the configuration. The container should now be using the `.sh` file being referenced for container start up.
 
+# Troubleshooting
+A common issue when trying to use this option is encountering `OCI runime create failed`, this would look like the following - below are 2 examples:
+- `Error: failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "java -jar probes-0.0.1-SNAPSHOT.jar": stat java -jar probes-0.0.1-SNAPSHOT.jar: no such file or directory: unknown`
+- `Error: failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "dbt build --select stage+": executable file not found in $PATH: unknown`
 
+Validate the following if `OCI runtime create failed` is being seen when using "startup command/file":
+
+- For files being executed - make sure the file has correct line-endings - this needs to be `LF` - if these are `CLRF` then this may cause a `OCI runtime create failed` issue. You can validate the line-endings of a file by going into a text editor like VSCode - see [Docker run fails with standard_init_linux.go error](https://azureossd.github.io/2020/03/25/docker-run-fails-with-standard-init-linux-error/index.html)
+- For files - ensure that storage is mounted - use an FTP client or through Kudu to validate the file exists somewhere under `/home`
+- Use a full absolute path to the file or executable being invoked
+- Ensure the path specified exists and is correct
+  - For the first two points, you may see a message like `no such file or directory: unknown` in the `OCI` error
+- If trying to invoke a command globally, make sure it's on `$PATH`
+  - For executables not on `$PATH`, you may see `executable file not found in $PATH: unknown`
+- Make sure the command has proper syntax and fully formed - ex. `python /some/path/python.py`
+  - You may see `no such file or directory: unknown` for commands incorrectly set
+
+For further information, see the public blog - [Troubleshooting OCI runtime create errors](https://azureossd.github.io/2023/07/17/Troubleshooting-OCI-Runtime-Create-errors/index.html).
 
 
 
