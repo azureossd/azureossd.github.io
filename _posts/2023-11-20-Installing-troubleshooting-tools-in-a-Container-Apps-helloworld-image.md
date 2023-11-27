@@ -159,3 +159,19 @@ seq 0: tcp response from bh-in-f101.1e100.net (172.253.122.101) <syn,ack>  2.850
 traceroute to google.com (142.251.167.139), 255 hops max, 52 byte packets
 seq 1: tcp response from ww-in-f139.1e100.net (142.251.167.139) <syn,ack>  2.165 ms
 ```
+
+## tcpdump
+`tcpdump` can be installed with the following:
+
+```
+tdnf install -y tcpdump
+```
+
+You can confirm installation by checking the version:
+
+```
+sh-5.1# tcpdump --version
+tcpdump version 4.99.1
+libpcap version 1.10.1 (with TPACKET_V3)
+OpenSSL 1.1.1k  FIPS 25 Mar 2021
+```
