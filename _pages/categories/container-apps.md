@@ -23,12 +23,15 @@ Here is a compilation of resources by categories:
 - [Troubleshooting volume mount issues on Azure Container Apps](https://azureossd.github.io/2023/07/24/Troubleshooting-volume-mount-issues-on-Azure-Container-Apps/index.html)
 - [Container Apps: How to capture a network trace using TCPDUMP](https://azureossd.github.io/2023/09/06/capturing-a-network-trace-aca/index.html)
 - [Container Apps: Troubleshooting and configuration with Health Probes](https://azureossd.github.io/2023/08/23/Container-Apps-Troubleshooting-and-configuration-with-Health-Probes/index.html)
+- [Installing troubleshooting tools in a Container Apps ‘hello-world’ image](https://azureossd.github.io/2023/11/20/Installing-troubleshooting-tools-in-a-Container-Apps-helloworld-image/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
 - [Container Apps and Failed Revisions](https://azureossd.github.io/2022/08/01/Container-Apps-and-failed-revisions-Copy/index.html)
 - [Container App ‘Console’ tab shows 'ClusterExecEndpointWebSocketConnectionError'](https://azureossd.github.io/2023/06/02/Container-App-Console-tab-shows-ClusterExecEndpointWebSocketConnectionError/index.html)
 - [Container Apps: Troubleshooting image pull errors](https://azureossd.github.io/2023/08/25/Container-Apps-Troubleshooting-image-pull-errors/index.html)
+- [Troubleshooting Container App Jobs when using self-hosted CI/CD runners and agents](https://azureossd.github.io/2023/11/29/Troubleshooting-Jobs-when-using-self-hosted-CICD-runners/index.html)
+- [Troubleshooting failed job executions on Container App Jobs](https://azureossd.github.io/2023/10/30/Troubleshooting-failed-job-executions-on-Container-App-Jobs/index.html)
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
