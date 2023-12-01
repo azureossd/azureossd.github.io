@@ -37,7 +37,7 @@ You can find a compilation of resources by categories:
 ## Deployment
 - [PHP Deployments: Troubleshooting PHP deployments on App Service Linux with Oryx](https://azureossd.github.io/2023/06/27/PHP-deployments-Troubleshooting-PHP-deployments-on-App-Service-Linux-with-Oryx/index.html)
 - **Frameworks**
-   - [Laravel Deployment on App Service Linux](https://azureossd.github.io/2022/04/22/PHP-Laravel-deploy-on-App-Service-Linux-copy/index.html)
+   - [Laravel Deployment on App Service Linux](https://azureossd.github.io/2022/04/22/PHP-Laravel-deploy-on-App-Service-Linux/index.html)
    - [Yii Deployment on App Service Linux](https://azureossd.github.io/2022/05/03/PHP-Yii-deploy-on-App-Service-Linux/index.html) 
    - [Deploying Drupal Applications on App Service Linux with App Cache](https://azureossd.github.io/2023/09/20/Deploying-Drupal-Applications-AppServiceLinux-Using-AppCache/index.html)
    - [Deploying Drupal Applications on App Service Linux with App Cache](https://azureossd.github.io/2023/09/20/Deploying-Drupal-Applications-AppServiceLinux-Using-AppCache/index.html)
