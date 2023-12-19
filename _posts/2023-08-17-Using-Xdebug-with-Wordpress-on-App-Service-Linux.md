@@ -66,6 +66,7 @@ zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20220829/xdebug.so
 xdebug.remote_autostart=off
 xdebug.output_dir=/home/LogFiles
 xdebug.mode=profile
+xdebug.start_with_request=trigger
 ```
 
 > **NOTE**: Make sure `zend_extension` points to the correct location. Double check this with `pear config-show` and look at the "PHP extension directory" value
