@@ -4,7 +4,6 @@ author_name: "Anthony Salemo"
 tags:
     - Linux
     - Container Apps
-    - Performance
     - Troubleshooting
 categories:
     - Container Apps # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
