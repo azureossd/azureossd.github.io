@@ -3,6 +3,7 @@ title: "Container Apps - Demystifying restarts"
 author_name: "Anthony Salemo"
 tags:
     - Linux
+    - Configuration
     - Container Apps
     - Troubleshooting
 categories:
