@@ -21,6 +21,7 @@ You can find a compilation of resources by categories:
 ## Availability and Post Deployment issues
 - [PHP Deployments: cannot open shared object file: no such file or directory](https://azureossd.github.io/2023/06/14/PHP-Deployments-could-not-open-object-file-no-such-file-or-directory/index.html)
 - [PHP Deployments: Troubleshooting PHP availability scenarios](https://azureossd.github.io/2023/07/06/PHP-availability-Troubleshooting-common-availability-scenarios/index.html)
+- [Troubleshooting HTTP 404s with NGINX and PHP](https://azureossd.github.io/2023/12/01/Troubleshooting-HTTP-404s-with-NGINX-and-PHP/index.html)
 
 ## Configuration
 - [Modifiying PHP FPM settings](https://azureossd.github.io/2023/01/06/Modifiying-PHP-FPM-settings/index.html)

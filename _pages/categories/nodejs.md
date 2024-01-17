@@ -64,6 +64,12 @@ You can find a compilation of resources by categories:
 
 
 # Windows
-- [Troubleshooting Common iisnode Issues](https://azureossd.github.io/2022/10/17/troubleshooting-common-iisnode-issues/index.html)
+## Configuration and Best Practices
 - [Avoiding hardcoding Node versions](https://azureossd.github.io/2022/06/24/Avoiding-hardcoding-Node-versions-on-App-Service-Windows/index.html)
+
+## Performance
+- [Troubleshooting Common iisnode Issues](https://azureossd.github.io/2022/10/17/troubleshooting-common-iisnode-issues/index.html)
 - [Troubleshooting Node.js High CPU and Memory scenarios in App Service Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html)
+
+## Deployment
+- [NestJS deployment on App Service Windows](https://azureossd.github.io/2022/11/29/NestJS-deployment-on-App-Service-Windows/index.html)
