@@ -1,5 +1,5 @@
 ---
-title: "Container Apps - Troubleshooting "ContainerCreateFailure" and "OCI runtime create failed" issues
+title: "Container Apps - Troubleshooting 'ContainerCreateFailure' and 'OCI runtime create failed' issues"
 author_name: "Anthony Salemo"
 tags:
     - Linux
