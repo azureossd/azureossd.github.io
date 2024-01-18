@@ -21,6 +21,8 @@ date: 2023-08-17 12:00:00
 This post describes how to change php-fpm settings in Wordpress on App Service Linux.
 
 # Overview
+**Note**: This is regarding the [Wordress on Linux "marketplace" image](https://learn.microsoft.com/en-us/azure/app-service/quickstart-wordpress) and _not_ about using a PHP 8.x "Blessed image" with a Wordpress installation. These are two different products.
+
 Wordpress on App Service Linux Docker Images utilize `php-fpm`, which can have various settings be changed if needed. The current settings are set to generous defaults, notably the following which are some of the more popular ones:
 
 ```conf
