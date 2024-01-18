@@ -15,7 +15,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2023-08-17 12:00:00
+date: 2024-01-18 12:00:00
 ---
 
 This post describes how to change php-fpm settings in Wordpress on App Service Linux.
