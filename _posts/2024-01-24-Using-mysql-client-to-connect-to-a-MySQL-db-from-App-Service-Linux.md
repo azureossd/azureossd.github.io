@@ -26,6 +26,8 @@ Through the **SSH option** on the App Service Linux Kudu site, you can connect t
 
 For custom images, you may need to enable SSH - if so, review [Enabling SSH on Linux Web App for Containers](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html). If SSH is not able to enabled into a custom image, then what's covered in this blog post may not be able to be done for creating a connection from that particular application.
 
+> **NOTE**: Do not try to install these packages through the "Bash" option - Bash opens a shell in the Kudu container where you're running as `kudu_ssh_user` (non-root) - therefor package installation will fail. This _must_ be done in the application container ("SSH" option).
+
 # Test connectivity
 First, it may be good to test general connectivity and name resolution.
 
