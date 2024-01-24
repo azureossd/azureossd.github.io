@@ -51,9 +51,9 @@ We can test if the MySQL server is able to establish a connection from us, the c
 If this is not installed in the container, run the following:
 - Ubuntu/Debian: `apt-get install netcat`
   - **Note**: If you see `E: Package 'netcat' has no installation candidate` use `apt-get install netcat-traditional` instead
-  - Alpine: `apk add netcat-openbsd`
-  - Mariner: `tdnf install nc`
-  - RHEL/CentOS: `yum install nc`
+- Alpine: `apk add netcat-openbsd`
+- Mariner: `tdnf install nc`
+- RHEL/CentOS: `yum install nc`
 
 This example is ran within a Debian-based container. We're running the `nc` command `nc -vzn [mysql_ip] [mysql_port]` which confirms that a connection to port 3306 for our MySQL server can be established. If this fails, review if traffic is allowed to the destination (eg., firewall on the server, UDR/RTs, Virtual Appliances, etc.). You should see something like the below.
 
