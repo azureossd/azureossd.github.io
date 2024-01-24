@@ -28,6 +28,11 @@ For custom images, you may need to enable SSH - if so, review [Enabling SSH on L
 
 > **NOTE**: Do not try to install these packages through the "Bash" option - Bash opens a shell in the Kudu container where you're running as `kudu_ssh_user` (non-root) - therefor package installation will fail. This _must_ be done in the application container ("SSH" option).
 
+## SQLCMD vs MySQL clients
+`SQLCMD` is sometimes used on Windows applications for troubleshooting. 
+
+It is an executable available only in Windows App Service applications. Because of this, the closest implementation is installing the relevant Linux MySQL client for your distribution. This concept is essentially the same outside of Azure in most *NIX or containerized environments.
+
 # Test connectivity
 First, it may be good to test general connectivity and name resolution.
 
