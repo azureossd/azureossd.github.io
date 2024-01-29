@@ -64,6 +64,9 @@ Refer to [this](https://docs.microsoft.com/azure/container-apps/health-probes?ta
 For TCP Health Probes - there should be an accessible port exposed in your `Dockerfile`
 
 ## Request headers and User-Agent
+
+**Consumption-only environments**:
+
 The default user-agent and headers sent by Kubelet for HTTP Health Probes is defined here - [Kubernetes - HTTP Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#http-probes).
 
 If you wanted to see this programmatically, the incoming request headers could be logged out to console/stdout/stderr. This would then be viewable in `ContainerAppConsoleLogs_CL`
@@ -82,6 +85,19 @@ For example, with node.js, you would log out `req.headers` - eg., `console.log(r
 - `host`: Should match the Pod IP address - the port on this address should be the ingress port configured if the default Health Probes or used - or, if Health Probes or explicitly used - the port set for said Health Probe type
 - `user-agent`: This should match the version used on the cluster. This is set by Kubelet.
     - It is possible to override this header by adding a custom header in the Health Probe "Additional Settings" section. Add a key with `User-Agent` with a value of the desired agent name.
+
+
+**Dedicated environments**:
+
+For "Dedicated" (Workload-profile or consumption) based environments, the incoming request object will vary slightly. This will look like the following instead:
+
+```
+{
+  host: 'locahost:3000',
+  'user-agent': 'curl/7.86.0',
+  accept: '*/*',
+}
+```
 
 ## HTTPS probes
 **Source code examples of HTTP and HTTPS probe usage for various runtimes can be found here**: [azureossd - container-apps-health-probe-examples](https://github.com/azureossd/container-apps-health-probe-examples)
