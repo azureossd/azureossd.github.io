@@ -24,7 +24,7 @@ You can find a compilation of resources by categories:
 * [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
 * [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
 * [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
-* [Configuring Nginx for WordPress running on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
+* [Wordpress on Linux - Configuring NGINX](https://azureossd.github.io/2024/01/30/Wordpress-on-Linux-Configuring-NGINX/index.html#overview)
 * [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
 * [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
 * [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
