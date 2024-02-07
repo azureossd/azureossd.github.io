@@ -19,7 +19,7 @@ categories:
     - Troubleshooting
     - Windows
 header:
-    teaser: /assets/images/nest.png
+    teaser: /assets/images/nextjs.png
 toc: true
 toc_sticky: true
 date: 2024-02-06 12:00:00
