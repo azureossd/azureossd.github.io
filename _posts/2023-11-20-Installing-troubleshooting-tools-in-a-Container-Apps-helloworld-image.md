@@ -175,3 +175,23 @@ tcpdump version 4.99.1
 libpcap version 1.10.1 (with TPACKET_V3)
 OpenSSL 1.1.1k  FIPS 25 Mar 2021
 ```
+
+## ssh
+You can install an `openssh` client in replacement of `telnet` (which ideally shouldn't be used over other better tools nowadays) with the following:
+
+```
+tdnf install openssh-clients
+```
+
+Validate that the command can now be used:
+
+```
+sh-5.1# ssh
+usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
+           [-b bind_address] [-c cipher_spec] [-D [bind_address:]port]
+           [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11]
+           [-i identity_file] [-J [user@]host[:port]] [-L address]
+           [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
+           [-Q query_option] [-R address] [-S ctl_path] [-W host:port]
+           [-w local_tun[:remote_tun]] destination [command [argument ...]]
+```
