@@ -130,7 +130,7 @@ Flight Recordings can be reviewed using [Zulu Mission Control](https://www.azul.
 
 2. Execute the command below to start a 300-second recording of the JVM. This will profile the JVM and create a JFR file named jfr_example.jfr in  `/home/Logfiles`. [Additional JFR parameters](https://access.redhat.com/documentation/en-us/openjdk/11/html/using_jdk_flight_recorder_with_openjdk/configure-jfr-options)
 
-    `jcmd <pid> JFR.start name=MyRecording settings=profile duration=300s filename="/home/LogFilesjfr_example.jfr"`
+    `jcmd <pid> JFR.start name=MyRecording settings=profile duration=300s filename="/home/LogFiles/jfr_example.jfr"`
 
     ```bash
     # Example Output
