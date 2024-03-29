@@ -55,6 +55,8 @@ Here is a compilation of resources by categories:
 ## Configuration
 - [Enabling SSH on Linux Web App for Containers](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html)
 - [How to download files from a custom container](https://azureossd.github.io/2023/07/20/How-to-download-files-from-a-custom-container/index.html)
+- [Using MySQL clients to connect to a MySQL database from App Service Linux](https://azureossd.github.io/2024/01/24/Using-mysql-client-to-connect-to-a-MySQL-db-from-App-Service-Linux/index.html)
+- [Installing Oracle database instant client for Nodejs on Linux and Widows apps service](https://azureossd.github.io/2024/01/18/Installing-Oracle-database-instant-client-for-nodejs-on-Linux-and-Widows-apps-service/index.html)
 
 ## Deployment
 - [Deploying Web App for Containers with CI/CD pipelines](https://azureossd.github.io/2023/02/06/Deploying-Web-App-for-Containers-with-CI-CD-pipelines/index.html)

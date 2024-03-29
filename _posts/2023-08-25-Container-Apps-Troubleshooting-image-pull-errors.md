@@ -46,6 +46,14 @@ Persistent Image Pull Errors for image "someregistry.com/image:atest". Please ch
 
 The **main** reason for failure would be in the above popout message, or, in the other cases above with IaaC or CLI methods - written to the terminal.
 
+**For dedicated environments (Consumption profile, or, Workload profiles)** - the error instead will show the following:
+
+```
+Container 'some-container' was terminated with exit code '' and reason 'ImagePullFailure'
+```
+
+The description will not be logged as to why the image pull failed in this case, but, this blog can be used to rule out potential problems.
+
 --------
 
 In other scenarios where pod movement happens more organically - eg., scaling rules being triggered, or other reasons for pod movement that is not _directly_ user initiated - this may manifest in the format below in the **Logs** / Log Analytic Workspace - notice the difference between the above and the below
