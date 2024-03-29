@@ -43,6 +43,16 @@ In a succesful scenario - you could connect to a pod/replica via the **Console**
 
 ![Volumes on filesystem](/media/2023/07/azure-aca-volume-1.png)
 
+**A note about dedicated environments**:
+
+For dedicated environments (Consumption profile, or, Workload profiles) - the error instead will show the following:
+
+```
+Container 'some-container' was terminated with exit code '' and reason 'VolumeMountFailure'
+```
+
+The description will not be logged as to why the failed to mount in this case, but, this blog can be used to rule out potential problems.
+
 # Troubleshooting
 You can use the `ContainerAppSystemLogs_CL` table to view if failed mount operations are occurring.
 
