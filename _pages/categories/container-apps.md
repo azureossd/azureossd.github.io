@@ -27,6 +27,7 @@ Here is a compilation of resources by categories:
 - [Container Apps - Using the ‘Command override’ option](https://azureossd.github.io/2024/01/17/Container-Apps-Using-the-command-override-option/index.html)
 - [Container Apps - Using multicontainers in a pod](https://azureossd.github.io/2024/03/06/Container-Apps-Using-multi-containers-in-a-pod/index.html)
 - [Container Apps - General troubleshooting with Dapr on Container Apps](https://azureossd.github.io/2024/02/12/Container-Apps-General-troubleshooting-with-Dapr-on-Container-Apps/index.html)
+- [Running self-hosted agent Jobs locally with KEDA for Container Apps](https://azureossd.github.io/2024/04/01/Running-self-hosted-agent-Jobs-locally-for-Container-Apps/index.html)
 
 
 ## Availability and Post Deployment issues
