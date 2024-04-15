@@ -36,6 +36,7 @@ You can find a compilation of resources by categories:
 - [How to enable IP access restrictions on wp-admin for the WordPress on App Service offering](https://azureossd.github.io/2023/07/27/wordpress-on-appservice-wpadmin-ip-restrictions/index.html)
 - [Wordpress on Linux - Configuring NGINX](https://azureossd.github.io/2024/01/30/Wordpress-on-Linux-Configuring-NGINX/index.html)
 - [Changing php-fpm ‘pm’ settings in App Service Wordpress on Linux](https://azureossd.github.io/2024/01/18/Changing-php-fpm-pm-settings-in-App-Service-Wordpress-on-Linux/index.html)
+- [Installing intl with Wordpress on App Service Linux](https://azureossd.github.io/2024/04/15/Installing-intl-with-Wordpress-on-App-Service-Linux/index.html)
 
 ## Performance
 - [How to improve performance of WP Admin](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-improve-performance-of-wp-admin-wordpress-on-azure-app/ba-p/3731647)
