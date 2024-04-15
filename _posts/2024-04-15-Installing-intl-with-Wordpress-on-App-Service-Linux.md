@@ -75,3 +75,26 @@ apk add icu-dev
 echo "Restarting php-fpm via supervisord.."
 supervisorctl restart php-fpm
 ```
+
+# Troubleshooting
+If you notice that `intl` is not being loaded - or - `intl.so` is not appearing under the PHP extension directory.
+
+Ensure that:
+1. App Service Logs are enabled. These can be reviewed if there is any `stderr` appearing that may be fatal/error related. Or, if the container is now crashing/exiting.
+2. If nothing relevant is seen above - go into SSH (assuming that the container is running) and check the output of `/tmp/post-startup-script-stderr---supervisor-00000000.log` or `post-startup-script-stdout---supervisor-00000000.log`.
+
+Below is an example of reviewing stdout from a custom startup script in one of these log files:
+
+```
+7fd6d23d988d:/tmp# cat post-startup-script-stdout---supervisor-yb_gtkno.log 
+This is being executed from /home/dev/startup.sh..
+```
+
+Furthermore, by reviewing `default_docker.log` (the equivalent is also shown in `/var/log/supervisor/supervisord.log`), you can confirm if a startup script is successfully executed by finding the below in logging:
+
+```
+2023-11-13 14:32:40,214 INFO spawned: 'post-startup-script' with pid 237
+2023-11-13 14:32:40,306 WARN exited: post-startup-script (exit status 0; not expected)
+```
+
+Although supervisord is showing "not expected" - an exit of status 0 is successful - and what we want to see. An exit code greater than > 0 is deemed unsuccessful.
