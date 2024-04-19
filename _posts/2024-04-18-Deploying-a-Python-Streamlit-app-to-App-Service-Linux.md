@@ -13,7 +13,7 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/streamlit-logo.png
+    teaser: /assets/images/streamlit_logo.png
 toc: true
 toc_sticky: true
 date: 2024-04-18 12:00:00
