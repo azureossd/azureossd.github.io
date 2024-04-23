@@ -572,3 +572,10 @@ This should be taken into consideration when troubleshooting.
 This would happen during the deployment phase on either Github Actions or Azure Devops. Ensure the following:
 - The project structure matches is defined [here](https://github.com/microsoft/Oryx/blob/main/doc/runtimes/python.md#detect)
 - If using a .zip (such as in GitHub Actions), ensure the zip if unzipped first (if not using the `package` property) - or - if using the `package` property, pass the correct zip name with the appropriate project structure
+
+## 'No module named streamlit' or 'streamlit: command not found'
+Further troubleshooting of this can be followed in this blog: [Python on Linux App Service and ModuleNotFoundError](https://azureossd.github.io/2022/11/24/Python-on-Linux-App-Service-and-ModuleNotFound-Errors/index.html).
+
+Essentially, if `streamlit` is not in `requirements.txt` - or - improper deployment was done (eg. not following what's in the above blog post) then `streamlit` won't be accessible via `site-packages` or it wouldn't have been installed in the first place.
+
+Additionally, avoid installing `streamlit` in a "Startup command" - this should be limited to deployment (build-time). See [Python on App Service Linux and why to avoid installing packages on startup](https://azureossd.github.io/2023/06/09/Python-on-App-Service-Linux-and-why-to-avoid-installing-packages-on-startup/index.html)
