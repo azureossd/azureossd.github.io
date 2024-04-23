@@ -13,7 +13,7 @@ categories:
     - Deployment 
     - Troubleshooting
 header:
-    teaser: /assets/images/fastapi_logo.png
+    teaser: /assets/images/fastapi-logo.png
 toc: true
 toc_sticky: true
 date: 2024-04-23 12:00:00
