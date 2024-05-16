@@ -17,7 +17,7 @@ date: 2024-05-16 12:00:00
 ---
 
 ## Overview 
-In this blog we will review a common file locking sencario incountered when using run container apps that mount Azure File Storage.
+In this blog we will review a common file locking scenario incountered when using run container apps that mount Azure File Storage.
 
 ## Problem
 Whenever you deploy a new revision you might notice that the revision is failing due to certain files being locked, for example:
@@ -97,4 +97,4 @@ However the lock is will never be released because the current replica will not 
   In the case of log files create a unquie file name for every container. 
 
   If you are using a database which is persisted on the file system in production, consider using a managed Azure Database Solution like [Azure Database for MySQL](https://azure.microsoft.com/en-us/products/mysql). 
-- Manually stop your container apps, create a new revision, then start your container app again. This should be only used for quick development purposes and testing. Relying on this method will still cause your revision to fail in the case of automatic upgrades to the Container App Platform. 
+- Manually stop your container app, create a new revision, then start your container app again. This should be only used for quick development purposes and testing. Relying on this method will still cause your revision to fail in the case of automatic upgrades to the Container App Platform. 
