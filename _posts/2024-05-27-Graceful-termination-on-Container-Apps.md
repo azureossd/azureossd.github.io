@@ -187,16 +187,12 @@ public class AzureApplication {
 	private static void addSignalHandler() {
 		SignalHandler signalHandler = new SignalHandlerImpl();
 		Signal.handle(new Signal("TERM"), signalHandler);
-		// you also can handle other signal such as SIGINT (ctrl + c) like below.
-		Signal.handle(new Signal("INT"), signalHandler);
 	}
 
 	private static class SignalHandlerImpl implements SignalHandler {
 
 		@Override
 		public void handle(Signal signal) {
-			System.out.println(signal.getName());
-
 			switch (signal.getName()) {
 				case "TERM":
 					System.out.println("Caught signal SIGTERM, exiting application with exit(0)");
