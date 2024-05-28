@@ -59,7 +59,7 @@ This behavior is dictated by the property `terminationGracePeriodSeconds` - whic
             ....
     ```
 
-`terminationGracePeriodSeconds`, is ultimately from Kubernetes - a more detailed explanation on pod termination is found here - [Pod Lifecycle | Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination)
+`terminationGracePeriodSeconds`, is ultimately from Kubernetes - a more detailed explanation on pod termination is found here - [Pod Lifecycle - Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination)
 
 You can only set a **maximum** value of 600 seconds (10 minutes) for `terminationGracePeriodSeconds`. If an application is needing upwards of 10 minutes to clean up logic, or more, this can pose challenges, especially if an application is scaling out to many replicas (or even just a few). It would be heavily recommended to revisit the applications design around clean up logic to reduce this:
 - Additionally, since the pod (and therefor container(s) within) will still exist, if many pods are pending termination for minutes at a time - and new pods/replicas are created, this can start presenting resource contention issues - depending on how many resources already exist within the environment
