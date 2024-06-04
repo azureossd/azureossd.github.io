@@ -135,7 +135,7 @@ $JBOSS_HOME/bin/jboss-cli.sh --connect --file=/home/site/deployments/tools/jboss
 ## MySQL
 Everything below assumes this is stored under `/home/site/deployments/tools`
 
-1. First, download the driver `.jar` from here - [Download - JDBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver16). This example selected the "Platform independent" option. This will be a `.zip`, but if choosing Ubuntu (since these JBoss images are based on a Ubuntu distro) - you'll need to unpackage the `.deb` file that's downloaded. Add the `mysql-connector-j-8.4.0.jar` to `/home/site/deployments/tools`
+1. First, download the driver `.jar` from here - [MySQL :: Download Connector/J](https://dev.mysql.com/downloads/connector/j/). The jar file with `jre8` supports Java 8 and the jar file with `jre11` supports Java 11 and up.
 
 2. Create a module `.xml` file - we'll name this `mysql-module.xml` with the following contents:
 
@@ -189,7 +189,7 @@ $JBOSS_HOME/bin/jboss-cli.sh --connect --file=/home/site/deployments/tools/jboss
 ## SQL Server
 Everything below assumes this is stored under `/home/site/deployments/tools`
 
-1. First, download the driver `.jar` from here - [MySQL :: Download Connector/J](https://dev.mysql.com/downloads/connector/j/). The jar file with `jre8` supports Java 8 and the jar file with `jre11` supports Java 11 and up.
+1. First, download the driver `.jar` from here - [Download - JDBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver16). This example selected the "Platform independent" option. This will be a `.zip`, but if choosing Ubuntu (since these JBoss images are based on a Ubuntu distro) - you'll need to unpackage the `.deb` file that's downloaded. Add the `mysql-connector-j-8.4.0.jar` to `/home/site/deployments/tools`
 
 2. Create a module `.xml` file - we'll name this `sqlserver-module.xml` with the following contents:
 
@@ -337,7 +337,7 @@ The `spring.datasource.jndi-name` needs to match the `--jndi-name` flag in the `
 
 
 # Troubleshooting
-### WFLYJCA0041: Failed to load module for driver [org.somedriver]
+## WFLYJCA0041: Failed to load module for driver [org.somedriver]
 
 The error will depend on the database driver you're using, for example:
 
@@ -349,7 +349,7 @@ This will happen if the `<resource-root path="/path/to/database_driver.jar" />` 
 
 Ensure the database `.jar` exists under the absolute path specific in the `resource-root` XML element in `module.xml`.
 
-### org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException
+## org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException
 
 ```
 org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException: Failed to look up JNDI DataSource with name 'java:jboss/datasources/[somedatasource]'; nested exception is javax.naming.NameNotFoundException: datasources/postgresDS -- service jboss.naming.context.java.jboss.datasources.postgresDS
