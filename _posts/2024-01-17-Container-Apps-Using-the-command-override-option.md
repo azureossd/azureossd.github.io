@@ -28,9 +28,46 @@ This is the same concept of overriding a containers `ENTRYPOINT` or `CMD` with a
 
 An example of this locally (non-kubernetes) - would be `docker run -d -p 8080:8080 somecontainer node server.js` - where `node server.js` is the command passed into override the container start up.
 
+A working example of this on Container Apps may look someting like this - notice we have our `ENTRYPOINT` commented out:
+
+```Dockerfile
+FROM python:3.10.6-slim-bullseye
+
+WORKDIR /app/
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000 
+
+# ENTRYPOINT [ "/app/entrypoint.sh" ] 
+```
+
+You can then set what would be your application startup command as the value to "Command override"
+
+![Command override](/media/2024/01/command-override-2.png)
+
+![Command override](/media/2024/01/command-override-3.png)
+
+
+You can additionally use `args` as well. This fundamentally works the same as the above, where all commands and arguments are placed in the `command` property.
+
+```json
+"command": [
+   "/bin/sh"
+],
+"args": [
+   "-c",
+   "echo 'this worked'"
+]
+```
+
+With the difference being that `args` are just the arguments passed to the shell, which could be a command itself. The `args` array is available to be set by users. For example, here is documentation with the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/containerapp?view=azure-cli-latest#az-containerapp-create). This is not available via the Azure Portal currently - but can get set through Iac implementations like Bicep, ARM, Terraform, etc. - and others like the REST API for Container Apps or Jobs, or the Azure CLI.
+
 When using a command override for Container Apps (or in general for a container), a few things need to be validated:
 - The command needs to be targeting the correct path
-- The command used would need to be on `$PATH`
+- The command used would need to be on `$PATH` (if invoking by executable name)
 - Use commas to separate commands 
 
 A common issue when trying to use this option is encountering `OCI runime create failed` issues due to the above reason (and others), this would look like the following - below are 2 examples:
