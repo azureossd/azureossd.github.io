@@ -22,7 +22,7 @@ header:
     teaser: /assets/images/nextjs.png
 toc: true
 toc_sticky: true
-date: 2024-02-06 12:00:00
+date: 2024-02-05 12:00:00
 ---
 
 This blog post will cover deploying a Next.js application to Azure App Service on Windows.
