@@ -10,7 +10,7 @@ categories:
     - Python # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
     - Configuration # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
-    teaser: "/assets/images/assets/images/pylinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
+    teaser: "/assets/images/pylinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
@@ -75,7 +75,7 @@ If you end up overriding this default command, and omit `timeout`, then you're n
 
 In this context, "workers silent" would equate to a long-running HTTP request (or longer running than what `timeout` is set to). This could be a slow response from something further upstream, slow logic execution, or resource contention.
 
-Therefor, always ensure `--timeout` is set to an appropriate value. Additionally, regardless of the `timeout` value - App Service has an idle connection limit of 240 seconds - so, if a request does not complete by that time, the connection (and requests) will be terminated and cancelled irregardless of this setting.
+Therefor, always ensure `--timeout` is set to an appropriate value. Additionally, regardless of the `timeout` value - App Service has an idle connection limit of 240 seconds - so, if a request does not complete by that time, the connection (and requests) will be terminated and cancelled irregardless of this setting. To be safe, you can set `--timeout` back to `600` (`--timeout 600`), or, essentially anything over `240`.
 
 **Troubleshooting**:
 - If you still notice `[CRITICAL] WORKER TIMEOUT` even after extending `timeout`, review the below scenarios for other possible reasons
@@ -119,5 +119,7 @@ Long running requests that a Gunicorn worker process is handling, which exceeds 
 - ML/AI-based applications - eg. computation on large sets that take minutes at a time (and may be CPU intensive too)
 - Long running database queries
 - Too much load on the application - SNAT port exhaustion, slow logic execution, higher resource consumption, etc.
+
+As mentioned above, for this, you can set `--timeout` back to `600` (`--timeout 600`), or, essentially anything over `240`.
 
 Utilizing any of the profilers or APMs within [Container Apps: Profiling Python applications for performance issues](https://azureossd.github.io/2023/10/02/Container-Apps-Profiling-Python-applications-for-performance-issues/index.html) should be done to try and further pin point the issue. You can use the various metrics in the **Metrics** blade on App Service to use as a starting point for data such as incoming requests, duration, resource usage, and m ore.
