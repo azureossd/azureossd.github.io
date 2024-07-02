@@ -32,6 +32,7 @@ Here is a compilation of resources by categories:
 - [Installing TcpPing on Azure App Service Linux](https://azureossd.github.io/2021/06/17/installing-tcpping-linux/index.html)
 - [Troubleshooting Bring Back SSH for App Service (Blessed) Images](https://azureossd.github.io/2023/06/27/Troubleshooting-Bring-Back-SSH-for-App-Service-(Blessed)-Images/index.html)
 - [Logging with supervisord on Web Apps for Containers](https://azureossd.github.io/2023/11/03/Logging-with-supervisord-on-Web-Apps-for-Containers/index.html)
+- [Installing database clients to connect and troubleshoot database connections](https://azureossd.github.io/2024/05/20/Installing-database-clients-to-connect-and-troubleshoot-database-connections/index.html)
 
 ## Deployment
 - [Troubleshooting HTTP 409’s when deploying to Azure App Service](https://azureossd.github.io/2023/08/14/Troubleshooting-HTTP-409s-when-deploying-to-App-Service/index.html)
