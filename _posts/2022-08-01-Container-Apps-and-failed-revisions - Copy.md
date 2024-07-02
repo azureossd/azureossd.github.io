@@ -48,6 +48,8 @@ Since the container will never successfully return a response due to the mismatc
 
 The solution in this case would be to set Target Port to what's exposed in your Dockerfile (or what port your application is listening to). 
 
+See [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html) for further information on ingress-specific troubleshooting.
+
 **Important**:
 If you are running your application as a background-service and/or do not expect to listen for HTTP traffic, then do not enable Ingress, as it expects a HTTP response back from the container to determine its health. This type of scenario will also cause a revision to be marked as failed.
 
@@ -62,6 +64,8 @@ If you are running your application as a background-service and/or do not expect
 > **Note**: This also may show that the container is indefinitely provisioning
     
 ![Revision pending for Container Apps](/media/2022/08/azure-oss-container-apps-revision-4.png)
+
+See [Container Apps: Troubleshooting and configuration with Health Probes](https://azureossd.github.io/2023/08/23/Container-Apps-Troubleshooting-and-configuration-with-Health-Probes/index.html) for more specific Health Probe-based troubleshooting.
 
 # Running a privileged container
 Privileged containers cannot be ran - this will cause a failed revision. If your program attempts to run a process that requires **real** root access, the application inside the container experiences a runtime error and fail.
@@ -86,8 +90,13 @@ In these scenarios, you can validate if your application is causing this with ei
 
 > **NOTE**: Note that Log Stream may not show any output if the container is failing. If this is the case, use Log Analytics to double check if the application is writing to stdout/err.
 
+For more application-specific troubleshooting, review the following posts:
+- [Container Apps - Troubleshooting ‘ContainerCreateFailure’ and ‘OCI runtime create failed’ issues](https://azureossd.github.io/2024/01/16/Container-Apps-Troubleshooting-OCI-Container-create-failed-issues/index.html)
+- [Container Apps - Backoff restarts and container exits](Container Apps - Backoff restarts and container exits)
+
 # Invalid options or unreachable registry
-## Image/Tag values
+**Image/Tag values**
+
 Another possibility of a failed revision if passing bad or incorrect image/tag combinations. 
 
 However, in most cases (depending on how this is deployed), validation will fail the deployment prior to this stage. For example, doing this through the portal:
@@ -104,7 +113,7 @@ However, in most cases (depending on how this is deployed), validation will fail
 
 If this scenario is suspected to be the case - ensure the Image and Tag combinations are valid.
 
-## Networked environment
+**Networked environment**
 Secondly, if the image is failing to pull due to either misconfiguration or an environment issue (eg., Networked environment - Firewall is blocking access to the Container Registry, or DNS lookup on the registry is failing), this may present itself as a failed revision as well - as the Image itself would not successfully pull.
 
 In this scenario, review if it's possible to pull this publicly, and if so - work backwards to troubleshoot the environment itself.
@@ -117,6 +126,10 @@ The below documentation can be reviewed for help in configuration:
 - [Securing a custom VNET](https://docs.microsoft.com/en-us/azure/container-apps/firewall-integration)
 - [Customer responsibilites when using a VNET](https://github.com/microsoft/azure-container-apps/wiki/Lock-down-VNET-with-Network-Security-Groups-and-Firewall)
 
+**Further reading**:
+
+For a deeper look into troubleshooting image pull failures, see [Container Apps: Troubleshooting image pull errors](https://azureossd.github.io/2023/08/25/Container-Apps-Troubleshooting-image-pull-errors/index.html)
+
 # Resource contention
 
 Aggressive scale rules or applications that are consuming a large amount CPU and/or Memory, for example, and consistently enough - could potentially put the Pods that are running these workloads into a state that causes the application(s) to crash.
@@ -127,3 +140,13 @@ In scenarios like these - the **Metrics** blade under **Monitoring** can be used
 
 If aggressive [scaling](https://docs.microsoft.com/en-us/azure/container-apps/scale-app) is done, review these rules and their criteria for what is triggering these events. 
 
+# Environment is in an unhealthy state
+If an environment is in an unhealthy state, for example, due to:
+- Using a Consumption-only environment with networking such as UDR's that inheritly may "break" the environment - see [Control outbound traffic with user defined routes](https://learn.microsoft.com/en-us/azure/container-apps/user-defined-routes)
+- Azure Policies that may affect environment upgrades or management operations. For example, an Azure Policy on tags - such as blocking any kind of tag or metadata change. This can cause environments to break when a environment or it's managed resource groups are upgraded/updated.
+- etc.
+
+Since this would cause the environment to go into a Failed or generally unsuccessful "Provisioning State" - user operations on the environment or specific apps will likely fail across the board. If you happen to just _only_ focus on creation of new revisions - it may appear that _only_ revisions are "broken" or "failed" - whereas it's a wider spread problem.
+
+# Further reading
+For other informational posts related to Azure Container Apps - see the [azureossd.github.io - Container Apps](https://azureossd.github.io/containerapps/) Category section.
