@@ -92,7 +92,7 @@ In these scenarios, you can validate if your application is causing this with ei
 
 For more application-specific troubleshooting, review the following posts:
 - [Container Apps - Troubleshooting ‘ContainerCreateFailure’ and ‘OCI runtime create failed’ issues](https://azureossd.github.io/2024/01/16/Container-Apps-Troubleshooting-OCI-Container-create-failed-issues/index.html)
-- [Container Apps - Backoff restarts and container exits](Container Apps - Backoff restarts and container exits)
+- [Container Apps - Backoff restarts and container exits](https://azureossd.github.io/2024/01/19/Container-Apps-Backoff-restarts-and-container-exits/index.html)
 
 # Invalid options or unreachable registry
 **Image/Tag values**
