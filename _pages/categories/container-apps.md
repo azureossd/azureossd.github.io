@@ -42,6 +42,7 @@ Here is a compilation of resources by categories:
 - [Container Apps - Troubleshooting ‘ContainerCreateFailure’ and ‘OCI runtime create failed’ issues](https://azureossd.github.io/2024/01/16/Container-Apps-Troubleshooting-OCI-Container-create-failed-issues/index.html)
 - [Container Apps - Demystifying restarts](https://azureossd.github.io/2024/01/11/Container-Apps-Demystifying-restarts/index.html)
 - [Container Apps - Backoff restarts and container exits](https://azureossd.github.io/2024/01/19/Container-Apps-Backoff-restarts-and-container-exits/index.html)
+- [Preventing File Locks when mounting storage on Azure Container Apps](https://azureossd.github.io/2024/05/16/Preventing-File-Locks-Azure-Container-Apps/index.html)
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
