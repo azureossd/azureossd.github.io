@@ -25,6 +25,7 @@ You can find a compilation of resources by categories:
 - [Custom Tomcat Configuration on Azure App Service Linux](https://azureossd.github.io/2022/05/20/Custom-Tomcat-Configuration-on-Azure-App-Service-Linux/index.html)
 - [Installing troubleshooting tools in Java custom containers](https://azureossd.github.io/2022/07/18/Installing-troubleshooting-tools-in-Java-custom-containers/index.html)
 - [Logging configuration with JBoss EAP and Spring Boot](https://azureossd.github.io/2023/05/22/Logging-configuration-with-JBoss-EAP-and-Spring-Boot/index.html)
+- [Configuring datasources with JBoss EAP on App Service Linux](https://azureossd.github.io/2024/06/03/Configuring-datasources-with-JBoss-EAP-on-App-Service-Linux/index.html)
 
 ## Deployment
 - [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html)

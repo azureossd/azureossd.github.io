@@ -26,6 +26,7 @@ You can find a compilation of resources by categories:
 - [Python Startup - Could not open shared object file: no such file or directory](https://azureossd.github.io/2023/04/17/Python-Deployment-could-not-open-shared-object-file/index.html)
 - [Python Deployments: ‘File not found’ and filesystem directory differences with app content](https://azureossd.github.io/2023/06/12/Python-Deployments-File-not-found-and-filesystem-directory-differences-with-app-content/index.html)
 - [Python on App Service Linux and why to avoid installing packages on startup](https://azureossd.github.io/2023/06/09/Python-on-App-Service-Linux-and-why-to-avoid-installing-packages-on-startup/index.html)
+- [Gunicorn - ‘[CRITICAL] Worker Timeout’ on App Service Linux](https://azureossd.github.io/2024/07/01/Gunicorn-and-Critical-Worker-Timeouts-on-App-Service-Linux/index.html)
 
 
 ## Configuration

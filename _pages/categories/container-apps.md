@@ -28,11 +28,13 @@ Here is a compilation of resources by categories:
 - [Container Apps - Using multicontainers in a pod](https://azureossd.github.io/2024/03/06/Container-Apps-Using-multi-containers-in-a-pod/index.html)
 - [Container Apps - General troubleshooting with Dapr on Container Apps](https://azureossd.github.io/2024/02/12/Container-Apps-General-troubleshooting-with-Dapr-on-Container-Apps/index.html)
 - [Running self-hosted agent Jobs locally with KEDA for Container Apps](https://azureossd.github.io/2024/04/01/Running-self-hosted-agent-Jobs-locally-for-Container-Apps/index.html)
+- [Graceful termination on Container Apps](https://azureossd.github.io/2024/05/27/Graceful-termination-on-Container-Apps/index.html)
+- [Container Apps - Binding to ports under 1024](https://azureossd.github.io/2024/06/10/Container-Apps-Binding-to-ports-under-1024/index.html)
 
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
-- [Container Apps and Failed Revisions](https://azureossd.github.io/2022/08/01/Container-Apps-and-failed-revisions-Copy/index.html)
+- [Container Apps and Failed Revisions](https://azureossd.github.io/2022/08/01/Container-Apps-and-failed-revisions/index.html)
 - [Container App ‘Console’ tab shows 'ClusterExecEndpointWebSocketConnectionError'](https://azureossd.github.io/2023/06/02/Container-App-Console-tab-shows-ClusterExecEndpointWebSocketConnectionError/index.html)
 - [Container Apps: Troubleshooting image pull errors](https://azureossd.github.io/2023/08/25/Container-Apps-Troubleshooting-image-pull-errors/index.html)
 - [Troubleshooting Container App Jobs when using self-hosted CI/CD runners and agents](https://azureossd.github.io/2023/11/29/Troubleshooting-Jobs-when-using-self-hosted-CICD-runners/index.html)
