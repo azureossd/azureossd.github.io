@@ -15,8 +15,9 @@ toc_sticky: true
 date: 2024-07-02 12:00:00
 ---
 
-## Overview 
+This blog will detail the specifc changes in order to accomplish using your Container App Job for Github Action Runners for all repos under your Github Organization.
 
+## Overview 
 You can use Container App Jobs as an Github Actions Runner.
 However there are specific steps in case you need to use your Container App Job for Github Action Runners for all repos under your Github Organization.
 

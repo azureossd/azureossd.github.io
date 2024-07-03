@@ -30,7 +30,7 @@ Here is a compilation of resources by categories:
 - [Running self-hosted agent Jobs locally with KEDA for Container Apps](https://azureossd.github.io/2024/04/01/Running-self-hosted-agent-Jobs-locally-for-Container-Apps/index.html)
 - [Graceful termination on Container Apps](https://azureossd.github.io/2024/05/27/Graceful-termination-on-Container-Apps/index.html)
 - [Container Apps - Binding to ports under 1024](https://azureossd.github.io/2024/06/10/Container-Apps-Binding-to-ports-under-1024/index.html)
-
+- [Using a Container App Job as Github Actions Runner for your entire Github Orginization](https://azureossd.github.io/2024/07/02/Container-App-Job-runner-for-entire-Github-Orginization/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
