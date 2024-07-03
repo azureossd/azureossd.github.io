@@ -9,8 +9,7 @@ categories:
     - Azure Container App Jobs # Azure App Service on Linux, Azure App Service on Windows,  
     - How To # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
-    teaser: "/assets/images/azure-containerapps-logo-1.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
-# If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
+    teaser: "/assets/images/azure-containerapps-logo.png"
 toc: true
 toc_sticky: true
 date: 2024-07-02 12:00:00
@@ -19,7 +18,7 @@ date: 2024-07-02 12:00:00
 ## Overview 
 
 You can use Container App Jobs as an Github Actions Runner.
-However there are specific steps in case you need to use your Container App Job for all Github Action Runners for all repos under your Github Organization.
+However there are specific steps in case you need to use your Container App Job for Github Action Runners for all repos under your Github Organization.
 
 This blog will detail the specifc changes in order to accomplish this.
 
@@ -33,7 +32,7 @@ Please validate your runner is working with a single repo under your personal ac
 The following blog can help you troubleshooot common issues when settings this up: 
 [Troubleshooting Jobs When Using Self Hosted CICD Runners](https://azureossd.github.io/2023/11/29/Troubleshooting-Jobs-when-using-self-hosted-CICD-runners/index.html)
 
-The offical Keda Documentation for the scaler used can be found on the following link: [Github Runner Scaler - KEDA](https://keda.sh/docs/2.14/scalers/github-runner/)
+The offical Keda Documentation for the scaler used can be found here: [Github Runner Scaler - KEDA](https://keda.sh/docs/2.14/scalers/github-runner/)
 
 
 ## Modification for Github Organization.
@@ -63,36 +62,37 @@ Your token should have the following permissions.
     ![PAT-Permissions](/media/2024/07/pat-permissions.png)
 
 - After your new personal access token is generated save this value.
-- Then update your container app secret for containing your PAT token value.By navigating to your container app job on the Azure Portal under the *secrets* tab ![Pat-ACA-Secret](/media/2024/07/pat-aca-secret.png) 
+- Then update your container app secret containing your personal access token value, by navigating to your container app job on the Azure Portal under the *secrets* tab.
+  
+  ![Pat-ACA-Secret](/media/2024/07/pat-aca-secret.png) 
 
 ### Update the Keda Scaling rule MetaData.
-   - On your Container App Job on the Azure Portal navigate to the *Event-driven scaling* tab, click on the *github-scaling* to edit it.
+   - On the Azure Portal for your Container App Job navigate to the *Event-driven scaling* tab, click on the *github-scaling* to edit it. The only two required values needed in the scale rule Metadata section are listed below.
 
-    The only two values needed in the Metadata section are listed below.
-    owner = <name-of-your-github-organization>
-    runnerScope = org
+        **Scale rule Metadata**
 
-    ![Scale-Rule-Meta-Data](/media/2024/07/scale-rule-meta-data.png)
-
-
-
-    Make sure to save your changes.
+        | Name       | Value                           |
+        | -----------|---------------------------------|
+        | owner      | **the-name-of-your-organization** |
+        | runnerScope| org                             |
+    
+    
+    
+        ![Scale-Rule-Meta-Data](/media/2024/07/scale-rule-meta-data.png)
 
 ### Update your container runner environment variables. 
 
-   - On your Container App Job on the Azure Portal navigate to the *Containers* tab and click on your container to edit it.
+   - On the Azure Portal for your Container App Job navigate to the *Containers* tab and click on your container to edit it. These are the follow values you for the environment variables you need to edit.
 
-   These are the follow values you for the environment variables you need to edit.
+        **Runner Container Environment Variables**
 
-   GITHUB_PAT                   Reference a secret personal-access-token
-
-   REGISTRATION_TOKEN_API_URL   Manual entry   https://api.github.com/orgs/<Your-organization-name>/actions/runners/registration-token   
-   
-   GH_URL                       Manual entry https://github.com/<Your-organization-name>
+        | Name                      |Source            |  Value                 |
+        | --------------------------|------------------|------------------------|
+        | GITHUB_PAT                |Reference a secret|personal-access-token
+        | REGISTRATION_TOKEN_API_URL|Manual            |https://api.github.com/orgs/**your-organization-name**/actions/runners/registration-token     |
+        | GH_URL                    |Manual            |https://github.com/**your-organization-name**      |
 
    ![runner-container-env-vars](/media/2024/07/runner-container-env-vars.png)
-
-    Make sure to save your changes.
 
 
 
