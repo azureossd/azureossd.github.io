@@ -16,6 +16,8 @@ toc_sticky: true
 date: 2024-05-16 12:00:00
 ---
 
+In this blog we will review a common file locking scenario incountered when using run container apps that mount Azure File Storage.
+
 ## Overview 
 In this blog we will review a common file locking scenario incountered when using run container apps that mount Azure File Storage.
 
