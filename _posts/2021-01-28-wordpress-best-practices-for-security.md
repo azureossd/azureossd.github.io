@@ -241,6 +241,48 @@ This will allow for updating many different headers for WordPress security. To d
     add_header Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self)";
     ```
 
+## Allow a different domain or sharepoint site to show the site content in an iFrame
+
+- Copy the required config file to the `/home` directory, if not done earlier.
+  ```
+  cp /etc/nginx/conf.d/spec-settings.conf /home/custom-spec-settings.conf”
+  ```
+  This copies the spec-settings.conf into the permanent folder (/home), so that the contents of it is permanent and does not get changed every time the app is restarted. 
+- Edit `/home/custom-spec-settings.conf` using vi/vim/nano editors to add/update the custom settings.
+  ```
+  vi /home/custom-spec-settings.conf
+  ```
+  This step is to add/modify the headers.
+- Add the following line in custom-spec-settings.conf to allow the other domain to load the site page. 
+  ```
+  add_header X-Frame-Options "ALLOW-FROM domain.com";
+  ```
+  Here, the other domain is domain.com, it could be anything and varies from one domain to another.
+- Remove the following line if it is there, otherwise please ignore. 
+  ```
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  ```
+  **NOTES**: There are two possible values, with three separate use cases:
+
+  DENY: Denies the site form being loaded in an iFrame at all. This is the recommended if iFrames are not used.
+
+  SAMEORIGIN: Only allows (elements of) the site to be loaded on the same domain. This is recommended if you load elements of your own site in an iFrame, within the domain itself.
+
+  If you want your site to be loaded in iFrame on a every other domain, do not set the X-Frame-Options header at all.
+
+- Paste the below content in /home/dev/startup.sh (this file should be empty by default)
+    ```nginx
+    #!/bin/bash 
+    echo "Copying custom specific settings over to /etc/nginx/conf.d/spec-settings.conf" 
+    cp /home/custom-spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
+    nginx -s reload
+    ```
+    This script runs everytime the app is restarted and copies the changes back to /etc/nginx/conf.d/spec-settings.conf, so that changes will not be lost.
+
+    If this file has some contents already, make sure those are not touched and add line 2 and 3 before `nginx -s reload`
+- Restart the app
+
+
 ## Remove `phpinfo()` file
 
 It is strongly recommended to remove any file that contains `phpinfo()`. By doing so, this will ensure that the database credentials stored as environment variables are not exposed to the public.
