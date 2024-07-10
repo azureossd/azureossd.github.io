@@ -1,5 +1,5 @@
 ---
-title: "Using Python to interact with and manage Azure AD apps and Azure Service Principals"
+title: "Using Python to interact with and manage Azure AD/Entra apps and Azure Service Principals"
 author_name: "Anthony Salemo"
 tags:
     - Python
@@ -26,10 +26,10 @@ As of writing this, there are a few ways you can go about doing this.
 
 The last release for this [Python package was on 2019](https://pypi.org/project/azure-graphrbac/#history). There has been migrations away from this to use the Graph API - deeming this essentially deprecated. This may still be used, but note if using this SDK with `azure-identity` authentication such as `DefaultAzureCredential`, you may encountered [this issue](https://stackoverflow.com/questions/63384092/exception-attributeerror-defaultazurecredential-object-has-no-attribute-sig) due to the outdated pacakge. 
 
-## Microsoft Graph Core Python Client Library (preview)
-- [Microsoft Graph Core Python Client Library (preview)](https://github.com/microsoftgraph/msgraph-sdk-python-core)
+## Microsoft Graph Core Python Client Library
+- [Microsoft Graph Core Python Client Library](https://github.com/microsoftgraph/msgraph-sdk-python-core)
 
-The code examples in this post will focus on this library for now. This is a preview library that lets you interact through the Graph REST API endpoints to manage Azure AD applications and Service Principals.
+The code examples in this post will focus on this library for now. This is a library that lets you interact through the Graph REST API endpoints to manage Azure AD applications and Service Principals.
 
 
 ## Microsoft Graph REST API
@@ -38,7 +38,7 @@ The code examples in this post will focus on this library for now. This is a pre
 The REST API can be used with a Python HTTP client (such as [requests](https://pypi.org/project/requests/)) to call these endpoints, such as the [Applications (Azure AD apps)](https://learn.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0) and [Service Principal](https://learn.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0) ones to manage these resources.
 
 # Examples
-The below examples will focus on [Microsoft Graph Core Python Client Library (preview)](https://github.com/microsoftgraph/msgraph-sdk-python-core). This library can directly use the endpoints from the [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0), which can simplify development. 
+The below examples will focus on [Microsoft Graph Core Python Client Library](https://github.com/microsoftgraph/msgraph-sdk-python-core). This library can directly use the endpoints from the [Microsoft Graph REST API v1.0](https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0), which can simplify development. 
 
 ## Local Development
 > **NOTE**: RBAC and/or organzation restrictions may apply depending on your account set up. This could impact what happens when calling to these API's if your account has certain permission restrictions.
