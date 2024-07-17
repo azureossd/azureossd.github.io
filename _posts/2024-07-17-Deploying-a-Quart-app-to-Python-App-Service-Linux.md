@@ -1,5 +1,5 @@
 ---
-title: "Delpoying a Quart app to Python App Service Linux"
+title: "Deploying a Quart app to Python App Service Linux"
 author_name: "Anthony Salemo"
 tags:
     - Linux
