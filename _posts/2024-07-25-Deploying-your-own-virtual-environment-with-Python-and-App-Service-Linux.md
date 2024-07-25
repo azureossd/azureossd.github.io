@@ -268,7 +268,7 @@ An example of this not installing packages into the virtual environment would be
 
 If you wanted to use a different virtual environment name, then simply change it from `antenv` to your intended name - but ensure the application is being started with your custom startup script and the reference to that new virtual environment(above)
 
-# Takeway
+# Takeaway
 Even though **this is not a typically recommended approach** - and **instead you should use Oryx when possible**. You can still "bring" your own virtual environment. As long as the following requirements are met:
 - If not using a startup command to add `site-packages` to `$PYTHONPATH` - It must conform to `antenv/lib/python[majorversion].[minorversion]/site-packages, eg. antenv/lib/python3.12/site-packages`
     - Packages are installed into `site-packages`
