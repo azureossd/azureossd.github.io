@@ -33,6 +33,9 @@ You can find a compilation of resources by categories:
 - [Adding Tomcat Manager to Blessed Java Images on Linux App Service](https://azureossd.github.io/2022/08/11/Using-Tomcat-Manager-in-Blessed-Java-Images-in-Linux-App-Service/index.html)
 - [Tomcat deployments on App Service - War file location, behavior and troubleshooting](https://azureossd.github.io/2023/08/02/Tomcat-deployments-on-App-Service/index.html)
 
+# Availability
+- [Java on App Service Linux - java.lang.NoSuchMethod exceptions](https://azureossd.github.io/2024/07/03/Java-on-App-Service-Linux-java-lang-NoSuchMethod-exceptions/index.html)
+
 
 # Windows
 - [Diagnostic Tools for Java Performace on App Service Windows](https://azureossd.github.io/2022/05/20/Diagnostic-Tools-for-Java-Performace-on-App-Service-Windows/index.html)

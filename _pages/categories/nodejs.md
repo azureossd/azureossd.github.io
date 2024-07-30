@@ -74,3 +74,5 @@ You can find a compilation of resources by categories:
 ## Deployment
 - [NestJS deployment on App Service Windows](https://azureossd.github.io/2022/11/29/NestJS-deployment-on-App-Service-Windows/index.html)
 - [NextJS deployment on App Service Windows](https://azureossd.github.io/2024/02/06/NextJS-deployment-on-App-Service-Windows/index.html)
+- [Deploying Angular SSR (Universal) to App Service Windows](https://azureossd.github.io/2024/07/30/Deploying-Angular-SSR-to-App-Service-Windows/index.html)
+- [React deployment on App Service Windows](https://azureossd.github.io/2022/11/06/React-deployment-on-App-Service-Windows/index.html)
