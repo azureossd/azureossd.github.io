@@ -31,7 +31,7 @@ Below we'll cover some general probe information on Container Apps and some trou
 > **NOTE**: Overall, it is encouraged to play around with probe configurations to see what best bits the application need and use case.
 
 # Request flow
-Probes originate from within the managed Container App environment, much like it would do with typical Kubernetes - from [kubelet](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/). This is a separate flow from compared to requests from external clients like browsers or other applications that would come through ingress.
+Probes originate from within the managed Container App environment, much like it would do with typical Kubernetes - from [kubelet](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) - or you may notice a different `user-agent` with applications hosted on Consumption profiles. This is a separate flow from compared to requests from external clients like browsers or other applications that would come through ingress.
 
 # Probe mechanisms and restrictions
 Supported mechanisms are:
