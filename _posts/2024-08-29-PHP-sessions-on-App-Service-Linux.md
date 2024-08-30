@@ -1,5 +1,5 @@
 ---
-title: "PHP sessions on App Service Linux - Session data file is not created by your uid"
+title: "PHP sessions on App Service Linux - 'Session data file is not created by your uid'"
 author_name: "Anthony Salemo"
 tags:
     - App Service
@@ -88,9 +88,9 @@ To resolve the issue we're seeing about a mismatch in ownership, we can change t
 5. At this point, assuming session save path is somewhere under `/home`, the original error regarding `Session data file is not created by your uid` should not occur anymore and session data persists properly.
 
 ## Running as root
-Note, although one may want to change the `php-fpm` user to `root` - this will fail with `ERROR: [pool www] please specify user and group other than root` upon startup.
+One may want to change the `php-fpm` user to `root` - this will fail with `ERROR: [pool www] please specify user and group other than root` upon startup.
 
-This is because you would need to start the `php-fpm` process with the `-R` flag, to allow running as root.
+This is because you would need to start the `php-fpm` process with the `-R` flag (shorthand for `--allow-to-run-as-root`), to allow running as root.
 
 Follow the same steps as above but make these slight changes:
 
