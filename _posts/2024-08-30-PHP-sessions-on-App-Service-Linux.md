@@ -13,7 +13,7 @@ header:
     teaser: "/assets/images/phplinux.png"
 toc: true
 toc_sticky: true
-date: 2024-08-29 12:00:00
+date: 2024-08-30 12:00:00
 ---
 
 This post will cover using PHP sessions on App Service Linux using PHP "blessed" images and what seeing `Session data file is not created by your uid` means.
