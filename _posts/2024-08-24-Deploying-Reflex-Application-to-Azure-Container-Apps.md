@@ -124,6 +124,10 @@ route {
         file_server
 }
 ```
+Your project structure should now look should look something similar to the below screenshot. 
+
+![Project Structure](/media/2024/08/reflex-project-structure.png)
+
 Make sure you have installed the Azure CLI and are able to login to your subscription and can access your ACR. 
 
 We will use the **az acr build** command to build this docker image using the above Dockerfile the main project directory as a build context.
