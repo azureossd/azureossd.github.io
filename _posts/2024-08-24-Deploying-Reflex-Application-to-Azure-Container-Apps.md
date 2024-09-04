@@ -134,7 +134,7 @@ We will use the **az acr build** command to build this docker image using the ab
 
 More information here: [Tutorial - Quick container image build - Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-quick-task)
 
-```az acr build --registry {your-acr-name} --image reflex-dashboard:lastest --file Dockerfile . ```
+```az acr build --registry {your-acr-name} --image reflex-dashboard:latest --file Dockerfile . ```
 
 After the *acr build* command is run should see your acr building and pushing the image layer similar to below. 
 
