@@ -44,6 +44,7 @@ You can find a compilation of resources by categories:
   - [Deploying a Python FastAPI app to App Service Linux](https://azureossd.github.io/2024/04/23/Deploying-a-Python-FastAPI-app-to-App-Service-Linux/index.html)
   - [Deploying a Python Streamlit app to App Service Linux](https://azureossd.github.io/2024/04/18/Deploying-a-Python-Streamlit-app-to-App-Service-Linux/index.html)
   - [Deploying a Quart app to Python App Service Linux](https://azureossd.github.io/2024/07/17/Deploying-a-Quart-app-to-Python-App-Service-Linux/index.html)
+  - [Deploying a Relfex application to Azure Container Apps](https://azureossd.github.io/2024/08/24/Deploying-Reflex-Application-to-Azure-Container-Apps/index.html)
 
 ## Performance
  - [Using CProfile to troubleshoot high CPU on Linux Python App Services](https://azureossd.github.io/2023/05/15/Python-Preformance-High-CPU-CProfile/index.html)
