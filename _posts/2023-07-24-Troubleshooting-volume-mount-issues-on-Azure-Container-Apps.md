@@ -84,6 +84,8 @@ The below errors will show in `ContainerAppSystemLogs_CL` - this will depend on 
 - `Output: mount error(13): Permission denied`
 
     - The address is resolvable but traffic may be blocked from accessing storage. Is there a firewall on storage blocking the IPs of the environment? Is storage able to be accessed from a jumpbox in the same VNET?
+    - Also ensure that the file share exists.
+    - Validate if CMK (customer managed keys) are being used on the Storage Account side - as this may cause this problem as well if Azure Key Vault cannot be accessed from the storage side
 
 - `Output: mount error(2): No such file or directory`
     - Does the File Share exist? Review if this was deleted or the name does not exist
@@ -140,3 +142,24 @@ At this time, a potential way to get around this (this also depends on the techn
 - If this is not able to be done, or does not work, then there is the potential that the application functionality requiring priviledged mount options will need to be reworked to avoid use this in a priviledged manner
 
 For the future, there is a roadmap item for [supporting mount options for storage mounts with Container Apps](https://github.com/microsoft/azure-container-apps/issues/765).
+
+## Pod or container exceeded local ephemeral storage limit
+You may see messages like the below when a pod is exceeding the allowed storage quota limit, which may cause application unavailability.
+
+```
+Container somecontainer exceeded its local ephemeral storage limit "1Gi". 
+```
+```
+Pod ephemeral local storage usage exceeds the total limit of containers 1Gi. 
+```
+> **NOTE**: The limit message may differ depending on the allowed quota
+
+Ephemeral volume quota limits are publicly defined [here](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#temporary-storage).
+
+For **container** storage - take note of what is publicly called out in documentation: _There are no capacity guarantees. The available storage depends on the amount of disk space available in the container._
+
+For **epehemeral** (pod) storage - review the containers' CPU defined - since ephemeral storage scales with the amount of CPU set for a container.
+
+If an application is consistently hitting quota limits, you can:
+- Increase CPU size to be aligned with [here](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#temporary-storage), which would increase ephemeral storage.
+- Or, use **[Azure Files](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#azure-files)** which would offer increased storage size. However, if there are alot of temporary files or files that don't need to be persisted - then this option shouldn't be used as eventually you'd be at risk of filling up this Azure Files quota as well - unless these files are periodically/systematically deleted
