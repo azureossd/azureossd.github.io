@@ -32,7 +32,7 @@ An important call out is that "connection timeouts" or "connection refused" can 
 
 This post and the above GitHub issue(s) are **specifically for applications that use Reactor Netty - or - are usng Http clients (or framework methods) that use this under the hood** (eg. Spring Webflux, Spring Cloud Gateway, etc.)
 
-Additionally, also ensure App Service Logs are enabled, or else you won't see these error messages. You'll only be able to tell by status code. These can be enabled b y following [App Service Logs](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer). This can be then be viewed in various ways (FTP, Logstream, Azure CLI, directly through the )
+Additionally, also ensure App Service Logs are enabled, or else you won't see these error messages. You'll only be able to tell by status code. These can be enabled by following this link - [App Service Logs](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer). This can be then be viewed in various ways (FTP, Logstream, Azure CLI, Diagnose and Solve Problems -> Application Logs 'detector', etc.)
 
 # Behavior
 After making a request (or multiple requests), a subsequent request will timeout. This may be intermittent.
@@ -70,11 +70,13 @@ public class HttpReactorNettyController {
 # Resolution
 The main, direct resolution, is to set the `maxIdleTime` method to a value _less_ than the load balancers timeout. On Azure App Service and Container Apps, this is 240 seconds. In this example, we set this to 200 seconds.
 
-Other load balancers will vary.
+Other load balancers will vary. More information on `maxIdleTime` and aspects of the HTTP client can be found here - [Reactor Netty Reference Guide - Connection Pool Timeout](https://projectreactor.io/docs/netty/release/reference/index.html#connection-pool-timeout)
 
 The below is a more full-fledged example which uses `reactor.netty.resources.ConnectionProvider` to create a new provider which exposes `maxIdleTime` and is passed into the `WebClient`'s `builder()` method for our HTTP client.
 
 > **NOTE**: Using other HTTP clients that are _not_ Reactor Netty based should not show this issue. That can potentially be another alternative
+
+> The code below is just an example. Your code may vary.
 
 ```java
 @RestController
