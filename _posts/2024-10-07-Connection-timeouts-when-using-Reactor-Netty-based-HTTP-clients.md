@@ -35,7 +35,9 @@ This post and the above GitHub issue(s) are **specifically for applications that
 Additionally, also ensure App Service Logs are enabled, or else you won't see these error messages. You'll only be able to tell by status code. These can be enabled b y following [App Service Logs](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer). This can be then be viewed in various ways (FTP, Logstream, Azure CLI, directly through the )
 
 # Behavior
-This will manifest as the following:
+After making a request (or multiple requests), a subsequent request will timeout. This may be intermittent.
+
+Errors will manifest as the following:
 
 ```java
 io.netty.channel.unix.Errors$NativeIoException: recvAddress(..) failed: Connection timed out
