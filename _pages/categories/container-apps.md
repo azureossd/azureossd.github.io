@@ -31,6 +31,10 @@ Here is a compilation of resources by categories:
 - [Graceful termination on Container Apps](https://azureossd.github.io/2024/05/27/Graceful-termination-on-Container-Apps/index.html)
 - [Container Apps - Binding to ports under 1024](https://azureossd.github.io/2024/06/10/Container-Apps-Binding-to-ports-under-1024/index.html)
 - [Using a Container App Job as Github Actions Runner for your entire Github Orginization](https://azureossd.github.io/2024/07/02/Container-App-Job-runner-for-entire-Github-Orginization/index.html)
+- [Container Apps - Using labels with KEDA and GitHub Action runners](https://azureossd.github.io/2024/10/04/Container-Apps-Using-labels-with-KEDA-and-GitHub-Action-runners/index.html)
+- [Container Apps - Referencing env vars through other environment variables](https://azureossd.github.io/2024/10/03/Container-Apps-Referencing-env-vars-through-other-environment-variables/index.html)
+- [Troubleshooting general secret issues on Container Apps](https://azureossd.github.io/2024/08/27/Troubleshooting-general-secret-issues-on-Container-Apps/index.html)
+- [Troubleshooting general KEDA scaling scenarios](https://azureossd.github.io/2024/08/23/Troubleshooting-general-KEDA-scaling-scenarios/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
@@ -43,11 +47,14 @@ Here is a compilation of resources by categories:
 - [Container Apps - Demystifying restarts](https://azureossd.github.io/2024/01/11/Container-Apps-Demystifying-restarts/index.html)
 - [Container Apps - Backoff restarts and container exits](https://azureossd.github.io/2024/01/19/Container-Apps-Backoff-restarts-and-container-exits/index.html)
 - [Preventing File Locks when mounting storage on Azure Container Apps](https://azureossd.github.io/2024/05/16/Preventing-File-Locks-Azure-Container-Apps/index.html)
+- [Container Apps - ‘Target port does not match the listening port’](https://azureossd.github.io/2024/10/08/Container-Apps-'Target-port-does-not-match-the-listening-port'/index.html)
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)
 - [Using and troubleshooting GitHub Actions with Container Apps](https://azureossd.github.io/2023/07/13/Using-and-troubleshooting-GitHub-Actions-with-Container-Apps/index.html)
 - [Using and troubleshooting Azure DevOps with Container Apps](https://azureossd.github.io/2023/06/30/Using-and-troubleshooting-Azure-DevOps-with-Container-Apps/index.html)
+- [Deploying Reflex Applications to Azure Container Apps](https://azureossd.github.io/2024/08/24/Deploying-Reflex-Application-to-Azure-Container-Apps/index.html)
+- [Setting up a basic Elasticsearch container on Container Apps](https://azureossd.github.io/2024/08/13/Setting-up-a-basic-Elasticsearch-container-on-Container-Apps/index.html)
 
 ## Performance
 - [Container Apps: Profiling Node applications for performance issues](https://azureossd.github.io/2023/10/19/Container-Apps-Profiling-Node-applications-for-performance-issues/index.html)
