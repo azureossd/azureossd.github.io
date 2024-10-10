@@ -77,6 +77,9 @@ Documentation for using storage mounts in Azure Container Apps can be found [her
 ## Common Errors
 The below errors will show in `ContainerAppSystemLogs_CL` - this will depend on the scenario encountered:
 
+- `Output: mount error(115): Operation now in progress`
+   - It is likely there is a UDR set that is causing traffic to storage to be blocked.
+
 - `Output: mount error: could not resolve address for someaddress.file.core.windows.net: Unknown error`
 
     - The Storage Account FQDN may not be able to be resolved - DNS may be misconfigured or traffic from Azure Container Apps is being blocked.
