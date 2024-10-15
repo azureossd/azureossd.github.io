@@ -43,3 +43,4 @@ You can find a compilation of resources by categories:
 - [Diagnostic Tools for Java Performace on App Service Windows](https://azureossd.github.io/2022/05/20/Diagnostic-Tools-for-Java-Performace-on-App-Service-Windows/index.html)
 - [Custom Tomcat Configuration on Azure App Service Windows](https://azureossd.github.io/2021/06/17/Custom-Tomcat-Configuration-on-Azure-App-Service-Windows-copy/index.html)
 - [Deploying WAR based Java Applications with Github Actions on Windows App Services](https://azureossd.github.io/2023/05/30/Deploying-War-Files-On-Windows-App-Services-with-GithubActions/index.html)
+- [Deploying JAR based Java applications with CI/CD (Azure DevOps) on Windows App Services](https://azureossd.github.io/2024/09/27/Deploying-JAR-based-Java-applications-with-CICD-on-Windows-App-Services/index.html)
