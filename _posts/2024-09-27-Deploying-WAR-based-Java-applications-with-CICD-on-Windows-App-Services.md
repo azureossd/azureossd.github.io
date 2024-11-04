@@ -318,24 +318,31 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs:
-  - job: MavenPackageAndPublishArtifacts
-    displayName: Maven Package and Publish Artifacts
+  - job: GradlePackageAndPublishArtifacts
+    displayName: Gradle Package and Publish Artifacts
     pool:
       vmImage: $(vmImageName)
 
     steps:
-    - task: Maven@3
-      displayName: 'Maven Package'
+    # We add this to set Java 17 for our pipeline environment
+    - task: JavaToolInstaller@0
       inputs:
-        mavenPomFile: 'pom.xml'
-        # We add jdkVersionOption to point to Java 17 for Maven
-        jdkVersionOption: 1.17
+        versionSpec: '17'
+        jdkArchitectureOption: 'x64'
+        jdkSourceOption: 'PreInstalled'
+        
+    # We add this Gradle task to build with Gradle
+    - task: Gradle@3
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'build'
+        javaHomeOption: 'JDKVersion'
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
+        Contents: '**/build/libs/your_war.war'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
     - upload: $(Build.ArtifactStagingDirectory)
@@ -356,12 +363,12 @@ stages:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: myapp'
+            displayName: 'Azure Web App Deploy: yourapp'
             inputs:
               azureSubscription: $(azureSubscription)
-              appType: webAppWindows
+              appType: webAppLinux
               appName: $(webAppName)
-              package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+              package: '$(Pipeline.Workspace)/drop/**/build/libs/your_war.war'
               # IMPORTANT: If you don't add this it will deploy to a context named after your WAR
               # ex. yoursite.azurewebsites.net/azure-0.0.1-SNAPSHOT/
               customDeployFolder: 'ROOT'
