@@ -43,7 +43,7 @@ Here is a compilation of resources by categories:
 - [Troubleshooting No space left on device](https://azureossd.github.io/2023/04/11/troubleshooting-no-space-left-on-device/index.html)
 - [Troubleshooting Bring Back SSH for App Service (Blessed) Images](https://azureossd.github.io/2023/06/27/Troubleshooting-Bring-Back-SSH-for-App-Service-(Blessed)-Images/index.html)
 - [Middleware containers - Why you may see "Failed to forward request messages" for your application on App Service Linux](https://azureossd.github.io/2023/04/05/Why-you-may-see-Failed-to-forward-request-messages-for-your-application-on-App-Service-Linux/index.html)
-- [Troubleshooting Container didnt respond to HTTP pings on port, failing site start](https://azureossd.github.io/2023/04/18/Troubleshooting-Container-didnt-respond-to-HTTP-pings-failing-to-start-site/index.html)
+- [Troubleshooting Container didnt respond to HTTP pings on port, failing site start](https://azureossd.github.io/2023/04/17/Troubleshooting-Container-didnt-respond-to-HTTP-pings-failing-to-start-site/index.html)
 - [Troubleshooting Bring Your Own Storage (BYOS) issues on App Service Linux](https://azureossd.github.io/2023/04/20/How-to-troubleshoot-Bring-Your-Own-Storage-(BYOS)-Issues-on-App-Service-Linux/index.html)
 
 # Web app for Containers

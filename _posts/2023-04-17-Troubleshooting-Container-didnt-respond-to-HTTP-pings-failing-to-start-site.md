@@ -120,5 +120,14 @@ Some ways to validate if this is the case is to use:
 
 A possible mitigation or resolution would be to scale up the App Service Plan, if applicable - or, if this is a density issue - to split the App Service Plan. If it's determined that a specific application process is the offender, profiling and/or memory dumps may be worth while.
 
+
+## Using an HTTPS server
+Applications that create, start and listen on HTTPS servers within their codebase will always time out upon start. This scenario will not work on App Service, since in all cases, the request will always be sent to the container over HTTP.
+
+Therefor, if an application is expecting to receive an HTTPS request _after_ the internal proxy, it will never happen. This is what causes startup to fail since the platform expects a status code to be returned from the application, however, this request will hang/fail due to the fact these requests (and all requests) are sent over HTTP
+
+The resolution is to simply use an HTTP server. App Service "FrontEnds" utilize TLS offloading so these HTTPS/TLS benefits can still apply.
+- Note, if listening on port 443 after changing the application to use HTTP servers, the application will still only be accepting HTTP requests. The port number in itself is not going to dictate being able to accept HTTPS traffic.
+
 ## Other scenarios
 There may be other scenarios not covered here which can cause the container to time out - if that is the case, it's always key to have App Service Logs enabled and to review these appropriately. 
