@@ -292,8 +292,8 @@ This will package the war with the name defined here and is what will be passed 
 ### Gradle
 
 ```yaml
-# Maven package Java project Web App to Linux on Azure
-# Build your Java project and deploy it to Azure as a Linux web app
+# Maven package Java project Web App to Windows on Azure
+# Build your Java project and deploy it to Azure as a Windows web app
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
@@ -366,7 +366,7 @@ stages:
             displayName: 'Azure Web App Deploy: yourapp'
             inputs:
               azureSubscription: $(azureSubscription)
-              appType: webAppLinux
+              appType: webApp
               appName: $(webAppName)
               package: '$(Pipeline.Workspace)/drop/**/build/libs/your_war.war'
               # IMPORTANT: If you don't add this it will deploy to a context named after your WAR
