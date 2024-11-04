@@ -1,5 +1,5 @@
 ---
-title: "Deploying JAR based Java applications with CI/CD (Azure DevOps) on App Service Windows"
+title: "Deploying WAR based Java applications with CI/CD (Azure DevOps) on App Service Windows"
 author_name: "Prakash Matte"
 tags:
     - Java
@@ -23,17 +23,17 @@ toc_sticky: true
 date: 2024-09-27 12:00:00
 ---
 
-In this blog post we'll cover some examples of how to deploy jar based applications to Windows App Service using Azure DevOps.
+In this blog post we'll cover some examples of how to deploy war based applications to Windows App Service using Azure DevOps.
 
 ## Overview
 
-This section will cover CI/CD deployment for jar-based applications - this is for Blessed Tomcat images, which will act as our Web Container for our jar. With this image, you still have the option to choose your Java major version, as well as Apache Tomcat major and minor version - but the premise is that we’re deploying a jar file into a Tomcat container, which Tomcat itself will run.
+This section will cover CI/CD deployment for war-based applications - this is for Blessed Tomcat images, which will act as our Web Container for our war. With this image, you still have the option to choose your Java major version, as well as Apache Tomcat major and minor version - but the premise is that we’re deploying a war file into a Tomcat container, which Tomcat itself will run.
 
 Below is a configuration reference from the portal:
 
 <div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-configuration.png" /></div>
 
-This is not the same as running a Java SE "Blessed" Image which requires this to be an executable jar with an embedded Web Server.
+This is not the same as running a Java SE "Blessed" Image which requires this to be an executable war with an embedded Web Server.
 
 This post will also include deployment differences for Maven and Gradle.
 
@@ -46,12 +46,12 @@ This post will also include deployment differences for Maven and Gradle.
 - **Language**: Java
 - **Spring Boot**: 3.4.0 (SNAPSHOT)
 - **Project Metadata**: Fill this as fits your needs
-- **Packaging**: Jar
+- **Packaging**: War
 - **Java**: 17
 
 For Dependencies, go to **Add Dependencies** and choose **Spring Web**. Click **Generate** after this, which will download a zip which we'll extract into a project workspace. 
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-cicd.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-cicd.png" /></div>
 
 1. After downloading the zip, extract it on your local machine and cd into the folder with the source code.
 2. In a terminal, run either of the following:
@@ -63,17 +63,17 @@ For Dependencies, go to **Add Dependencies** and choose **Spring Web**. Click **
 After running the above command, you should see some output like the below in your terminal:
 
 ```java
-2024-10-12T21:01:09.725-05:00  INFO 32184 --- [azure] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-10-12T21:01:09.728-05:00  INFO 32184 --- [azure] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]     
-2024-10-12T21:01:09.814-05:00  INFO 32184 --- [azure] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext   
-2024-10-12T21:01:09.815-05:00  INFO 32184 --- [azure] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1263 ms
-2024-10-12T21:01:10.166-05:00  INFO 32184 --- [azure] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-10-12T21:01:10.176-05:00  INFO 32184 --- [azure] [           main] com.devops.azure.AzureApplication        : Started AzureApplication in 2.367 seconds (process running for 2.876)
+2024-11-03T21:01:16.889-06:00  INFO 28988 --- [azure] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-03T21:01:16.889-06:00  INFO 28988 --- [azure] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]       
+2024-11-03T21:01:16.966-06:00  INFO 28988 --- [azure] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-03T21:01:16.967-06:00  INFO 28988 --- [azure] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1007 ms
+2024-11-03T21:01:17.328-06:00  INFO 28988 --- [azure] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-11-03T21:01:17.346-06:00  INFO 28988 --- [azure] [           main] com.devops.azure.AzureApplication        : Started AzureApplication in 1.936 seconds (process running for 2.302)
 ```
 
 3. Browsing to localhost:8080 should show a **Whitelabel Error Page**, which is expected, since we have no Controllers serving our root path. 
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-maven-default-screen.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-maven-default-screen.png" /></div>
 
 4. Let's add a Controller and model to show at the REST URL when hitting /greeting. Under your project src, **relative** to your entrypoint `.java` file, create a controller and a model. Let's name is **GreetingController.java** and **Greeting.java**. The project structure should look like this:
 
@@ -121,7 +121,7 @@ public record Greeting(long id, String content) { }
 
 7. Restart the application. Refresh the browser, we should now see the below output at /greeting:
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-maven-greeting-screen.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-maven-greeting-screen.png" /></div>
 
 8. Push this code to a repository of your choosing to use later on for the DevOps section. 
 
@@ -132,12 +132,12 @@ public record Greeting(long id, String content) { }
 - **Language**: Java
 - **Spring Boot**: 3.4.0 (SNAPSHOT)
 - **Project Metadata**: Fill this as fits your needs
-- **Packaging**: Jar
+- **Packaging**: War
 - **Java**: 17
 
 For Dependencies, go to **Add Dependencies** and choose **Spring Web**. Click **Generate** after this, which will download a zip which we'll extract into a project workspace. 
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-gradle-cicd.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-gradle-cicd.png" /></div>
 
 2. After downloading the zip, extract it on your local machine and cd into the folder with the source code.
 3. In a terminal, run ./gradlew bootRun to start the Spring Boot application. You should see the same output above as discussed in th Maven section.
@@ -162,8 +162,6 @@ In your Azure DevOps project go to:
 <div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-cicd-select-pipeline.png" /></div>
 
 ### Maven
-
-Below is the .yaml with the recommended changes. Replace $(JAR_NAME) with the name of your jar file.
 
 ```yaml
 # Maven package Java project Web App to Windows on Azure
@@ -202,18 +200,14 @@ stages:
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
+        # We add jdkVersionOption to point to Java 17 for Maven
         jdkVersionOption: 1.17
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        # NOTE: You can use glob patterns to specify a jar, without having to explicitly name one
-        # eg. like:
-        # Contents: '**/target/*.jar'
-        # Assuming that only one (1) jar exists or the glob pattern is specific to avoid passing multiple jars to the next stage
-        # Which may fail
-        Contents: '**/target/$(YOUR_JAR).jar'
+        Contents: '**/target/*.?(war|jar)'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
     - upload: $(Build.ArtifactStagingDirectory)
@@ -224,7 +218,7 @@ stages:
   dependsOn: Build
   condition: succeeded()
   jobs:
-  - deployment: DeployWebApp
+  - deployment: DeployWindowsWebApp
     displayName: Deploy Windows Web App
     environment: $(environmentName)
     pool:
@@ -240,19 +234,21 @@ stages:
               appType: webApp
               appName: $(webAppName)
               package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+              # IMPORTANT: If you don't add this it will deploy to a context named after your WAR
+              # ex. yoursite.azurewebsites.net/azure-0.0.1-SNAPSHOT/
+              customDeployFolder: 'ROOT'
 ```
-
 **Note** Make sure to Authorize the pipeline for deployment. Click into the pipeline to view and permit this. This should be a one time operation.
 
 Once the build was succesful from Azure DevOps pipeline, you could validate the deployment at the following two places from App Service. 
 
 - Go to portal.azure.com -> App Service -> Deployment Center
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-app-service-deployment-center-validate.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-app-service-deployment-center-validate.png" /></div>
 
 - Go to portal.azure.com -> App Service -> Advanced Tools -> Debug Console -> CMD
 
-<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-jar-app-service-advanced-tools-validate.png" /></div>
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-war-app-service-advanced-tools-validate.png" /></div>
 
 6. At this point after deployment, we should be able to browse our application on Azure.
 
@@ -260,13 +256,22 @@ Once the build was succesful from Azure DevOps pipeline, you could validate the 
 
 You can view the Maven task documentation for further configuration [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/maven-v3?view=azure-pipelines&viewFallbackFrom=azure-devops).
 
-#### Troubleshooting
+#### Azure DevOps - Why am I getting a 404 after deployment?
+If you're following along with the above, you should be able to get a pipeline quickly spun up with a succesful deployment. However, if you are expecting your site content to show up on the site's root path ("/") but did not add the **customDeployFolder** property (seen above), you may see this 404 after deployment:
 
-##### Mismatch of web.config and jar file in /home/site/wwwroot in concurrent deployments. 
-Eg: When you deploy the code from Azure DevOps and CLI / Eclipse simultaneously
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-404.png" /></div>
 
-1. Add YOUR_JAR with value 'app' in the pipeline -> variables section.
-2. Add **&lt;finalName&gt;app&lt;/finalName&gt;** in the pom.xml -> build tag
+You'll see that when this deployment API is used it creates a `webapps` folder under `wwwroot` containing our exploded war:
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-default-artifact.png" /></div>
+
+This is because, by default, the API's used in this deployment task pass the name of our war to the `name` parameter in the War Deploy URI being called. Therefore, if your war isn't named `ROOT`, **it will always deploy to a different context named after your war file**. 
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-default-artifact-output.png" /></div>
+
+This is opposed to the **OneDeploy** API being used on deployment methods such as the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-deploy) or the [Maven Plugin](https://learn.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux-development-environment-maven#configure-the-maven-plugin) which, under the hood, rename our war (or jar) to `app.war` and deploy directly to `wwwroot` instead of `wwwroot/webapps`. This in turn is mapped directly to the root context ("/").
+
+Another quick way to solve this, aside from using the `customDeployFolder` property is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
 
 ```xml
 <build>
@@ -276,19 +281,19 @@ Eg: When you deploy the code from Azure DevOps and CLI / Eclipse simultaneously
 			<artifactId>spring-boot-maven-plugin</artifactId>
 		</plugin>
 	</plugins>
-	<finalName>app</finalName>
+	<finalName>ROOT</finalName>
 </build>
 ```
 
-**Note** If you don't follow this approach, the Azure DevOps considers a different jar file name (same as your local machine) and whereas the CLI commands creates the jar as app.jar, hence it will conflict with the web.config configuration, hence your app in Azure won't run as expected.
+This will package the war with the name defined here and is what will be passed to the `name` parameter described above.
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-ROOT-artifact-output.png" /></div>
 
 ### Gradle
 
-Below is the .yaml with the recommended changes. Replace $(JAR_NAME) with the name of your jar file.
-
 ```yaml
-# Maven package Java project Web App to Linux on Azure
-# Build your Java project and deploy it to Azure as a Linux web app
+# Maven package Java project Web App to Windows on Azure
+# Build your Java project and deploy it to Azure as a Windows web app
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
@@ -317,8 +322,8 @@ stages:
     displayName: Gradle Package and Publish Artifacts
     pool:
       vmImage: $(vmImageName)
-    steps:
 
+    steps:
     # We add this to set Java 17 for our pipeline environment
     - task: JavaToolInstaller@0
       inputs:
@@ -333,17 +338,11 @@ stages:
         tasks: 'build'
         javaHomeOption: 'JDKVersion'
 
-    # We change this to reflect Gradles build output location for our jars
-    # Which is /build/libs/<jar>.jar
-    # Replace JAR_NAME with the name of your jar -eg., azure-0.0.1.SNAPSHOT.jar
-    # NOTE: You can use glob patterns to specify a jar, without having to explicitly name one, eg. like:
-    # Contents: '**/target/*.jar'
-    # Assuming that only one (1) jar exists or the glob pattern is specific to avoid passing multiple jars to the next stage - Which may fail
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/build/libs/$(JAR_NAME).jar'
+        Contents: '**/build/libs/your_war.war'
         TargetFolder: $(Build.ArtifactStagingDirectory)
 
     - upload: $(Build.ArtifactStagingDirectory)
@@ -364,28 +363,60 @@ stages:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: jarnamingerror'
+            displayName: 'Azure Web App Deploy: yourapp'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webApp
               appName: $(webAppName)
-              # We can change this to reflect the proper Gradle build output path for our jars
-              # Replace JAR_NAME with the name of your jar -eg., azure-0.0.1.SNAPSHOT.jar
-              package: '$(Pipeline.Workspace)/drop/**/build/libs/$(JAR_NAME).jar'
+              package: '$(Pipeline.Workspace)/drop/**/build/libs/your_war.war'
+              # IMPORTANT: If you don't add this it will deploy to a context named after your WAR
+              # ex. yoursite.azurewebsites.net/azure-0.0.1-SNAPSHOT/
+              customDeployFolder: 'ROOT'
+```
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-gradle-war-default-artifact.png" /></div>
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-gradle-war-default-artifact-output.png" /></div>
+
+#### Azure DevOps - Why am I getting a 404 after deployment?
+
+The same applies to what was covered in the [Maven section above](#azure-devops---why-am-i-getting-a-404-after-deployment). 
+
+### Troubleshooting
+
+#### App works on Embedded Server, but not on Tomcat Web Server in Azure
+
+It is worth checking if it works fine in a local machine using the following steps. 
+
+1. Download Apache Tomcat from https://tomcat.apache.org/download-10.cgi . Here I am using 10.1.31, but other versions are available in the same place. 
+2. I downloaded and installed "32-bit/64-bit Windows Service Installer"
+3. If there is any conflict with the port while running the Tomcat, edit /conf/server.xml and change the port at the following place in server.xml
+
+```xml
+<Connector port="9000" protocol="HTTP/1.1"
+  connectionTimeout="20000"
+  redirectPort="8443"
+  maxParameterCount="1000"
+/>
 ```
 
-#### Troubleshooting
+**NOTE**: I changed to 9000 as my other app runs at 8080, if you don't have any other apps running at 8080 / tomcat default port, you don't need to make any changes.
 
-##### Mismatch of web.config and jar file in /home/site/wwwroot in concurrent deployments
+4. Browse http://localhost:9000/manager/html
+5. If this prompots with Username and Password, grab tomcat user credentials from /conf/tomcat-users.xml. It will be in the `<tomcat-users></tomcat-users>` section.
+6. If you don't find such thing, add the following line before </tomcat-users>
 
-1. Add YOUR_JAR with value 'app' in the pipeline -> variables section.
-2. Add the following section in the build.gradle file in your project
-
-```json
-tasks {
-    bootJar {
-        archiveFileName.set("app.jar")
-    }
-}
+```xml
+<user username="tomcat" password="xxyyzz" roles="manager-gui"/>
 ```
 
+7. Copy the generated war file in the /webapps folder. After sometime, the war file gets extracted and deployed in the Tomcat (as shown below), which you can access from the /manager.html in the browser.
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-tomcat-manager.png" /></div>
+
+8. When you access the extracted war folder, the app will load its content.
+
+<div style="border: 1px solid black;"><img src="/media/2024/10/azure-blog-tomcat-windows-cicd-war-tomcat-dep-app.png" /></div>
+
+8. If you see the same error as you saw in the Azure, fix it in the local machine and try deploying again.
+
+**NOTE**: Sometimes, your app works in the IDE, but not in Web Server such as tomcat, that means there must be some configuration / code missing in the main class. 
