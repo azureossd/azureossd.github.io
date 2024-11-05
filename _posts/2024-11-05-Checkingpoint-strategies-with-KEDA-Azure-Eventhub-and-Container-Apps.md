@@ -3,8 +3,8 @@ title: "Checkpoint strategies with Dapr, KEDA, Azure EventHub and Container Apps
 author_name: "Anthony Salemo"
 tags:
     - Configuration
-    - Linux
-    - Ingress
+    - KEDA
+    - Dapr
     - Azure Container Apps
 categories:
     - Azure Container Apps # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
