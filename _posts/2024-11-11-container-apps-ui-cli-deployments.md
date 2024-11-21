@@ -136,7 +136,7 @@ The complete details of the query is available at [Kusto Queries](https://learn.
 To troubleshoot the issue further, you may refer - [Container Apps - Target port does not match the listening port ](https://azureossd.github.io/2024/10/08/Container-Apps-'Target-port-does-not-match-the-listening-port'/index.html)
 
 ## Why do I get "Impossible to build the artifact file" error
-When you run the "containerappup" command from your local machine and it returns the following error, check if Docker Desktop is running in your computer. If not, start running and execute the command again. 
+When you run the "az containerapp up" command from your local machine and it returns the following error, check if Docker Desktop is running in your computer. If not, start running and execute the command again. 
 
 "Impossible to build the artifact file .\target\app.jar with ACR Task. Please make sure that you use --source and target a directory, or if you want to build your artifact locally, please make sure Docker is running on your machine."
 
