@@ -35,7 +35,7 @@ Instrumenting an application with opentelemetry can be found in [Zero code instr
 
 **NOTE**: The below FQDN's used for Zipkin is the Kubernetes-based pod name. The FQDN used for the opentelemetry collector is an internal FQDN. It is possible to use an external FQDN for both of these.
 
-# Zipkin
+## Zipkin
 We can use the Docker Hub image for Zipkin to quickly set up a basic Zipkin applicatiion. Zipkin defaults to using in-memory storage, therefor any container or pod/replica restarts/recreations will cause this data to be deleted.
 
 In a production scenario, you want to set up a storage backend of either Cassandra or ElasticSearch. Configuration on how to do this can be found here: [openzipkin - storage](https://github.com/openzipkin/zipkin/tree/master/zipkin-server#storage)
