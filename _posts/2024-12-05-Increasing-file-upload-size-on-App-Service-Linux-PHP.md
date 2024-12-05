@@ -38,7 +38,7 @@ You can check PHP "core" defaults by adding a `<?php phpinfo(); ?>` to a `phpinf
 
 > **NOTE**: If file uploads are slow, you may want to consider increasing `max_execution_time` through a custom `.ini` file. The default for this is 30 seconds. 
 
-The typical behavior seen when **not** increasing this is that file sizes over `1MB` will return a HTTP 431 from NGINX. For example, if we use try to upload a `2.2MB` file, as seen below:
+The typical behavior seen when **not** increasing this is that file sizes over `1MB` will return a HTTP 413 from NGINX. For example, if we use try to upload a `2.2MB` file, as seen below:
 
 ![2.2MB text file CLI output](/media/2024/12/php-increase-file-upload-size-6.png)
 
@@ -162,4 +162,4 @@ At this point, after increasing **both** PHP's and NGINX's max allowed file size
 ![PHP file upload success](/media/2024/12/php-increase-file-upload-size-5.png)
 
 # Summary
-You need to increase NGINX's `client_max_body_size` (which has a default of 1MB) and PHP's `upload_max_filesize` (which h as a default of 2MB) - otherwise, you may encounter an HTTP 431, or, an error returned from PHP - when uploading files greater than 1MB for NGINX and 2MB for PHP.
+You need to increase NGINX's `client_max_body_size` (which has a default of 1MB) and PHP's `upload_max_filesize` (which h as a default of 2MB) - otherwise, you may encounter an HTTP 413, or, an error returned from PHP - when uploading files greater than 1MB for NGINX and 2MB for PHP.
