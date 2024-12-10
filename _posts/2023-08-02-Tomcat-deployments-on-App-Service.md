@@ -83,7 +83,7 @@ demo-0.0.1-SNAPSHOT  demo-0.0.1-SNAPSHOT.war
 In this case, the war follows an approach that mimics the OneDeploy logic below - where the `.war` is _not_ expanded under `/home/site/wwwroot` but rather is locally coped over to `/usr/local/tomcat/webapps/[context]` and expanded there.
 
 ## One Deploy
-> The below is focusing on Azure CLI command usage
+> The below is focusing on Azure CLI command usage. However, GitHub Actions `azure/webapps-deploy@v3` and the Maven deployment plugin for Azure App Service both also use OneDeploy under the hood
 
 **az webapp deploy**:
 > **NOTE**: This method uses **OneDeploy** instead of "Push Deployer" (Zip Deploy)

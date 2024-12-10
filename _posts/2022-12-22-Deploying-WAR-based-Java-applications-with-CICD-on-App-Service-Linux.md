@@ -574,6 +574,8 @@ Use the `-CATALINA_OPTS "-Dsome=value -Dfoo=bar"` syntax
 > **NOTE**: Tomcat applications use CATALINA_OPTS, where as Java SE (Embedded Tomcat, .jar applications) use JAVA_OPTS - see [here](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#set-java-runtime-options)
 
 ## GitHub Actions
+> GitHub Actions (`azure/webapps-deploy@v3`) does not use WarDeploy. This uses OneDeploy. Only `azure/webapps-deploy@v2` uses War Deploy
+
 ### Maven
 To get started with GitHub Actions, create a Java on App Service Linux application. In this case, we'll still use a Java 17 runtime with Tomcat 9. After creating the application, do the following:
 
@@ -658,6 +660,8 @@ Package deployment using WAR Deploy initiated.
 ##[debug][POST] https://mysite.scm.azurewebsites.net:443/api/wardeploy?isAsync=true&name=azure-0.0.1-SNAPSHOT&message=...
 ...
 ```
+
+> **NOTE**: If you want to avoid this behavior and use the recommended OneDeploy API, consider using `azure/webapps-deploy@v3`
 
 Just as discussed in the Azure DevOps section, the name of our war is passed as a value to the `name` parameter, which deploys this to a Tomcat Context of the same name. Therefor, if your war is **NOT** named `ROOT`, it will be accessed under the name of your war (ex., https://sitename.azurewebsites.net/azure-0.0.1-SNAPSHOT)
 
