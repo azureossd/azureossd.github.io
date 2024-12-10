@@ -171,7 +171,7 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: Maven@3
+    - task: Maven@4
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
@@ -217,7 +217,7 @@ stages:
 However, since we're using **Java 17** we need to update the Maven task to the below, `JAVA_HOME` (at the time of writing this) points to `/usr/lib/jvm/temurin-11-jdk-amd64`. We need to point this to a Java 17 JDK. If you don't do this we'll get an `Fatal error compiling: error: invalid target release: 17`
 
 ```yaml
-    - task: Maven@3
+    - task: Maven@4
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
@@ -352,7 +352,7 @@ To view other configuration that can be used with Gradle for the `Gradle@3` task
 If tests are failing and are able to be excluded, a Maven Options property can be added to the task, like the below:
 
 ```yaml
-- task: Maven@3
+- task: Maven@4
   displayName: 'Maven Package'
   inputs:
     mavenPomFile: 'pom.xml'

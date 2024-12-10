@@ -36,6 +36,7 @@ Here is a compilation of resources by categories:
 
 ## Deployment
 - [Troubleshooting HTTP 409’s when deploying to Azure App Service](https://azureossd.github.io/2023/08/14/Troubleshooting-HTTP-409s-when-deploying-to-App-Service/index.html)
+- [Deploying Applications to Azure App Service Using Oryx](https://azureossd.github.io/2024/10/14/deploying-applications-to-azure-appservice-using-oryx/index.html)
 
 
 ## Availability and Startup issues
