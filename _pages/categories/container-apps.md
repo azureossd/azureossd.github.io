@@ -35,6 +35,10 @@ Here is a compilation of resources by categories:
 - [Container Apps - Referencing env vars through other environment variables](https://azureossd.github.io/2024/10/03/Container-Apps-Referencing-env-vars-through-other-environment-variables/index.html)
 - [Troubleshooting general secret issues on Container Apps](https://azureossd.github.io/2024/08/27/Troubleshooting-general-secret-issues-on-Container-Apps/index.html)
 - [Troubleshooting general KEDA scaling scenarios](https://azureossd.github.io/2024/08/23/Troubleshooting-general-KEDA-scaling-scenarios/index.html)
+- [Using Zipkin and OpenTelemetry on Azure Container Apps](https://azureossd.github.io/2024/12/02/Using-Zipkin-and-OpenTelemetry-on-Azure-Container-Apps/index.html)
+- [Container Apps - Deployments through UI and CLI](https://azureossd.github.io/2024/11/11/container-apps-ui-cli-deployments/index.html)
+- [Checkpoint strategies with Dapr, KEDA, Azure EventHub and Container Apps](https://azureossd.github.io/2024/11/05/Checkingpoint-strategies-with-KEDA-Azure-Eventhub-and-Container-Apps/index.html)
+- [Using additional TCP ports in Azure Container Apps](https://azureossd.github.io/2024/10/31/Using-additional-tcp-ports-in-Azure-Container-Apps/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)

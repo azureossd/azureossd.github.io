@@ -57,6 +57,7 @@ You can find a compilation of resources by categories:
 - [Using modern Yarn for deployment with Node.js](https://azureossd.github.io/2022/08/10/Using-modern-Yarn-for-deployment-with-Node.js-on-Azure-App-Service/index.html)
 - [Best practices for not using Development Servers on Nodejs applications](https://azureossd.github.io/2022/10/26/Best-practices-for-not-using-Development-Servers-on-Nodejs-applications-and-App-Service-Linux/index.html)
 - [Why to avoid installing packages in startup scripts](https://azureossd.github.io/2022/10/14/Nodejs-on-App-Service-Linux-and-why-to-avoiding-installing-packages-in-startup-scripts/index.html)
+- [Rebuild Your Node.js Project the Right Way](https://azureossd.github.io/2024/10/14/rebuild-your-nodejs-project-the-right-way/index.html)
 
 ## Performance
 - [Troubleshooting Node.js High Memory scenarios](https://azureossd.github.io/2021/12/10/Troubleshooting-NodeJS-High-Memory-scenarios-in-App-Service-Linux/index.html)
