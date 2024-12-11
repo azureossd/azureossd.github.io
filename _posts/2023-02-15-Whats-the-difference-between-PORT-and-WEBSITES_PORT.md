@@ -27,6 +27,8 @@ The other option are **Custom Images** (eg., Web Apps for Containers) which are 
 These two variables, PORT and WEBSITES_PORT, have different effects based on what type of images you're using. The idea of this post is to clearly explain which has an effect and where.
 
 # Where can I see these changes?
+> **NOTE**: Going forward you may not see `docker run` appear in your `default_docker.log` file. Instead, it'll be other somewhat similiar container startup output. This, however, may not includethe exposed port. This is expected currently.
+
 When changing port settings - you'll see these in your container logs. Specifically, `docker.log` - which is the "platform" log file, meaning `docker` client based commands will be logged here. 
 
 What appears in these logs is the `docker run` command for your container, which should look like the following:
@@ -76,7 +78,7 @@ All of the below pertains to apps that were **not** created with "sidecar suppor
 
 The below section is also relevant to "Blessed Images".
 
-# WEBSITES_PORT
+## WEBSITES_PORT
 **Tldr**: If you're running a custom container with Web App for Containers, always use **WEBSITES_PORT**. Make sure this is set to the port that's also exposed in your Dockerfile through the `EXPOSE` instruction (or if that isn't set, the port your application listens on)
 
 <br>
@@ -127,7 +129,7 @@ CMD [ "node", "/app/server.js" ]
 You should **still** add `WEBSITES_PORT` set to 8080 (or what is exposed in your Dockerfile) to avoid any port specific issues when the container is started.
 
 
-## Does Port have any meaning here?
+### Does Port have any meaning here?
 Yes and no. `PORT` does not directly have the same meaning as `WEBSITES_PORT` when using Web App for Containers. But does directly alter the `docker run` command in regards to the container port if `WEBSITES_PORT` is **not** set. The meaning of `WEBSITES_PORT` is to tell which port the platform needs to run `docker run` against. 
 
 `PORT` also may have specific meaning to your application if this is referenced in your codebase. So it may be needed to add both `WEBSITES_PORT` and `PORT`.
@@ -136,7 +138,7 @@ Therefor, it is possible to just only use `PORT` or both `PORT` and `WEBSITES_PO
 
 **IMPORTANT**: If both `WEBSITES_PORT` and `PORT` are set as App Settings, `WEBSITES_PORT` will take precedence. 
 
-# Port (Blessed Images)
+## Port (Blessed Images)
 **tldr:** On App Service Linux, using Blessed Images - `PORT` directly influences the **container port** of the `docker run` command. Just like what is explained in the `WEBSITES_PORT` section. However, most times, you most likely don't need to alter it.
 
 <br>
@@ -170,7 +172,7 @@ Let's now remove `PORT` and test with `WEBSITES_PORT`, we'll see this doesn't do
 ![PORT](/media/2023/02/azure-oss-blog-port-websites-port-5.png)
 
 
-# Summary
+## Summary
 `WEBSITES_PORT` is for Web App for Containers and should ideally always be used. `PORT` can be used as well, however the idea for `WEBSITES_PORT` on Web Apps  for Containers is to tell which container port to always run `docker run` against. If both `WEBSITES_PORT` and `PORT` are set as App Settings, `WEBSITES_PORT` will take precedence. 
 
 `PORT` is for App Service on Linux "Blessed" Images.
