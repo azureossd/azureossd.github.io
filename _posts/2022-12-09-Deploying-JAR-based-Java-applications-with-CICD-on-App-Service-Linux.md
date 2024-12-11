@@ -489,7 +489,9 @@ To get started with GitHub Actions, create a Java on App Service Linux applicati
 
 ![Deployment Center](/media/2022/12/azure-blog-java-devops-deployment-10.png)
 
-This will now generate the following `.yml` which will be commited and created under `.github/<branch>_<appname>.yml`
+3. Choose whether "User Assigned Identity" or "Publish Profile" authentication will be used. Publish Profile authentication requires "Basic Authentication" to be enabled on the App Service.
+
+- For User Assigned Identity authentication this will generate the following `.yml` which will be committed and created under `.github/<branch>_<appname>.yml`
 
 ```yaml
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
@@ -508,18 +510,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
+          distribution: 'microsoft'
 
       - name: Build with Maven
         run: mvn clean install
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
@@ -528,23 +531,90 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: java-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00000000000000000000000000000000 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_00000000000000000000000000000000  }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_00000000000000000000000000000000  }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'someapp'
+          slot-name: 'Production'
+          package: '*.jar'
+```
+
+- For publish profile authentication this will generate the following `.yml` which will be committed and created under `.github/<branch>_<appname>.yml`
+
+```yaml
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy JAR app to Azure Web App - someapp
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java version
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'microsoft'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/target/*.jar'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
-
+      
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
+          app-name: 'someapp'
+          slot-name: 'Production'
           package: '*.jar'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
 ```
 
 Since the Maven executable being used here is a typical CLI approach, you pass additional parameters as needed. For example:
@@ -580,12 +650,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'microsoft'
 
       # This is the important change we need to make to switch between Maven to Gradle
       # Gradle is available on these runners through typical [CLI commands](https://docs.gradle.org/current/userguide/command_line_interface.html)
@@ -593,7 +664,7 @@ jobs:
         run: gradle build
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: '${{ github.workspace }}/build/libs/*.jar'
@@ -607,18 +678,18 @@ jobs:
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
-
+      
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
+          app-name: 'someapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000000000000000 }}
           package: '*.jar'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
 ```
 
 ### GitHub Actions - Java Configuration for runtime
@@ -636,11 +707,11 @@ deploy:
     
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
 
-      - uses: azure/login@v1
+      - uses: azure/login@v2
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
@@ -651,12 +722,11 @@ deploy:
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
+          app-name: 'someapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000000000000000 }}
-          package: 'azure-0.0.1-SNAPSHOT.jar'
+          package: '*.jar'
 
       - run: |
           az logout
