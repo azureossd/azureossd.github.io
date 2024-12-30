@@ -39,6 +39,7 @@ Here is a compilation of resources by categories:
 - [Container Apps - Deployments through UI and CLI](https://azureossd.github.io/2024/11/11/container-apps-ui-cli-deployments/index.html)
 - [Checkpoint strategies with Dapr, KEDA, Azure EventHub and Container Apps](https://azureossd.github.io/2024/11/05/Checkingpoint-strategies-with-KEDA-Azure-Eventhub-and-Container-Apps/index.html)
 - [Using additional TCP ports in Azure Container Apps](https://azureossd.github.io/2024/10/31/Using-additional-tcp-ports-in-Azure-Container-Apps/index.html)
+- [Container Apps - Setting storage directory permissions](https://azureossd.github.io/2024/12/30/Container-Apps-Setting-storage-directory-permissions/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
