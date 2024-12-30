@@ -1,10 +1,10 @@
 ---
-title: "Using Zipkin and OpenTelemetry on Azure Container Apps"
+title: "Container Apps - Setting storage directory permissions"
 author_name: "Anthony Salemo"
 tags:
     - Configuration
     - Linux
-    - Observability
+    - Storage
     - Azure Container Apps
 categories:
     - Azure Container Apps # Azure App Service on Linux, Azure App Service on Windows, Function App, Azure VM, Azure SDK
