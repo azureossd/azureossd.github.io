@@ -37,6 +37,7 @@ You can find a compilation of resources by categories:
 - [Java on App Service Linux - java.lang.NoSuchMethod exceptions](https://azureossd.github.io/2024/07/03/Java-on-App-Service-Linux-java-lang-NoSuchMethod-exceptions/index.html)
 - [Connection timeouts when using Reactor Netty based HTTP clients](https://azureossd.github.io/2024/10/07/Connection-timeouts-when-using-Reactor-Netty-based-HTTP-clients/index.html)
 - [Java on App Service Linux - PKIX path building failed](https://azureossd.github.io/2024/08/05/Java-on-Linux-App-Service-PKIX-path-building-failed/index.html)
+- [Tomcat HTTP 404’s on App Service Linux](https://azureossd.github.io/2024/12/20/Tomcat-HTTP-404s-on-App-Service-Linux/index.html)
 
 
 # Windows

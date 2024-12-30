@@ -30,6 +30,7 @@ You can find a compilation of resources by categories:
 - [PHP configuration: Customizing NGINX’s error page handling](https://azureossd.github.io/2023/06/21/PHP-configuration-Customizing-NGINXs-error-page-handling/index.html)
 - [PHP sessions on App Service Linux - ‘Session data file is not created by your uid’](https://azureossd.github.io/2024/08/30/PHP-sessions-on-App-Service-Linux/index.html)
 - [Increasing file upload size on App Service Linux PHP](https://azureossd.github.io/2024/12/05/Increasing-file-upload-size-on-App-Service-Linux-PHP/index.html)
+- [Installing Composer on a PHP Linux App Service](https://azureossd.github.io/2024/12/06/Installing-Composer-on-a-PHP-Linux-App-Service/index.html)
 
 ## Performance
 - [Debugging PHP Applications on Azure App Services Linux/Containers using XDEBUG](https://azureossd.github.io/2020/05/05/debugging-php-application-on-azure-app-service-linux/index.html)
