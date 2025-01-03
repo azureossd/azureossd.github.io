@@ -33,15 +33,15 @@ Build and deploy apps to an Azure Spring Apps resource in Standard consumption a
 ## 2. Register a domain name and create a managed certificate
 If you are using a custom domain and certification from third party, you can skip this step. As we may not be able to use the managed certificate for Azure Spring App on Standard consumption & dedicated(preview) plan currently, we would suggest creating App service domain, App Service certificate and configurate it before import to Azure Spring Apps. 
 
-a. Create an App Service domain referring to [Custom domain - Azure App Service | Microsoft Learn](https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-buy-domain)
+a. Create an App Service domain referring to [Custom domain - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-buy-domain)
 
 ![ASA - Configuration](/media/2023/11/asa-custom-domain-2.png)
 
-b. Create an azure app service certificate and configurate it referring to [Export an App Service certificate - Azure App Service | Microsoft Learn](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-app-service-certificate?tabs=portal)
+b. Create an azure app service certificate and configurate it referring to [Export an App Service certificate - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-app-service-certificate?tabs=portal)
 
 ![ASA - Configuration](/media/2023/11/asa-custom-domain-3.png)
 
-c. Export the certificate. You can export the certificate as a PFX file in Azure Portal referring to [Add and manage App Service certificates - Azure App Service | Microsoft Learn](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-app-service-certificate?tabs=portal#export-an-app-service-certificate)
+c. Export the certificate. You can export the certificate as a PFX file in Azure Portal referring to [Add and manage App Service certificates - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-app-service-certificate?tabs=portal#export-an-app-service-certificate)
 
 ![ASA - Configuration](/media/2023/11/asa-custom-domain-4.png)
 
@@ -52,11 +52,13 @@ Please navigate to the Container App Environment we created previously in Azure 
 
 ![ASA - Configuration](/media/2023/11/asa-custom-domain-5.png)
 
-If you did not set up password in Step 2, we can use Azure CLI to upload this certificate as well. Here is a sample command for uploading a certificate for Container App Environment. For more details, please refer to [az containerapp env certificate | Microsoft Learn](https://learn.microsoft.com/en-us/cli/azure/containerapp/env/certificate?view=azure-cli-latest#az-containerapp-env-certificate-upload).
+If you did not set up password in Step 2, we can use Azure CLI to upload this certificate as well. Here is a sample command for uploading a certificate for Container App Environment. For more details, please refer to [here](https://learn.microsoft.com/en-us/cli/azure/containerapp/env/certificate?view=azure-cli-latest#az-containerapp-env-certificate-upload).
 
-`az containerapp env certificate upload -g MyResourceGroup --name MyEnvironment --certificate-file MyFilepath`
+```
+az containerapp env certificate upload -g MyResourceGroup --name MyEnvironment --certificate-file MyFilepath
+```
 
-Once validation and add succeeds, please use the DNS provider that is hosting your domain, create DNS records based on the Hostname record type you selected using the values shown in the Domain validation section. The records point the domain to your container app and verify that you own it. For more details, please refer to [Custom domain names and certificates in Azure Container Apps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates#environment)
+Once validation and add succeeds, please use the DNS provider that is hosting your domain, create DNS records based on the Hostname record type you selected using the values shown in the Domain validation section. The records point the domain to your container app and verify that you own it. For more details, please refer to [Custom domain names and certificates in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates#environment)
 
 Now please navigate to the Custom DNS suffix (Preview) in Container Apps environment page as shown below and configurate the DNS records based on the information shown in the Domain validation section.
 
