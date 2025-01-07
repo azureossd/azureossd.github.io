@@ -179,6 +179,39 @@ There are 3 very important concepts/requisites for any deployment of Angular SSR
 
 4. For sites that require some degree of build automation (`npm install`) ensure the App Setting `SCM_DO_BUILD_DURING_DEPLOYMENT` is set to `true`. More on this is explained [here](https://learn.microsoft.com/en-us/azure/app-service/quickstart-nodejs?tabs=windows&pivots=development-environment-vscode#configure-the-app-service-app-and-deploy-code)
 
+5. **This section only applies to Angular v19 - if you're using a ssr template generated from a version prior to this, you do notneed to do this**
+
+    Starting with Angular v19, a change in the `ng --ssr` template was introduced which added a logic check prior to starting the server. This is now located in `src/server.ts` (instead of top level `server.ts`). It now includes this following logic:
+
+    ```js
+    /**
+     * Start the server if this module is the main entry point.
+    * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+    */
+    if (isMainModule(import.meta.url)) {
+      const port = process.env['PORT'] || 4000;
+      app.listen(port, () => {
+        console.log(`Node Express server listening on http://localhost:${port}`);
+      });
+    }
+    ```
+
+    This can and will introduce an issue when deployed to App Service on Windows, since we need to specify a different entrypoint to get around iisnode's es6 limitations, this causes `isMainModule()`, which returns a `boolean`, to return `false`. This function checks `process.argv[1]`, and with that being the case, would cause the following if left as is:
+
+    ```
+    import.meta.url = file:///C:/home/site/wwwroot/dist/angularssr/server/server.mjs
+    process.argv[1] = C:\home\site\wwwroot\server.js
+    ```
+
+    This is where the mismatch comes in. To get around this, you can remove the if statement, or if desiring to keep this, alter this as need be. See [GitHub issues - 28993](https://github.com/angular/angular-cli/issues/28993) as an example. For simplicity and the sake of this post, we'll just use the following, which simply just removes the `if/else` check. 
+
+      ```js
+      const port = process.env['PORT'] || 4000;
+      app.listen(port, () => {
+        console.log(`Node Express server listening on http://localhost:${port}`);
+      });
+      ```
+
 --------
 
 **Recap**:
@@ -575,3 +608,11 @@ const port = process.env['PORT'] || 4000;
 ```
 
 However, if you remove `process.env.PORT` - the application will fail to start on App Service. Ensure this is always set. For easier switching between local/dev environments and deployed ones - ensure the ternary operator (above) is kept
+
+## Timing out and failing to start with HTTP 500.1001's
+See the **Requirements for deployment** section, specifically step 5, if you're using Angular v19.
+
+If this is a version prior to this - ensure your `server.ts` does not have any logic blocking the invocation of express.js startup (or any other engine you may be using). In both of these cases, if express.js (or any other engine) is never successfully starting (or never gets invoked), this will cause no logs to be written unless you add a `console.log` line earlier on in `server.ts`, prior to before that logic with server startup/invocation is hit.
+
+If the issue is neither of these, consult [Troubleshooting Common iisnode Issues](https://azureossd.github.io/2022/10/17/troubleshooting-common-iisnode-issues/index.html)
+
