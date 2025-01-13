@@ -48,6 +48,21 @@ You can install the `openssl` package by going into the application container th
 
 > **NOTE**: If SSH is not enabled for your custom image, see [Enabling SSH on Linux Web App for Containers](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html)
 
+## Java 8
+If you're using a Java 8 "Blessed" Image and also using the `keytool` command with the `-cacerts` flag, you may see:
+
+```
+Illegal option: -cacerts
+```
+
+You'll need to explicitly point to the `cacert` store location, for example, like this:
+
+```
+keytool -v -list -noprompt -keystore /usr/lib/jdk/lib/security/cacerts -storepass "changeit" -alias "000000000000000000000000000000000000000"
+```
+
+Essentially, `-cacerts` points to the `cacerts` store. With Java 8, we need to explicitly point to that location instead of using that helper flag.
+
 # Common causes
 We'll be using Spring Boot as an example as well as [Bad SSL (badssl.com)](https://badssl.com/). In these examples, we'll act as though https://badssl.com/ is our backend that we're calling to generate some of these common issues.
 
