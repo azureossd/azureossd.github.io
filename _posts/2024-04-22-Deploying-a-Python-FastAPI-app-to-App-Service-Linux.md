@@ -179,10 +179,10 @@ There are multiple deployment options in Python on App Service Linux such as Con
 
     This is not failing due to the fact Gunicorn is used - but rather, a `sync` worker for wSGI applications is the default worker type used. We instead need to set this to a `uvicorn` worker (like we previously installed in `requirements.txt`) to properly run this aSGI application.
 
-    Change the startup command to the following:
+    Change the startup command to the following - note, that Python "Blessed Images" expose port 8000 by default - see [Default exposed ports of Azure App Service Linux Blessed Images](https://azureossd.github.io/2023/03/24/Default-exposed-ports-of-Azure-App-Service-Linux-Blessed-Images/index.html):
 
     ```
-    gunicorn --worker-class uvicorn.workers.UvicornWorker --timeout 600 --access-logfile '-' --error-logfile '-' app:app
+    gunicorn --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 -w 4 --timeout 600 --access-logfile '-' --error-logfile '-' app:app
     ```
 
     > **NOTE**: You can use `-k` as a shorthand flag for `--worker-class`
