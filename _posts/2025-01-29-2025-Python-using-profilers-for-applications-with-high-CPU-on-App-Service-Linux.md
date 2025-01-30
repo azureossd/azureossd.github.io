@@ -13,7 +13,7 @@ header:
     teaser: /assets/images/pylinux.png
 toc: true
 toc_sticky: true
-date: 2025-01-29 12:00:00
+date: 2025-01-30 12:00:00
 ---
 
 This blog post will go over different toolsets that can be used to profile a Python application experiencing high CPU and/or slowness.
@@ -51,12 +51,17 @@ To get relevant information, you want to first ensure there actually is high CPU
 
 This detector views usage from an _instance_ perspective. Note, in terms of single threadedness - you may not see 100% (or close to this) usage, even if `top` / `ps`, etc. is showing 100% while SSH'd into the container. This is especially the case if the SKU you're using has > 1 core. The reasoning for this is explained more, below.
 
+-----
 
 Another foolproof way, assuming the container is not exiting and is actively running, is to go into **SSH** - and use `top` (or `ps`) and see if your application process is the one consuming memory. The process name may vary depending on what kind of Python application you're running, and how you're serving it. The below example is using Gunicorn to serve the application:
 
 ![100% CPU usage from Gunicorn in top](/media/2025/01/python-profiling-1.png)
 
 This PID is referencing a Gunicorn worker process (Blessed Python images with a default startup command use Gunicorn with 2 worker processes) - this is what's executing our code - and infering our application is consuming 100% CPU usage. Since this Python application example is single threaded, we can also infer its using 100% of the core it's ran on. Regardless of SKU's that have multiple CPU cores. Even if there are four (4) cores (which can be seen as 400% CPU), the nature of this single threadedness will only use one (1) of these 4 at a time, so 100% of 400% for Gunicorn (or your process name) is still 100% CPU usage.
+
+----
+
+If you're referencing other metrics, such as the **Metrics** blade, or APM's, these also will typically show process CPU usage - or - performance statistics of HTTP requests for the application, in terms of slowness.
 
 # Profilers - through CLI (recommended)
 ## py-spy (recommended)
@@ -177,6 +182,11 @@ If writing explicitly to a file, you can install `cprofilev` locally and review 
 2025-01-29T21:07:30.3651237Z       8/4    0.000    0.000    0.112    0.028 /opt/python/3.12.2/lib/python3.12/threading.py:323(wait)
 ```
 
+**Writing to a file - and reviewing with cprofilev**:
+- Run `cprofilev -f nameoffile.txt` on your local machine with the profile file that was downloaded and then navigate to `127.0.0.1:4000`
+
+![cprofilev output of cProfile file](/media/2025/01/python-profiling-1.png)
+
 ## pyinstrument
 [pyinstrument](https://github.com/joerick/pyinstrument) is a library that can be installed and used to profile through code. To install it, run `pip install pyinstrument`. Ensure this is added to your `requirements.txt`. 
 
@@ -242,13 +252,9 @@ Below are some other profilers that can be added through code.
 ### yappi
 - [GitHub Repository](https://github.com/sumerc/yappi)
 
-# palanteer 
+### palanteer 
 - [GitHub Repository](https://github.com/dfeneyrou/palanteer)
 
-**Writing to a file - and reviewing with cprofilev**:
-- Run `cprofilev -f nameoffile.txt` on your local machine with the profile file that was downloaded and then navigate to `127.0.0.1:4000`
-
-![cprofilev output of cProfile file](/media/2025/01/python-profiling-1.png)
 
 # APM's
 APM's refer to Application Performance Monitoring integrations. These are typical through third parties (aside from Azure Application Insights). Some of these may allow a "codeless" integration, or addtional configuration and usage through an SDK.
