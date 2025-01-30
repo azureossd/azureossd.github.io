@@ -19,7 +19,6 @@ You can find a compilation of resources by categories:
 # Linux 
 
 ## Availability and Post Deployment issues
-- [Could not open shared object file: no such file or directory](https://azureossd.github.io/2023/04/17/Python-Deployment-could-not-open-shared-object-file/index.html)
 - [Troubleshooting 'failed to find attribute' errors on Python Linux App Services](https://azureossd.github.io/2023/01/30/Troubleshooting-'failed-to-find-attribute'-errors-on-Python-Linux-App-Services/index.html)
 - [Python on Linux App Service and ModuleNotFoundError](https://azureossd.github.io/2022/11/24/Python-on-Linux-App-Service-and-ModuleNotFound-Errors/index.html)
 - [Python Deployment - Could not find output.tar.gz](https://azureossd.github.io/2023/03/28/Python-Depolyment-Could-Not-Find-output.tar.gz/index.html)
@@ -48,3 +47,4 @@ You can find a compilation of resources by categories:
 
 ## Performance
  - [Using CProfile to troubleshoot high CPU on Linux Python App Services](https://azureossd.github.io/2023/05/15/Python-Preformance-High-CPU-CProfile/index.html)
+ - [Python - Slow execution / high CPU - wSGI/aSGI multi-worker strategy](https://azureossd.github.io/2025/01/28/Python-slow-execution-high-CPU-wsGI-aSGI-multi-worker-strategy/index.html)
