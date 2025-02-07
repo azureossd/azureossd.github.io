@@ -48,7 +48,7 @@ You can then view logs from various ways:
 
 # Deployment flow and method of deployment
 Since an end-user can technically write a pipeline to use almost anything to actually deploy an artifact to Kudu, that means there will be various deployment methods. Some of this may behave differently, but generally the more common themes are as followed:
--  Builtin deployment tasks like _Azure App Service Deploy Task_, _Azure Web App_, etc. (See: [Azure Pipelines task reference | Microsoft Learn](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/?view=azure-pipelines) use **[ZipDeploy](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli)** under the hood. 
+  -  Builtin deployment tasks like _Azure App Service Deploy Task_, _Azure Web App_, etc. (See: [Azure Pipelines task reference | Microsoft Learn](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/?view=azure-pipelines) use **[ZipDeploy](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli)** under the hood. 
    - If a `.war` is being deployed to App Service using those above built-in tasks, then this will use **[WarDeploy](https://github.com/projectkudu/kudu/wiki/Deploying-WAR-files-using-wardeploy#deploying-to-apps-other-than-root)**. See [Deploying WAR based Java applications with CI/CD (GitHub Actions, Azure DevOps) on App Service Linux](https://azureossd.github.io/2022/12/22/Deploying-WAR-based-Java-applications-with-CICD-on-App-Service-Linux/index.html)
 - If deploying with the Azure CLI by invoking it directly as a command, or, by using the "builtin" AzureCLI tasks, this will use **OneDeploy**.
 - If deploying via a template, such as IaC (Bicep, ARM, Terraform, etc.) this will depend on what your template is doing.
@@ -60,6 +60,11 @@ If you view Kudu "trace" files under `/home/LogFiles/kudu/trace`, you can see wh
 - OryxBuilder = Oryx
 - OneDeployBuilder = OneDeploy
 - BasicBuilder = ZipDeploy (no build automation, this extracts the contents deployed if it's a zip and copies it to `/home/site/wwwroot`)
+
+The typical deployment flow is as follows:
+- The request is made from Azure Pipelines to the Kudu side (in terms of a typical deployment, this may not be specific to pipelines only using IaC for setting updates) in the form of a `POST` request that deploys an artifact, which is typically a `.zip`, or in some cases may directly be a `.jar` or `.war`
+- The `.zip` is extracted during deployment logic in the Kudu container (.scm. site). Either build automation with Oryx is ran if enabled, or the files are generally copied over to `wwwroot` after extraction. In both scenarios, with and without Oryx, files are copied to `wwwroot`.
+- The application container is then restarted
 
 # Common scenarios
 ## End of Central Directory record could not be found
