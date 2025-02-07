@@ -28,7 +28,6 @@ A note to remember is a pipeline itself can almost be configured in an infinite 
 ⚠ IMPORTANT ⚠: During troubleshooting, always consider reviewing your full pipeline `azure-pipelines.yml` file. In most cases, pipelines are implemented through `yaml` files - viewing task/yaml snippets through the classic editor is another approach when using "Classic Pipelines". See: [YAML vs Classic Pipelines - Azure Pipelines | Microsoft Learn](https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/pipelines-get-started?view=azure-devops). 
 
 There are other things that need to be taken into account:
-
 - If the build is failing before any built-in Azure App Service-based deployment task is hit, or a call to Kudu is made for deployment, then this responsibility should be investigated from the pipeline perspective, not App Service. Ensure to follow [Review logs to diagnose pipeline issues - Azure Pipelines | Microsoft Learn](https://learn.microsoft.com/en-us/azure/devops/pipelines/troubleshooting/review-logs?view=azure-devops&tabs=windows-agent) to view pipeline output, which can help track down what the actual issue is. More often than not this is failing on a task or stage in the pipeline prior to actual deployment
 - If the deployment task is failing and/or a call to Kudu for deployment is failing, then still follow the above link in terms logging and understanding the issue. In most cases, the error surfaced back in the deployment task/logic being ran should at least generally point to what the issue is
 
