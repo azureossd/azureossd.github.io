@@ -23,7 +23,7 @@ Docker has a concept of **User namespace** and **User namespace remapping** (Oth
 
 Sometimes, a user may be explicitly defined in a `Dockerfile` that has a `UID` mapped outside of the allowed range of id's. Othertimes, a file itself for example can have a high `UID`, which may happen without purposely doing this, as this would depend on how the Image is ultimately built (base Image, Third Party Image, etc.)
 
-When these `UID`s are mapped to an id out of range, errors can occur, as explained below.
+When these `UID`s are mapped to an id out of range, errors can occur, as explained below. The ID range needs to stay between 0 - 65535.
 
 You can read more of the official documentation [here](https://docs.docker.com/engine/security/userns-remap/#user-namespace-known-limitations).
 
