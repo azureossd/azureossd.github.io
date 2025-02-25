@@ -62,6 +62,8 @@ Here is a compilation of resources by categories:
 - [Deploying Reflex Applications to Azure Container Apps](https://azureossd.github.io/2024/08/24/Deploying-Reflex-Application-to-Azure-Container-Apps/index.html)
 - [Setting up a basic Elasticsearch container on Container Apps](https://azureossd.github.io/2024/08/13/Setting-up-a-basic-Elasticsearch-container-on-Container-Apps/index.html)
 - [Deploy Java app using UI and CLI](https://azureossd.github.io/2024/11/11/container-apps-ui-cli-deployments/index.html)
+- [Container Apps Pull Image using an Azure Service Principal](https://azureossd.github.io/2025/02/18/Container-Apps-Pull-Image-With-Service-Principal/index.html)
+
 
 ## Performance
 - [Container Apps: Profiling Node applications for performance issues](https://azureossd.github.io/2023/10/19/Container-Apps-Profiling-Node-applications-for-performance-issues/index.html)
