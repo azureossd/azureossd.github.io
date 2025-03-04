@@ -99,6 +99,24 @@ Since [Workload profiles](https://learn.microsoft.com/en-us/azure/container-apps
 
 - Use `.dockerignore` (or your container management tools equivalent). Think of this like a `.gitignore` but for the files that get put into your image. This can reduce many files in certain circumstances and save on overall image size. See [.dockerignore files](https://docs.docker.com/build/concepts/context/#dockerignore-files). If using Podman, use [.containerignore](https://docs.podman.io/en/latest/markdown/podman-build.1.html#containerignore-dockerignore)
 - Consider using only runtime environments instead of full development kits (SDKs). If full SDKs (or JDK's) aren't required - consider using the runtime only environment equivalent. For Java, this is typically images that include a `jre` tag, for .NET this is ones with a image name contant just `aspnet:some.version` - see [here](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/net-core-net-framework-containers/official-net-docker-images#in-production) for an explaination on that
+- If hitting this issue, and you want to check your image size, look at the **uncompressed image size**, not the compressed size. When layers are pulled, the compressed image (stored in a registry) has it's layers downloaded and uncompressed, so this size is what matters. To check an image size effectively, pull it to your local machine if it doesn't already exist and run the below commands:
+  - `docker inspect -f "{{ .Size }}" someimage:sometag` - This outputs the uncompressed size in bytes
+  - `docker inspect -f "{{ .Size }}" someimage:sometag | numfmt --to=si` - This outputs the uncompressed size in human readeable format
+  - `docker image ls someimage:sometag`
+
+Below are some examples of using this on a local image:
+
+```
+$ docker inspect -f "{{ .Size }}" pythonfastapi:large
+12155661241
+
+$ docker image ls pythonfastapi:large
+REPOSITORY      TAG       IMAGE ID       CREATED      SIZE
+pythonfastapi   large     ab7065c19777   6 days ago   12.2GB
+
+$ docker inspect -f "{{ .Size }}" pythonfastapi:large | numfmt --to=si
+13G
+```
 
 There are times that you may have to rely on a 3rd party image, where you have no control over the image size. This may be likewise for certain images that are primarily AI/ML focused that inheritly have large library sizes. If there are no tags that are more slim/smaller that can be taken advantage of, then consider using Workload Profiles and using a larger SKU size. 
 
