@@ -106,6 +106,7 @@ Since [Workload profiles](https://learn.microsoft.com/en-us/azure/container-apps
 
 Below are some examples of using this on a local image:
 
+{% raw %}
 ```
 $ docker inspect -f "{{ .Size }}" pythonfastapi:large
 12155661241
@@ -117,6 +118,7 @@ pythonfastapi   large     ab7065c19777   6 days ago   12.2GB
 $ docker inspect -f "{{ .Size }}" pythonfastapi:large | numfmt --to=si
 13G
 ```
+{% endraw %}
 
 There are times that you may have to rely on a 3rd party image, where you have no control over the image size. This may be likewise for certain images that are primarily AI/ML focused that inheritly have large library sizes. If there are no tags that are more slim/smaller that can be taken advantage of, then consider using Workload Profiles and using a larger SKU size. 
 
