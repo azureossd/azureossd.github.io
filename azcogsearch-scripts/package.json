@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@azure/search-documents": "^11.3.2",
+    "azcogsearch-scripts": "file:",
     "dotenv": "^16.3.1",
     "gray-matter": "^4.0.3",
     "remove-markdown": "^0.5.0"
