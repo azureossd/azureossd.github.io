@@ -86,6 +86,8 @@ This may fail with an `UNAUTHORIZED` message, especially if doing net-new creati
 - Another form of misconfigured subnet to ACR/container registry integration
 - Firewall on the target resource denying incoming traffic
 
+You can use the same troubleshooting approach in the below **networking** section against these endpoints to ensure they're able to be reached from the Container App Environment.
+
 ### Authentication or Authorization related
 A common error will be a 401 returned when trying to pull an image:
 
