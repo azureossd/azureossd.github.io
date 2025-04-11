@@ -77,6 +77,17 @@ Take note of the ` ReplicaName_s` column - as changes in replicas would indicate
 You can use the Log Stream blade and switch it to "System" to view system logs there as well.
 
 ## Common errors
+### Denying access to Managed Identity endpoints for image pull authentication
+If using Managed Identity - and especially if using a VNET - you need to ensure that the endpoints listed [here](https://learn.microsoft.com/en-us/azure/container-apps/networking?tabs=workload-profiles-env%2Cazure-cli#application-rules) is allowed.
+
+This may fail with an `UNAUTHORIZED` message, especially if doing net-new creations or updates from an external client to Azure Container Apps. The same points described below in the **networking** section apply to this scenario as well in terms of what can cause this issue:
+- A UDR on a subnet to an NVA/Firewall blocking traffic (this is the most common)
+- An outbound NSG rule blocking traffic
+- Another form of misconfigured subnet to ACR/container registry integration
+- Firewall on the target resource denying incoming traffic
+
+You can use the same troubleshooting approach in the below **networking** section against these endpoints to ensure they're able to be reached from the Container App Environment.
+
 ### Authentication or Authorization related
 A common error will be a 401 returned when trying to pull an image:
 
