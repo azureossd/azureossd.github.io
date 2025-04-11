@@ -46,16 +46,6 @@ Persistent Image Pull Errors for image "someregistry.com/image:atest". Please ch
 
 The **main** reason for failure would be in the above popout message, or, in the other cases above with IaaC or CLI methods - written to the terminal.
 
-**For dedicated environments (Consumption profile, or, Workload profiles)** - the error instead will show the following:
-
-```
-Container 'some-container' was terminated with exit code '' and reason 'ImagePullFailure'
-```
-
-The description will not be logged as to why the image pull failed in this case, but, this blog can be used to rule out potential problems.
-
---------
-
 In other scenarios where pod movement happens more organically - eg., scaling rules being triggered, or other reasons for pod movement that is not _directly_ user initiated - this may manifest in the format below in the **Logs** / Log Analytic Workspace - notice the difference between the above and the below
 
 ```
@@ -126,9 +116,59 @@ In these cases, it is good to review if:
 
 Common networking related errors are:
 
+**DNS related**:
+
+Common themes may be:
+- Custom DNS servers unable to resolve the registry name
+- Generally misconfigured custom DNS server
+- Misconfigured Private DNS zones on Azure Container Registry
+- Mistyped registry named or registry doesn't exist
+- Misconfigured Private Endpoint or records
+
 ```
 Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "https://someacr.azurecr.io/someimage:sometag/v2/someimage/manifests/sometag": dial tcp: lookup someacr.azurecr.io on 168.63.129.16:53: no such host
 ```
+
+```
+Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "msomeacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": unexpected status from HEAD request to https://someacr.azurecr.io/v2/someimage/manifests/sometag: 503 Service Unavailable
+```
+
+You can troubleshoot these kinds of issues in two general ways. Either from another active/running Container App - or - from a Virtual Machine attached to the same subnet. 
+
+For troubleshooting from a different Container App:
+- You can look into using [Container Apps - Debug console](https://learn.microsoft.com/en-us/azure/container-apps/container-debug-console?tabs=bash), which may be a much easier approach
+- Installing troubleshooting tools completely depends on the image distribution and/or if outbound internet traffic to install packages is allowed.
+- To test name resolution to the resource, use tools like `dig` or `nslookup`. If you want to test with different DNS servers, you can pass alternative servers such as `nslookup someacr.azurecr.io 8.8.8.8`
+
+For troubleshooting from a VM in the subnet:
+- Ensure the VM is added to the subnet
+- You can install the rest of the above tooling to test name resolution
+
+```
+Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "https://someacr.azurecr.io/someimage:sometag/v2/someimage/manifests/sometag": dial tcp: lookup someacr.azurecr.io on 168.63.129.16:53: no such host
+```
+
+```
+Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "https://someacr.azurecr.io/someimage:sometag/v2/image/manifests/tag": dial tcp: lookup someacr.azurecr.io: i/o timeout
+```
+
+```
+Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "msomeacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": unexpected status from HEAD requ
+```
+
+```
+Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "https://someacr.azurecr.io/someimage:sometag/v2/image/manifests/tag": dial tcp: lookup some
+```
+
+> **NOTE**: i/o timeout could potentially be DNS related - but also proxy related, which is why it's shown below
+
+**Outbound networking related**:
+
+The below errors could potentially be caused by:
+- A UDR on a subnet to an NVA/Firewall blocking traffic
+- An outbound NSG rule blocking traffic
+- Another form of misconfigured subnet to ACR/container registry integration
+- Firewall on the target resource denying incoming traffic
 
 ```
 Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "https://someacr.azurecr.io/someimage:sometag/v2/image/manifests/tag": dial tcp: lookup someacr.azurecr.io: i/o timeout
@@ -143,16 +183,24 @@ Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = U
 ```
 
 ```
-Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Unknown desc = failed to pull and unpack image "msomeacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": unexpected status from HEAD request to https://someacr.azurecr.io/v2/someimage/manifests/sometag: 503 Service Unavailable
-```
-
-```
 Failed to pull image "someacr.azurecr.io/someimage:sometag": rpc error: code = Canceled desc = failed to pull and unpack image "someacr.azurecr.io/someimage:sometag": failed to resolve reference "someacr.azurecr.io/someimage:sometag": failed to do request: Head "someacr.azurecr.io/someimage:sometag": context canceled
 ```
 
 ```
 DENIED: client with IP 'xx.xx.xxx1.xx' is not allowed access, refer https://aka.ms/acr/firewall to grant access'
 ```
+
+You can troubleshoot these kinds of issues in the same two general ways mentioned above.
+
+For troubleshooting from a different Container App:
+- You can look into using [Container Apps - Debug console]([Container Apps - Debug console](https://learn.microsoft.com/en-us/azure/container-apps/container-debug-console?tabs=bash)), which may be a much easier approach
+- Installing troubleshooting tools completely depends on the image distribution and/or if outbound internet traffic to install packages is allowed.
+- To test connectivity to a target resource, you can use tools like `nc`, `tcppping` - as well as `curl`
+  - If using `nc`, passing certain flags may make it seem like there is no connection. Ensure you also pass the proper port. eg. `nc -vz someacr.azurecr.io 443`
+
+For troubleshooting from a VM in the subnet:
+- Ensure the VM is added to the subnet
+- You can install the rest of the above tooling to test connectivity
 
 ### Missing, incorrect tag/image name
 If the image and/or tag that you're targeting does not exist in the registry you're trying to pull from, then they may manifest as the below errors.
