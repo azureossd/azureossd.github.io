@@ -41,6 +41,8 @@ In a scenario where the volume _is_ able to be mounted, you can review this from
 
 ![BYOS output](/media/2023/04/azure-oss-blog-byos-2.png)
 
+Additionally, ensure to review `docker.log` to see if potential output about the errors described below are found in them. This can provide helpful context on where to troubleshoot faster.
+
 # Scenarios
 ## Incorrect or rotated Access Keys
 **Incorrect keys**:
@@ -64,12 +66,17 @@ Therefor when the volume is attempted to be remounted (after the restart), this 
 
 In these scenarios, double check that the "Advanced" configuration blade has the correct Access Key and update it as needed.
 
+Errors that are associated with this scenario is typically surfaced as `Output: mount error(13): Permission denied`
+
+
 ## Deleted Storage Account or Blob Container/Azure File Share
 In the same vein as the [Keys that are rotated/refreshed](#incorrect-or-rotated-access-keys) section, if either the Storage Account, blob, or file share within this is deleted - the container will fail to start _after_ a restart - since it will now try to mount a non-existent file share.
 
 However, read/write operations to the blob or share may fail even if the application isn't restarted - but while the share or blob is deleted still. This can be tested by going to an SSH session on the application or Kudu container and running `df -h` _after_ deleting the blob or share (but not restarting yet), you will notice this will disappear from available volumes shortly after. 
 
 If the Blob or File Share is deleted - you can try to recreate these with the same name. A recreated Storage Account will need to use a different Access Key than the original.
+
+- Errors that may be associated with trying to mount a file share or blob _after_ it's deleted may result in `could not resolve address` (or general DNS related) errors. Or, potentially `Output: mount error(13): Permission denied`
 
 ## Networking and DNS
 If the Storage Account cannot be accessed, then mounting the volume will fail.
@@ -80,6 +87,7 @@ Consider the following if your application is in a VNET and this is a possibilit
 - Storage firewall is supported only through service endpoints and private endpoints (when VNET integration is used).
     - If the app and Azure Storage account are in same Azure region, and if you grant access from App Service IP addresses in the Azure Storage firewall configuration, then these IP restrictions are not honored.
 - Is custom DNS being used? Unresolvable DNS for the Storage Account will result in failure to mount the volume
+  - A Private Endpoint on the Storage Account with misconfigured private DNS zones and/or records can also cause this
 - When VNET integration is used, ensure the following ports are open:
     - Azure Files: 80 and 445.
     - Azure Blobs: 80 and 443.
@@ -87,13 +95,29 @@ Consider the following if your application is in a VNET and this is a possibilit
 If applicable, a relatively easy test for this is to disconnect the application from the VNET and open the Storage Account to public traffic. If this succeeds, then this can be a point of focus.
 
 You can check connectivity and resolution with commands like the following - the below is using a Storage Account with an Azure File Share as an example:
+
+**DNS related**:
 - `nslookup yourstorage.file.core.windows.net`
 - `dig yourstorage.file.core.windows.net`
+
+Common _DNS-related_ errors are `Output: mount error: could not resolve address for someaddress.file.core.windows.net`
+- Just like described below in the _connectivity related_ related section, you can additionally do testing from a test app (in the same subnet as the one failing), the Kudu (Bash) option on the _failing_ test app (SSH will not work as the main application container will not be created due to volume mount failures), or, from a VM within the same subnet
+- You can try to test other DNS servers in certain scenarios such as with `nslookup yourstorage.file.core.windows.net 8.8.8.8`
+- If using a custom DNS server, ensure your server can resolve Azure DNS FQDNs. You may need to add Azure DNS (168.63.129.16) to resolve unresolved DNS queries on your custom DNS server.
+
+**Connectivity related**
 - `tcpping yourstorage.file.core.windows.net`
+- `nc -vz yourstorage.file.core.windows.net 443` and `nc -vz yourstorage.file.core.windows.net 445`
+
+Common _connectivity errors_ are typically `Output: mount error(13): Permission denied` - such as a NSG blocking outbound traffic, or the subnet is not properly connected with the Storage Account, or, a Storage Firewall is enabled and denying incoming traffic. [Limitations](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?tabs=basic%2Cportal&pivots=container-linux#limitations) may also cause `Permission denied` to be returned
+- Note, this also includes unsupported **Storage Encryption** on the Storage Account. The default is _Maxmimum Compatability_. If using others such as _Maxmimum security_ or a custom implementation - this will likely end up with `Permission denied`. To be safe, use _Maxmimum Compatability_.
+
+An error that is typically associated with required traffic to access storage and mount the volume being blocked through a User Defined Route (UDR) is `Output: mount error(115): Operation now in progress` - this is also _connectivity error_ based. You can also use the same `tcpping` / `nc` commands from either a test app, the Kudu console (the _Bash_ option - if doing tests on the same app that is failing to mount a volume, the container will be failing to be created, thus the _SSH_ option will be unavailable), or from a VM attached to the same subnet as the App Service. You can do that test for potential network-related `Permission denied` errors, too.
+
+
 
 **NOTE**: If you enable a Storage Firewall after succesfully mounting storage - and try to `tcpping` the Storage Account, you may be unable to reach it.
-
-If you try to list the contents while still in the mapped directory, you may recieve the following message:
+ - Also if you try to list the contents while still in the mapped directory, you may recieve the following message:
 
 ```
 root@8576066a2932:/home/site/files# ls -ltra
