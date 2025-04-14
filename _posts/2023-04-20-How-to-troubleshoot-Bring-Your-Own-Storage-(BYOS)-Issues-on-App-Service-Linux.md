@@ -76,7 +76,7 @@ However, read/write operations to the blob or share may fail even if the applica
 
 If the Blob or File Share is deleted - you can try to recreate these with the same name. A recreated Storage Account will need to use a different Access Key than the original.
 
-- Errors that may be associated with trying to mount a file share or blob _after_ it's deleted may result in `could not resolve address` (or general DNS related) errors. Or, potentially `Output: mount error(13): Permission denied`
+- Errors that may be associated with trying to mount a file share or blob _after_ it's deleted may result in `could not resolve address` (or general DNS related) errors. Or, potentially `Output: mount error(2): No such file or directory`
 
 ## Networking and DNS
 If the Storage Account cannot be accessed, then mounting the volume will fail.
