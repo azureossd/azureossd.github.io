@@ -71,6 +71,10 @@ The easiest way to do this is to override `/etc/nginx/sites-available/default` b
 
 We see here this HTTP 500 is now returned directly from Laravel - instead of seeing an HTTP 404 from NGINX.
 
+To keep these changes permanent, meaning not to lose them when the app service is restarted, follow the below link. Here it explains various methods of applying the changes without having any conflicts. 
+
+[Suppress 404s permanently - not to lose the changes when the app is restarted](https://azureossd.github.io/2023/06/21/PHP-configuration-Customizing-NGINXs-error-page-handling/index.html#suppress-404s-permanently---not-to-lose-the-changes-when-the-app-is-restarted)
+
 ## Return the status code from NGINX
 You can return the status code sent back by the application by updating _only_ the `error_page` directive - delete or comment out the `50x.html` location block from earlier:
 
@@ -156,3 +160,36 @@ root@fb9fbe0e7314:/home# nginx -t
 nginx: [emerg] directive "server" has no opening "{" in /etc/nginx/sites-enabled/default:1
 nginx: configuration file /etc/nginx/nginx.conf test failed
 ```
+
+## Suppress 404s permanently - not to lose the changes when the app is restarted
+
+You may either comment out the following section in either /etc/nginx/sites-enabled/default or /etc/nginx/sites-available/default. 
+If it is for the first time, you may apply the changes in /etc/nginx/sites-enabled/default. 
+If the changes are already in /etc/nginx/sites-available/default and startup.sh was already built, just incorporate the changes in /etc/nginx/sites-available/default.
+
+Once the app is restarted or when the nginx is reloaded succesfully, the changes will be applied in both /etc/nginx/sites-available/default and /etc/nginx/sites-enabled/default. You may simply check the contents of both the files in SSH using cat filename. 
+
+Follow the approach as mentioned here [NGINX Rewrite Rules for Azure App Service Linux PHP 8.x](https://azureossd.github.io/2021/09/02/php-8-rewrite-rule/index.html) if this is the first time you are applying changes. Besides what was recommended for location /, you need to comment out the following section in /home/site/default. 
+
+```
+# redirect server error pages to the static page /50x.html
+#
+# error_page   500 502 503 504  /50x.html;
+# location = /50x.html {
+#   root   /html/;
+# }
+```
+
+To test whether the changes you applied are working or not, you may run the cp commands manually and run 'service nginx reload' from SSH. Once the changes loook fine, you may restart the app service and do a final test. Restart triggers the startup script defined in the Startup command.  
+
+By any chance, if you arrive at the startup.sh file with the similar lines shown below, make sure the changes in the second file (/home/site/sites-available-default) do not override changes applied in the /home/site/default. 
+
+```
+#!/bin/bash
+
+cp /home/site/default /etc/nginx/sites-enabled/default
+cp /home/site/sites-available-default /etc/nginx/sites-available/default
+service nginx reload
+```
+
+For example, if you have commented out 5xx section in /home/site/default, and not in /home/site/sites-available-default, the /home/site/sites-available-default will override the changes you applied in /home/site/default. Hence, you will still see 404s instead of actual 500s coming from your application. 
