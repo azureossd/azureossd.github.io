@@ -180,7 +180,7 @@ Follow the approach as mentioned here [NGINX Rewrite Rules for Azure App Service
 # }
 ```
 
-To test whether the changes you applied are working or not, you may run the cp commands manually and run 'service nginx reload' from SSH. Once the changes loook fine, you may restart the app service and do a final test. Restart triggers the startup script defined in the Startup command.  
+To test whether the changes you applied are working or not, you may run the cp commands manually and run `service nginx reload` from SSH. Once the changes loook fine, you may restart the app service and do a final test. Restart triggers the startup script defined in the Startup command.  
 
 By any chance, if you arrive at the startup.sh file with the similar lines shown below, make sure the changes in the second file (`/home/site/sites-available-default`) do not override changes applied in the `/home/site/default`. 
 
