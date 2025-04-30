@@ -11,7 +11,7 @@ categories:
 header:
     teaser: "assets/images/azure-containerapps-logo.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
-toc: false
+toc: true
 toc_sticky: true
 date: 2025-04-01 12:00:00
 ---
