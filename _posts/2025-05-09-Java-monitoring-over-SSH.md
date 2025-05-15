@@ -1,6 +1,6 @@
 ---
 title: "Java monitoring over SSH"
-author_name: "Denis Fuenzalida"
+author_name: "Denis Fuenzalida, Rodrigo Gallazzi"
 tags:
     - Java
     - Monitoring
@@ -54,7 +54,7 @@ On Ubuntu-based images (Java 17, Tomcat 10), install the net-tools package to ha
 
  Run in another terminal:
  
- `ssh -L 1234:127.0.0.1:1234 root@127.0.0.1 -p 9000`
+ `ssh -L 1234:127.0.0.1:1234 root@127.0.0.1 -p 9000 -m hmac-sha1`
  
  Enter the password shown in the output of the "az webapp" command when asked
 
