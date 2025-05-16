@@ -168,3 +168,7 @@ Flight Recordings can be reviewed using [Zulu Mission Control](https://www.azul.
 
 3. Flight Recordings will be created at /home/LogFiles/recording1.jfr, which can be downloaded using FTP, KUDU API, or Kudu File Manager.JFR can be reviewed using [Zulu Mission Control](https://www.azul.com/products/components/zulu-mission-control/).
     > `https://<webapp-name>.scm.azurewebsites.net/newui/fileManager#`
+
+## Java monitoring over SSH
+
+You can review the steps to configure that here -> [Java monitoring over SSH](https://azureossd.github.io/2025/05/09/Java-monitoring-over-SSH/index.html)
