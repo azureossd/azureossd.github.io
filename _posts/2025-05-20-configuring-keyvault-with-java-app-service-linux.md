@@ -90,6 +90,10 @@ logging.level.org.hibernate=DEBUG
 
 **NOTE** Here, the environment variable `SPRING_DATASOURCE_USERNAME` is mapped to `spring.datasource.username` and the environment variable `SPRING_DATASOURCE_PASSWORD` is mapped to `spring.datasource.password`
 
+Green tick mark shows up in the Source column of Enviroment Variables, once the enviroment variables were added properly and as described above. 
+
+<div style="border: 1px solid black;"><img src="/media/2025/05/springboot-kv-azure-app-service-env-variables.png" /></div>
+
 The following file is optional. The reason I created is to show you how to read the values into any Spring Boot controller. 
 
 ```
