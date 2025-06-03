@@ -32,19 +32,19 @@ Create a sample NodeJs web app(Linux with version 18 or above) in azure portal.
  
 As we will be deploying using the publish profile, please download the publish profile by clicking on "Download publish profile" as shown below:
  
- ![](../media/2025/04/img1.PNG)
+ ![](/media/2025/04/img1.PNG)
 
 When you click on download publish profile, you may receive an alert stating that Basic authentication is disabled. 
  
- ![](../media/2025/04/img2.PNG)
+ ![](/media/2025/04/img2.PNG)
  
 To resolve this, you need to enable basic authentication by going to the configuration>>General settings blade and following the steps provided:
  
- ![](../media/2025/04/img3.PNG)
+ ![](/media/2025/04/img3.PNG)
  
 Click now on "Download publish profile" option to download the publish profile.
  
- ![](../media/2025/04/img4.PNG)
+ ![](/media/2025/04/img4.PNG)
 The downloaded "githubActionpublish.PublishSettings" file contains all the publish profile details like profileName, publishUrl,username, userPWD and publishMethod.
  
 # Step-2:
