@@ -32,20 +32,19 @@ Create a sample NodeJs web app(Linux with version 18 or above) in azure portal.
  
 As we will be deploying using the publish profile, please download the publish profile by clicking on "Download publish profile" as shown below:
  
- [![](../media/2025/04/img1.PNG)](../media//2025/04/img1.PNG)
+ ![](../media/2025/04/img1.PNG)
 
 When you click on download publish profile, you may receive an alert stating that Basic authentication is disabled. 
  
- [![](../media/2025/04/img2.PNG)](../media//2025/04/img2.PNG)
+ ![](../media/2025/04/img2.PNG)
  
 To resolve this, you need to enable basic authentication by going to the configuration>>General settings blade and following the steps provided:
  
- [![](../media/2025/04/img3.PNG)](../media//2025/04/img3.PNG)
+ ![](../media/2025/04/img3.PNG)
  
 Click now on "Download publish profile" option to download the publish profile.
  
- [![](../media/2025/04/img4.PNG)](../media//2025/04/img4.PNG) 
- 
+ ![](../media/2025/04/img4.PNG)
 The downloaded "githubActionpublish.PublishSettings" file contains all the publish profile details like profileName, publishUrl,username, userPWD and publishMethod.
  
 # Step-2:
@@ -57,13 +56,13 @@ Now add the same publish profile content to your GitHub repository. Go to Settin
  
 Create a new repository secret named AZURE_WEBAPP_PUBLISH_PROFILE and add all publish profile data to it.
  
- [![](../media/2025/04/img5.PNG)](../media//2025/04/img5.PNG)
+ ![](../media/2025/04/img5.PNG)
  
 # Step-3:
  
 Please create a workflow file  A YAML (.yml) file in the /.github/workflows/ path in your GitHub repository that includes all the steps such as environment setup, build, and deployment as outlined below:
  
- [![](../media/2025/04/img6.PNG)](../media//2025/04/img6.PNG)
+ ![](../media/2025/04/img6.PNG)
  
  
 # Use the following sample WorkFlow.yml file for the setup.
@@ -141,17 +140,17 @@ jobs:
  
 Now, run the workflow.yml file, and the following will be the successful logs:
  
- [![](../media/2025/04/img7.PNG)](../media//2025/04/img7.PNG)
+ ![](../media/2025/04/img7.PNG)
  
- [![](../media/2025/04/img8.PNG)](../media//2025/04/img8.PNG)
+ ![](../media/2025/04/img8.PNG)
  
- [![](../media/2025/04/img9.PNG)](../media//2025/04/img9.PNG)
+ ![](../media/2025/04/img9.PNG)
 
 # Step-5:
  
 Now try accessing the application in the Azure portal as it has been successfully deployed to the web app:
  
- [![](../media/2025/04/img10.PNG)](../media//2025/04/img10.PNG)
+ ![](../media/2025/04/img10.PNG)
  
  
  
