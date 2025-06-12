@@ -20,6 +20,7 @@ You can find a compilation of resources by categories:
 
 ## Performance
 - [Diagnostic Tools for Java Performace on App Service Linux](https://azureossd.github.io/2022/05/20/Diagnostic-Tools-for-Java-Performace-on-App-Service-Linux/index.html)
+- [Java monitoring over SSH](https://azureossd.github.io/2025/05/09/Java-monitoring-over-SSH/index.html)
 
 ## Configuration
 - [Custom Tomcat Configuration on Azure App Service Linux](https://azureossd.github.io/2022/05/20/Custom-Tomcat-Configuration-on-Azure-App-Service-Linux/index.html)
@@ -47,3 +48,4 @@ You can find a compilation of resources by categories:
 - [Deploying WAR based Java Applications with Github Actions on Windows App Services](https://azureossd.github.io/2023/05/30/Deploying-War-Files-On-Windows-App-Services-with-GithubActions/index.html)
 - [Deploying JAR based Java applications with CI/CD (Azure DevOps) on Windows App Services](https://azureossd.github.io/2024/09/27/Deploying-JAR-based-Java-applications-with-CICD-on-Windows-App-Services/index.html)
 - [Deploying WAR based Java applications with CI/CD (Azure DevOps) on Windows App Services](https://azureossd.github.io/2024/09/27/Deploying-WAR-based-Java-applications-with-CICD-on-Windows-App-Services/index.html)
+- [Avoiding hardcoding Java or Tomcat versions on Windows App Service](https://azureossd.github.io/2025/02/28/Avoiding-hardcoding-Java-or-Tomcat-versions-on-Windows-App-Service/index.html)
