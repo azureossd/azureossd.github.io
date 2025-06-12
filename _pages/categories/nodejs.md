@@ -32,10 +32,12 @@ You can find a compilation of resources by categories:
 - [Node Deployments and 'npm ERR! Missing Script'](https://azureossd.github.io/2023/05/16/Node-Deployments-and-npm-ERR!-Missing-script/index.html)
 - [Node.js 12 applications failing by Optional chaining](https://azureossd.github.io/2022/09/06/Nodejs-12-failing-by-Optional-Chaining/index.html)
 - [Troubleshooting a ‘Module was compiled against a different Nodejs version’ errors](https://azureossd.github.io/2023/05/31/Troubleshooting-a-Module-was-compiled-against-a-different-Node.js-version-errors/index.html)
+- [NPM executables not being found on App Service Linux](https://azureossd.github.io/2022/10/24/NPM-Executables-not-being-found-at-startup-on-App-Service-Linux/index.html)
 
 ## Deployment
 - [Troubleshooting Node.js deployments on App Service Linux](https://azureossd.github.io/2023/02/09/troubleshooting-nodejs-deployments-on-appservice-linux/index.html)
 - [Yarn install timeouts and private packages](https://azureossd.github.io/2023/03/24/yarn-install-timeouts-and-private-packages/index.html)
+- [NodeJs GitHub Action Deployment on App Service Linux Using Publish Profile](https://azureossd.github.io/2025/04/16/NodeJs-GitHub-Action-Deployment-on-App-Service-Linux-Using-Publish-Profile/index.html)
 - **Frameworks**
   - [Next.js](https://azureossd.github.io/2022/10/18/NextJS-deployment-on-App-Service-Linux/index.html)
   - [Vue](https://azureossd.github.io/2022/02/11/Vue-Deployment-on-App-Service-Linux/index.html)
@@ -77,3 +79,4 @@ You can find a compilation of resources by categories:
 - [NextJS deployment on App Service Windows](https://azureossd.github.io/2024/02/06/NextJS-deployment-on-App-Service-Windows/index.html)
 - [Deploying Angular SSR (Universal) to App Service Windows](https://azureossd.github.io/2024/07/30/Deploying-Angular-SSR-to-App-Service-Windows/index.html)
 - [React deployment on App Service Windows](https://azureossd.github.io/2022/11/06/React-deployment-on-App-Service-Windows/index.html)
+- [Deploying Angular SSR (Universal) to App Service Windows](https://azureossd.github.io/2024/07/30/Deploying-Angular-SSR-to-App-Service-Windows/index.html)

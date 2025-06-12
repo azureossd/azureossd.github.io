@@ -41,6 +41,8 @@ Here is a compilation of resources by categories:
 - [Using additional TCP ports in Azure Container Apps](https://azureossd.github.io/2024/10/31/Using-additional-tcp-ports-in-Azure-Container-Apps/index.html)
 - [Container Apps - Setting storage directory permissions](https://azureossd.github.io/2024/12/30/Container-Apps-Setting-storage-directory-permissions/index.html)
 - [Container Apps - View Log Streams without Container Apps Contributor role](https://azureossd.github.io/2025/01/07/Container-Apps-View-Log-Streams-without-Container-Apps-Contributor-role/index.html)
+- [Enabling e2e TLS with Azure Container Apps](https://azureossd.github.io/2025/04/01/Enabling-e2e-TLS-on-Azure-Container-Apps/index.html)
+- [Using network troubleshooting tools with Azure Container Apps](https://azureossd.github.io/2025/04/30/Using-network-troubleshooting-tools-with-Azure-Container-Apps/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
@@ -54,6 +56,10 @@ Here is a compilation of resources by categories:
 - [Container Apps - Backoff restarts and container exits](https://azureossd.github.io/2024/01/19/Container-Apps-Backoff-restarts-and-container-exits/index.html)
 - [Preventing File Locks when mounting storage on Azure Container Apps](https://azureossd.github.io/2024/05/16/Preventing-File-Locks-Azure-Container-Apps/index.html)
 - [Container Apps - ‘Target port does not match the listening port’](https://azureossd.github.io/2024/10/08/Container-Apps-'Target-port-does-not-match-the-listening-port'/index.html)
+- [CPU usage metrics for Container Apps and single threaded applications](https://azureossd.github.io/2025/02/25/CPU-usage-metrics-for-Container-Apps-and-single-threaded-applications/index.html)
+- [‘no space left on device’ with Azure Container Apps](https://azureossd.github.io/2025/03/04/'no-space-left-on-device'-with-Azure-Container-Apps/index.html)
+- [Applications (and revisions) stuck in activating state on Azure Container Apps](https://azureossd.github.io/2025/05/05/Applications-(and-revisions)-stuck-in-activating-state-on-Azure-Container-Apps/index.html)
+- [Maximum Allowed Cores exceeded for the Managed Environment](https://azureossd.github.io/2025/05/16/Maximum-Allowed-Cores-exceeded-for-the-Managed-Environment/index.html)
 
 ## Deployments
 - [Container Apps and Bicep deployments](https://azureossd.github.io/2022/05/13/Container-Apps-and-Bicep-Deployments/index.html)

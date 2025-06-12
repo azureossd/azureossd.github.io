@@ -38,6 +38,9 @@ Here is a compilation of resources by categories:
 - [Troubleshooting HTTP 409’s when deploying to Azure App Service](https://azureossd.github.io/2023/08/14/Troubleshooting-HTTP-409s-when-deploying-to-App-Service/index.html)
 - [Deploying Applications to Azure App Service Using Oryx](https://azureossd.github.io/2024/10/14/deploying-applications-to-azure-appservice-using-oryx/index.html)
 
+## AI/ML
+- [Troubleshooting Azure AI Foundry deployments on Azure App Service](https://azureossd.github.io/2025/05/29/ai-foundry-azure-app-service/index.html)
+
 
 ## Availability and Startup issues
 - [Troubleshooting failed slot swaps on App Service Linux](https://azureossd.github.io/2023/03/15/Troubleshooting-Failed-Slot-Swaps-on-App-Service-Linux/index.html)
