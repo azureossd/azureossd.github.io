@@ -146,6 +146,32 @@ Since scaling out to a large amount of replicas would also mean that nodes would
 - **For dedicated profiles**: Set a reasonable higher **max node count**. Depending on the workload - increase the SKU to one with higher cores as well.
 - If getting close to quota limits (or scaling/creating enough replicas that they get closer to the limit), do a self-serve quota request
 
+## Lack of subnet space
+**IMPORTANT**: If the environment doesn't have a custom VNET, this doesn't apply
+
+**Cause**:
+- Too small of a subnet space as per what's defined here: [Configuring virtual networks Azure Container Apps environments | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet)
+
+**Investigation**:
+
+For v1 and v2 environments where applications are using a Dedicated Profile - the error will still most likely just be `max node pool reached` repeatedly happening and ideally if an attempt at scaling out for nodes (likely meaning the application had an event which created more replicas, which needed more nodes). For applications that are using a Consumption profile, this is just looked at from a _per-replica_ basis.
+
+The simplest method to this is to look at the subnet size used on the Container App Environment.
+
+**Resolution**:
+- Redeploy the environment with a larger subnet size, or, better manage scaling of nodes (or replicas, which will possibly affect nodes) - or just replicas (if on a Consumption profile).
+- **You cannot change the subnet to a new/different one without redeploying the environment**. You must redeploy the environment with the new subnet if this option is chosen.
+
+This doc ([Configuring virtual networks Azure Container Apps environments | Microsoft Learn](https://learn.microsoft.com/en-us/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet)) explains the subnet size and max nodes or replicas (depending on the profile and environment) - and as seen in the below table:
+
+| Subnet Size | Available IP Addresses1 | Max nodes (Dedicated workload profile)2 | Max replicas (Consumption workload profile)2 |
+| --- | --- | --- | --- |
+| /23 | 498 | 249 | 2,490 |
+| /24 | 242 | 121 | 1,210 |
+| /25 | 114 | 57 | 570 |
+| /26 | 50 | 25 | 250 |
+| /27 | 18 | 9 | 90 |
+
 ## GPU
 This is specific for an app using a GPU profile
 
