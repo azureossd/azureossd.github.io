@@ -65,7 +65,7 @@ async function main() {
         
         // Initialize Azure Search client
         const indexClient = new SearchIndexClient(
-            `https://${CONFIG.searchServiceName}.search.windows.net`,
+            CONFIG.searchServiceName,
             new AzureKeyCredential(CONFIG.adminApiKey)
         );
         
