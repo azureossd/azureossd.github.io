@@ -161,6 +161,14 @@ If you try to run FastAPI against a `sync` worker, you may see this:
 TypeError: FastAPI.__call__() missing 1 required positional argument: 'send'
 ```
 
+Additionally, if `uvicorn` is not listed in your `requirements.txt`, you may see the below - which will cause the application to fail start up:
+
+```
+ModuleNotFoundError: No module named 'uvicorn'
+```
+
+If this is seen, add `uvicorn` to `requirements.txt` and redeploy.
+
 ## Setting worker counts
 Gunicorn uses one (1) worker by default, with the `sync` worker class explained above. If we want to utilize multi workers to use for scenarios like multiprocessing, we can use the two approachs below:
 

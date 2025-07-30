@@ -572,6 +572,28 @@ A normal deployment doesn't need to take more than 5-15 mins. If the workflow is
 
         ![Vue App](/media/2022/02/vue-deployment-linux-11.png)
 
+## Deployments to Kudu timing out, or taking an extended amount of time, due to number of files
+
+In your deployment task when using CI/CD (for either Azure Pipelines or Github Actions), you may notice occasional output showing the below:
+
+```
+Processed 38841 files...
+
+Processed 39162 files...
+
+Processed 39562 files...
+```
+
+Depending on the project, this can end up with upwards of 70k+ files. This is typically due to `node_modules`. The message shown in the deployment task that shows this is when the artifact is deployed to the Kudu site and is being handled by the deployment engine to extract the `.zip` deployed.
+
+If this is a Vue application - in the sense it's just client-side code, then as mentioned in the above section regarding GitHub and slow deployments - you should **_only_** deploy the `/dist` folder _or_ just the contents within the folder. You should leave out all non-essential files - especially development-only related libraries and others.
+
+This means that `node_modules` and potentially other irrelevant files for non-prod are left out - which could save tens of thousands of files that don't need to be deployed - saving overall deployment time by tens of minutes.
+
+In scenarios where SSR is used and `/dist` plus other server-side aspects are needing to be included - this may be more tricky. But, it is possible to ultimately pick and choose what your production build ends up like (meaning the files contained within the `.zip`) - still saving much needed deployment time.
+
+In the event that none of above can truly be done - the App Setting `SCM_DEPLOYMENT_TIMEOUT_MINS` can be added to the App Service and increased by a value of minutes (eg., `80`, `90`). The default deployment timeout time is 40  minutes. However, a general best practice is to first try to reduce the overall size of the artifact first rather than immediately relying on this setting.
+
 ## Environment variables are missing after deployment
 If the application does not have access to the environment variables during build time **or** if the environment variable is not prefixed with `VUE_APP_` they will appear as `undefined`.
 

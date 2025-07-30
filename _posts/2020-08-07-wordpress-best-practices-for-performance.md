@@ -31,16 +31,21 @@ This offering follows the below best practices and is recommended for optimal pe
 
 When it comes to Performance, there are a few Best Practices recommended when using Azure App Services.
 
+*Note: Some options are not compatilable with each other. This is a general guide for improving WordPress performance on Azure App Services.*
+
 1. Ensure App Service and Database are in the same datacenter.
 2. Optimize Database
 3. Compress Images
     - Store media and static files in Azure Blob Storage.
     - Compress Images using a plugin
-4. Use Azure CDN
-5. Turn off Pingback and Trackbacks
-6. Cache pages.
-7. Diagnose Theme and Plugin issues.
-8. Disable wp-cron.php
+4. Use WordPress Caching
+    - WP Supper Cache
+    - W3 Total Cache
+5. Use Azure CDN
+6. Turn off Pingback and Trackbacks
+7. Cache pages.
+8. Diagnose Theme and Plugin issues.
+9. Disable wp-cron.php
 
 ### Optimizing Database
 
@@ -130,7 +135,9 @@ You can test this by going into **Media > Library** and uploading a new image.
 
 PHP is a server side scripting language, therefore that Time To First Byte is typically WordPress gathering all the data so PHP can compile a HTML page to respond with. This is why it is always recommended to enable some sort of WordPress caching as it keeps these compiled HTML pages in a store to serve for later.
 
-There are many different options for caching; however, we will be using the following: **WP Super Cache**
+There are many different options for caching. We will go over two well known options.
+
+#### WP Super Cache
 
 - Login to your WordPress Admin Dashboard
 - Go to: **Plugins > Add New**
@@ -148,6 +155,41 @@ Starting out, enable all **Recommended** settings. These settings will need some
 ![WP Super Cache Options](/media/2020/08/wp-super-cache-options.png)
 
 Click **Update Status** to save your changes.
+
+#### W3 Total Cache
+
+- Login to your WordPress Admin Dashboard
+- Go to: **Plugins > Add New**
+- Search for **W3 Total Cache**
+- Click Install Now, then Activate.
+
+![W3 Total Cache](/media/2020/08/w3-total-cache.png)
+
+Once installed and activated, you will need to navigate to **Performance > Dashboard**.
+
+If this is a first time setup, you will be prompted to go through a **Setup Guide**. Select the options that provide best performance during this test.
+
+![W3 Total Cache Setup Guide](/media/2020/08/w3-total-cache-setup-guide.png)
+
+**W3 Total Cache** allows you to utilize other services in once single location: Azure Storage, Azure CDN, and Redis Cache.
+
+##### Setting up CDN
+
+Navigate to **Performance > General Settings** and locate the **CDN** tab at the top to access W3 Total Cache's CDN settings.
+
+For **CDN Type** select **Microsoft Azure Storage**, and **Enable** the CDN feature. Then select, **Save Settings** to save this option.
+
+![W3 Total Cache CDN](/media/2020/08/w3-total-cache-cdn.jpeg)
+
+Navigate to **Performance > CDN** to configure Azure Storage credentials.
+
+Here you will provide the following information for your Azure Storage account.
+
+  - Account Name
+  - Account Key
+  - Container Name
+
+![W3 Total Cache CDN Settings](/media/2020/08/w3-total-cache-cdn-config.jpeg)
 
 ### Using Azure CDN
 

@@ -31,9 +31,15 @@ Here is a compilation of resources by categories:
 - [Editing Response Headers on Linux App Service](https://azureossd.github.io/2022/05/25/Editing-Response-Headers-on-Linux-App-Service/index.html)
 - [Installing TcpPing on Azure App Service Linux](https://azureossd.github.io/2021/06/17/installing-tcpping-linux/index.html)
 - [Troubleshooting Bring Back SSH for App Service (Blessed) Images](https://azureossd.github.io/2023/06/27/Troubleshooting-Bring-Back-SSH-for-App-Service-(Blessed)-Images/index.html)
+- [Logging with supervisord on Web Apps for Containers](https://azureossd.github.io/2023/11/03/Logging-with-supervisord-on-Web-Apps-for-Containers/index.html)
+- [Installing database clients to connect and troubleshoot database connections](https://azureossd.github.io/2024/05/20/Installing-database-clients-to-connect-and-troubleshoot-database-connections/index.html)
 
 ## Deployment
 - [Troubleshooting HTTP 409’s when deploying to Azure App Service](https://azureossd.github.io/2023/08/14/Troubleshooting-HTTP-409s-when-deploying-to-App-Service/index.html)
+- [Deploying Applications to Azure App Service Using Oryx](https://azureossd.github.io/2024/10/14/deploying-applications-to-azure-appservice-using-oryx/index.html)
+
+## AI/ML
+- [Troubleshooting Azure AI Foundry deployments on Azure App Service](https://azureossd.github.io/2025/05/29/ai-foundry-azure-app-service/index.html)
 
 
 ## Availability and Startup issues
@@ -41,7 +47,7 @@ Here is a compilation of resources by categories:
 - [Troubleshooting No space left on device](https://azureossd.github.io/2023/04/11/troubleshooting-no-space-left-on-device/index.html)
 - [Troubleshooting Bring Back SSH for App Service (Blessed) Images](https://azureossd.github.io/2023/06/27/Troubleshooting-Bring-Back-SSH-for-App-Service-(Blessed)-Images/index.html)
 - [Middleware containers - Why you may see "Failed to forward request messages" for your application on App Service Linux](https://azureossd.github.io/2023/04/05/Why-you-may-see-Failed-to-forward-request-messages-for-your-application-on-App-Service-Linux/index.html)
-- [Troubleshooting Container didnt respond to HTTP pings on port, failing site start](https://azureossd.github.io/2023/04/18/Troubleshooting-Container-didnt-respond-to-HTTP-pings-failing-to-start-site/index.html)
+- [Troubleshooting Container didnt respond to HTTP pings on port, failing site start](https://azureossd.github.io/2023/04/17/Troubleshooting-Container-didnt-respond-to-HTTP-pings-failing-to-start-site/index.html)
 - [Troubleshooting Bring Your Own Storage (BYOS) issues on App Service Linux](https://azureossd.github.io/2023/04/20/How-to-troubleshoot-Bring-Your-Own-Storage-(BYOS)-Issues-on-App-Service-Linux/index.html)
 
 # Web app for Containers
@@ -54,6 +60,8 @@ Here is a compilation of resources by categories:
 ## Configuration
 - [Enabling SSH on Linux Web App for Containers](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html)
 - [How to download files from a custom container](https://azureossd.github.io/2023/07/20/How-to-download-files-from-a-custom-container/index.html)
+- [Using MySQL clients to connect to a MySQL database from App Service Linux](https://azureossd.github.io/2024/01/24/Using-mysql-client-to-connect-to-a-MySQL-db-from-App-Service-Linux/index.html)
+- [Installing Oracle database instant client for Nodejs on Linux and Widows apps service](https://azureossd.github.io/2024/01/18/Installing-Oracle-database-instant-client-for-nodejs-on-Linux-and-Widows-apps-service/index.html)
 
 ## Deployment
 - [Deploying Web App for Containers with CI/CD pipelines](https://azureossd.github.io/2023/02/06/Deploying-Web-App-for-Containers-with-CI-CD-pipelines/index.html)

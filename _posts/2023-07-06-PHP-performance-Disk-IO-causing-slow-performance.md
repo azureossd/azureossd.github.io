@@ -29,6 +29,8 @@ When persistent I/O access is needed to be done over the mounted volume (eg., `W
 
 Since App Service persistent storage volumes are mounted from a remote file share - and each request to the file is going through a network mounted volume to the file share - either by explicitly read/write scenarios or implicit I/O through PHP as a language, it can add potential latency here. This can be the case regardless of OpCache usage.
 
+> **IMPORTANT**: Do not attempt to manipulate ocpache on the Blessed Images. If you want to do this, use a custom image instead so you have full control
+
 > **NOTE:** A really good and recommended explanation of this behavior, or the concept itself of low CPU but high I/O times/high load average and slow performance when doing I/O operations can be seen here: https://tanelpoder.com/posts/high-system-load-low-cpu-utilization-on-linux/ 
 
 At a minimum, we can confirm through Linux tooling that there is a variable degree of latency between the mounted volume and directly to the local filesystem (disk). Take the below for example testing with [fio](https://github.com/axboe/fio)
@@ -72,5 +74,6 @@ If it is confirmed that this is likely the issue, a few things can be done for a
     - This is essentially the typical concept of a container, where it is ephemeral and state does not persist
 - For Blessed Images, implement a startup behavior where files or application scripts can be read/written to from outside of `/home` instead. This may be more beneficial for explicit read/write scenarios. 
     - Move any files that do not need to be persisted after a restart, such as temporary files, outside of `/home`. This can be done programmatically or through a framework configuration, if it offers such capability.
+- For Blessed Images, [App Cache](https://github.com/Azure-App-Service/KuduLite/wiki/App-Cache) for App Service Linux can be used. This uses an NFS volume instead of the typical `/home` networked storage volume to persist content. Aside from the content deployed to the application, this otherwise fundamentally works as a typical ephemeral container (where anything written at runtime will be lost at restart unless otherwise persisted). Since this doesn't use networked storage, disk I/O can be significantly improved. 
 - Non-App Service products that can be used, if some of these approaches don't work are - AKS, VM's, Azure Container Apps   
     - However, these will still require you to be aware of the non-persisted files on the local container filesystem after operations such as restarts, unless something like a local volume is used.

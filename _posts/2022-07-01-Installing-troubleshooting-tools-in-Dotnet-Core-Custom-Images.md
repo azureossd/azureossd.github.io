@@ -26,6 +26,9 @@ In Azure Dotnet based 'Blessed Images', these Dotnet based performance tools are
 These custom Dotnet based Web App for Containers that are built may not include these tools (for example, lack of SDK or global tools) in the final layer to reduce overall Image size. This post will show how to install these tools if this is the case inside custom Linux containers.
 
 # Prerequisites
+## SSH access
+**SSH needs to be integrated with the Dockerfile** or else you will not be able move further with this blog post. [Review this post](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/index.html) on how to integrate it, which includes some examples for various runtimes or OS types.
+
 ## Enabling persistent storage
 
 If installing these tools to gather data and retrieve them later on, make sure that `WEBSITES_APP_SERVICE_ENABLE_STORAGE` is set to **true** first. This is set as an AppSetting. Review [here](https://docs.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#custom-containers) for documentation. 

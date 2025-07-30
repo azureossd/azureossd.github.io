@@ -43,6 +43,16 @@ In a succesful scenario - you could connect to a pod/replica via the **Console**
 
 ![Volumes on filesystem](/media/2023/07/azure-aca-volume-1.png)
 
+**A note about dedicated environments**:
+
+For dedicated environments (Consumption profile, or, Workload profiles) - the error instead will show the following:
+
+```
+Container 'some-container' was terminated with exit code '' and reason 'VolumeMountFailure'
+```
+
+The description will not be logged as to why the failed to mount in this case, but, this blog can be used to rule out potential problems.
+
 # Troubleshooting
 You can use the `ContainerAppSystemLogs_CL` table to view if failed mount operations are occurring.
 
@@ -67,13 +77,21 @@ Documentation for using storage mounts in Azure Container Apps can be found [her
 ## Common Errors
 The below errors will show in `ContainerAppSystemLogs_CL` - this will depend on the scenario encountered:
 
+- `Output: mount error(115): Operation now in progress`
+   - It is likely there is a UDR set that is causing traffic to storage to be blocked.
+
 - `Output: mount error: could not resolve address for someaddress.file.core.windows.net: Unknown error`
 
-    - The Storage Account FQDN may not be able to be resolved - DNS may be misconfigured or traffic from Azure Container Apps is being blocked.
+    - The Storage Account FQDN may not be able to be resolved - DNS may be misconfigured or unresolvable with the current DNS servers
+    - If there is a Private Endpoint on the Storage Account - ensure any Private DNS zones are properly configured. Misconfigured records/IP's can cause this behavior
 
 - `Output: mount error(13): Permission denied`
 
     - The address is resolvable but traffic may be blocked from accessing storage. Is there a firewall on storage blocking the IPs of the environment? Is storage able to be accessed from a jumpbox in the same VNET?
+      - Blocking ports 443 and 445 (which Azure Files uses) will cause this behavior
+      - In general, the subnet of the Container App Environment needs access to the Storage Account
+    - Also ensure that the file share exists and that you've put in the **correct** access key when creating the Storage Resource initially on the Container App Environment.
+    - This can be caused by what's described in [Azure Files security compatability on Container Apps](https://azureossd.github.io/2025/02/10/Azure-Files-security-compatability-on-Container-Apps/index.html) regarding incompatible _security compatability_ settings on Azure Files. 
 
 - `Output: mount error(2): No such file or directory`
     - Does the File Share exist? Review if this was deleted or the name does not exist
@@ -103,10 +121,11 @@ If a firewall or a Private Endpoint is enabled on the Storage Account, and not p
 - Operations such as restarts, updates, or deployments may fail if the application is dependent on a storage mount.
 
 Consider the following during troubleshooting from with the Container App console:
-- Ensure the account can be pinged with `tcpping` - eg., `tcpping somestorageaccount.file.core.windows.net`
+- Ensure the account can be pinged with `tcpping` - eg., `tcpping somestorageaccount.file.core.windows.net` - test with **both** ports 443 and 445. You also use the `nc` command, such as `nc somestorageaccount.file.core.windows.net 445`
 - Ensure the address is resolvable - you can use either `dig` or `nslookup` - eg., `nslookup somestorageaccount.file.core.windows.net`
+   - You can specify a DNS server with the `nslookup` command by doing `nslookup somestorageaccount.file.core.windows.net x.x.x.x`
 - If the address can be resolved and be pinged, then this is likely not a DNS issue as it's resolvable but rather this may indicate the client is blocked from access.
-- If the address is _not_ resolvable - this may be an issue with the DNS configured - you may also see `could not resolve address for someaddress.file.core.windows.net`
+- If the address is _not_ resolvable - this may be an issue with the DNS configured - you would also see `could not resolve address for someaddress.file.core.windows.net`
 
 Additionally, review [Securing a custom VNET in Azure Container Apps with Network Security Groups](https://learn.microsoft.com/en-us/azure/container-apps/firewall-integration.)
 
@@ -120,13 +139,25 @@ Update the Storage Resource mapped to the Azure Container Apps instance if keys 
 ## Permission denied due to volume privileges
 Some technologies may require root privileges with `sudo` - or being able to manipulate the command and mount permissions used when mounting the volume with the client or driver being used.
 
-On Container Apps - this cannot be done. Since this is a PaaS, lower level implementations like being able to manipulate the way volumes are mounted can not be done.
+You can do this on Azure Container Apps by following [Container Apps - Setting storage directory permissions](https://azureossd.github.io/2024/12/30/Container-Apps-Setting-storage-directory-permissions/index.html) - this applies to both SMB and NFS.
 
-Part of this also can happen due to Container Apps not letting applications run as priviledges containers - [docs](https://learn.microsoft.com/en-us/azure/container-apps/containers#limitations)
+## Pod or container exceeded local ephemeral storage limit
+You may see messages like the below when a pod is exceeding the allowed storage quota limit, which may cause application unavailability.
 
-Another scenario related to this is if the user in the container is different from the user (or privileges) set when the volume is actually mounted. 
+```
+Container somecontainer exceeded its local ephemeral storage limit "1Gi". 
+```
+```
+Pod ephemeral local storage usage exceeds the total limit of containers 1Gi. 
+```
+> **NOTE**: The limit message may differ depending on the allowed quota
 
-At this time, a potential way to get around this (this also depends on the technology used) is to set the `USER` instruction to `root` in the `Dockerfile` used (if the `USER` is not root already). 
-- If this is not able to be done, or does not work, then there is the potential that the application functionality requiring priviledged mount options will need to be reworked to avoid use this in a priviledged manner
+Ephemeral volume quota limits are publicly defined [here](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#temporary-storage).
 
-For the future, there is a roadmap item for [supporting mount options for storage mounts with Container Apps](https://github.com/microsoft/azure-container-apps/issues/765).
+For **container** storage - take note of what is publicly called out in documentation: _There are no capacity guarantees. The available storage depends on the amount of disk space available in the container._
+
+For **epehemeral** (pod) storage - review the containers' CPU defined - since ephemeral storage scales with the amount of CPU set for a container.
+
+If an application is consistently hitting quota limits, you can:
+- Increase CPU size to be aligned with [here](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#temporary-storage), which would increase ephemeral storage.
+- Or, use **[Azure Files](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#azure-files)** which would offer increased storage size. However, if there are alot of temporary files or files that don't need to be persisted - then this option shouldn't be used as eventually you'd be at risk of filling up this Azure Files quota as well - unless these files are periodically/systematically deleted

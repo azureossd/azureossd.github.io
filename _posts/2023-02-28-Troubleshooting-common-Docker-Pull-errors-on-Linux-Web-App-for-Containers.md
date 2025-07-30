@@ -1,5 +1,5 @@
 ---
-title: "Troubleshooting common Docker Pull errors on Linux Web App for Containers"
+title: "Troubleshooting common docker pull errors on linux web app for containers"
 author_name: "Anthony Salemo"
 tags:
     - Docker

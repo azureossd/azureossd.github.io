@@ -86,6 +86,57 @@ There are times when taking multiple dumps/profiles, you may notice one has a va
 > **NOTE**: When profiling an application, there is the chance this creates further negative performance impact (while profiling is occurring). This should be noted, especially for production environments. 
 
 ## High CPU
+### py-spy (recommended)
+[py-spy](https://github.com/benfred/py-spy) is an out-of-process profiler that can be invoked through the terminal via [Connect to a container console in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/container-console?tabs=bash) or certain startup scripts/logic in the image/container.
+
+This can be very beneficial in the sense that code changes do not need to happen to implement profilers. Sometimes, this can introduce side-effects, like performance issues since most profilers run in the same Python process - and could affect production traffic. In other cases, you'd need to figure out which peice of code to wrap profiler function calls around to properly profile (and assuming it doesn't break the application)
+
+`py-spy`'s implementation negates the above and makes it safe to use.
+
+The only that is required is to install `py-spy` into the current activated virtual environment. You can either:
+- Explicitly add `py-spy` into your `requirements.txt`. You can invoke this programmatically. Although if you're expecting to invoke this through **Console**, a virtually, then either a virtual environment should be activated, or available globally. In that case, it may be better to go with the below approach
+- Or, go into **Console** and run `pip install py-spy` (assuming `pip` is installed and available from your image/container)
+
+> **NOTE**: If outbound internet connectivity is blocked, package installation will fail. This also may fail if your container user is _not_ `root` (or a user without relevant permissions)
+
+
+#### Usage
+##### pyspy-top ("top" like output)
+Go into **Console**, and run `top` or `ps` to get the PID of the Python process consuming the most CPU. Using Gunicorn again, we can see it's consuming 100% CPU. The pid here is `93`
+
+![Gunicorn process PID](/media/2025/01/python-profiling-4.png)
+
+You can use the `py-spy top --pid [appprocesspid]` which essentially displays a `top`-like output through `py-spy`. In this case, we'd run `py-spy top --pid 93`. The output looks like this:
+
+![py-spy top output](/media/2025/01/python-profiling-5.png)
+
+Using `py-spy top`, we can see in this case the function `cpu_intensive_task` being called in `app.py` is consuming the most time.
+
+
+##### Continuous recording
+This method lets you continuously record a sample profiler of the application.
+
+
+If you want to output this to a file, you can use a flamegraph. The command `py-spy record` will run a sample with a default of 100 times a second - this will write out to the file when cancelled with `CTRL + C`. Write the file to a [persistent storage mount with Azure Files](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?tabs=smb) so these can be downloaded from the file share.
+
+The command to use is `py-spy record -o /path/to/storage/profile.svg --pid [appprocesspid]`. In this case, `py-spy record -o /path/to/storage/profile.svg --pid 93`. Output of running the command is below:
+
+![py-spy top output](/media/2025/02/python-aca-profiling-1.png)
+
+Download the generate file, in this case, `profile.svg`, and then open it locally in your browser:
+
+![py-spy recorder output](/media/2025/01/python-profiling-7.png)
+
+Each call can be clicked on and drilled into.
+
+##### Thread dump
+You can use `py-spy dump --pid [appprocesspid]` to do a thread dump of the process in question. This will write to stdout in the terminal by default. 
+
+The below example runs ``py-spy dump --pid 94`
+
+![py-spy thread dump output](/media/2025/02/python-aca-profiling-2.png)
+
+This gives more insight into what code is executed, per thread - and can be helpful in multipthreading Python applications (and others). This can also be useful in generally "slow" applications where high CPU is not present, but persistent slowness is.
 ### cProfile
 [cProfile](https://docs.python.org/3/library/profile.html) is a C-based profiler a part of the Python standard library. No external packages are needed.
 

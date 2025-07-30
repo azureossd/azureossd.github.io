@@ -1,29 +1,52 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# Azure Cognitive Search Indexing Workflow
+# This workflow indexes blog content to Azure Cognitive Search when content is pushed to master
+# Security: Uses GitHub secrets for Azure credentials and follows least privilege principles
 
-name: Az Cognitive Search Indexing
+name: Azure Cognitive Search Indexing
 
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - '_posts/**'
+      - 'azcogsearch-scripts/**'
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: read # Minimal permissions required
 
 jobs:
-  build:
-
+  index-content:
+    name: Index Blog Content
     runs-on: ubuntu-latest
-
+    
+    # Security: Use environment for additional protection
+    environment: production
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js LTS
-      uses: actions/setup-node@v3
+    - name: Checkout repository
+      uses: actions/checkout@v4 # Updated to latest version
       with:
-        node-version: 18
+        fetch-depth: 0 # Full history for better indexing
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4 # Updated to latest version
+      with:
+        node-version: 'lts/*'
         cache: 'npm'
+        cache-dependency-path: './azcogsearch-scripts/package-lock.json'
+    
+    - name: Install dependencies
+      working-directory: ./azcogsearch-scripts
+      run: |
+        npm ci # Use ci for reproducible builds
+        npm audit # Check for vulnerabilities
+    
     - name: Run indexing
       env:
         AZ_SEARCH_SERVICE_NAME: ${{ secrets.AZ_SEARCH_SERVICE_NAME }}
         AZ_SEARCH_ADMIN_KEY: ${{ secrets.AZ_SEARCH_ADMIN_KEY }}
+        NODE_ENV: production
       working-directory: ./azcogsearch-scripts
       run: |
-        npm i
         node feed-index.js

@@ -32,10 +32,12 @@ You can find a compilation of resources by categories:
 - [Node Deployments and 'npm ERR! Missing Script'](https://azureossd.github.io/2023/05/16/Node-Deployments-and-npm-ERR!-Missing-script/index.html)
 - [Node.js 12 applications failing by Optional chaining](https://azureossd.github.io/2022/09/06/Nodejs-12-failing-by-Optional-Chaining/index.html)
 - [Troubleshooting a ‘Module was compiled against a different Nodejs version’ errors](https://azureossd.github.io/2023/05/31/Troubleshooting-a-Module-was-compiled-against-a-different-Node.js-version-errors/index.html)
+- [NPM executables not being found on App Service Linux](https://azureossd.github.io/2022/10/24/NPM-Executables-not-being-found-at-startup-on-App-Service-Linux/index.html)
 
 ## Deployment
 - [Troubleshooting Node.js deployments on App Service Linux](https://azureossd.github.io/2023/02/09/troubleshooting-nodejs-deployments-on-appservice-linux/index.html)
 - [Yarn install timeouts and private packages](https://azureossd.github.io/2023/03/24/yarn-install-timeouts-and-private-packages/index.html)
+- [NodeJs GitHub Action Deployment on App Service Linux Using Publish Profile](https://azureossd.github.io/2025/04/16/NodeJs-GitHub-Action-Deployment-on-App-Service-Linux-Using-Publish-Profile/index.html)
 - **Frameworks**
   - [Next.js](https://azureossd.github.io/2022/10/18/NextJS-deployment-on-App-Service-Linux/index.html)
   - [Vue](https://azureossd.github.io/2022/02/11/Vue-Deployment-on-App-Service-Linux/index.html)
@@ -57,6 +59,7 @@ You can find a compilation of resources by categories:
 - [Using modern Yarn for deployment with Node.js](https://azureossd.github.io/2022/08/10/Using-modern-Yarn-for-deployment-with-Node.js-on-Azure-App-Service/index.html)
 - [Best practices for not using Development Servers on Nodejs applications](https://azureossd.github.io/2022/10/26/Best-practices-for-not-using-Development-Servers-on-Nodejs-applications-and-App-Service-Linux/index.html)
 - [Why to avoid installing packages in startup scripts](https://azureossd.github.io/2022/10/14/Nodejs-on-App-Service-Linux-and-why-to-avoiding-installing-packages-in-startup-scripts/index.html)
+- [Rebuild Your Node.js Project the Right Way](https://azureossd.github.io/2024/10/14/rebuild-your-nodejs-project-the-right-way/index.html)
 
 ## Performance
 - [Troubleshooting Node.js High Memory scenarios](https://azureossd.github.io/2021/12/10/Troubleshooting-NodeJS-High-Memory-scenarios-in-App-Service-Linux/index.html)
@@ -64,6 +67,16 @@ You can find a compilation of resources by categories:
 
 
 # Windows
-- [Troubleshooting Common iisnode Issues](https://azureossd.github.io/2022/10/17/troubleshooting-common-iisnode-issues/index.html)
+## Configuration and Best Practices
 - [Avoiding hardcoding Node versions](https://azureossd.github.io/2022/06/24/Avoiding-hardcoding-Node-versions-on-App-Service-Windows/index.html)
+
+## Performance
+- [Troubleshooting Common iisnode Issues](https://azureossd.github.io/2022/10/17/troubleshooting-common-iisnode-issues/index.html)
 - [Troubleshooting Node.js High CPU and Memory scenarios in App Service Windows](https://azureossd.github.io/2021/12/14/Troubleshooting-NodeJS-High-CPU-and-Memory-scenarios-in-App-Service-Windows/index.html)
+
+## Deployment
+- [NestJS deployment on App Service Windows](https://azureossd.github.io/2022/11/29/NestJS-deployment-on-App-Service-Windows/index.html)
+- [NextJS deployment on App Service Windows](https://azureossd.github.io/2024/02/06/NextJS-deployment-on-App-Service-Windows/index.html)
+- [Deploying Angular SSR (Universal) to App Service Windows](https://azureossd.github.io/2024/07/30/Deploying-Angular-SSR-to-App-Service-Windows/index.html)
+- [React deployment on App Service Windows](https://azureossd.github.io/2022/11/06/React-deployment-on-App-Service-Windows/index.html)
+- [Deploying Angular SSR (Universal) to App Service Windows](https://azureossd.github.io/2024/07/30/Deploying-Angular-SSR-to-App-Service-Windows/index.html)

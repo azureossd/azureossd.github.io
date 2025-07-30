@@ -32,7 +32,7 @@ You **should not** "mix and match" the two above approaches. It is highly recomm
 Otherwise, you may see unintended behavior.
 
 # Zip Deploy and One Deploy
-Zip Deploy is one of the recommended ways to deploy war files. Additionally, "One Deploy" is not entirely a deployment method - but type of deployment done through the Azure App Service platform. Certain deployment methods discussed in this article will use One Deploy under the hood.
+One Deploy and Zip Deploy is one of the recommended ways to deploy war files. Additionally, "One Deploy" is not entirely a deployment method - but type of deployment done through the Azure App Service platform. Certain deployment methods discussed in this article will use One Deploy under the hood.
 
 ## Zip Deploy
 Different ways to deploy a Zip package (that contains either a .war or .jar) can be found here - [App Service - Deploy a ZIP package](https://learn.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli#deploy-a-zip-package). This includes:
@@ -44,6 +44,8 @@ Different ways to deploy a Zip package (that contains either a .war or .jar) can
 As an example, we'll talk about using the Azure CLI for two approaches.
 
 **az webapp deployment source config-zip**:
+
+> **NOTE:** Don't use this command and directly deploy a .war file. It'll be unpacked directly in wwwroot with an incorrect file structure
 
 An example command of this would be:
 
@@ -70,17 +72,18 @@ On output of this, you can confirm this is using "push deployer" (Zip Deploy):
 ...
 ```
 
-If deploying a non-zipped `.war` or `.war` that is in a Zip and try to use this command - this will deploy directly to `/home/site/wwwroot`. The file contents will look like the below:
+If deploying a `.war` that is in a Zip and try to use this command - this will deploy directly to `/home/site/wwwroot`. The file contents will look like the below:
+
 ```
-6a1dd90d49ab:/home# ls /home/site/wwwroot/
-war-0.0.1-SNAPSHOT.war
-6a1dd90d49ab:/home# ls /usr/local/tomcat/webapps/
-ROOT      ROOT.war
+root@somesite-t_b6eb578f09:/# ls /home/site/wwwroot/
+demo-0.0.1-SNAPSHOT.war
+root@somesite-t_b6eb578f09:/# ls /usr/local/tomcat/webapps/
+demo-0.0.1-SNAPSHOT  demo-0.0.1-SNAPSHOT.war
 ```
-In this case, the war follows an approach that mimics the OneDeploy logic below - where the `.war` is _not_ expanded under `/home/site/wwwroot` but rather is locally coped over to `/usr/local/tomcat/webapps/[context` and expanded there.
+In this case, the war follows an approach that mimics the OneDeploy logic below - where the `.war` is _not_ expanded under `/home/site/wwwroot` but rather is locally coped over to `/usr/local/tomcat/webapps/[context]` and expanded there.
 
 ## One Deploy
-> The below is focusing on Azure CLI command usage
+> The below is focusing on Azure CLI command usage. However, GitHub Actions `azure/webapps-deploy@v3` and the Maven deployment plugin for Azure App Service both also use OneDeploy under the hood
 
 **az webapp deploy**:
 > **NOTE**: This method uses **OneDeploy** instead of "Push Deployer" (Zip Deploy)

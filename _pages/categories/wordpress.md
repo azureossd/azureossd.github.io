@@ -24,7 +24,7 @@ You can find a compilation of resources by categories:
 * [Change MySQL Database Password for WordPress on Linux App Service](./WordPress/changing_mysql_database_password.md)
 * [Change WordPress Admin Credentials of the WordPress hosted on Linux App Service](./WordPress/changing_wordpress_admin_credentials.md)
 * [Setup Startup scripts for WordPress running on Linux App Service](./WordPress/running_post_startup_scripts.md)
-* [Configuring Nginx for WordPress running on Linux App Service](./WordPress/configuring_nginx_for_wordpress.md)
+* [Wordpress on Linux - Configuring NGINX](https://azureossd.github.io/2024/01/30/Wordpress-on-Linux-Configuring-NGINX/index.html#overview)
 * [A view of Application Settings of WordPress on Linux App Service](./WordPress/wordpress_application_settings.md)
 * [Connect to database with phpmyadmin of WordPress on Linux AppService](./WordPress/wordpress_phpmyadmin.md)
 * [Configure WordPress on Linux AppService with existing MySQL database](./WordPress/using_an_existing_mysql_database.md)
@@ -34,6 +34,9 @@ You can find a compilation of resources by categories:
 * [WordPress Best Practices for Security](https://azureossd.github.io/2021/01/28/wordpress-best-practices-for-security/index.html)
 * [Installing WordPress within Subdirectory](https://azureossd.github.io/2023/03/30/wordpress-subdirectory/index.html)
 - [How to enable IP access restrictions on wp-admin for the WordPress on App Service offering](https://azureossd.github.io/2023/07/27/wordpress-on-appservice-wpadmin-ip-restrictions/index.html)
+- [Wordpress on Linux - Configuring NGINX](https://azureossd.github.io/2024/01/30/Wordpress-on-Linux-Configuring-NGINX/index.html)
+- [Changing php-fpm ‘pm’ settings in App Service Wordpress on Linux](https://azureossd.github.io/2024/01/18/Changing-php-fpm-pm-settings-in-App-Service-Wordpress-on-Linux/index.html)
+- [Installing intl with Wordpress on App Service Linux](https://azureossd.github.io/2024/04/15/Installing-intl-with-Wordpress-on-App-Service-Linux/index.html)
 
 ## Performance
 - [How to improve performance of WP Admin](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/how-to-improve-performance-of-wp-admin-wordpress-on-azure-app/ba-p/3731647)

@@ -1,18 +1,35 @@
 {
   "name": "azcogsearch-scripts",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Azure Cognitive Search indexing scripts for the Azure OSS Developer Support blog",
+  "main": "feed-index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "index": "node feed-index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "audit": "npm audit",
+    "audit-fix": "npm audit fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "azure",
+    "cognitive-search",
+    "blog",
+    "indexing",
+    "search"
+  ],
+  "author": "Azure OSS Developer Support Team",
+  "license": "MIT",
   "dependencies": {
     "@azure/search-documents": "^11.3.2",
     "dotenv": "^16.3.1",
     "gray-matter": "^4.0.3",
     "remove-markdown": "^0.5.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azureossd/azureossd.github.io.git",
+    "directory": "azcogsearch-scripts"
   }
 }
