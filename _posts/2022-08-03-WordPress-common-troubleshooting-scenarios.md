@@ -62,14 +62,14 @@ If your WordPress page is encountering application issues without any detailed e
 
 1.	Edit the wp-config.php file and look for the following line of code:
 ```
-define(‘WP_DEBUG’, false);
+define('WP_DEBUG', false);
 ```
 <br/>Please update the line to the changes below - 
 ```
-define(‘WP_DEBUG’, true);
-define(‘WP_DEBUG_LOG’, true);
-define(‘WP_DEBUG_DISPLAY’, false);
-@ini_set(‘display_errors’,0);
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', false);
+@ini_set('display_errors',0);
 ```
 2.	Check `php-fpm.www.log` inside `/var/log/php-fpm/` and application logs for the detailed errors. 
 3.	Once you fix the issue please revert the changes done in step 1.
