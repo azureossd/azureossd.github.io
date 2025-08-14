@@ -43,6 +43,8 @@ Here is a compilation of resources by categories:
 - [Container Apps - View Log Streams without Container Apps Contributor role](https://azureossd.github.io/2025/01/07/Container-Apps-View-Log-Streams-without-Container-Apps-Contributor-role/index.html)
 - [Enabling e2e TLS with Azure Container Apps](https://azureossd.github.io/2025/04/01/Enabling-e2e-TLS-on-Azure-Container-Apps/index.html)
 - [Using network troubleshooting tools with Azure Container Apps](https://azureossd.github.io/2025/04/30/Using-network-troubleshooting-tools-with-Azure-Container-Apps/index.html)
+- [Azure Files security compatability on Container Apps](https://azureossd.github.io/2025/02/10/Azure-Files-security-compatability-on-Container-Apps/index.html)
+- [Log Analytic tables in Container Apps not being created](https://azureossd.github.io/2025/08/12/Log-Analytic-tables-in-Container-Apps-not-being-created/index.html)
 
 ## Availability and Post Deployment issues
 - [Troubleshooting ingress issues on Azure Container Apps](https://azureossd.github.io/2023/03/22/Troubleshooting-ingress-issues-on-Azure-Container-Apps/index.html)
