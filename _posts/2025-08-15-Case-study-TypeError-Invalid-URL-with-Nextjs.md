@@ -10,7 +10,7 @@ categories:
     - Troubleshooting
     - Linux
 header:
-    teaser: /assets/images/nest.png
+    teaser: /assets/images/next.png
 toc: true
 toc_sticky: true
 date: 2025-08-15 12:00:00
