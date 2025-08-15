@@ -10,7 +10,7 @@ categories:
     - Troubleshooting
     - Linux
 header:
-    teaser: /assets/images/next.png
+    teaser: /assets/images/nextjs.png
 toc: true
 toc_sticky: true
 date: 2025-08-15 12:00:00
