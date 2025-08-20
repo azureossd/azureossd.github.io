@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // SVG Grid Math
 // =============
 
@@ -63,5 +65,5 @@
     @return 'calc(#{$container} * #{$gutter} / 2)';
   }
 
-  @return $container * $gutter / 2;
+  @return $container * math.div($gutter, 2);
 }
