@@ -1,5 +1,3 @@
-@use "sass:math";
-
 /* ==========================================================================
    MIXINS
    ========================================================================== */
@@ -17,7 +15,7 @@
    ========================================================================== */
 
 @function em($target, $context: $doc-font-size) {
-  @return math.div($target, $context) * 1em;
+  @return ($target / $context) * 1em;
 }
 
 
@@ -67,7 +65,7 @@
   $green: green($color);
   $blue: blue($color);
 
-  $yiq: math.div(($red*299)+($green*587)+($blue*114), 1000);
+  $yiq: (($red*299)+($green*587)+($blue*114))/1000;
 
   @if $yiq-debug { @debug $yiq, $threshold; }
 
