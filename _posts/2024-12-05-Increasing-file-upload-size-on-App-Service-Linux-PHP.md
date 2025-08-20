@@ -94,7 +94,7 @@ class UploadController extends Controller
 </form>
 @if (session('message'))
     <div class="mt-5">
-        <p class="text-green-400">{{ session('message') }}</p>
+        <p class="text-green-400">{% raw %}{{ session('message') }}{% endraw %}</p>
     </div>
 @endif
 ```
