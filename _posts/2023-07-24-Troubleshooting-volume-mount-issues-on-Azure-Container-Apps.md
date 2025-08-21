@@ -161,3 +161,45 @@ For **epehemeral** (pod) storage - review the containers' CPU defined - since ep
 If an application is consistently hitting quota limits, you can:
 - Increase CPU size to be aligned with [here](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#temporary-storage), which would increase ephemeral storage.
 - Or, use **[Azure Files](https://learn.microsoft.com/en-us/azure/container-apps/storage-mounts?pivots=azure-cli#azure-files)** which would offer increased storage size. However, if there are alot of temporary files or files that don't need to be persisted - then this option shouldn't be used as eventually you'd be at risk of filling up this Azure Files quota as well - unless these files are periodically/systematically deleted
+- Alternatively, write/introduce logic to delete files that aren't needed over time. This could incur a fair amount of developer work depending on the scenario.
+
+**Troubleshooting**:
+- To find used disk space, you can start with `df -a` and see if the ephemeral mount has high usage
+- Notate the name in the `Container somecontainer exceeded its local ephemeral storage limit "1Gi". ` message, which can be seen in `ContainerAppSystemLogs`/`ContainerAppSystemLogs_CL` or the Storage Mount Failures detector in the _Diagnose and Solve Problems_ blade. If it's the application container name, then it pretty much confirms something this application is doing is doing enough I/O and file/data/content creation to disk that it's exceeded storage
+- In some cases, a Container App may not actually explicitly be defining `ephemeralStorage`, but the above message still may be shown. Troubleshooting should still continue as normal, as it still means enough data is written to disk to exceed an _implied_ storage limit for a pod
+
+You should use a variety of `df -a`, `du` and `find` commands to figure out where storage may be used. With Container App Jobs, this may be harder, but this can possible be done programmatically through addtional dev work.
+
+Some important tips:
+- Always confirm if the appliication logic is _explicitly_ writing files/content/etc. to certain directories. Then **cross check** these if your're using `AzureFiles`. You want to ensure if its correctly writing to a persistent location through `AzureFiles` mounts if this is enabled - which can easily be checked in the _Containers_ blade > _Volume mounts_ on the Container App
+  - As a real-world example, if the application is writing everything to `/opt/data/run-logic`, but only `AzureFile` mounts for `/opt/data/run` and `/mnt/certs`, this means `/opt/data/run-logic` **is being written to disk** and therefor will take up ephemeral space
+- At this point, disk usage _needs_ to be investigated by the application owner(s). There are many various guides online on how to use commands to find a directory consuming the large space.
+- If content is growing over time, you want to try to capture usage when it's higher, which can also be tough to judge. Or else the timing of running commands may not look like anything is used, especially right after a new pod is created.
+
+For example, to find the current "human readable" size of the current directory, you can use `du -ksh .`. If you want to target a specific directory, use `du -ksh /path/to/dir`:
+
+```
+[root@somereplica]# du -ksh .
+12G     .
+[root@somereplica]# du -ksh /path/to/dir
+12G     /path/to/dir
+```
+
+You can also use other commands like this:
+- `du -x -h --max-depth=2 / 2>/dev/null | sort -hr | head -n 50` < Largest directories across the whole filesystem
+- `du -sh * 2>/dev/null | sort -hr | head -n 20` < Largest directories in the current directory
+- `du -h --max-depth=2 2>/dev/null | sort -hr | head -n 30` < Large directories from a recursive search in the current directory
+
+Change `-n` to a higher number to list more output. With filesystems with large usage/many files, these commands may take a while to run.
+
+An _interactive_ way to check usage is the `ncdu` command. This can be installed via the following:
+- Debian/Ubuntu: `apt-get install ncdu -yy`
+- Alpine: `apk add ncdu ncdu-doc`
+
+If you get `Error opening terminal: unknown.` when trying to invoke `ncdu`, run `export TERM=xterm` (or any relevant terminal). Then rerun the command
+
+Just typing `ncdu` will load the terminal GUI and iterate over the file system and by default show usage from largest to least. There is additional flags that can be passed in. You can run `ncdu -x /` to start looking at it from the root filesystem. When the GUI loads, you can use your "right arrow key" to  delve into each directory, which will show the space used for everything in that directory, and so on. Use the "left arrow key" to navigate back
+
+![ncdu usage](/media/2023/07/ncdu-usage.png)
+
+**IMPORTANT**: All of these above commands are subjected to the application container. If they're ran as non-root or do not have proper permissions to read into directories, some of these commands may fail or not show anything.
