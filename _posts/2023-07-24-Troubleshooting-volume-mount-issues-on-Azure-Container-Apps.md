@@ -142,6 +142,8 @@ Some technologies may require root privileges with `sudo` - or being able to man
 You can do this on Azure Container Apps by following [Container Apps - Setting storage directory permissions](https://azureossd.github.io/2024/12/30/Container-Apps-Setting-storage-directory-permissions/index.html) - this applies to both SMB and NFS.
 
 ## Pod or container exceeded local ephemeral storage limit
+**NOTE**: A specific blog post was created for this topic here - [Pod ephemeral storage exceeded with Container Apps](https://azureossd.github.io/2025/08/26/Pod-ephemeral-storage-exceeded-with-Container-Apps/index.html). This contains more specific troubleshooting in addition to what's here.
+
 You may see messages like the below when a pod is exceeding the allowed storage quota limit, which may cause application unavailability.
 
 ```
