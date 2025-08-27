@@ -47,9 +47,11 @@ Since that is the case, and reasons can be almost limitless, it is important to 
 Below is an example, where `ContainerAppSystemLogs_CL` most shows `Persistent Failiure to start container`. When we look in `ContainerAppConsoleLogs_CL`, we see the reason why:
 
 (ContainerAppSystemLogs_CL)
+
 ![Log Analytics tables](/media/2024/01/aca-exit-backoff-1.png)
 
 (ContainerAppConsoleLogs_CL)
+
 ![Log Analytics tables](/media/2024/01/aca-exit-backoff-2.png)
 
 In this example, this was an exception thrown by `raise Exception()` in this applications `app.py`, acting as the entrypoint. Given the location its called from, this causes the application to exit at every startup attempt.
@@ -99,4 +101,7 @@ Maximum Allowed Cores exceeded for the Managed Environment. Please check https:/
 
 This is resource contention related, which won't be covered in this article. 
 
-In other circumstances, a possibility of a `143` exit code in scenarios where a pod or replicas are scaled down (most likely back to 0) may show, as well.
+In other circumstances, a possibility of a `143` exit code in scenarios where a pod or replicas are scaled down (most likely back to 0) may show, as well. A blog post which goes further into this and why it can happen can be found at [Maximum Allowed Cores exceeded for the Managed Environment](https://azureossd.github.io/2025/05/16/Maximum-Allowed-Cores-exceeded-for-the-Managed-Environment/index.html)
+
+Another platform related reason for exit codes, specifically `exit code 137` with `Reason` of `Evicted`, is if [Pod or container exceeded local ephemeral storage limit
+](https://azureossd.github.io/2023/07/24/Troubleshooting-volume-mount-issues-on-Azure-Container-Apps/index.html#pod-or-container-exceeded-local-ephemeral-storage-limit) issues happen.
