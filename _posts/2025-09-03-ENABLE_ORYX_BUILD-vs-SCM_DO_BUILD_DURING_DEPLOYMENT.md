@@ -40,21 +40,21 @@ At times, users may use _both_ environment variables. **The TLDR is the followin
 | true | false | Node | No (through testing this is the one difference spotted between languages) |
 | false | true | Node | No |
 | false | false | Node | No |
----
+
 | SCM_DO_BUILD_DURING_DEPLOYMENT | ENABLE_ORYX_BUILD | Language | Will Oryx run? |
 | ------------------------------ | ----------------- | -------- | -------------- |
 | true | true | Python | Yes |
 | true | false | Python | Yes |
 | false | true | Python | No |
 | false | false | Python | No |
----
+
 | SCM_DO_BUILD_DURING_DEPLOYMENT | ENABLE_ORYX_BUILD | Language | Will Oryx run? |
 | ------------------------------ | ----------------- | -------- | -------------- |
 | true | true | PHP | Yes |
 | true | false | PHP | Yes |
 | false | true | PHP | No |
 | false | false | PHP | No |
----
+
 | SCM_DO_BUILD_DURING_DEPLOYMENT | ENABLE_ORYX_BUILD | Language | Will Oryx run? |
 | ------------------------------ | ----------------- | -------- | -------------- |
 | true | true | Dotnet | Yes |
