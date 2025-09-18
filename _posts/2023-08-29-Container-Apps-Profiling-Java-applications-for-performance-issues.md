@@ -17,7 +17,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2023-08-30 12:00:00
+date: 2023-08-29 12:00:00
 ---
 
 This post will cover using JDK-based troubleshooting tools to help profile performance issues on Container Apps with Java applications.
