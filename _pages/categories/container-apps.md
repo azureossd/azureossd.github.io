@@ -79,5 +79,5 @@ Here is a compilation of resources by categories:
 - [Container Apps: Profiling PHP applications for performance issues](https://azureossd.github.io/2023/09/22/Container-Apps-Profiling-PHP-applications-for-performance-issues/index.html)
 - [Container Apps: Profiling Go applications for performance issues](https://azureossd.github.io/2023/09/18/Container-Apps-Profiling-Go-applications-for-performance-issues/index.html)
 - [Container Apps: Profiling Dotnet applications for performance issues](https://azureossd.github.io/2023/09/12/Container-Apps-Profiling-Dotnet-applications-for-performance-issues/index.html)
-- [Container Apps: Profiling Java applications for performance issues](https://azureossd.github.io/2023/08/30/Container-Apps-Profiling-Java-applications-for-performance-issues/index.html)
+- [Container Apps: Profiling Java applications for performance issues](https://azureossd.github.io/2023/08/29/Container-Apps-Profiling-Java-applications-for-performance-issues/index.html)
 
