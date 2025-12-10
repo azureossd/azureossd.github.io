@@ -22,10 +22,47 @@ Azure Container Apps handles ingress with [Envoy](https://www.envoyproxy.io/) as
 
 Sometimes, due to misconfiguration, application issues, or others - you may get error messages returned from Envoy. These messages may vary on what scenario is being encountered.
 
-The scope of this post will focus solely on external ingress usage on the Container App.
-
 # Common Errors
+Common ingress pitfalls:
+- Ingress port mismatch versus the application listening port. Or, the application is listening on `localhost` instead of binding to `0.0.0.0`.
+- External clients are blocked by NSG's set on the environment subnet
+- External clients may not be able to resolve DNS to applications in the environment
+- Applications crashing which end up experiencing HTTP 5xx range of errors
+- Requests taking too long, or, sites experiencing a large amount of requests which may trigger Envoy's `overload`. Use [premium ingress](https://learn.microsoft.com/azure/container-apps/ingress-environment-configuration#premium-ingress-mode) for these situations.
+- Health Probes set with non-ideal settings for the application, which may cause container restarts due to persistent probe failures. Review [Troubleshoot health probe failures in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/troubleshoot-health-probe-failures) as well as [Container Apps: Troubleshooting and configuration with Health Probes](https://azureossd.github.io/2023/08/23/Container-Apps-Troubleshooting-and-configuration-with-Health-Probes/index.html). Health Probes should be tweaked, if needed, based on the applications startup and runtime behavior. Technically this can be seen as a non-issue issue, however, this typically manifests as a range of HTTP 502/503/504 if a container fails probes enough times to be restarted.
+
+When an application is crashing or failing to start - or - pods/replicas are failing to be created, for example, due to [Maximum Allowed Cores exceeded for the Managed Environment](https://azureossd.github.io/2025/05/16/Maximum-Allowed-Cores-exceeded-for-the-Managed-Environment/index.html), this will typically surface back as some HTTP 502/503/504. This may be conflated with an ingress issue, even though this is not. Since these types of issues are associated with Revisions in a degraded or failed state - it is best to review the top reasons associated with this by viewing this blog post here: [Applications (and revisions) stuck in activating state on Azure Container Apps](https://azureossd.github.io/2025/05/05/Applications-(and-revisions)-stuck-in-activating-state-on-Azure-Container-Apps/index.html)
+
+## Troubleshoot target port settings in Azure Container Apps
+Review [Troubleshoot target port settings in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/troubleshoot-target-port-settings) and [Container Apps - ‘Target port does not match the listening port’](https://azureossd.github.io/2024/10/08/Container-Apps-'Target-port-does-not-match-the-listening-port'/index.html)
+
+A common warning of `TargetPort does not match the listening port` can happen if:
+- The port you specified for the application to listen on does not match the actual port the application server is running on
+- The application is slow to start (thus slow to open its port) 
+- The application is failing to start
+
+## ".internal." FQDN versus "appname"
+On Container Apps, you can make inter-cluster requests to other applications, which is called out in [Domain names](https://learn.microsoft.com/en-us/azure/container-apps/ingress-overview#domain-names).
+- The `.internal.` FQDN (eg. `appname.internal.funnyname123abc.<region>.azurecontainerapps.io`) can only be used to call between applications in the cluster. This will show as "limited to environment". Routing through this method passes through **Envoy** proxies in the environment and stays in the environment.
+- You can call to another app within the environment - for example, `curl -v myotherapp`. This uses a helper proxy in the same pod that the application container is running in.
+
+Calling to another app simply by its name is a nice helper. If you happen to notice issues calling to the upstream application in this manner and has been determined it is **not** application related, try using the `.internal.` FQDN of the upstream application instead.
+
+**Common issues**:
+- HTTP 403 is returned when accessing the application. If you're requesting an `.internal.` FQDN (or via appname) and the request is outside of the environment, this will return a HTTP 403. Likewise if trying to call by just the "appname", which can only be done from inside the environment.
+- Incorrectly constructing the FQDN of either external or internal domains
+
 ## HTTP 
+### HTTP 403 - RBAC: access denied
+This is a specific type of HTTP 403 related to [IP ingress restrictions in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/ip-restrictions?pivots=azure-portal). This means the IP of whatever client is requesting this URL is not apart of the allow rules configured for this. This could be either:
+- An IP address not falling into a range, if specified
+- Or, an IP address that is not apart of a list of specific IPs that is configured.
+
+**Recommended actions**:
+- Review the client addresses requesting the Container App URL and compare this to the rules you have specified.
+
+> **Note**: 403's that do not return in this manner (eg. RBAC: access denied) are almost very surely to be from the application. In which case, application logs should be reviewed to understand why access is denied for HTTP requests.
+
 ### HTTP 404 / Not Found
 HTTP 404's are generally due to the resource not existing (ex., the URI is not actually mapped on the application) - but can also happen for a few other reasions:
 
@@ -45,7 +82,7 @@ HTTP 404's are generally due to the resource not existing (ex., the URI is not a
 **NOTE**: The response of what the 404 looks like (for instance, through a Browser) can help pinpoint the issue here better. If the 404 is clearly returned from the applications web server, this would mean ingress is functioning as intended - if a Chrome/Edge specific 404 is being returned, this may point to a misconfigured ingress set to internal.
 
 ### HTTP 500's
-These are historically application errors and won't be covered here - review [Observability in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/observability) on how to check your application logging. 
+These are historically application errors and won't be covered here - review [Observability in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/observability) on how to check your application logging. Application logging **must** be reviewed.
 
 ### HTTP 502
 This may surface as an error returned from Envoy - `upstream connect error or disconnect/reset before headers <some_connection_error />` or `stream timeout`
@@ -73,6 +110,13 @@ HTTP 502's may be returned in another form of `upstream connect error or disconn
 - Likewise, setting the transport to HTTP/2 for a gRPC application but making an HTTP/1.x request will cause this
 - If transport is set to "auto" and this is occurring for applications that need HTTP/2 support - like gRPC applications, consider setting the transport to HTTP/2 instead.
 - Check if the Container is failing to start - there are a few ways to review logging, which would be the next step for this portion - review [Observability in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/observability) on how to check this.
+
+### HTTP 503
+This typically means the application is crashing or a pod/replicas cannot be created.
+
+Consider using **Diagnose and Solve Problems** detectors to see if common availability scenarios are being hit as described in [Troubleshoot a container app](https://learn.microsoft.com/en-us/azure/container-apps/troubleshooting?tabs=bash) > **Errors and failures**
+
+Another good resource of confirming if any common availability issues that cause HTTP 503s are occurring is by reviewing [Applications (and revisions) stuck in activating state on Azure Container Apps](https://azureossd.github.io/2025/05/05/Applications-(and-revisions)-stuck-in-activating-state-on-Azure-Container-Apps/index.html).
 
 ### HTTP 504
 This may manifest as `stream timeout` from Envoy
