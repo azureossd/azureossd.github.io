@@ -49,9 +49,9 @@ Node: D4 (4 vCPU, 16 GiB RAM)
 Replica requests: 1 vCPU, 2 GiB  
 5 replicas → Needs 5 vCPU, 10 GiB
 
-ACA places **4 replicas on Node 1** and adds **Node 2** for the 5th.
+ACA places **4 replicas on Node 1** and adds **Node 2** for **replica 5**
 
-![](/media/2025/12/capacity_planning_aca_pic1.png)
+![](/media/2025/12/capacity_planning_aca_pic2.png)
 
 ## 3. When ACA Adds Nodes
 ACA adds nodes when:
