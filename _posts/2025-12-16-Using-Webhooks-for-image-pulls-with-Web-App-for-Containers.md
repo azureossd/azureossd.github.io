@@ -9,7 +9,7 @@ categories:
     - Configuration
     - Linux
 header:
-    teaser: /assets/images/nextjs.png
+    teaser: /assets/images/azurelinux.png
 toc: true
 toc_sticky: true
 date: 2025-12-16 12:00:00
