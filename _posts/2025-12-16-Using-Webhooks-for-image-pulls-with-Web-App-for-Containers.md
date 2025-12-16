@@ -63,6 +63,8 @@ If we look at `docker.log` (or generally container lifecycle events on this Web 
 ![WaFC pull event](/media/2025/12/wafc-webhooks-4.png)
 
 ## Creating a webhook
+If you want to create a webhook for a registry that is **not** Azure Container Registry, you need to follow the below option to manually create it on your Azure Container Registry.
+
 ### On Azure Container Registry
 On your Azure Container Registry, go to **Services** > **Webhooks**. Click "Add". Then fill out the required information. 
 
