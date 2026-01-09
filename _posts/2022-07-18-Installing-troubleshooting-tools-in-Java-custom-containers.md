@@ -54,7 +54,7 @@ For example:
 
 This is due to a Development Kit normally including everything that needs to the run the application, plus more, for general application development - as opposed to a Runtime Environment, which just includes what's needed to run the application.
 
-**Due to the size of these extra tools, packages, or others - using just the JRE may be a better option for production. Below will show a way to installed the tooling when needed.**
+**Due to the size of these extra tools, packages, or others - using just the JRE may be a better option for production. Below will show a way to install this tooling when needed.**
 
 > **NOTE**: Azure App Service Blessed Images for Java include the tooling we're covering by default. The scope of this post is purely for custom containers/images.
 
@@ -90,8 +90,8 @@ apt-get install openjdk-11-jdk -yy
 
 This will now install some of the following tools, which should be available on `$PATH` - jcmd, jstack and jmap. Relevant executables can be found under `/usr/bin/`
 
-If it's unclear where the tools have been installed, use the `whereis` command:
-ex: `whereis jstack`
+If it's unclear where the tools have been installed, use the `whereis` or `which` command:
+ex: `whereis jstack`, `which jstack`
 
 > **NOTE**: Installation location for tools may differ depending on the JDK installed. 
 

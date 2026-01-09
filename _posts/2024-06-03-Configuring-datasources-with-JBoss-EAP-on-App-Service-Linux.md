@@ -56,7 +56,7 @@ Also, ensure **App Service Logs** are enabled. Click [here](https://learn.micros
 ## Postgres
 Everything below assumes this is stored under `/home/site/deployments/tools`
 
-1. First, download the driver `.jar` from here - [Download | pgJDBC](https://jdbc.postgresql.org/download/). As of right now, the latest version is `postgresql-42.7.3.jar`. Add this to `/home/site/deployments/tools`
+1. First, download the driver `.jar` from here - [Download | pgJDBC](https://jdbc.postgresql.org/download/). Select the option to "download" for _Java 8_ (which means Java 8 or newer). Add this to `/home/site/deployments/tools`
 
 2. Create a module `.xml` file - we'll name this `postgresql-module.xml` with the following contents:
 
