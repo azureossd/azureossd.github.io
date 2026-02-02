@@ -28,7 +28,7 @@ In this blog post we'll cover the process of integrating Key Vault in the Java S
 ## Overview
 This section will cover the various ways of integrating the Key Vault with Spring Boot app for retrieving the sensitive information from the Key Vault rather than storing directly on the file system and keeping it unsafe. It is highly recommended in the production systems to protect the sensitive information such Database username, password etc., 
 
-In my examplles, I retrieve database credentails as that is the most sensitive information, which cannot be hardcoded in the files, rather kept in some secured place such as the Key Vault.
+In my examples, I retrieve database credentails as that is the most sensitive information, which cannot be hardcoded in the files, rather kept in some secured place such as the Key Vault.
 
 ## Local Development
 
