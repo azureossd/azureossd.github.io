@@ -25,7 +25,7 @@ The App Service Linux pre-built images for Java include the various JDK tools fo
 
 You can select which instance you’d like to console into if scaled out to multiple instances before collecting your trace. This is helpful if a performance issue has been narrowed down to a particular instance.
 > `https://<app-name>.scm.azurewebsites.net/newui#`
->![Java Perfomance](/media/2022/05/javaprof-10.png)
+>![Java Perfomance](/media/2022/05/java-prof-10.png)
 
 
 # Heap Dumps - High Memory
