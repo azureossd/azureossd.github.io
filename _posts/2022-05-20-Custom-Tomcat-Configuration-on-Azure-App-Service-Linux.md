@@ -19,7 +19,7 @@ date: 2022-05-20 12:00:00
 
 The pre-built images for Tomcat on App Service Linux include the default Catalina Base located in /usr/local/tomcat. By design, any changes made outside of /home will not be persistent after restarts. So, if making changes to the Tomcat server, this would need to be done with a [startup script](https://docs.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#shared-server-level-resources-1) or moving our entire Catalina base within /home, which is covered in this article.
 
- >![Java Perfomance](/media/2022/05/javalinuxtomcat-1.png)
+ >![Java Perfomance](/media/2022/05/javalinuxtomcat_updated.png)
 
 > 📝 When changing the Catalina Base, this installation is no longer maintained nor in sync with the App Service Platform if changes occur around the default configuration, path mappings or environment variables.
 > If minimal changes are required we recommend using a [startup script](https://docs.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#shared-server-level-resources-1) 
