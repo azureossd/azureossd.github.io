@@ -8,9 +8,9 @@ sidebar:
 ---
 
 
-App Service on Linux supports `Java` as a runtime stack built-in image, and `Java SE`  or `Apache Tomcat` as Java Web Server stack.
+App Service on Linux supports `Java` as a runtime stack built-in image, and `Java SE` , `JBOSS`  or `Apache Tomcat` as Java Web Server stack.
 
->**Java Runtime Support** - Microsoft and Adoptium builds of OpenJDK are provided and supported on App Service for Java 8, 11, and 17. You can check the JDK versions and Security updates in [Java runtime statement of support](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#java-runtime-statement-of-support).
+>**Java Runtime Support** - Microsoft and Adoptium builds of OpenJDK are provided and supported on App Service for Java 8, 11, and 17. [You can check find the Support roadmap for the Microsoft Build of OpenJDK](https://learn.microsoft.com/en-us/java/openjdk/support#release-and-servicing-roadmap) and [Java Lanuguage Runtime Support Policy updates](https://learn.microsoft.com/en-us/azure/app-service/language-support-policy?tabs=linux#jdk-versions-and-maintenance)
 
 > Find additional Java articles on [Technet/TechCommunity - Apps on Azure Blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/bg-p/AppsonAzureBlog/label-name/Java).
 
