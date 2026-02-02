@@ -25,7 +25,7 @@ This post will cover how to add datasources through JBoss to connect your applic
 # Overview
 This post will expand on the [Configure Java Apps - JBoss EAP Data Sources](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#jboss-eap-data-sources) documentation.
 
-JBoss offered on App Service Linux is a managed offering currently targeting JBoss 7.4 EAP. You can utilize custom startup scripts to run various JBoss CLI commands - and in this case - using them to set up datasources to connect to external databases.
+JBoss offered on App Service Linux is a managed offering currently targeting JBoss 8.0.9.1 EAP. You can utilize custom startup scripts to run various JBoss CLI commands - and in this case - using them to set up datasources to connect to external databases.
 
 # Prerequisites
 To use datasources, you need to create the following files, at a minimum, and place them under `/home`.
