@@ -97,8 +97,7 @@ It's a best practice to collect at least three thread dumps. Each thread dump sh
 
 4. Thread Dumps can be reviewed manually or with any of the thread analyzers mentioned below. At the same time, thread dumps contain application data, and local or client-side analyzers can be used to avoid leaking any potentially sensitive information.
 
-    - [Spotify Thread Analyzer - https://spotify.github.io/threaddump-analyzer  – Client Side](https://spotify.github.io/- threaddump-analyzer)
-    - [FastThread - Smart Java thread dump analyzer - thread dump analysis in seconds – Server Side](fastthread.io)
+  
     - [Samurai Tread Dump Analysis Tool - Local](https://github.com/yusuke/samurai)
 
     >![Java Perfomance](/media/2022/05/javaprof-3.png)
