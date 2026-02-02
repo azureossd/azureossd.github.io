@@ -41,11 +41,6 @@ On Alpine-based images (Java 8, Java 11, Tomcat 8.5, Tomcat 9) the command is:
 
 ![netstat command](/media/2025/05/netstat1.png)
 
-On Ubuntu-based images (Java 17, Tomcat 10), install the net-tools package to have the netstat command, then run `netstat -ap | grep java` instead:
-
-![netstat command 2](/media/2025/05/netstat2.png)
-
-
 ## Create a remote connection and SSH tunnel
 
  Run in one terminal:
