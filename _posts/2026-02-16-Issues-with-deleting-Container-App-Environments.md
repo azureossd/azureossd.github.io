@@ -1,6 +1,6 @@
 ---
 title: "Issues with deleting Container App Environments"
-author_name: "Neelakandan Subramaniam"
+author_name: "Anthony Salemo"
 tags:
     - Container Apps
     - Availability
