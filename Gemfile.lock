@@ -162,7 +162,7 @@ DEPENDENCIES
   jemoji
   minimal-mistakes-jekyll
   redcarpet
-  webrick (~> 1.7)
+  webrick (~> 1.9)
 
 BUNDLED WITH
    2.4.22
