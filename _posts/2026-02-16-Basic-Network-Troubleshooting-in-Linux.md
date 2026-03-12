@@ -51,24 +51,20 @@ A couple of tools(nslookup and dig) and their example usage is below.
 ```bash
 dig microsoft.com
 ```
-
 **Query a specific DNS server (bypass the system resolver):**
 ```bash
 dig @8.8.8.8        microsoft.com   # Google public DNS
 dig @168.63.129.16  microsoft.com   # Azure platform resolver
 dig @10.1.0.4       microsoft.com   # An example custom DNS server in your VNet
 ```
-
 **Follow the full delegation chain:**
 ```bash
 dig +trace microsoft.com
 ```
-
 **Reverse DNS lookup:**
 ```bash
 dig -x 20.112.52.29
 ```
-
 **Query specific record types:**
 ```bash
 dig microsoft.com A       # IPv4
@@ -77,7 +73,6 @@ dig microsoft.com TXT     # SPF, DMARC, ACME challenges
 dig microsoft.com NS      # Authoritative nameservers
 dig microsoft.com SOA     # Start of Authority
 ```
-
 **Measure DNS query time and check TTL:**
 ```bash
 dig microsoft.com | grep -E "Query time|ANSWER SECTION|IN\s+A"
@@ -108,14 +103,13 @@ nc -zv -w 5 microsoft.com 443
 **Probe multiple ports in a single command:**
 ```bash
 nc -zv microsoft.com 80 443 8080
-**Send a raw HTTP request and inspect the response:**
+#Send a raw HTTP request and inspect the response
 ```bash
 printf "GET / HTTP/1.0\r\nHost: microsoft.com\r\n\r\n" | nc microsoft.com 80
 
 ```
-### `nmap` — Port and Service Discovery
+### `nmap` Port and Service Discovery
 `nmap` provides richer results than `nc`, including service identification and the distinction between a filtered (firewall dropped) port and a closed (RST received or unavailable) port.
-
 **Single port test:**
 ```bash
 nmap -p 443 80 microsoft.com
@@ -129,7 +123,6 @@ nmap -sS -p 80,443 microsoft.com
 nmap -sV -p 443 microsoft.com
 # 443/tcp open  ssl/http Microsoft IIS httpd
 ```
-
 **Show why each port has a given state (filtered vs. closed): Equally, very useful**
 ```bash
 nmap -p 443 --reason microsoft.com
@@ -140,7 +133,6 @@ nmap -p 443 --reason microsoft.com
 
 ### `curl` 
 `curl` is a useful tool for end-to-end n/w validation as well as for downloading packages or artifacts. 
-
 **Simple request with granular timing breakdown:**
 ```bash
 curl -o /dev/null -s -w \
@@ -162,8 +154,7 @@ curl --cacert /etc/ssl/certs/custom-ca.crt \
   https://custom-api.mycompany.com
 ```
 
-### Current Connection State with `ss` or `netstat`. Note that `ss` is a newer replacement.
-
+### `ss` or `netstat`. Note that `ss` is a newer replacement.
 ```bash
 # Show aoo connections
 netstat -tunp
@@ -188,6 +179,7 @@ Additional tools are available to quickly troubleshoot connectivity, review band
 After installation, these utilities can be launched directly from the console to display active connections in real time. 
 
 ### `iftop` — Per-Connection Bandwidth
+Iftop also launches a UI which shows live traffic and can be useful to view current and active outbound connections. 
 ```bash
 iftop -i eth0             # live bandwidth by connection pair
 iftop -i eth0 -f "port 443"   # filter to HTTPS only
