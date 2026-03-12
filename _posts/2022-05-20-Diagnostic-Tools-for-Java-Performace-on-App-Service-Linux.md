@@ -25,7 +25,7 @@ The App Service Linux pre-built images for Java include the various JDK tools fo
 
 You can select which instance you’d like to console into if scaled out to multiple instances before collecting your trace. This is helpful if a performance issue has been narrowed down to a particular instance.
 > `https://<app-name>.scm.azurewebsites.net/newui#`
->![Java Perfomance](/media/2022/05/javaprof-9.png)
+>![Java Perfomance](/media/2022/05/java-prof-10.png)
 
 
 # Heap Dumps - High Memory
@@ -97,8 +97,7 @@ It's a best practice to collect at least three thread dumps. Each thread dump sh
 
 4. Thread Dumps can be reviewed manually or with any of the thread analyzers mentioned below. At the same time, thread dumps contain application data, and local or client-side analyzers can be used to avoid leaking any potentially sensitive information.
 
-    - [Spotify Thread Analyzer - https://spotify.github.io/threaddump-analyzer  – Client Side](https://spotify.github.io/- threaddump-analyzer)
-    - [FastThread - Smart Java thread dump analyzer - thread dump analysis in seconds – Server Side](fastthread.io)
+  
     - [Samurai Tread Dump Analysis Tool - Local](https://github.com/yusuke/samurai)
 
     >![Java Perfomance](/media/2022/05/javaprof-3.png)
