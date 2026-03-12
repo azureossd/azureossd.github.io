@@ -267,7 +267,8 @@ tshark -r trace.pcap -q -z endpoints,ip
 
 In real-world environments, it is common to iterate through multiple analysis methods to isolate the issue. To simplify this process, below is a handy OSS script that wraps these native Linux tools into a single interface. It can be downloaded with a simple curl command and run either interactively or by specifying the destination IP and/or port. It installs the necessary tools, runs through the diagnostics and packet capture and analysis and generates a logfile and a html report. 
 
-## Readme: https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md
+## Readme: 
+https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md
 ## Usage
 ```bash
 # Download and install the script with the below curl command
