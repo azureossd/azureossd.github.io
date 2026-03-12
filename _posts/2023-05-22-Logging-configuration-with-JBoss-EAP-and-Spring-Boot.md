@@ -28,6 +28,8 @@ If deploying a Spring Boot application, packaged as a WAR, to a JBoss EAP instan
 We'll cover some different methods below to configure logging to change this.
 
 # Log File locations
+> **NOTE**: Consider sending logs to Azure Monitor (Log Analytics workspace based) for a better approach at persisting logs, which also makes it much more searchable, as opposed to file system logs like in this blog. You can also send logs externally to log retention providers of your choice. 
+
 As with all "Blessed" Images, stdout and stderr is redirected to `default_docker.log`. This includes typically the Web Server logging (in this case, Jboss and Undertow) - plus, application logging.
 
 If absolutely needed, logging directory locations can be changed for certain files. In the current JBoss Blessed Image, there are a few files that are created for JBoss, GC, and the application. Some of this is redirected to `default_docker.log` already - and should generally suffice, however, some other files live under `/tmp/LogFiles`. The files under `/tmp/LogFiles` are:

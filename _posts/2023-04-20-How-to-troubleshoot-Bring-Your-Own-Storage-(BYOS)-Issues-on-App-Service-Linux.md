@@ -165,8 +165,17 @@ Trying to run PostgreSQL over mounted storage:
     - SQLite is not recommended for production scenarios. Using a managed database offering should be used instead.
     - Since SQLite is a file-based database implementation, there are various reports throughout the years of SQLite file locking issues, including over volume mounts.
 
+## Azure Files security settings compatability
+If you are changing the Azure Files **Security** settings, then it is heavily recommended to read [Azure Files security compatability on Container Apps and Web Apps for Containers](https://azureossd.github.io/2025/02/10/Azure-Files-security-compatability-on-Container-Apps/index.html)
+
+![Azure Files security tab](/media/2025/02/aca-storage-security-1.png)
+
+![Azure Files security protocol settings](/media/2025/02/aca-storage-security-2.png)
+
+If you deviate from default settings (which is set as _Maximum compatability_), you risk causing volume mount failures.
+
 ## Best practices and limitations
-For general best practices and limiaations not within the scope of this post, review the below:
+For general best practices and limitations not within the scope of this post, review the below:
 - [Mount Azure Storage as a local share - Azure App Service - Limitations](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?tabs=cli&pivots=container-linux#limitations)
 - [Mount Azure Storage as a local share - Azure App Service - Best Practices](https://learn.microsoft.com/en-us/azure/app-service/configure-connect-to-azure-storage?tabs=cli&pivots=container-linux#best-practices)
 

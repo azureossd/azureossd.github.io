@@ -45,6 +45,22 @@ Take the below example. We have a quickstart `nginx:latest` image being used - w
 
 Knowing this, we will go through a setup below to successfully use this option for a Web App for Container.
 
+## ENTRYPOINT vs. CMD
+If an image has `ENTRYPOINT` set in its `Dockerfile` or output image, **you will not be able to override this with a command**. This same behavior is seen locally, or, anywhere you want to try to run a container. In terms of App Service, this will "seem" like the startup command has no effect - when in reality this is by-design behavior of a container.
+
+You _can_ override container start commands if the `Dockerfile` has `CMD` set, however.
+
+----
+For tooling that builds an image **without** a Dockerfile, such as `pack` (for buildpacks`) or `dotnet publish` (eg. `dotnet publish --os linux --arch x64 -t:PublishContainer`), this may inheritly set an `ENTRYPOINT`, which then means this is not overridable. In the case of `dotnet publish --os linux --arch x64 -t:PublishContainer`, this _does_ set an `ENTRYPOINT`:
+
+![dotnet publish entrypoint](/media/2023/04/wafc-startup-command-1.png)
+
+To confirm if an image has an `ENTRYPOINT` set, use `docker inspect theimage:thetag`.
+- If `Cmd` is `null` and `Entrypoint` has a value, this means `ENTRYPOINT` is set - and you cannot override this
+- If `Cmd` has a value and `Entrypoint` has a value (or `Entrypoint` doesnt have a value), this means `CMD` is set, which can be overridable. Below is an example of using `docker inspect` on `nginx:latest`, coupled with the earlier example, shows it has `CMD` set and which is why we can override (and possibly break) the container start behavior
+
+![NGINX image CMD and ENTRYPOINT](/media/2023/04/wafc-startup-command-2.png)
+
 # Custom Startup Commands
 ## Use a command
 1. To be able to start a container with this method, do not have a `CMD` or `ENTRYPOINT` in your `Dockerfile`. See the below example. We're just copying in our application source and exposing the port. If you have a `CMD` or `ENTRYPOINT` already set, there is a likely chance this may crash the container, as seen above, if you put a command that your application is not expecting.
