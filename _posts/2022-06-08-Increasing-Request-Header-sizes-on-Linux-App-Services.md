@@ -27,6 +27,11 @@ On Linux App Services, various stacks can be hosted - below are some common ways
 
 Code based examples can be found [here](https://github.com/azureossd/custom-request-header-size-examples).
 
+# Important information about request limits on App Service
+The "[Front Ends](https://learn.microsoft.com/en-us/archive/msdn-magazine/2017/february/azure-inside-the-azure-app-service-architecture#front-end)" that act as load balancers to the application(s) running behind them have a **hard upper limit of 64KB for total request header sizes**.
+
+The Front End configuration is **not** able to be changed. This means that although the application side can be changed (as discussed below), and depending on the server running the application - may have a various default total header size limit, but in all cases, the upper limit will always only be 64KB in size.
+
 # Java
 ## Tomcat
 
@@ -71,7 +76,11 @@ In something like Spring Boot, you may see the following if the overall header s
 java.lang.IllegalArgumentException: Request header is too large
 ```
 
-Using Spring Boot as an example, we can increase the default values for request headers size. You can add an AppSetting named `JAVA_OPTS` to your App Service with the value of `-Dserver.max-http-header-size=30000` which will pass this to the JVM.
+**Spring Boot 2.x**:
+- Using Spring Boot as an example, we can increase the default values for request headers size. You can add an AppSetting named `JAVA_OPTS` to your App Service with the value of `-Dserver.max-http-header-size=30000` which will pass this to the JVM.
+
+**Spring Boot 3.x**:
+- Spring Boot 3.x uses this: `-Dserver.max-http-request-header-size=30000`. Note the inclusion of `request`.
 
 Replace the `30000` (30KB) value of a value of your choice.
 
@@ -99,6 +108,36 @@ Optionally, you can add an AppSetting with the name `NODE_OPTIONS` and a value o
 
 ![Node NODE_OPTIONS](/media/2022/06/azure-ossd-node-request-headers-1.png)
 
+If you're using PM2 to serve the node application, you can try the following options:
+- Pass `node-args` to the PM2 start command: `pm2 start server.js --node-args="--max-http-header-size=16000"`
+- Or, use an `ecosystem.config.js` file - below is an example:
+
+```javascript
+module.exports = {
+  apps : [{
+    name: "app",
+    script: "./server.js", 
+    node_args: "--max-http-header-size=16000"
+    env: {
+      NODE_ENV: "development",
+    },
+    env_production: {
+      NODE_ENV: "production",
+    }
+  }]
+}
+```
+
+## Single Page Applications (and other client-side JavaScript applications)
+For applications using Angular, React, Vue and others - that fall into the SPA category - which is generally purely client-side executed code when served for production - you cannot directly increase header sizes without the help of serving this through some type of Web Server or process manage that allows arguments to change the header size.
+
+This is because client-side executed code, on it's own, which is code ran in the browser and not on the server - has **no** notion of how to set header sizes. Typically, there wouldn't be any reason to increase header for client-side code only, unless the resource actually **serving** the content is needing this to be done.
+
+Therefor some potential approaches to this could be the following:
+- Run the production build assets from the SPA ontop of a Node HTTP server or framework
+- Serve the production build through a Web Server like NGINX or Apache - the simplest way to do this on App Service is through a custom image
+- If using something like PM2, you can try to add `--max-http-header-size` into the run arguments.
+
 
 # Python
 
@@ -113,7 +152,7 @@ This general approach using Gunicorn and passing **--limit-request-field_size** 
 
 # .NET Core
 
-With .NET Core and Kestrel you can increase header sizes through the [`MaxRequestBodySize`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestbodysize?view=aspnetcore-6.0) property. The default for this is about 28.6MB.
+With .NET Core and Kestrel you can increase header sizes through the [`MaxRequestHeadersTotalSize`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserverlimits.maxrequestheaderstotalsize?view=aspnetcore-6.0) property. This property has a default set to ~32KB for total header sizes.
 
 If header size limits are hit, you'll also encounter an `HTTP 431 Request Header Fields Too Large` error.
 
@@ -123,13 +162,13 @@ We can increase the allowed header size with something like the following with K
 builder.WebHost.UseKestrel(k => 
 {
     // Increase the Request limit size to 64KB
-    k.Limits.MaxRequestBodySize = 64000;
+    k.Limits.MaxRequestHeadersTotalSize = 64000;
 });
 ```
 
 # PHP
 
-PHP on Linux App Service uses Apache for **PHP 7.4** Blessed Images and NGINX for **PHP 8.0** Blessed Images.
+PHP on Linux App Service uses Apache for **PHP 7.4** Blessed Images and NGINX for **PHP 8.x** Blessed Images.
 
 ## Apache
 

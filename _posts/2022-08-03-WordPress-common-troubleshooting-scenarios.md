@@ -61,14 +61,27 @@ If your WordPress page is encountering application issues without any detailed e
   >![WordPress common troubleshooting scenarios](/media/2022/08/wp_critical_error.png)
 
 1.	Edit the wp-config.php file and look for the following line of code:
-<br/>define(‘WP_DEBUG’, false);
+```
+define('WP_DEBUG', false);
+```
 <br/>Please update the line to the changes below - 
-<br/>define(‘WP_DEBUG’, true);
-<br/>define(‘WP_DEBUG_LOG’, true);
-<br/>define(‘WP_DEBUG_DISPLAY’, false);
-<br/>@ini_set(‘display_errors’,0);
-2.	Check debug.log inside the wp-content folder and application logs for the detailed errors. 
+```
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', false);
+@ini_set('display_errors',0);
+```
+2.	Check `php-fpm.www.log` inside `/var/log/php-fpm/` and application logs for the detailed errors. 
 3.	Once you fix the issue please revert the changes done in step 1.
+
+Additionally, you can configure `WP_DEBUG_LOG` with a specific file path to save the log file in a different location. For more details, refer to [Debugging in WordPress – Advanced Administration Handbook | Developer.WordPress.org](https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/#wp_debug_log). For example, you can write the log to `/home/site/wwwroot/wp-errors.log` with below configurations, this can be useful if you want to keep the log and access it through the file manager in Kudu site at `https://<your-web-app-name>.scm.azurewebsites.net/newui/fileManager#`.
+
+```
+define( 'WP_DEBUG', true);
+define( 'WP_DEBUG_LOG', '/home/site/wwwroot/wp-errors.log' );
+define('WP_DEBUG_DISPLAY', false);
+@ini_set('display_errors',0);
+```
 
 # How to resolve the 'Too Many Redirects' issue encountered on your WordPress site
 1.	 Assess if the SSL, home_url and site_url configurations are set properly in your wp-config.php. Please refer to the screenshot and code below for the recommended settings.

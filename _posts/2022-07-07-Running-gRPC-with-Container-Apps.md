@@ -98,7 +98,7 @@ There are a few client tools, UI or CLI based that can be used which has gRPC su
 - [grpcurl](https://github.com/fullstorydev/grpcurl#grpcurl) - CLI based
 - [BloomRPC](https://github.com/bloomrpc/bloomrpc) - GUI based
 - [Insomnia](https://docs.insomnia.rest/insomnia/grpc) - GUI based
-- [Postman](https://www.postman.com/) - GUI based - **Note**: Currently this is in open Beta
+- [Postman](https://www.postman.com/) - GUI based 
 
 Each tool has it's own way of creating a gRPC request to test with. When testing from a client tool, you **should not add https://** as a prefix to the FQDN. **This will likely cause an immediate error - which happens regardless of testing locally or on Azure Container Apps.**. This may surface as an error such as:
 

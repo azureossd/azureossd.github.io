@@ -362,7 +362,7 @@ The following scenarios can happen in either **local** or **deployed** environme
 
 On deployed environments - eg. Web App for Containers, you may see a `SSH CONNECTION CLOSED` in red - **some of these scenarios may cause this.**
 
-![SSH Error](/media/2022/04/azure-ssh-blog-1.png)
+![SSH connection error when trying to establish an SSH session to app container](/media/2022/04/azure-ssh-blog-1.png)
 
 Before troubleshooting these scenarios on Azure, ensure that [App Service Logging is enabled](https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enable-application-logging-linuxcontainer). Logging (stdout/stderr) can then be viewed in either **Logstream**, **Diagnose and Solve Problems -> Application Logs**, or through the **Kudu** site directly.
 

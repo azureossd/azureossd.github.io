@@ -14,7 +14,7 @@ header:
     teaser: "/assets/images/WordPress.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
 toc: true
 toc_sticky: true
-date: 2021-01-28 16:00:00
+date: 2021-05-26 16:00:00
 ---
 
 Our Wordpress on Linux image is Nginx based and if you'd like to configure the redirect rules, please follow the steps below

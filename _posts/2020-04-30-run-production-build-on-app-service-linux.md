@@ -16,7 +16,7 @@ header:
     teaser: "/assets/images/nodelinux.png" 
 toc: true
 toc_sticky: true
-date: 2020-04-30 00:00:00
+date: 2020-04-30 12:00:00
 ---
 
 When you create production build for your React, Angular, other Node framework the files will either be placed in a `build` or `dist` directory depending on the framework.  App Service on Linux uses *Oryx* to detect, build, and start your application.  For more information about how this is done, please go to the [Oryx](https://github.com/microsoft/Oryx/blob/master/doc/runtimes/nodejs.md) GitHub page for more info.  In order to serve the built content, you can perform either of the following.

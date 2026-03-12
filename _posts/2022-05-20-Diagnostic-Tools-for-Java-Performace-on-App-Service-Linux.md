@@ -15,7 +15,7 @@ header:
     teaser: "/assets/images/javalinux.png" 
 toc: true
 toc_sticky: true
-date: 2022-05-20 00:00:00
+date: 2022-05-20 12:01:00
 ---
 When dealing with High CPU, High Memory, or general performance scenarios on App Service Linux, it’s recommended to profile the application locally, but this may not always be possible nor reflect the same results. This may be due to the difference in load or environment configuration.
 
@@ -25,7 +25,7 @@ The App Service Linux pre-built images for Java include the various JDK tools fo
 
 You can select which instance you’d like to console into if scaled out to multiple instances before collecting your trace. This is helpful if a performance issue has been narrowed down to a particular instance.
 > `https://<app-name>.scm.azurewebsites.net/newui#`
->![Java Perfomance](/media/2022/05/javaprof-9.png)
+>![Java Perfomance](/media/2022/05/java-prof-10.png)
 
 
 # Heap Dumps - High Memory
@@ -97,8 +97,7 @@ It's a best practice to collect at least three thread dumps. Each thread dump sh
 
 4. Thread Dumps can be reviewed manually or with any of the thread analyzers mentioned below. At the same time, thread dumps contain application data, and local or client-side analyzers can be used to avoid leaking any potentially sensitive information.
 
-    - [Spotify Thread Analyzer - https://spotify.github.io/threaddump-analyzer  – Client Side](https://spotify.github.io/- threaddump-analyzer)
-    - [FastThread - Smart Java thread dump analyzer - thread dump analysis in seconds – Server Side](fastthread.io)
+  
     - [Samurai Tread Dump Analysis Tool - Local](https://github.com/yusuke/samurai)
 
     >![Java Perfomance](/media/2022/05/javaprof-3.png)
@@ -130,7 +129,7 @@ Flight Recordings can be reviewed using [Zulu Mission Control](https://www.azul.
 
 2. Execute the command below to start a 300-second recording of the JVM. This will profile the JVM and create a JFR file named jfr_example.jfr in  `/home/Logfiles`. [Additional JFR parameters](https://access.redhat.com/documentation/en-us/openjdk/11/html/using_jdk_flight_recorder_with_openjdk/configure-jfr-options)
 
-    `jcmd <pid> JFR.start name=MyRecording settings=profile duration=300s filename="/home/LogFilesjfr_example.jfr"`
+    `jcmd <pid> JFR.start name=MyRecording settings=profile duration=300s filename="/home/LogFiles/jfr_example.jfr"`
 
     ```bash
     # Example Output
@@ -168,3 +167,7 @@ Flight Recordings can be reviewed using [Zulu Mission Control](https://www.azul.
 
 3. Flight Recordings will be created at /home/LogFiles/recording1.jfr, which can be downloaded using FTP, KUDU API, or Kudu File Manager.JFR can be reviewed using [Zulu Mission Control](https://www.azul.com/products/components/zulu-mission-control/).
     > `https://<webapp-name>.scm.azurewebsites.net/newui/fileManager#`
+
+## Java monitoring over SSH
+
+You can review the steps to configure that here -> [Java monitoring over SSH](https://azureossd.github.io/2025/05/09/Java-monitoring-over-SSH/index.html)

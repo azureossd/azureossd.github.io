@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+    const getEndpoint = () => {
+        const useFuctionApp = ('{{ site.azcogsearch.use_function_app }}'.toLowerCase() === 'true');
+        if(useFuctionApp) {
+            const functionApp = '{{ site.azcogsearch.function_app }}'
+            return `https://${functionApp}.azurewebsites.net/search?q=`
+        }
+
+        const service_name = '{{ site.azcogsearch.service_name }}';
+        const index_name = '{{ site.azcogsearch.index }}';
+        const api_key = '{{ site.azcogsearch.api_key }}';
+        const az_endpoint = `https://${service_name}.search.windows.net`;
+
+        return `${az_endpoint}/indexes/${index_name}/docs?api-version=2023-07-01-Preview&api-key=${api_key}&search=`
+    }
+    const doSearch = () => {
+        const results = document.getElementById("search-hits").replaceChildren();
+        const queryText = document.querySelector('#azcs-search-input-box-id').value;
+        fetch(`${getEndpoint()}${encodeURIComponent(queryText)}`)
+            .then(response => response.json())
+            .then(data => {
+                data.value.forEach(r=> displaySearchResult(r));
+            })
+            .catch(err => {
+                // deal with errors
+                // show proper error message
+                console.log(err);
+            });
+    }
+
+    const displaySearchResult = (result) => {
+        const results = document.getElementById("search-hits");
+
+        results.insertAdjacentHTML('beforeend',
+        `
+            <article class="archive__item">
+                <h2 class="archive__item-title" itemprop="headline">
+                    <a href="${result.url}" rel="bookmark">${getTitle(result)}</a>
+                </h2>
+                <div class="archive__item-excerpt" itemprop="description">
+                    ${getDescription(result)}
+                </div>
+            </article>
+        `);
+    };
+
+    const getTitle = (result) => {
+        if (result['@search.highlights'] && result['@search.highlights'].title) {
+            return result['@search.highlights'].title[0];
+        }
+        return result.title;
+    };
+
+    const getDescription = (result) => {
+        if (result['@search.highlights'] && result['@search.highlights'].description) {
+            return result['@search.highlights'].description[0];
+        }
+        return result.description;
+    };
+
+    $(document).ready(function () {
+        $('input#azcs-search-input-box-id').on('keyup', function () {
+            doSearch();
+        });
+    });
+</script>

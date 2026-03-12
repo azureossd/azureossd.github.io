@@ -197,7 +197,7 @@ resource containerApp 'Microsoft.App/containerApps@2022-06-01-preview' = {
 
 We can lastly confirm that the **AcrPull** role has been added to our User Assigned identity by going to the Azure Portal for the Container App -> **Identity** -> **User assigned** -> (select the created identity) -> **Azure Role assignments**
 
-![AcrPull Role](/media/2023/aca-managed-identity-blog-1.png)
+![AcrPull Role](/media/2023/01/aca-managed-identity-blog-1.png)
 
 
 
@@ -338,7 +338,7 @@ resource roleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
 
 You can confirm the **AcrPull** role was added to the System Assigned Identity we created by going to the Azure Portal for the Container App -> **Identity** -> **System assigned** -> (select the created identity) -> **Azure Role assignments**
 
-![AcrPull Role](/media/2023/aca-managed-identity-blog-1.png)
+![AcrPull Role](/media/2023/01/aca-managed-identity-blog-1.png)
 
 
 If you then decide to update the application to point to the new registry through Bicep, you would add this registry properties change in to the Container App resource:

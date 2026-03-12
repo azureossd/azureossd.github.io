@@ -1,0 +1,52 @@
+# Azure Cognitive Search Indexing Workflow
+# This workflow indexes blog content to Azure Cognitive Search when content is pushed to master
+# Security: Uses GitHub secrets for Azure credentials and follows least privilege principles
+
+name: Azure Cognitive Search Indexing
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - '_posts/**'
+      - 'azcogsearch-scripts/**'
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: read # Minimal permissions required
+
+jobs:
+  index-content:
+    name: Index Blog Content
+    runs-on: ubuntu-latest
+    
+    # Security: Use environment for additional protection
+    environment: production
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4 # Updated to latest version
+      with:
+        fetch-depth: 0 # Full history for better indexing
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4 # Updated to latest version
+      with:
+        node-version: 'lts/*'
+        cache: 'npm'
+        cache-dependency-path: './azcogsearch-scripts/package-lock.json'
+    
+    - name: Install dependencies
+      working-directory: ./azcogsearch-scripts
+      run: |
+        npm ci # Use ci for reproducible builds
+        npm audit # Check for vulnerabilities
+    
+    - name: Run indexing
+      env:
+        AZ_SEARCH_SERVICE_NAME: ${{ secrets.AZ_SEARCH_SERVICE_NAME }}
+        AZ_SEARCH_ADMIN_KEY: ${{ secrets.AZ_SEARCH_ADMIN_KEY }}
+        NODE_ENV: production
+      working-directory: ./azcogsearch-scripts
+      run: |
+        node feed-index.js

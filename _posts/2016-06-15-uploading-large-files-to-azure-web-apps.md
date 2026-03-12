@@ -25,7 +25,7 @@ Attempting to upload a file larger than 28.6MB to Azure Web Apps can result in a
        </system.webServer>
     </configuration>
 
-  You may also need to make changes to your Web App to increase the maximum file upload size as well. Below is some additional information for how to increase the limits for popular Content Management Systems that run on PHP such as WordPress, Drupal, and Joomla!. Information for Tomcat Manager can be found [here](../2015/09/18/accessing-the-tomcat-manager-console-on-azure-java-webapp/).  
+  You may also need to make changes to your Web App to increase the maximum file upload size as well. Below is some additional information for how to increase the limits for popular Content Management Systems that run on PHP such as WordPress, Drupal, and Joomla!. Information for Tomcat Manager can be found [here](https://azureossd.github.io/2015/09/18/accessing-the-tomcat-manager-console-on-azure-java-webapp/index.html).  
 
 ## PHP Content Management Systems (WordPress, Joomla!, etc.)
 

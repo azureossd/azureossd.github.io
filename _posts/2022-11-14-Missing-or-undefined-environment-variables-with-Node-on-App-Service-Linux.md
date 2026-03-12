@@ -125,28 +125,7 @@ As with both React and Next, [Vue expects a certain prefix to environment variab
 
 We'll use some code like this to access our environment variable in the browser:
 
-```javascript
-<script setup>
-const apiUri = import.meta.env.VITE_API_URI;
-
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-
-</script>
-
-<template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      VITE_API_URI: {{ apiUri ?? "No environment variable defined" }}
-    </h3>
-  </div>
-</template>
-```
+![Vue Code](/media/2022/10/vue-code.png)
 
 On the pipeline side, to add an environment variable:
 - Click **Pipelines** -> **Ellipsis Icon** -> **Edit Pipelines**

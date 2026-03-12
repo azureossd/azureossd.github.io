@@ -10,7 +10,7 @@ categories:
     - Troubleshooting # How-To, Diagnostics, Configuration, Troubleshooting, Performance
 header:
     teaser: "/assets/images/azurelinux.png" # There are multiple logos that can be used in "/assets/images" if you choose to add one.
-date: 2020-03-25 00:00:00
+date: 2020-03-25 12:00:00
 ---
 
 Looking into the standard_init_linux.go error when working with Azure App Service on Linux.

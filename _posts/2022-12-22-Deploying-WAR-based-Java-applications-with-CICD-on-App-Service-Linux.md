@@ -25,7 +25,7 @@ date: 2022-12-22 12:00:00
 In this blog post we'll cover some examples of how to deploy war based applications using Azure DevOps and GitHub Actions.
 
 ## Overview
-**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-devops-examples)**.
+**Source code for these GitHub Action workflows and Azure DevOps pipelines can be found [here](https://github.com/azureossd/java-war-cicd-examples)**.
 
 This section will cover CI/CD deployment for war-based applications - this is for Blessed **Tomcat** images, which will act as our Web Container for our war. With this image, you still have the option to choose your Java major version, as well as Apache Tomcat major and minor version - but the premise is that we're deploying a war file into a Tomcat container, which Tomcat itself will run.
 
@@ -175,7 +175,7 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
-    - task: Maven@3
+    - task: Maven@4
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
@@ -225,7 +225,7 @@ You can change this to `**/target/yourwar.war` if needed.
 However, since we're using **Java 17** we needed to update the Maven task to the below, `JAVA_HOME` (at the time of writing this) points to `/usr/lib/jvm/temurin-11-jdk-amd64`. We need to point this to a Java 17 JDK. If you don't do this we'll get an `Fatal error compiling: error: invalid target release: 17`
 
 ```yaml
-    - task: Maven@3
+    - task: Maven@4
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
@@ -261,7 +261,7 @@ This is because, by default, the API's used in this deployment task pass the nam
 
 This is opposed to the **OneDeploy** API being used on deployment methods such as the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-deploy) or the [Maven Plugin](https://learn.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux-development-environment-maven#configure-the-maven-plugin) which, under the hood, rename our war (or jar) to `app.war` and deploy directly to `wwwroot` instead of `wwwroot/webapps`. This in turn is mapped directly to the root context ("/").
 
-Another quick way to solve this, aside from using the `customDeployProperty` is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
+Another quick way to solve this, aside from using the `customDeployFolder` property is to add the `<finalName></finalName>` element to the `<build></build>` section of your `pom.xml`. Such as:
 
 `<finalName>ROOT</finalName>` 
 
@@ -283,6 +283,14 @@ You can replace the Deployment Task in the above `.yaml` with this script. Ensur
     scriptLocation: 'inlineScript'
     inlineScript: 'az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --type war --async true'
 ```
+
+Another example using a command we can put in `inlineScript` is with `--target-path`, for instance:
+
+```
+az webapp deploy --resource-group my-rg --name $(webAppName) --src-path "$(Pipeline.Workspace)/drop/target/YOURWAR.war" --target-path webapps/test --type war --async true
+```
+
+> **NOTE**: `--target-path` should be relative. An absolute may fail with an internal server error.
 
 You can further confirm **OneDeploy** is being used from the JSON output after the CLI command completes:
 
@@ -434,7 +442,7 @@ The same applies to what was covered in the [Maven section above](#azure-devops-
 If tests are failing and are able to be excluded, a Maven Options property can be added to the task, like the below:
 
 ```yaml
-- task: Maven@3
+- task: Maven@4
   displayName: 'Maven Package'
   inputs:
     mavenPomFile: 'pom.xml'
@@ -566,6 +574,8 @@ Use the `-CATALINA_OPTS "-Dsome=value -Dfoo=bar"` syntax
 > **NOTE**: Tomcat applications use CATALINA_OPTS, where as Java SE (Embedded Tomcat, .jar applications) use JAVA_OPTS - see [here](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java?pivots=platform-linux#set-java-runtime-options)
 
 ## GitHub Actions
+> GitHub Actions (`azure/webapps-deploy@v3`) does not use WarDeploy. This uses OneDeploy. Only `azure/webapps-deploy@v2` uses War Deploy
+
 ### Maven
 To get started with GitHub Actions, create a Java on App Service Linux application. In this case, we'll still use a Java 17 runtime with Tomcat 9. After creating the application, do the following:
 
@@ -578,6 +588,10 @@ To get started with GitHub Actions, create a Java on App Service Linux applicati
 ![Deployment Center](/media/2022/12/azure-blog-java-devops-deployment-10.png)
 
 This will now generate the following `.yml` which will be commited and created under `.github/<branch>_<appname>.yml`
+
+3. Choose whether "User Assigned Identity" or "Publish Profile" authentication will be used. Publish Profile authentication requires "Basic Authentication" to be enabled on the App Service.
+
+- For User Assigned Identity authentication this will generate the following `.yml` which will be committed and created under `.github/<branch>_<appname>.yml`
 
 ```yaml
 name: Build and deploy WAR app to Azure Web App - myapp
@@ -593,18 +607,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
+          distribution: 'microsoft'
 
       - name: Build with Maven
         run: mvn clean install
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.war'
@@ -613,24 +628,92 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00000000000000000000000000000000 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_00000000000000000000000000000000 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_00000000000000000000000000000000 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_bfc93931596b46f194d7dc59c9ba68ec }}
+          app-name: 'someapp'
+          slot-name: 'Production'
           package: '*.war'
 ```
+
+- For publish profile authentication this will generate the following `.yml` which will be committed and created under `.github/<branch>_<appname>.yml`
+
+```yaml
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy JAR app to Azure Web App - someapp
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java version
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'microsoft'
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-app
+          path: '${{ github.workspace }}/target/*.jar'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: java-app
+      
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'someapp'
+          slot-name: 'Production'
+          package: '*.war'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_00000000000000000000000000000000 }}
+```
+
 Since the Maven executable being used here is a typical CLI approach, you pass additional parameters as needed. For example:
 
 ```
@@ -640,6 +723,8 @@ mvn clean install -DskipTests=true && mvn -v
 Using this generated Actions Workflow should be all we need to get a successful deployment started. However, if your war is **not** named `ROOT` and you're seeing HTTP 404's after deployment, review the section below.
 
 #### GitHub Actions - Why am I getting a 404 after deployment?
+**Update**: `azure/webapps-deploy@v3` now uses OneDeploy, which will always, by default, deploy to a `ROOT` context with Tomcat - therefor doing manual configuration to deploy to a `ROOT` context does not need to be done. `azure/webapps-deploy@v2` however uses the older "War Deploy" API - which does _not_ inheritly deploy to a `ROOT`context. If using `azure/webapps-deploy@v2`, the below will still apply.
+
 The same applies to what was covered in the [Maven section above](#why-am-i-getting-a-404-after-deployment). 
 
 GitHub Actions uses the **War Deploy** API under the hood. If we turn on [debug logging](https://github.blog/changelog/2022-05-24-github-actions-re-run-jobs-with-debug-logging/), we can see what exactly is being called on the deployment task:
@@ -651,9 +736,13 @@ Package deployment using WAR Deploy initiated.
 ...
 ```
 
+> **NOTE**: If you want to avoid this behavior and use the recommended OneDeploy API, consider using `azure/webapps-deploy@v3`
+
 Just as discussed in the Azure DevOps section, the name of our war is passed as a value to the `name` parameter, which deploys this to a Tomcat Context of the same name. Therefor, if your war is **NOT** named `ROOT`, it will be accessed under the name of your war (ex., https://sitename.azurewebsites.net/azure-0.0.1-SNAPSHOT)
 
 #### GitHub Actions - What are other ways I can target a root site context?
+> **NOTE**: If using `azure/webapps-deploy@v3`, this will by default deploy to a root context. Consider using this instead. Otherwise, follow the below.
+
 As opposed to the Azure DevOps deployment task we used, the `azure/webapps-deploy@v2` deployment task does not have a property for setting the value of the `name` parameter in the War Deploy API. 
 
 However, we can still deploy to root, below is an example using the AZ CLI in the deployment task:
@@ -668,24 +757,26 @@ deploy:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
 
       - name: Azure Login
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Web App with Azure CLI
-        uses: azure/CLI@v1
+        uses: azure/CLI@v2
         with:
-          azcliversion: 2.43.0
+          azcliversion: latest
           inlineScript: |
             az webapp deploy --resource-group "myrg" --name "myapp" --src-path azure-0.0.1-SNAPSHOT.war --type war --async true
 ```
 
 In this example, we use the help of the [azure/login@v1](https://github.com/Azure/login) and [azure/cli@v1](https://github.com/Azure/cli) task. As discussed in the [Maven - Azure DevOps](#azure-devops---why-am-i-getting-a-404-after-deployment) section, the Azure CLI uses the **OneDeploy** deployment API, which will automatically rename our war to `app.war` and place this directly under wwwroot - which maps to the root context with Tomcat.
+
+As seen in the above Azure DevOps section, you can alternatively target a non-root path with the `--target-path` flag passed to `az webapp deploy`. The path should be relative (eg., `webapps/test`)
 
 
 If you don't want to alter the workflow file - or can't, you can add `<finalName>ROOT</finalName>` to the `<build></build>` section of your `pom.xml`. This will name your war to `ROOT.war` and always be deployed in a root context.
@@ -720,12 +811,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
+          distribution: 'microsoft'
 
       # This is the important change we need to make to switch between Maven to Gradle
       # Gradle is available on these runners through typical [CLI commands](https://docs.gradle.org/current/userguide/command_line_interface.html)
@@ -733,7 +825,7 @@ jobs:
         run: gradle build
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: '${{ github.workspace }}/build/libs/azure-0.0.1-SNAPSHOT.war'
@@ -744,27 +836,29 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: java-app
-
-      # We rename our war to ROOT.war for root context
-      # See above in this blog for other ways to target the root context
-      - name: Rename war to ROOT
-        run: mv azure-0.0.1-SNAPSHOT.war ROOT.war
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_00000000000000000000000000000000 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_00000000000000000000000000000000 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_00000000000000000000000000000000 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
+          app-name: 'someapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_000000000000000000000000 }}
-          package: 'ROOT.war'
-
+          package: '*.war'
 ```
 
 ### GitHub Actions - Tomcat Configuration for runtime
@@ -786,7 +880,7 @@ deploy:
         with:
           name: java-app
 
-      - uses: azure/login@v1
+      - uses: azure/login@v2
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
@@ -797,12 +891,11 @@ deploy:
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myapp'
+          app-name: 'someapp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000000000000000 }}
-          package: 'azure-0.0.1-SNAPSHOT.war'
+          package: '*.war'
 
       - run: |
           az logout

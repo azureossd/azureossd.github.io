@@ -1,0 +1,43 @@
+version: 2
+updates:
+  # Enable version updates for npm (Node.js)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "@azureossd/maintainers"
+    assignees:
+      - "@azureossd/maintainers"
+    commit-message:
+      prefix: "npm"
+      include: "scope"
+    
+  # Enable version updates for npm in azcogsearch-scripts
+  - package-ecosystem: "npm"
+    directory: "/azcogsearch-scripts"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "@azureossd/maintainers"
+    assignees:
+      - "@azureossd/maintainers"
+    commit-message:
+      prefix: "npm"
+      include: "scope"
+
+  # Enable version updates for bundler (Ruby/Jekyll)
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "@azureossd/maintainers"
+    assignees:
+      - "@azureossd/maintainers"
+    commit-message:
+      prefix: "bundler"
+      include: "scope"

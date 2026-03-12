@@ -76,6 +76,19 @@
     }
   }
 
+  .search-powered-by {
+    display: inline-block;
+    width: 45px;
+    height: 16px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+    background-image: url("https://azure.microsoft.com/svghandler/cognitive-services?width=600&height=315");
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+  }
+
   &.is--visible {
     display: block;
     visibility: visible;

@@ -31,7 +31,7 @@ Navigate to your App Service via the Azure Portal. Under the `Development Tools`
 You will want to make a copy of the existing configuration and place the file inside the `/home/site` directory.
 
 ```sh
-cp /etc/nginx/sites-available/default /home/site/default
+cp /etc/nginx/sites-enabled/default /home/site/default
 ```
 
 Once copied, edit the `/home/site/default` file and update the section below:
@@ -57,13 +57,13 @@ You will now need to create a custom startup script and save the file as `/home/
 ```sh
 #!/bin/bash
 
-cp /home/site/default /etc/nginx/sites-available/default
+cp /home/site/default /etc/nginx/sites-enabled/default
 service nginx reload
 ```
 
 In the custom startup script we are doing the following:
 
-  1. Overriding the existing `/etc/nginx/sites-available/default` file with the `/home/site/default` file.
+  1. Overriding the existing `/etc/nginx/sites-enabled/default` file with the `/home/site/default` file.
   2. Reloading the NGINX service to make the updates take effect.
 
 ### Updating the application settings

@@ -34,7 +34,7 @@ group :jekyll_plugins do
     gem "jekyll-paginate"
     gem "jekyll-include-cache"
     gem "jemoji"
-    gem "jekyll-algolia"
+#   gem "jekyll-algolia"
   end
 
 gem "webrick", "~> 1.7"

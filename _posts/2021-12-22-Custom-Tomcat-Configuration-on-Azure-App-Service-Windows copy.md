@@ -14,7 +14,7 @@ header:
     teaser: "/assets/images/Javalogo.png" 
 toc: true
 toc_sticky: true
-date: 2021-06-17 00:00:00
+date: 2021-06-17 12:00:00
 ---
 
 App Service Windows includes multiple versions of Tomcat for your choosing & uses IIS to quickly update your process path once any new runtime version is pinned. Still, there are use cases where you may be looking to tweak the server configuration or completely modify the existing Tomcat installation that's in use. 

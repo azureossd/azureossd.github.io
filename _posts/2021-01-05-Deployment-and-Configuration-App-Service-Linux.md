@@ -14,7 +14,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: 2021-01-05 00:00:00
+date: 2021-01-05 12:00:00
 ---
 
 Configure and Deploy App Service on Linux.
