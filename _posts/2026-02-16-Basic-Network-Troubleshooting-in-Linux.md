@@ -16,10 +16,9 @@ toc_sticky: true
 date: 2026-03-12 12:00:00 
 ---
 
-This blog covers basic Linux network troubleshooting with core open source tools and a handy [automated troubleshooting script](https://github.com/azureossd/networking-troubleshooting-utility).
+This blog covers basic Linux network troubleshooting with core open source tools and a handy [automated troubleshooting script](https://github.com/azureossd/networking-troubleshooting-utility "Go to script").
 
-## Readme: 
-<https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md>
+**Readme**: <https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md>
 
 ## Overview
 Outbound connectivity issues in cloud environments can stem from many causes and manifest in different ways. Applications may experience intermittent or persistent failures when reaching a specific host or API. Sometimes only one external endpoint is affected while others remain accessible, and in other cases all outbound traffic fails.
@@ -182,20 +181,20 @@ Additional tools are available to quickly troubleshoot connectivity, review band
 
 After installation, these utilities can be launched directly from the console to display active connections in real time. 
 
-### `iftop` — Per-Connection Bandwidth
-Iftop also launches a UI which shows live traffic and can be useful to view current and active outbound connections. 
+### `iftop` 
+Iftop also launches a UI which shows live traffic and can be useful to view current and active outbound connections and bandwidth usage. 
 ```bash
 iftop -i eth0             # live bandwidth by connection pair
 iftop -i eth0 -f "port 443"   # filter to HTTPS only
 ```
 
-### `nethogs` — Per-Process Bandwidth
+### `nethogs` 
 ```bash
 nethogs eth0              # bandwidth by PID
 nethogs -d 2 eth0         # refresh every 2 seconds
 ```
 
-### `iptraf-ng` — UI based tool similar to `iftop` with additional utility
+### `iptraf-ng` UI based tool similar to `iftop` nad `nethogs` with additional utility
 **Example view below showing outbound connections**
 ![iptraf-ng view](/media/2026/03/iptraf-ng2.png)
 
