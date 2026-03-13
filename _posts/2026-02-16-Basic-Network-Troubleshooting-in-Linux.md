@@ -10,13 +10,16 @@ categories:
     - Other # Azure Function apps, AKS, ACIs, VMs running Linux
     - Troubleshooting
 header:
-    teaser: "/assets/images/appservicelogo.png"
+    teaser: "/assets/images/azurelinux.png"
 toc: true
 toc_sticky: true
 date: 2026-03-12 12:00:00 
 ---
 
-This blog covers basic Linux network troubleshooting with core open source tools and a practical automation script.
+This blog covers basic Linux network troubleshooting with core open source tools and a handy [automated troubleshooting script](https://github.com/azureossd/networking-troubleshooting-utility).
+
+## Readme: 
+<https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md>
 
 ## Overview
 Outbound connectivity issues in cloud environments can stem from many causes and manifest in different ways. Applications may experience intermittent or persistent failures when reaching a specific host or API. Sometimes only one external endpoint is affected while others remain accessible, and in other cases all outbound traffic fails.
@@ -28,7 +31,7 @@ Effective troubleshooting requires isolating the failure domain, whether DNS, ne
 ## Environment Setup and Prerequisites
 Before troubleshooting, confirm which tools are available. Managed runtimes (Azure App Services, Conatainer Apps etc) or IaaS services (ex:Azure VMs) may not include all utilities by default.
 
-**In Azure App Service (Kudu SSH console):** `curl`, `dig`, `nc`, and `tcpdump` are pre-installed in the sandbox. `nmap`, `tshark`, and `zeek` are absent and must be side-loaded as static binaries into `/home` (persistent storage) if needed. Note that as a non-root user, you cannot install these tools in the kudu container. Additionally, to be install these tools in the runtime container, it needs to be up and running. And with custom docker containers on App Services, ssh would need to be enabled. 
+**In Azure App Service (Kudu SSH console):** `curl`, `dig`, `nc`, and `tcpdump` are pre-installed in the sandbox. `nmap`, `tshark`, and `zeek` are absent and must be side-loaded as static binaries into `/home` (persistent storage) if needed. Note that as a non-root user, you cannot install these tools in the kudu container. Additionally, to be able to install these tools in the runtime container, it needs to be up and running. And with custom docker containers on App Services, ssh would need to be enabled. Refer [here](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/) for steps to enable SSH.
 
 Below can be run as a quick test to see which (common) tools are already installed. 
 
@@ -103,7 +106,8 @@ nc -zv -w 5 microsoft.com 443
 **Probe multiple ports in a single command:**
 ```bash
 nc -zv microsoft.com 80 443 8080
-#Send a raw HTTP request and inspect the response
+```
+**Send a raw HTTP request and inspect the response**
 ```bash
 printf "GET / HTTP/1.0\r\nHost: microsoft.com\r\n\r\n" | nc microsoft.com 80
 
@@ -191,8 +195,12 @@ nethogs eth0              # bandwidth by PID
 nethogs -d 2 eth0         # refresh every 2 seconds
 ```
 
+### `iptraf-ng` — UI based tool similar to `iftop` with additional utility
+**Example view below showing outbound connections**
+![iptraf-ng view](/media/2026/03/iptraf-ng2.png)
+
 ## Capturing Network traces
-If reachability and connectivity tests fail, or if the issues are intermittent, capturing and analyzing a network trace is the next step. tcpdump is a powerful tool for this purpose, allowing you to record traffic that can be analyzed directly in the CLI using tcpdump or tshark, or externally with tools like Wireshark.
+If reachability or connectivity tests fail, or if the issues are intermittent, capturing and analyzing a network trace is the next step. tcpdump is a powerful tool for this purpose, allowing you to record traffic that can be analyzed directly in the CLI using tcpdump or tshark, or externally with tools like Wireshark.
 
 ### Full Capture with tcdump
 ```bash
@@ -265,24 +273,26 @@ tshark -r trace.pcap -Y "tcp.analysis.retransmission"
 tshark -r trace.pcap -q -z endpoints,ip
 ```
 
-In real-world environments, it is common to iterate through multiple analysis methods to isolate the issue. To simplify this process, below is a handy OSS script that wraps these native Linux tools into a single interface. It can be downloaded with a simple curl command and run either interactively or by specifying the destination IP and/or port. It installs the necessary tools, runs through the diagnostics and packet capture and analysis and generates a logfile and a html report. 
+In real-world environments, it is common to iterate through multiple analysis methods to isolate the issue. To simplify this process, below is a handy OSS script that wraps these native Linux tools into a single interface. It can be downloaded with a simple curl command and run either interactively or by specifying the destination IP and/or port. 
 
-## Readme: 
-https://github.com/azureossd/networking-troubleshooting-utility/blob/main/README.md
 ## Usage
+**Download and install the script with the below curl command**
 ```bash
-# Download and install the script with the below curl command
 curl -fsSL https://raw.githubusercontent.com/azureossd/networking-troubleshooting-utility/refs/heads/main/nwutils_install.sh | bash
-
-# Install all tools (only) and run the commands manually
+```
+**Install all tools (only) and run the commands manually**
+```bash
 nwutils install
-
-# Run interactively for dynamic ports
+```
+**Run interactively for dynamic ports**
+```bash
 nwutils run
-
-# Or pass the target directly
+```
+**Or pass the target directly**
+```bash
 nwutils myapi.com 4000
 ```
 
+Simply run the script and it installs the necessary tools, runs through the diagnostics, collects network trace (default 60s), analysis the trace and generates a logfile and a html report with a summary. 
 
 
