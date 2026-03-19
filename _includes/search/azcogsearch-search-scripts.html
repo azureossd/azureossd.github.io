@@ -3,10 +3,10 @@
 
 <script>
     const getEndpoint = () => {
-        const useFuctionApp = ('{{ site.azcogsearch.use_function_app }}'.toLowerCase() === 'true');
-        if(useFuctionApp) {
-            const functionApp = '{{ site.azcogsearch.function_app }}'
-            return `https://${functionApp}.azurewebsites.net/search?q=`
+        const useApim = ('{{ site.azcogsearch.use_apim }}'.toLowerCase() === 'true');
+        if(useApim) {
+            const azureApim = '{{ site.azcogsearch.azure_api_management }}';
+            return `https://${azureApim}.azure-api.net/search?q=`
         }
 
         const service_name = '{{ site.azcogsearch.service_name }}';
