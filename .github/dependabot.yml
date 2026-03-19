@@ -1,43 +1,26 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
 version: 2
 updates:
-  # Enable version updates for npm (Node.js)
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    reviewers:
-      - "@azureossd/maintainers"
-    assignees:
-      - "@azureossd/maintainers"
-    commit-message:
-      prefix: "npm"
-      include: "scope"
-    
-  # Enable version updates for npm in azcogsearch-scripts
-  - package-ecosystem: "npm"
-    directory: "/azcogsearch-scripts"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    reviewers:
-      - "@azureossd/maintainers"
-    assignees:
-      - "@azureossd/maintainers"
-    commit-message:
-      prefix: "npm"
-      include: "scope"
-
-  # Enable version updates for bundler (Ruby/Jekyll)
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
       interval: "weekly"
-    open-pull-requests-limit: 10
-    reviewers:
-      - "@azureossd/maintainers"
-    assignees:
-      - "@azureossd/maintainers"
-    commit-message:
-      prefix: "bundler"
-      include: "scope"
+
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "npm"
+    directory: "/azcogsearch-scripts"
+    schedule:
+      interval: "weekly"
