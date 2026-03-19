@@ -69,8 +69,10 @@ search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
 search_provider          : "azcogsearch" # lunr (default), algolia, google
 azcogsearch:
-  function_app           : "azureossd-blog-search"
-  use_function_app       : true
+  #function_app           : "azureossd-blog-search"
+  #use_function_app       : true
+  azure_api_management   : "azureossd-blog-search"
+  use_apim               : true
   #service_name           : "azureossd"
   #api_key                : "t49cTqVo5UKly6E1u5TUbsxje96mAvVLzKenHWKKE4AzSeAbZTsy"
   #index                  : "blog-index"
