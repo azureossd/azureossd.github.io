@@ -33,7 +33,9 @@ To enable this, you need to set `targetPortHttpScheme` to `true`. By default, th
 
 ![Container App Resource JSON overview](/media/2025/04/aca-e2e-tls-1.png)
 
-As of writing this post, this cannot be done through the portal, but can be done through the Azure CLI (and potentially through other IaC methods). Run the following:
+As of writing this post, this cannot be done through the portal, but can be done through the Azure CLI and through other IaC methods. Run the following:
+
+**Azure CLI**:
 
 1. `az containerapp show -g some-rg -n someapp -o yaml > app.yaml`
 
@@ -44,6 +46,31 @@ As of writing this post, this cannot be done through the portal, but can be done
 2. Update the Container App with the change in your `.yaml` file with `az containerapp update -n someapp  -g some-rg --yaml app.yaml`
 
 You may need to restart the revision (or create a new revision) after this change for it to take effect.
+
+**ARM (and other IaC methods)**
+
+```armasm
+If using `azure container update` doesn't actually update the app (there may be a current issue with this) - use an ARM/Bicep or an IaC template instead. Update the relevant area in your template and deploy the template:
+
+```arm
+"properties": {
+...
+	"ingress": {
+	"external": true,
+	"targetPort": 3443,
+	"targetPortHttpScheme": "https",
+	"transport": "Auto",
+	"allowInsecure": false,
+	"clientCertificateMode": "Ignore",
+	"stickySessions": {
+		"affinity": "none"
+	},
+	...
+	},
+	...
+},
+```
+
 
 ## Application
 Most web servers by default will listen over a HTTP (non-TLS) port. Common implementations today require developers to _opt-in_ to use a TLS enabled server. This part will vary based on framework/language.
