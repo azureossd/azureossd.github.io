@@ -49,7 +49,7 @@ You may need to restart the revision (or create a new revision) after this chang
 
 **ARM (and other IaC methods)**
 
-```armasm
+```arma
 If using `azure container update` doesn't actually update the app (there may be a current issue with this) - use an ARM/Bicep or an IaC template instead. Update the relevant area in your template and deploy the template:
 
 ```arm
