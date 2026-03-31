@@ -49,23 +49,22 @@ You may need to restart the revision (or create a new revision) after this chang
 
 **ARM (and other IaC methods)**
 
-```arma
-If using `azure container update` doesn't actually update the app (there may be a current issue with this) - use an ARM/Bicep or an IaC template instead. Update the relevant area in your template and deploy the template:
+You can do this through IaC by updating `targetPortHttpScheme` within the `ingress` object.
 
 ```arm
 "properties": {
 ...
 	"ingress": {
-	"external": true,
-	"targetPort": 3443,
-	"targetPortHttpScheme": "https",
-	"transport": "Auto",
-	"allowInsecure": false,
-	"clientCertificateMode": "Ignore",
-	"stickySessions": {
-		"affinity": "none"
-	},
-	...
+    	"external": true,
+    	"targetPort": 3443,
+    	"targetPortHttpScheme": "https",
+    	"transport": "Auto",
+    	"allowInsecure": false,
+    	"clientCertificateMode": "Ignore",
+    	"stickySessions": {
+    		"affinity": "none"
+    	},
+    	...
 	},
 	...
 },
