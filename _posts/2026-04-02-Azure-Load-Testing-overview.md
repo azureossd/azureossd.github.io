@@ -19,7 +19,7 @@ toc_sticky: true
 date: YYYY-MM-DD 12:00:00 # Ensure date and filename date match (ie. date: 2025-05-01 12:00:00 and filename: 2025-05-01-your-article-title.md)
 ---
 
-## Overview that is using a H2 header which is useful for a TOC
+## This blog provides a quick overview of the Azure Load testing service
 
 ## Overview
 This post provides a practical overview of load testing applications deployed on Azure PaaS services such as Azure App Service and Azure Container Apps.
