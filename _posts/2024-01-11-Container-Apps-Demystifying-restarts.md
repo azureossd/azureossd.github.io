@@ -45,6 +45,12 @@ When a "restart"/pod or replica movement does occur, it follows the below approa
 4. Containers in pod `someapp-klis5dn--klis5dn-5988c6bbbf-ppbdw` are stopped
 5. Pod `someapp-klis5dn--klis5dn-5988c6bbbf-ppbdw` is deleted
 
+**What scenarios does this apply in**?:
+- When deploying a new revision (eg. deploying to an application which does a [Revision Scope Change](https://learn.microsoft.com/en-us/azure/container-apps/revisions#revision-scope-changes)), or, explicitly creating a new revision
+- When using the "Restart" option on a new revision
+- Platform upgrades / node movement* (See the **Node movement** section below for specifics/caveats on this)
+
+
 The red box in the foreground shows the concept of "no downtime" deployments where at a brief point in time there are **two (2)** replicas running.
 
 This is why in certain views you may see a brief increase in replica count in these kinds of scenarios.
@@ -95,7 +101,12 @@ Kubernetes-based applications run on _nodes_ - which is essentially just some ty
 
 This same compute concept applies to Container Apps. At times, there may be platform maintenance or node "movement" for other reasons - which is also called out in [Azure Container Apps environments](https://learn.microsoft.com/en-us/azure/container-apps/environment)
 
-This will also appear to look like a restart. To prevent any potential issues in these cases - it's typically a good idea to run >= 2 replicas or more
+This will also appear to look like a restart. To prevent any potential issues in these cases - it's typically a good idea to run >= 3 replicas or more. **Why?**:
+- Running at this amount will try to gaurentee a subset of **created** replicas. Think, PDBs (Pod Disruption Budgets). However, it's important to understand PDBs and this scenario do not care about the state of your container/application - it cares if a replica has been created (which is not tied to the state of your application).
+  - **Example**: If you have 3 replicas and a platform upgrade undergoes, and during rolling upgrades, at least 1 replica is created - but the application container in that replica happens to fail (either consistently failing health probes and thus being restarted, or crashing/exiting/failing to start, or many other scenarios) - then there is the chance you may see a very brief availability issue, assuming that neither of the other 2 replicas and containers in them were started yet
+  - The above example is an extreme scenario - but is an example of the platform functioning correctly (and also something you'd see regardless, outside of ACA when using Kubernetes in general)
+- In almost all cases, simply having multiple replicas helps ensure chances at redundancy - since replicas will be scheduled across nodes (assuming you're not set to a minimum/maximum of one (1) node on a Dedicated Workload Profile) - which in that case, also a minimum of three **three (3)** nodes for applications is recommended.
+- Not following any of the above (eg. 1 replica on 1 node, with Health Probes set to values that don't "fit" the application, amongst other bad practices) may have a slight chance to be seen that a replica is evicted during some kind of immediate node movement or node issue where the net-new replica is not created just yet.
 
 Note, that in certain cases you may also see something like `0/4 nodes are available` (although 0/x count will vary) - in most cases, this likely does not affect the application, and can rather be a sign of node movement and pod/replicas being rescheduled.
 
