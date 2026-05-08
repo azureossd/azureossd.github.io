@@ -19,7 +19,7 @@
   "author": "Azure OSS Developer Support Team",
   "license": "MIT",
   "dependencies": {
-    "@azure/search-documents": "^12.2.0",
+    "@azure/search-documents": "^13.0.0",
     "dotenv": "^17.4.2",
     "gray-matter": "^4.0.3",
     "remove-markdown": "^0.6.3"
