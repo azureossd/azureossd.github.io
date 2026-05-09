@@ -16,7 +16,7 @@ header:
 # If your Blog is long, you may want to consider adding a Table of Contents by adding the following two settings.
 toc: true
 toc_sticky: true
-date: YYYY-MM-DD 12:00:00 # Ensure date and filename date match (ie. date: 2025-05-01 12:00:00 and filename: 2025-05-01-your-article-title.md)
+date: 2026-04-02 12:00:00 # Ensure date and filename date match (ie. date: 2025-05-01 12:00:00 and filename: 2025-05-01-your-article-title.md)
 ---
 
 ## This blog provides a quick overview of the Azure Load testing service
