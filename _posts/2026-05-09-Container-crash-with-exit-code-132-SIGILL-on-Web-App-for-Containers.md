@@ -1,5 +1,5 @@
 ---
-title: "Container crash with exit code 132 (SIGILL) on Web App for Containers"
+title: "Container crash with exit code 132 (SIGILL) due to invalid CPU instructions"
 author_name: "Anthony Salemo"
 tags:
     - Web App for Containers
@@ -17,7 +17,7 @@ toc_sticky: true
 date: 2026-05-11 12:00:00
 ---
 
-This post will cover containers crashing with exit code 132 (SIGILL - Illegal Instruction) on Web App for Containers, typically caused by CPU architecture mismatches between Intel and AMD workers.
+This post will cover containers crashing with exit code 132 (SIGILL - Illegal Instruction) on Web App for Containers or App Service Linux with "Blessed Images", typically caused by CPU architecture mismatches between Intel and AMD workers.
 
 # Overview
 On Azure App Service, the underlying infrastructure fleet includes workers with different CPU vendors - specifically **Intel** and **AMD** processors. App Service does not guarantee a specific CPU vendor or instruction set for any given worker. Over time, stamps may transition between hardware generations, and instance movements (due to scaling, platform maintenance, or rebalancing) can place your application on a worker with a different CPU architecture than the one it was previously running on.
