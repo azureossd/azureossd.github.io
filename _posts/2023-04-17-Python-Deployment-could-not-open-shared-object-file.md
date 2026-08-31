@@ -93,7 +93,7 @@ The workaround for this would be to create an app service [startup script](https
 
    ![Gunicorn Startup Command](/media//2023/04/python-startup-cannot-open-shared-object-file-01.png)
 
-   You can access your default docker log files by reviewing the following documentation: [Access Log Files](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#access-log-files)
+   You can access your default docker log files by reviewing the following documentation: [Access Log Files](https://learn.microsoft.com/azure/app-service/troubleshoot-diagnostic-logs#access-log-files)
 
  - Create a file named startup.sh, with the following file structure. 
 
