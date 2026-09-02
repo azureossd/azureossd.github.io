@@ -28,7 +28,7 @@ Common causes include DNS resolution errors, routing or firewall misconfiguratio
 Effective troubleshooting requires isolating the failure domain, whether DNS, network path, platform limits, or application behavior. The following tools and approaches can help systematically diagnose and resolve these issues.
 
 ## Environment Setup and Prerequisites
-Before troubleshooting, confirm which tools are available. Managed runtimes (Azure App Services, Conatainer Apps etc) or IaaS services (ex:Azure VMs) may not include all utilities by default.
+Before troubleshooting, confirm which tools are available. Managed runtimes (Azure App Services, Container Apps etc) or IaaS services (ex:Azure VMs) may not include all utilities by default.
 
 **In Azure App Service (Kudu SSH console):** `curl`, `dig`, `nc`, and `tcpdump` are pre-installed in the sandbox. `nmap`, `tshark`, and `zeek` are absent and must be side-loaded as static binaries into `/home` (persistent storage) if needed. Note that as a non-root user, you cannot install these tools in the kudu container. Additionally, to be able to install these tools in the runtime container, it needs to be up and running. And with custom docker containers on App Services, ssh would need to be enabled. Refer [here](https://azureossd.github.io/2022/04/27/2022-Enabling-SSH-on-Linux-Web-App-for-Containers/) for steps to enable SSH.
 
@@ -44,7 +44,7 @@ done
 ## DNS
 One of the first steps in troubleshooting upstream connectivity failures is validating name resolution. In Linux based environments, it is important to review /etc/hosts and /etc/resolv.conf, as these files may contain custom entries. Always validate DNS before moving to reachability tests.
 
-When an application, command line tool such as curl, browser, or runtime attempts to resolve a hostname, it invokes the operating system resolver through a system call. Typically (as determined by the resolutin order), /etc/hosts is checked first followed by DNS servers defined in /etc/resolv.conf. When any process resolves a hostname the OS resolver follows an order controlled by `/etc/nsswitch.conf` — typically `files` first, then `dns`:
+When an application, command line tool such as curl, browser, or runtime attempts to resolve a hostname, it invokes the operating system resolver through a system call. Typically (as determined by the resolution order), /etc/hosts is checked first followed by DNS servers defined in /etc/resolv.conf. When any process resolves a hostname the OS resolver follows an order controlled by `/etc/nsswitch.conf` — typically `files` first, then `dns`:
 
 A couple of tools(nslookup and dig) and their example usage is below. 
 
@@ -159,7 +159,7 @@ curl --cacert /etc/ssl/certs/custom-ca.crt \
 
 ### `ss` or `netstat`. Note that `ss` is a newer replacement.
 ```bash
-# Show aoo connections
+# Show all connections
 netstat -tunp
 # Connections to a specific remote host
 ss -tnp dst microsoft.com
@@ -194,7 +194,7 @@ nethogs eth0              # bandwidth by PID
 nethogs -d 2 eth0         # refresh every 2 seconds
 ```
 
-### `iptraf-ng` UI based tool similar to `iftop` nad `nethogs` with additional utility
+### `iptraf-ng` UI based tool similar to `iftop` and `nethogs` with additional utility
 **Example view below showing outbound connections**
 ![iptraf-ng view](/media/2026/03/iptraf-ng2.png)
 
@@ -203,7 +203,7 @@ If reachability or connectivity tests fail, or if the issues are intermittent, c
 
 ### Full Capture with tcdump
 ```bash
-tcpdump -i any -s 0 -tttt -U -nn -w “trace.pcap” 
+tcpdump -i any -s 0 -tttt -U -nn -w "trace.pcap" 
 ```
 This command captures full TCP packets (-s 0) on all interfaces (-i any), includes timestamps (-tttt), avoids resolving hostnames and ports (-nn), outputs in verbose mode (-vv) (not needed), and writes packets immediately to disk (-U) to the specified file (-w).
 
@@ -279,19 +279,43 @@ In real-world environments, it is common to iterate through multiple analysis me
 ```bash
 curl -fsSL https://raw.githubusercontent.com/azureossd/networking-troubleshooting-utility/refs/heads/main/nwutils_install.sh | bash
 ```
-**Install all tools (only) and run the commands manually**
+
+The script is organized around a few primary actions. `probe` runs the live tests (DNS, reachability, and connectivity). `trace` captures a packet trace and analyzes it. `run` does everything (probe, then trace, then a report). `capture` and `analyze` are the two halves of `trace`, so you can capture on one machine and analyze the `.pcap` on another. The default capture length is 180 seconds, and Ctrl-C stops it early.
+
+**Install the full toolkit**
 ```bash
 nwutils install
 ```
-**Run interactively for dynamic ports**
+**Check which tools are already installed**
 ```bash
-nwutils run
+nwutils check
 ```
-**Or pass the target directly**
+**Run the live tests only (DNS, reachability, connectivity)**
 ```bash
-nwutils myapi.com 4000
+nwutils probe myapi.com 443
+```
+**Capture and analyze a trace (default 180s, Ctrl-C to stop early)**
+```bash
+nwutils trace myapi.com 443
+```
+**Capture now, analyze later (even on another machine)**
+```bash
+nwutils capture myapi.com 443
+nwutils analyze /path/to/trace.pcap myapi.com 443
+```
+**Do everything and generate a report**
+```bash
+nwutils run myapi.com 443
+```
+**Guided, menu-driven mode that detects your outbound connections**
+```bash
+nwutils interactive
+```
+**Print copy-paste commands tailored to a target**
+```bash
+nwutils suggest myapi.com 443
 ```
 
-Simply run the script and it installs the necessary tools, runs through the diagnostics, collects network trace (default 60s), analysis the trace and generates a logfile and a html report with a summary. 
+A bare `nwutils myapi.com 4000` is shorthand for `nwutils run`. The `run` command installs any missing tools, works through the diagnostics, collects a network trace (default 180s), analyzes the trace, and generates a logfile and an HTML report with a summary. 
 
 
