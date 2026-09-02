@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" role="img" aria-label="Azure Load Testing">
+  <defs>
+    <linearGradient id="altBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1387E8"/>
+      <stop offset="1" stop-color="#0B3E9C"/>
+    </linearGradient>
+    <marker id="altArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9BD6FF"/>
+    </marker>
+  </defs>
+  <rect width="480" height="360" rx="30" fill="url(#altBg)"/>
+  <g>
+    <rect x="132" y="214" width="40" height="76" rx="7" fill="#FFFFFF" opacity="0.42"/>
+    <rect x="188" y="184" width="40" height="106" rx="7" fill="#FFFFFF" opacity="0.58"/>
+    <rect x="244" y="150" width="40" height="140" rx="7" fill="#FFFFFF" opacity="0.76"/>
+    <rect x="300" y="112" width="40" height="178" rx="7" fill="#FFFFFF"/>
+  </g>
+  <path d="M126 232 L196 196 L262 164 L330 112" fill="none" stroke="#9BD6FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#altArrow)"/>
+  <text x="240" y="328" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="33" font-weight="700" fill="#FFFFFF">Azure Load Testing</text>
+</svg>
