@@ -22,7 +22,7 @@
     "@azure/search-documents": "^13.0.0",
     "dotenv": "^18.0.5",
     "gray-matter": "^4.0.3",
-    "remove-markdown": "^0.7.1"
+    "remove-markdown": "^0.8.0"
   },
   "engines": {
     "node": ">=14.0.0"
