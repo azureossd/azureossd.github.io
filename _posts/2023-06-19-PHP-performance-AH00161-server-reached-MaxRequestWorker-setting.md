@@ -28,7 +28,11 @@ This post will cover scenarios where "AH00161: server reached MaxRequestWorkers 
 If App Service Logs are not enabled, only `docker.log` files will be generated, which will not show application related stdout / stderr and will make troubleshooting issues more complicated. `default_docker.log` files are the files that show application stdout/err.
 
 # Overview
-This will appear for PHP 7.x Blessed images, PHP 8.x Blessed images with the `WEBSITES_DISABLE_FPM` App Setting, or custom Docker Images with Apache/HTTPD. Although this is fundamentally an Apache-related issue, this will most likely be seen alongside PHP applications.
+This will appear for legacy PHP 7.x Blessed images, legacy PHP 8.0 through 8.3 Blessed images configured with the `WEBSITES_DISABLE_FPM` App Setting, or custom Docker Images with Apache/HTTPD. Although this is fundamentally an Apache-related issue, this will most likely be seen alongside PHP applications.
+
+> **IMPORTANT:** Do **not** use the `WEBSITES_DISABLE_FPM` App Setting to switch App Service Linux PHP applications to the legacy Apache-based images. **PHP 8.3 is the last version with an Apache variant.** These images are no longer maintained and do **not** receive security updates or CVE backports, including fixes for the critical PHP vulnerabilities [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w) and [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp). Use the default **NGINX + PHP-FPM** variant on a supported PHP version with current security fixes. Switching web servers alone is not a substitute for applying fixes. If temporarily unavoidable, restrict legacy Apache usage to a short-term stopgap in an environment that is **both non-production and not publicly accessible**, while migrating to the default variant.
+
+The Apache troubleshooting guidance below is for existing legacy deployments or customer-maintained custom images, not a recommendation to enable `WEBSITES_DISABLE_FPM`.
 
 The full message that would be seen is:
 

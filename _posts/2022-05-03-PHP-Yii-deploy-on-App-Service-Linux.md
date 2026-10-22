@@ -190,7 +190,9 @@ In the above script, this copies our custom `apache2.conf` over the existing `ap
 ![Yii App](/media/2022/05/azure-ossd-yii-deployment-2.png)
 
 # PHP 8 (NGINX)
-> **NOTE**: You can use Apache as a Web Server on PHP 8.x Blessed Images by setting an App Setting named `WEBSITES_DISABLE_FPM` - this will pull a PHP 8.x Docker Image with Apache as the Web Server. A typical .htaccess file can now be used to rewrite requests to /home/site/wwwroot/web as well as updating DocumentRoot, if needed.
+> **IMPORTANT:** Do **not** use the `WEBSITES_DISABLE_FPM` App Setting to switch App Service Linux PHP applications to the legacy Apache-based images. **PHP 8.3 is the last version with an Apache variant.** These images are no longer maintained and do **not** receive security updates or CVE backports, including fixes for the critical PHP vulnerabilities [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w) and [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp). Use the default **NGINX + PHP-FPM** variant on a supported PHP version with current security fixes. Switching web servers alone is not a substitute for applying fixes. If temporarily unavoidable, restrict legacy Apache usage to a short-term stopgap in an environment that is **both non-production and not publicly accessible**, while migrating to the default variant.
+
+For Yii, use the NGINX configuration below to serve the application from `/web` instead of switching to Apache to use `.htaccess`.
 
 PHP 8 on Azure App Service Linux uses NGINX as the default Web Server. To have NGINX route requests to `/web` we'll have to configure a custom startup script. We can grab the existing `default.conf` under `/etc/nginx/sites-available/default.conf` and run `cp /etc/nginx/sites-available/default.conf /home`. This will copy the `default.conf` we need into `/home` so we can download it with an FTP client or any other tool that allows this.
 
@@ -922,6 +924,5 @@ You could additionally extract the .zip, delete it and then deploy the files as 
       publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00000000000000000000 }}
       package: .
 ```
-
 
 

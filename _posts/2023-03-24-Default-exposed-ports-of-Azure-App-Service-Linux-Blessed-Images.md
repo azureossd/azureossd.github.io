@@ -33,8 +33,10 @@ When deploying your application to Blessed Images - it should be known that thes
 
 - **PHP**:
     - Port 8080 is the default exposed port for the PHP Blessed Image. This uses NGINX by default as the Web Server which serves the deployed PHP files.
-    - If you add the App Setting `WEBSITES_DISABLE_FPM`, this will pull a PHP Blessed Image using Apache - which also exposes port 8080 by default. 
-    - NGINX or Apache will be serving the PHP files.
+    - The legacy Apache-based PHP images also expose port 8080, but switching to them is not recommended.
+    - Keep the default NGINX + PHP-FPM variant to serve PHP files.
+
+    > **IMPORTANT:** Do **not** use the `WEBSITES_DISABLE_FPM` App Setting to switch App Service Linux PHP applications to the legacy Apache-based images. **PHP 8.3 is the last version with an Apache variant.** These images are no longer maintained and do **not** receive security updates or CVE backports, including fixes for the critical PHP vulnerabilities [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w) and [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp). Use the default **NGINX + PHP-FPM** variant on a supported PHP version with current security fixes. Switching web servers alone is not a substitute for applying fixes. If temporarily unavoidable, restrict legacy Apache usage to a short-term stopgap in an environment that is **both non-production and not publicly accessible**, while migrating to the default variant.
 
 - **.NET**:
     - Port 8080 is the default exposed port for the .NET Blessed Image. This expects a Web Server to be brought with your code (eg., Kestrel)
@@ -57,4 +59,3 @@ Adding the App Setting `PORT` to your new value will change the listening port. 
 Assuming the application is listening for the `PORT` environment variable (if applicable), this should be generally fine. If you're hardcoding the value and make this change, your container will likely time out on startup due to the port value mismatch.
 
 See this post - [Whats the difference between PORT and WEBSITES_PORT](https://azureossd.github.io/2023/02/15/Whats-the-difference-between-PORT-and-WEBSITES_PORT/index.html) - for more.
-
